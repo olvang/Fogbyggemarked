@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+    <h1>Fog Byggemarked</h1>
+
+    <table>
+        <td>Carport designer</td>
+        <tr>
+            <td>
+                <form name="selections" action="FrontController" method="POST">
+                    <input type="hidden" name="target" value="selections">
+                    <label for="width">Bredde</label>
+                    <br>
+                    <input type="number" name="width" id="width" placeholder="Bredde">
+                    <label for="depth">Dybde</label>
+                    <br>
+                    <input type="number" name="depth" id="depth" placeholder="Dybde">
+                    <label for="height">Højde</label>
+                    <br>
+                    <input type="number" name="height" id="height" placeholder="Højde">
+                    <br>
+                    <input type="submit" value="Send">
+                </form>
+            </td>
+        </tr>
+    </table>
+    </body>
+</html>
