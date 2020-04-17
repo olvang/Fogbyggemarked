@@ -5,98 +5,8 @@
   Time: 16.55
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Fog - Trælast og Byggecenter</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <style>
-        html,body{
-            height:100%;
-            padding-bottom: 60px;
-        }
-
-        .flex-container {
-            height: auto;
-            min-height: 56vh;
-            margin-bottom: 20px;
-        }
-
-        .context-dark, .bg-gray-dark, .bg-primary {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
-            color: #ffffff;
-        }
-        .nav-list li {
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-
-        .nav-list li a:hover:before {
-            margin-left: 0;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        ul, ol {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        a{
-            color: #ffffff;
-        }
-
-
-    </style>
-
-</head>
-
-<body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
-
-
-
-<!-- Begin page content -->
-<main role="main" class="container h-100 " >
-    <header>
-        <!-- Fixed navbar -->
-        <nav class="navbar navbar-expand-md navbar-white" style="background-color: #0C2069;padding: 0px">
-            <img src="https://www.johannesfog.dk/globalassets/header/logo.png">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Carporte</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Byg Selv</a>
-                    </li>
-                </ul>
-                <form class="form-inline mt-2 mt-md-0" _lpchecked="1">
-                    <button class="btn btn-outline-success my-2 mr-2 my-sm-0" type="submit" style="color:white">Login</button>
-                    <button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit" style="color:white">Register</button>
-                </form>
-            </div>
-        </nav>
-    </header>
-    <!-- DELETE ALL HTML ABOVE WHEN PULL REQUEST https://github.com/olvang/Fogbyggemarked/pull/4 has been merged -->
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="WEB-INF/includes/header.jsp" />
 
 
 
@@ -107,73 +17,64 @@
     <div class="flex-container shadow my-5">
         <div class="flex-item">
             <div class="content">
-                <container>
-                    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4 pt-5">
+                <container class="container">
+                    <div class="col-xl-11 col-lg-10 col-md-10 col-sm-10 mx-auto text-center form p-4 pt-5">
                         <form>
-                            <div class="form-group">
-                                <label for="carportwidth">Bredde</label>
-                                <input type="number" id="carportwidth" name="carportwidth" placeholder="Ønsket bredde i meter" type="text" class="form-control" required="required">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12 pr-5">
+                                    <div class="pb-5">
+                                    <h2><u>Carport</u></h2>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="carportwidth">Bredde</label>
+                                        <input type="number" id="carportwidth" name="carportwidth" placeholder="Ønsket bredde i meter" type="text" class="form-control" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="carportdepth">Dybde</label>
+                                        <input type="number" id="carportdepth" name="carportdepth" placeholder="Ønsket dybde i meter" type="text" class="form-control" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="carportheight">Højde</label>
+                                        <input type="number" id="carportheight" name="carportheight" placeholder="Ønsket højde i meter" type="text" class="form-control" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 pl-5">
+                                    <div class="pb-5">
+                                    <h2><u>Skur</u></h2>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="number" name="shedornot" id="shedornot_0" type="radio" required="required" class="custom-control-input" value="true">
+                                                <label for="shedornot_0" class="custom-control-label">Jeg vil gerne have skur</label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="number" name="shedornot" id="shedornot_1" type="radio" required="required" class="custom-control-input" value="false">
+                                                <label for="shedornot_1" class="custom-control-label">Jeg vil ikke have skur</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="shedwidth">Bredde</label>
+                                        <input id="shedwidth" name="shedwidth" placeholder="Indtast ønsket bredde på skuret" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sheddepth">Dybde</label>
+                                        <input id="sheddepth" name="sheddepth" placeholder="Indtast ønsket længde på skuret" type="text" class="form-control">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="carportdepth">Dybde</label>
-                                <input type="number" id="carportdepth" name="carportdepth" placeholder="Ønsket dybde i meter" type="text" class="form-control" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label for="carportheight">Højde</label>
-                                <input type="number" id="carportheight" name="carportheight" placeholder="Ønsket højde i meter" type="text" class="form-control" required="required">
-                            </div>
-                            <div class="form-group">
+                            <div class="form-group pt-5">
                                 <button name="submit" type="submit" class="btn btn-primary">Send</button>
                             </div>
                         </form>
+
                     </div>
+
                 </container>
             </div>
         </div>
 
     </div>
 
-    <!-- DELETE ALL HTML BELOW WHEN PULL REQUEST https://github.com/olvang/Fogbyggemarked/pull/4 has been merged -->
-    <footer class="section footer-classic context-dark bg-image rounded navbar-dark text-white" style="background-color: #003D76">
-        <div class="container">
-            <div class="row row-30 pt-2">
-                <div class="col-md-4 col-xl-5">
-                    <div class="pr-xl-4"><a class="brand" href="index.html"></a>
-                        <p>Johannes Fog består af et Bolig & Designhus og ni Trælast & Byggecenter-butikker fordelt i hele Nordsjælland</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <h5>Johannes Fog A/S</h5>
-                    <dl class="contact-list">
-                        <dt>Adresse</dt>
-                        <dd> Firskovvej 20 - 2800 Lyngby</dd>
-                    </dl>
-                    <dl class="contact-list">
-                        <dt>Telefon:</dt>
-                        <dd>45 87 10 01 </dd>
-                    </dl>
-                </div>
-                <div class="col-md-4 col-xl-3">
-                    <h5>Links</h5>
-                    <ul class="nav-list">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Projects</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-</main>
-
-
-
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-
-
-</body>
-
-</html>
+<jsp:include page="WEB-INF/includes/footer.jsp"></jsp:include>
