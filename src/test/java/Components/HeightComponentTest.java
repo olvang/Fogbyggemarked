@@ -3,7 +3,8 @@ package Components;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 public class HeightComponentTest {
 
@@ -59,6 +60,44 @@ public class HeightComponentTest {
     @Test (expected = ValidationFailedException.class)
     public void testMassiveValue() throws ValidationFailedException {
         HeightComponent component = new HeightComponent(2000000);
+    }
+
+    //Equals tests
+    @Test
+    public void testEqualsInt() throws ValidationFailedException {
+        HeightComponent component1 = new HeightComponent(10);
+
+        assertTrue(component1.equals(10));
+    }
+
+    @Test
+    public void testEqualsObject() throws ValidationFailedException {
+        HeightComponent component1 = new HeightComponent(10);
+        HeightComponent component2= new HeightComponent(10);
+
+        assertTrue(component1.equals(component2));
+    }
+
+    @Test
+    public void testEqualsObjectFail() throws ValidationFailedException {
+        HeightComponent component1 = new HeightComponent(10);
+        HeightComponent component2= new HeightComponent(11);
+
+        assertFalse(component1.equals(component2));
+    }
+
+    @Test
+    public void testEqualsIntFail() throws ValidationFailedException {
+        HeightComponent component1 = new HeightComponent(10);
+
+        assertFalse(component1.equals(11));
+    }
+
+    @Test
+    public void testEqualsWrongObjectType() throws ValidationFailedException {
+        HeightComponent component1 = new HeightComponent(10);
+
+        assertFalse(component1.equals(new String()));
     }
 
 }

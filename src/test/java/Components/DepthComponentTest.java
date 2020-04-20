@@ -61,4 +61,42 @@ public class DepthComponentTest {
         DepthComponent component = new DepthComponent(2000000);
     }
 
+    //Equals tests
+    @Test
+    public void testEqualsInt() throws ValidationFailedException {
+        DepthComponent component1 = new DepthComponent(10);
+
+        assertTrue(component1.equals(10));
+    }
+
+    @Test
+    public void testEqualsObject() throws ValidationFailedException {
+        DepthComponent component1 = new DepthComponent(10);
+        DepthComponent component2= new DepthComponent(10);
+
+        assertTrue(component1.equals(component2));
+    }
+
+    @Test
+    public void testEqualsObjectFail() throws ValidationFailedException {
+        DepthComponent component1 = new DepthComponent(10);
+        DepthComponent component2= new DepthComponent(11);
+
+        assertFalse(component1.equals(component2));
+    }
+
+    @Test
+    public void testEqualsIntFail() throws ValidationFailedException {
+        DepthComponent component1 = new DepthComponent(10);
+
+        assertFalse(component1.equals(11));
+    }
+
+    @Test
+    public void testEqualsWrongObjectType() throws ValidationFailedException {
+        DepthComponent component1 = new DepthComponent(10);
+
+        assertFalse(component1.equals(new WidthComponent(10)));
+    }
+
 }

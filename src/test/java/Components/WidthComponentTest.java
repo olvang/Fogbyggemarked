@@ -3,7 +3,8 @@ package Components;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 public class WidthComponentTest {
 
@@ -60,4 +61,43 @@ public class WidthComponentTest {
     public void testMassiveValue() throws ValidationFailedException {
         WidthComponent component = new WidthComponent(2000000);
     }
+
+    //Equals tests
+    @Test
+    public void testEqualsInt() throws ValidationFailedException {
+        WidthComponent component1 = new WidthComponent(10);
+
+        assertTrue(component1.equals(10));
+    }
+
+    @Test
+    public void testEqualsObject() throws ValidationFailedException {
+        WidthComponent component1 = new WidthComponent(10);
+        WidthComponent component2= new WidthComponent(10);
+
+        assertTrue(component1.equals(component2));
+    }
+
+    @Test
+    public void testEqualsObjectFail() throws ValidationFailedException {
+        WidthComponent component1 = new WidthComponent(10);
+        WidthComponent component2= new WidthComponent(11);
+
+        assertFalse(component1.equals(component2));
+    }
+
+    @Test
+    public void testEqualsIntFail() throws ValidationFailedException {
+        WidthComponent component1 = new WidthComponent(10);
+
+        assertFalse(component1.equals(11));
+    }
+
+    @Test
+    public void testEqualsWrongObjectType() throws ValidationFailedException {
+        WidthComponent component1 = new WidthComponent(10);
+
+        assertFalse(component1.equals(new String()));
+    }
+
 }
