@@ -8,12 +8,27 @@ public class ShedWidthComponent implements Component {
 
     private WidthComponent carportConnection;
 
+    //-------------//
+    // Constructor //
+    //-------------//
     public ShedWidthComponent(int width, WidthComponent carportWidth) throws ValidationFailedException {
         this.width = width;
         this.carportConnection = carportWidth;
         validate();
     }
 
+    public ShedWidthComponent(String width) throws ValidationFailedException {
+        try {
+            this.width = Integer.parseInt(width);
+        }catch (Exception ex) {
+            throw new ValidationFailedException("Skur bredden skal være et tal.");
+        }
+        validate();
+    }
+
+    //-------------//
+    // Validation //
+    //------------//
     @Override
     public boolean validate() throws ValidationFailedException {
         if (width < 1) {
@@ -24,6 +39,9 @@ public class ShedWidthComponent implements Component {
         return true;
     }
 
+    //-----------------//
+    // Getters/Setters //
+    //-----------------//
     public int getWidth() {
         return width;
     }
