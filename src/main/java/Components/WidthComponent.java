@@ -19,6 +19,10 @@ public class WidthComponent implements Component {
     }
 
     public WidthComponent(String width) throws ValidationFailedException {
+        if(width.equals("")) {
+            //Don't forget to update test if this error message is changed.
+            throw new ValidationFailedException("Dette felt skal udfyldes.");
+        }
         try {
             this.width = Integer.parseInt(width);
         }catch (Exception ex) {

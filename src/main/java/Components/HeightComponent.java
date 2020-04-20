@@ -19,6 +19,10 @@ public class HeightComponent implements Component{
     }
 
     public HeightComponent(String height) throws ValidationFailedException {
+        if(height.equals("")) {
+            //Don't forget to update test if this error message is changed.
+            throw new ValidationFailedException("Dette felt skal udfyldes.");
+        }
         try {
             this.height = Integer.parseInt(height);
         }catch (Exception ex) {

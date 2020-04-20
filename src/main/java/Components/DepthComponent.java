@@ -19,6 +19,10 @@ public class DepthComponent implements Component {
     }
 
     public DepthComponent(String depth) throws ValidationFailedException {
+        if(depth.equals("")) {
+            //Don't forget to update test if this error message is changed.
+            throw new ValidationFailedException("Dette felt skal udfyldes.");
+        }
         try {
             this.depth = Integer.parseInt(depth);
         }catch (Exception ex) {

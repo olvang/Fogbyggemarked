@@ -75,6 +75,19 @@ public class ShedWidthComponentTest {
         ShedWidthComponent component = new ShedWidthComponent(51, carportComponent);
     }
 
+    @Test
+    public void testEmptyString() {
+        String expected = "Dette felt skal udfyldes.";
+        String actual = "No exception was thrown";
+        try {
+            WidthComponent carportComp = new WidthComponent(1);
+            ShedWidthComponent component = new ShedWidthComponent("", carportComp);
+        }catch (ValidationFailedException ex) {
+            actual = ex.getMessage();
+        }
+        assertEquals(expected, actual);
+    }
+
     //Equals tests
     @Test
     public void testEqualsInt() throws ValidationFailedException {

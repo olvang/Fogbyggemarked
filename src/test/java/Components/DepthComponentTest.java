@@ -61,6 +61,18 @@ public class DepthComponentTest {
         DepthComponent component = new DepthComponent(2000000);
     }
 
+    @Test
+    public void testEmptyString() {
+        String expected = "Dette felt skal udfyldes.";
+        String actual = "No exception was thrown";
+        try {
+            DepthComponent component = new DepthComponent("");
+        }catch (ValidationFailedException ex) {
+            actual = ex.getMessage();
+        }
+        assertEquals(expected, actual);
+    }
+
     //Equals tests
     @Test
     public void testEqualsInt() throws ValidationFailedException {
