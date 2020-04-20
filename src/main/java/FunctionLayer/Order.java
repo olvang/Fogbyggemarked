@@ -70,6 +70,14 @@ public class Order {
         this.shedWidth = shedWidth;
     }
 
+    public int getIncline() {
+        return incline;
+    }
+
+    public void setIncline(int incline) {
+        this.incline = incline;
+    }
+
     @Override
     public String toString() {
         return "depth " + depth.getDepth() + " height " + height.getHeight() + "  width" + width.getWidth()
