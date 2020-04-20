@@ -17,12 +17,13 @@ public class ShedWidthComponent implements Component {
         validate();
     }
 
-    public ShedWidthComponent(String width) throws ValidationFailedException {
+    public ShedWidthComponent(String width, WidthComponent carportWidth) throws ValidationFailedException {
         try {
             this.width = Integer.parseInt(width);
         }catch (Exception ex) {
             throw new ValidationFailedException("Skur bredden skal være et tal.");
         }
+        this.carportConnection = carportWidth;
         validate();
     }
 

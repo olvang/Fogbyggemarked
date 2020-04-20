@@ -17,12 +17,13 @@ public class ShedDepthComponent implements Component {
         validate();
     }
 
-    public ShedDepthComponent(String depth) throws ValidationFailedException {
+    public ShedDepthComponent(String depth, DepthComponent carportDepth) throws ValidationFailedException {
         try {
             this.depth = Integer.parseInt(depth);
         }catch (Exception ex) {
             throw new ValidationFailedException("Skur dybden skal være et tal.");
         }
+        this.carportConnection = carportDepth;
         validate();
     }
 
