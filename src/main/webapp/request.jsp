@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12" align="center">
-                                    <div class="pb-5">
+                                    <div class="pb-2">
                                     <h2><u>Skur</u></h2>
                                     </div>
                                     <div class="form-group">
@@ -61,6 +61,19 @@
                                     <div class="form-group">
                                         <label for="sheddepth">Dybde</label>
                                         <input type="number" id="sheddepth" name="sheddepth" placeholder="Ønsket længde på skuret" type="text" class="form-control w-75" checked>
+                                    </div>
+                                        <h2><u>Tag</u></h2>
+                                    <div class="form-group">
+                                        <div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input name="rooftype" id="flatroof" type="radio" required="required" class="custom-control-input" value="flat">
+                                                <label for="flatroof" class="custom-control-label">Jeg vil have flat tag</label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input name="rooftype" id="inclinedroof" type="radio" required="required" class="custom-control-input" value="inclined">
+                                                <label for="inclinedroof" class="custom-control-label">Jeg vil have skråt tag</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
