@@ -8,12 +8,27 @@ public class ShedDepthComponent implements Component {
 
     private DepthComponent carportConnection;
 
+    //-------------//
+    // Constructor //
+    //-------------//
     public ShedDepthComponent(int depth, DepthComponent carportDepth) throws ValidationFailedException {
         this.depth = depth;
         this.carportConnection = carportDepth;
         validate();
     }
 
+    public ShedDepthComponent(String depth) throws ValidationFailedException {
+        try {
+            this.depth = Integer.parseInt(depth);
+        }catch (Exception ex) {
+            throw new ValidationFailedException("Skur dybden skal være et tal.");
+        }
+        validate();
+    }
+
+    //-------------//
+    // Validation //
+    //------------//
     @Override
     public boolean validate() throws ValidationFailedException {
         if(depth < 1) {
@@ -24,6 +39,9 @@ public class ShedDepthComponent implements Component {
         return true;
     }
 
+    //-----------------//
+    // Getters/Setters //
+    //-----------------//
     public int getDepth() {
         return depth;
     }

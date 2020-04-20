@@ -8,11 +8,26 @@ public class WidthComponent implements Component {
 
     private int widthLimit = 2000;
 
+    //-------------//
+    // Constructor //
+    //-------------//
     public WidthComponent(int width) throws ValidationFailedException {
         this.width = width;
         validate();
     }
 
+    public WidthComponent(String width) throws ValidationFailedException {
+        try {
+            this.width = Integer.parseInt(width);
+        }catch (Exception ex) {
+            throw new ValidationFailedException("Bredden skal være et tal.");
+        }
+        validate();
+    }
+
+    //-------------//
+    // Validation //
+    //------------//
     @Override
     public boolean validate() throws ValidationFailedException {
         if (width < 1) {
@@ -23,6 +38,9 @@ public class WidthComponent implements Component {
         return true;
     }
 
+    //-----------------//
+    // Getters/Setters //
+    //-----------------//
     public int getWidth() {
         return width;
     }

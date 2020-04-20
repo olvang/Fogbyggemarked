@@ -8,11 +8,26 @@ public class HeightComponent implements Component{
 
     private int heightLimit = 1000;
 
+    //-------------//
+    // Constructor //
+    //-------------//
     public HeightComponent(int height) throws ValidationFailedException {
         this.height = height;
         validate();
     }
 
+    public HeightComponent(String height) throws ValidationFailedException {
+        try {
+            this.height = Integer.parseInt(height);
+        }catch (Exception ex) {
+            throw new ValidationFailedException("Højden skal være et tal.");
+        }
+        validate();
+    }
+
+    //-------------//
+    // Validation //
+    //------------//
     @Override
     public boolean validate() throws ValidationFailedException {
         if(height < 1) {
@@ -23,6 +38,9 @@ public class HeightComponent implements Component{
         return true;
     }
 
+    //-----------------//
+    // Getters/Setters //
+    //-----------------//
     public int getHeight() {
         return height;
     }

@@ -8,11 +8,26 @@ public class DepthComponent implements Component {
 
     private int depthLimit = 2000;
 
+    //-------------//
+    // Constructor //
+    //-------------//
     public DepthComponent(int depth) throws ValidationFailedException {
         this.depth = depth;
         validate();
     }
 
+    public DepthComponent(String depth) throws ValidationFailedException {
+        try {
+            this.depth = Integer.parseInt(depth);
+        }catch (Exception ex) {
+            throw new ValidationFailedException("Dybden skal være et tal.");
+        }
+        validate();
+    }
+
+    //-------------//
+    // Validation //
+    //------------//
     @Override
     public boolean validate() throws ValidationFailedException {
         if( depth < 1) {
@@ -23,6 +38,9 @@ public class DepthComponent implements Component {
         return true;
     }
 
+    //-----------------//
+    // Getters/Setters //
+    //-----------------//
     public int getDepth() {
         return depth;
     }
