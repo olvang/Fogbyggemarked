@@ -39,9 +39,9 @@ CREATE TABLE `sheds` (
 
 CREATE TABLE `materials` (
   `materials_id` INT NOT NULL AUTO_INCREMENT,
-  `length` INT NOT NULL,
-  `height` INT NULL,
-  `width` INT NULL,
+  `length` INT NOT NULL DEFAULT 0,
+  `height` INT NULL DEFAULT 0,
+  `width` INT NULL DEFAULT 0,
   `amount` INT NOT NULL DEFAULT 1,
   `name` VARCHAR(55) NOT NULL,
   -- `category_id` INT NOT NULL,
