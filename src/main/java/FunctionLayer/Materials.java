@@ -1,8 +1,8 @@
 package FunctionLayer;
 
-import Components.DepthComponent;
-import Components.HeightComponent;
-import Components.WidthComponent;
+import Components.MaterialLengthComponent;
+import Components.MaterialHeightComponent;
+import Components.MaterialWidthComponent;
 
 
 
