@@ -36,3 +36,14 @@ CREATE TABLE `sheds` (
 		REFERENCES orders(`order_id`)
 		ON DELETE CASCADE
 );
+
+CREATE TABLE `materials` (
+  `materials_id` INT NOT NULL AUTO_INCREMENT,
+  `length` INT NOT NULL,
+  `height` INT NULL,
+  `width` INT NULL,
+  `amount` INT NOT NULL DEFAULT 1,
+  `name` VARCHAR(55) NOT NULL,
+  -- `category_id` INT NOT NULL,
+  PRIMARY KEY (`materials_id`),
+  UNIQUE INDEX `materials_id_UNIQUE` (`materials_id` ASC) VISIBLE);
