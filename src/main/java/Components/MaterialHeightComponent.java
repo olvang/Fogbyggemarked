@@ -37,7 +37,7 @@ public class MaterialHeightComponent implements Component {
     //------------//
     @Override
     public boolean validate() throws ValidationFailedException {
-        if(height < 1) {
+        if(height < 0) {
             throw new ValidationFailedException("Højde må ikke være under 0.");
         }
         return true;
