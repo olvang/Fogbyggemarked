@@ -38,7 +38,7 @@ public class MaterialWidthComponent implements Component {
     //------------//
     @Override
     public boolean validate() throws ValidationFailedException {
-        if(width < 1) {
+        if(width < 0) {
             throw new ValidationFailedException("Bredde må ikke være under 0.");
         }
         return true;

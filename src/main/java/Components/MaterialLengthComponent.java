@@ -38,7 +38,7 @@ public class MaterialLengthComponent implements Component {
     //------------//
     @Override
     public boolean validate() throws ValidationFailedException {
-        if(length < 1) {
+        if(length < 0) {
             throw new ValidationFailedException("Længde må ikke være under 0.");
         }
         return true;
