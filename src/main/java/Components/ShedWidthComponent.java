@@ -9,6 +9,7 @@ public class ShedWidthComponent implements Component {
     private int width;
 
     private WidthComponent carportConnection;
+    private Integer carportWidth;
 
     //-------------//
     // Constructor //
@@ -33,6 +34,20 @@ public class ShedWidthComponent implements Component {
         validate();
     }
 
+    public ShedWidthComponent(String width, String carportWidth) throws ValidationFailedException {
+        if(width.equals("")) {
+            //Don't forget to update test if this error message is changed.
+            throw new ValidationFailedException("Dette felt skal udfyldes.");
+        }
+        try {
+            this.width = Integer.parseInt(width);
+            this.carportWidth = Integer.parseInt(carportWidth);
+        }catch (Exception ex) {
+            throw new ValidationFailedException("Skur bredden skal være et tal.");
+        }
+        validate();
+    }
+
     //-------------//
     // Validation //
     //------------//
@@ -42,7 +57,9 @@ public class ShedWidthComponent implements Component {
         if (width < 1) {
             throw new ValidationFailedException("Skur bredde må ikke være under 0.");
         //If width is larger than the carport it is connected to, a ValidationFailedException is thrown
-        } else if (width > carportConnection.getWidth()) {
+        } else if (carportWidth != null && width > carportWidth){
+            throw new ValidationFailedException("Skur dybde må ikke være større end carporten");
+        }else if (carportConnection != null && width > carportConnection.getWidth()) {
             throw new ValidationFailedException("Skur bredde må ikke være større end carporten.");
         }
         return true;

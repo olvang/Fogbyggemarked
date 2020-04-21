@@ -60,7 +60,11 @@ public class Request extends Command {
             //Width
             shedWidthString = request.getParameter( "shedwidth" );
             try {
-                shedWidth = new ShedWidthComponent(shedWidthString,carportWidth);
+                if(carportWidth != null) {
+                    shedWidth = new ShedWidthComponent(shedWidthString,carportWidth);
+                } else {
+                    shedWidth = new ShedWidthComponent(shedWidthString, carportWidthString);
+                }
             } catch (ValidationFailedException e) {
                 request.setAttribute("shedWidthError",e.getMessage());
                 errorsFound = true;
@@ -69,7 +73,11 @@ public class Request extends Command {
             //Depth
             shedDepthString = request.getParameter( "sheddepth" );
             try {
-                shedDepth = new ShedDepthComponent(shedDepthString,carportDepth);
+                if(carportDepth != null) {
+                    shedDepth = new ShedDepthComponent(shedDepthString,carportDepth);
+                } else {
+                    shedDepth = new ShedDepthComponent(shedDepthString, carportDepthString);
+                }
             } catch (ValidationFailedException e) {
                 request.setAttribute("shedDepthError",e.getMessage());
                 errorsFound = true;

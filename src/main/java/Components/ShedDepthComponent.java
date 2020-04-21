@@ -9,6 +9,7 @@ public class ShedDepthComponent implements Component {
     private int depth;
 
     private DepthComponent carportConnection;
+    private Integer carportDepth;
 
     //-------------//
     // Constructor //
@@ -33,6 +34,20 @@ public class ShedDepthComponent implements Component {
         validate();
     }
 
+    public ShedDepthComponent(String depth, String cartportDepth) throws ValidationFailedException {
+        if(depth.equals("")) {
+            //Don't forget to update test if this error message is changed.
+            throw new ValidationFailedException("Dette felt skal udfyldes.");
+        }
+        try {
+            this.depth = Integer.parseInt(depth);
+            this.carportDepth = Integer.parseInt(cartportDepth);
+        }catch (Exception ex) {
+            throw new ValidationFailedException("Skur dybden skal være et tal.");
+        }
+        validate();
+    }
+
     //-------------//
     // Validation //
     //------------//
@@ -41,8 +56,10 @@ public class ShedDepthComponent implements Component {
         //If depth is 0 or lower, a ValidationFailedException is thrown
         if(depth < 1) {
             throw new ValidationFailedException("Skur dybde må ikke være under 0");
-        //If depth is larger than the carport it is connected to, a ValidationFailedException is thrown
-        } else if (depth > carportConnection.getDepth()) {
+            //If depth is larger than the carport it is connected to, a ValidationFailedException is thrown
+        } else if (carportDepth != null && depth > carportDepth){
+            throw new ValidationFailedException("Skur dybde må ikke være større end carporten");
+        } else if (carportConnection != null && depth > carportConnection.getDepth()) {
             throw new ValidationFailedException("Skur dybde må ikke være større end carporten");
         }
         return true;
