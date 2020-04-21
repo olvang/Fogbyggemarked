@@ -3,7 +3,7 @@ package PresentationLayer;
 import Components.*;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.Exceptions.CommandException;
 import FunctionLayer.Order;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class Request extends Command {
 
     @Override
-    String execute( HttpServletRequest request, HttpServletResponse response ) throws LoginSampleException {
+    String execute( HttpServletRequest request, HttpServletResponse response ) throws CommandException {
         boolean errorsFound = false;
         WidthComponent carportWidth = null;
         DepthComponent carportDepth = null;
