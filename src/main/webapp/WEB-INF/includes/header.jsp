@@ -87,7 +87,13 @@
                         <a class="nav-link" href="#">Carporte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Byg Selv</a>
+                        <a class="nav-link" href="request.jsp">Byg Selv</a>
+                    </li>
+                    <li class="nav-item">
+                        <form id="testForm" action="FrontController" method="POST">
+                        <input type="hidden" name="target" value="bill">
+                        <a class="nav-link" href="javascript:{}" onclick="document.getElementById('testForm').submit(); return false;">StykListe</a>
+                        </form>
                     </li>
                 </ul>
                 <form class="form-inline mt-2 mt-md-0" _lpchecked="1">

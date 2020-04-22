@@ -35,7 +35,7 @@ public class BillCalculator {
         //Select which categories are needed for the selected order type
         switch (orderType){
             case 1: //Flat roof, no shed
-                categoriesNeeded = new int[]{1,2,3,4,5,6,7};
+                categoriesNeeded = new int[]{1,2,3,4,5,6,7,11};
                 break;
             case 2: //Flat roof, with shed
                 categoriesNeeded = new int[]{2};
@@ -62,7 +62,6 @@ public class BillCalculator {
         //For each category calculate materials needed
         for(int category : categoriesNeeded){
             //Resets array
-            materialsUsedInGenerator.clear();
 
             switch(category){
                 //TODO Translate to English
@@ -74,7 +73,7 @@ public class BillCalculator {
                     materialsUsedInGenerator = getMaterialsUsedInGenerator(categoriesUsedInGenerator, materialsAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.underSternsBredderFrontAndBack(materialsUsedInGenerator);
+                    billLine = CarportGenerator.underSternsBredderFrontAndBack(materialsUsedInGenerator,order.getWidth());
                     break;
                 case 2: //understernbrædder til siderne
                     //The material categories needed in the generator method
@@ -174,7 +173,7 @@ public class BillCalculator {
                     materialsUsedInGenerator = getMaterialsUsedInGenerator(categoriesUsedInGenerator, materialsAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.posts(materialsUsedInGenerator);
+                    billLine = CarportGenerator.posts(materialsUsedInGenerator,order.getWidth(),order.getDepth());
                     break;
                 case 12: //til beklædning af skur 1 på 2
                     //The material categories needed in the generator method
@@ -349,22 +348,23 @@ public class BillCalculator {
             }
             if(billLine != null){
                 billLines.add(billLine);
+                materialsUsedInGenerator.clear();
             }
 
         }
 
-        return null;
+        return billLines;
     }
 
     private ArrayList<Material> getMaterialsUsedInGenerator(int[] categoriesUsedInGenerator,ArrayList<Material> materialsAvailable) {
-        ArrayList<Material> materialsUsedInGenerator = null;
+        ArrayList<Material> materialsUsedInGenerator = new ArrayList<Material>();
 
         //Loop all categories needed in Generator
         for(int categoryID : categoriesUsedInGenerator){
 
             //Loop all materials available to search for the categoryID
             for(Material material : materialsAvailable){
-                if(material.getCategory() == categoryID){
+                if(material != null && material.getCategory() == categoryID){
                     materialsUsedInGenerator.add(material);
 
                     //When the material has been found exit

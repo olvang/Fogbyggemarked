@@ -1,5 +1,8 @@
 package FunctionLayer.BillGenerator;
 
+import Components.DepthComponent;
+import Components.HeightComponent;
+import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Material;
 
@@ -7,7 +10,7 @@ import java.util.ArrayList;
 
 public class CarportGenerator {
 
-    public static BillLine underSternsBredderFrontAndBack(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine underSternsBredderFrontAndBack(ArrayList<Material> materialsUsedInGenerator, WidthComponent carpotWidth) {
         return null;
     }
 
@@ -32,8 +35,16 @@ public class CarportGenerator {
         return null;
     }
 
-    public static BillLine posts(ArrayList<Material> materialsUsedInGenerator) {
-        return null;
+    public static BillLine posts(ArrayList<Material> materialsUsedInGenerator, WidthComponent carpotWidth, DepthComponent carpotDepth) {
+        int numberOfPostRows = 2;
+        int carportWidth = carpotWidth.getWidth();
+
+        if(carportWidth > 600){
+            numberOfPostRows += carportWidth / 600;
+        }
+
+        BillLine billLine = new BillLine(materialsUsedInGenerator.get(1),numberOfPostRows);
+        return billLine;
     }
 
     public static BillLine perforatedBand(ArrayList<Material> materialsUsedInGenerator) {
