@@ -7,17 +7,19 @@ import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Order;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import org.junit.Test;
+import testDataSetup.TestDataSetup;
 
 import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 
-public class OrderMapperTest {
+public class OrderMapperTest extends TestDataSetup {
 
     DepthComponent depth;
     HeightComponent height;
     WidthComponent width;
     Order ord;
+    Order order;
     {
         try {
             depth = new DepthComponent("200");
@@ -40,5 +42,17 @@ public class OrderMapperTest {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+    @Test
+    public void TestGetOrder(){
+        OrderMapper om = new OrderMapper();
+        int carportHeight = 300;
+        try {
+            order = om.getOrder(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(carportHeight, order.getHeight().getHeight());
     }
 }
