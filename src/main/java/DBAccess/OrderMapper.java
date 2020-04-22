@@ -14,7 +14,7 @@ public class OrderMapper {
     Then it execute two diffrent sets of SQL statemenets depending on the
     information.,
      */
-    public void createOrder(Order order) throws SQLException {
+    public static void createOrder(Order order) throws SQLException {
         try{
             Connection con = Connector.connection();
 
@@ -57,7 +57,7 @@ public class OrderMapper {
         a shed on it or not.  
      */
 
-    public Order getOrder(int ID) throws Exception {
+    public static Order getOrder(int ID) throws Exception {
         Order ord;
         try{
             Connection con = Connector.connection();
@@ -65,10 +65,11 @@ public class OrderMapper {
             String SQL = "SELECT * FROM ORDERS left join sheds on orders.order_id = sheds.order_id  where orders.order_id = ?;";
 
             PreparedStatement ps = con.prepareStatement(SQL);
+
             ps.setInt(1,ID);
 
             ResultSet rs = ps.executeQuery();
-
+            rs.next();
 
             WidthComponent widthComponent = new WidthComponent(rs.getInt("carport_width"));
             DepthComponent depthComponent = new DepthComponent(rs.getInt("carport_depth"));
@@ -99,7 +100,7 @@ public class OrderMapper {
         Check whether or not a shed exists to the given ID.
         Primary job, being a helper class to the method - getOrder
      */
-    public boolean doesShedExists(int ID) throws Exception{
+    private static boolean doesShedExists(int ID) throws Exception{
 
         try{
             Connection con = Connector.connection();
@@ -110,7 +111,7 @@ public class OrderMapper {
             ps.setInt(1,ID);
 
             ResultSet rs = ps.executeQuery();
-
+            rs.next();
             int count = rs.getInt("count(*)");
 
             if(count > 0){
