@@ -107,10 +107,10 @@ public class Request extends Command {
             //if they selected a Shed
             if(shedornotString.equals("true")){
                 order = new Order(carportDepth, carportHeight, carportWidth, shedDepth,
-                        shedWidth, incline);
+                        shedWidth, incline, true);
             }else{
                 //if no shed Shed has been selected
-                order = new Order(carportDepth, carportHeight, carportWidth,incline);
+                order = new Order(carportDepth, carportHeight, carportWidth,incline, false);
             }
             try {
                 LogicFacade.createOrder(order);
