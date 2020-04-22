@@ -10,9 +10,10 @@ public class Order {
     private ShedDepthComponent shedDepth;
     private ShedWidthComponent shedWidth;
     private int incline;
+    private boolean withShed;
 
     public Order(DepthComponent depth, HeightComponent height, WidthComponent width , ShedDepthComponent shedDepth,
-                 ShedWidthComponent shedWidth, int incline){
+                 ShedWidthComponent shedWidth, int incline, boolean withShed){
 
         this.depth = depth;
         this.height = height;
@@ -22,7 +23,7 @@ public class Order {
         this.incline = incline;
     }
 
-    public Order(DepthComponent depth, HeightComponent height, WidthComponent width, int incline){
+    public Order(DepthComponent depth, HeightComponent height, WidthComponent width, int incline, boolean withShed){
 
         this.depth = depth;
         this.height = height;
@@ -76,6 +77,14 @@ public class Order {
 
     public void setIncline(int incline) {
         this.incline = incline;
+    }
+
+    public boolean isWithShed() {
+        return withShed;
+    }
+
+    public void setWithShed(boolean withShed) {
+        this.withShed = withShed;
     }
 
     @Override

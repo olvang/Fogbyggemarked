@@ -1,10 +1,12 @@
 package FunctionLayer;
 
+import DBAccess.MaterialsMapper;
 import DBAccess.OrderMapper;
 import DBAccess.UserMapper;
 import FunctionLayer.Exceptions.CommandException;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * The purpose of LogicFacade is to...
@@ -25,6 +27,11 @@ public class LogicFacade {
     public static void createOrder( Order order) throws CommandException, SQLException {
         OrderMapper orderMapper = new OrderMapper();
         orderMapper.createOrder(order);
+    }
+
+    public static ArrayList<Material> getTheseMaterials(int[] categoriesNeeded) throws CommandException, SQLException {
+        MaterialsMapper materialsMapper = new MaterialsMapper();
+        materialsMapper.getTheseMaterials(categoriesNeeded);
     }
 
 }
