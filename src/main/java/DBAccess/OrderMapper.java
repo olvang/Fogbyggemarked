@@ -45,10 +45,10 @@ public class OrderMapper {
             }
 
         }catch (SQLException e){
-            throw new SQLException( e.getMessage() + "Could not create order");
+            throw new SQLException( e.getMessage() + " Could not create order in order mapper");
 
         }catch(ClassNotFoundException e){
-            throw new ClassCastException(e.getMessage() + "Connection could not be created");
+            throw new ClassCastException(e.getMessage() + " Connection could not be created in order mapper");
         }
 
     }
@@ -82,15 +82,15 @@ public class OrderMapper {
                 ShedWidthComponent shedWidthComponent = new ShedWidthComponent(rs.getInt("shed_width"),widthComponent);
                 ShedDepthComponent shedDepthComponent = new ShedDepthComponent(rs.getInt("shed_depth"),depthComponent);
 
-                ord = new Order(depthComponent,heightComponent,widthComponent,shedDepthComponent, shedWidthComponent,carportIncline);
+                ord = new Order(depthComponent,heightComponent,widthComponent,shedDepthComponent, shedWidthComponent,carportIncline,true);
             }else{
-                ord = new Order(depthComponent,heightComponent,widthComponent,carportIncline);
+                ord = new Order(depthComponent,heightComponent,widthComponent,carportIncline,false);
             }
 
         }catch (SQLException e){
-            throw new SQLException(e.getMessage() + "Could not find order");
+            throw new SQLException(e.getMessage() + " Could not find order in order mapper");
         }catch (ClassNotFoundException e){
-            throw new ClassCastException(e.getMessage() + "Connection could not be created");
+            throw new ClassCastException(e.getMessage() + " Connection could not be created in order mapper");
         }
 
         return ord;
@@ -121,9 +121,9 @@ public class OrderMapper {
             return false;
 
         }catch (SQLException e){
-            throw new SQLException(e.getMessage() + "Could not find order");
+            throw new SQLException(e.getMessage() + " Could not find order in order mapper");
         }catch (ClassNotFoundException e){
-            throw new ClassCastException(e.getMessage() + "Connection could not be created");
+            throw new ClassCastException(e.getMessage() + " Connection could not be created in order mapper");
         }
     }
 }
