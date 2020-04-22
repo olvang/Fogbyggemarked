@@ -46,11 +46,11 @@ public class MaterialsMapper {
         ArrayList<Material> listOfMaterials = new ArrayList(); //To hold the materials
 
         StringBuilder queryBuilder = new StringBuilder
-                ("SELECT materials_id, length, height, width, amount, name, category.category_id, price, " +
-                        "category.description FROM materials " +
-                        "LEFT JOIN material_to_category ON materials.materials_id = materials_to_category.materials_id " +
-                        "LEFT JOIN category on materials_to_category.category_id = category.category_id " +
-                        "WHERE category.category_id IN (");
+                ("SELECT `materials_id`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
+                        "`category`.`decription` FROM `materials` " +
+                        "LEFT JOIN `material_to_category` ON `materials`.`materials_id` = `material_to_category`.`material_id` " +
+                        "LEFT JOIN `category` on `material_to_category`.`category_id` = `category`.`category_id` " +
+                        "WHERE `category`.`category_id` IN (");
 
         //Goes through list of ids and adds each to the query, separated by a comma-
         for(int i = 0; i < idsToGet.length; i++) {
@@ -60,7 +60,7 @@ public class MaterialsMapper {
                 queryBuilder.append(", " + idsToGet[i]);
             }
         }
-        queryBuilder.append(") ORDER BY category.category_id");
+        queryBuilder.append(") ORDER BY `category`.`category_id`");
         String SQL = queryBuilder.toString();
 
         try (Connection con = Connector.connection(); PreparedStatement ps = con.prepareStatement(SQL)) {
@@ -84,7 +84,7 @@ public class MaterialsMapper {
                     int amount = rs.getInt("amount");
                     int price = rs.getInt("price");
                     String name = rs.getString("name");
-                    String description = rs.getString("description");
+                    String description = rs.getString("decription");
                     //TODO When price, category and description text can be saved in DB, update this instantiation
                     listOfMaterials.add
                             (new Material(id, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
