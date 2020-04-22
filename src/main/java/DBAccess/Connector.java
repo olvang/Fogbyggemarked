@@ -40,7 +40,7 @@ public class Connector {
             PASSWORD = System.getenv("JDBC_PASSWORD");
         } else {
             // Localhost
-            URL = "jdbc:mysql://localhost:3306/FogByggemareked?serverTimezone=UTC";
+            URL = "jdbc:mysql://localhost:3306/FogByggemarked?serverTimezone=UTC";
             USERNAME = "mario";
             PASSWORD = "mario123";
         }
