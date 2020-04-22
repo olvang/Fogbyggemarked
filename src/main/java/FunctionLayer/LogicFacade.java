@@ -4,6 +4,7 @@ import DBAccess.MaterialsMapper;
 import DBAccess.OrderMapper;
 import DBAccess.UserMapper;
 import FunctionLayer.Exceptions.CommandException;
+import FunctionLayer.Exceptions.ValidationFailedException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,9 +30,9 @@ public class LogicFacade {
         orderMapper.createOrder(order);
     }
 
-    public static ArrayList<Material> getTheseMaterials(int[] categoriesNeeded) throws CommandException, SQLException {
+    public static ArrayList<Material> getTheseMaterials(int[] categoriesNeeded) throws CommandException, SQLException, ValidationFailedException, ClassNotFoundException {
         MaterialsMapper materialsMapper = new MaterialsMapper();
-        materialsMapper.getTheseMaterials(categoriesNeeded);
+        return materialsMapper.getTheseMaterials(categoriesNeeded);
     }
 
 }
