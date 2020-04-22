@@ -20,6 +20,7 @@ public class Request extends Command {
         HeightComponent carportHeight = null;
         ShedDepthComponent shedDepth = null;
         ShedWidthComponent shedWidth = null;
+        int incline = 0;
 
         //Used for error handling
         String shedWidthString = "";
@@ -86,8 +87,11 @@ public class Request extends Command {
 
 
         //Roof
-        //TODO create logic
         String roofTypeString = request.getParameter( "rooftype" );
+        //TODO update logic when user can choose materials
+        if(roofTypeString.equals("inclined")){
+            incline = 30;
+        }
 
 
 
@@ -96,16 +100,17 @@ public class Request extends Command {
 
         //Error exist
         if(!errorsFound){
-            //No errors, create Order
+            //No errors,
+            // create Order
             Order order;
 
             //if they selected a Shed
             if(shedornotString.equals("true")){
                 order = new Order(carportDepth, carportHeight, carportWidth, shedDepth,
-                        shedWidth, 0);
+                        shedWidth, incline);
             }else{
                 //if no shed Shed has been selected
-                order = new Order(carportDepth, carportHeight, carportWidth,0);
+                order = new Order(carportDepth, carportHeight, carportWidth,incline);
             }
             try {
                 LogicFacade.createOrder(order);
@@ -114,6 +119,7 @@ public class Request extends Command {
                 errorHandling(request,carportWidthString,carportDepthString,carportHeightString,shedornotString,shedWidthString,shedDepthString,roofTypeString);
                 request.setAttribute("error","Kunne ikke sende din bestilling afsted");
             }
+
             //No errors found - and order inserted in db
             request.setAttribute("success","Tak for din bestilling NAVN <br>Du vil blive kontaktet af en af vores dygtige sælgere hurtigst muligt.");
         }else{

@@ -4,9 +4,10 @@ import Components.MaterialLengthComponent;
 import Components.MaterialHeightComponent;
 import Components.MaterialWidthComponent;
 
+import java.util.ArrayList;
 
 
-public class Materials {
+public class Material {
     private int materialID;
     private MaterialLengthComponent length;
     private MaterialHeightComponent height;
@@ -16,7 +17,11 @@ public class Materials {
     private int category;
     private String helpText;
 
-    public Materials(int materialID, MaterialLengthComponent length, MaterialHeightComponent height, MaterialWidthComponent width, String description, int costPrice, int category, String helpText) {
+    //Used by BillCalculator
+    private ArrayList<MaterialLengthComponent> materialsLengths;
+    private ArrayList<MaterialHeightComponent> materialsHeight;
+
+    public Material(int materialID, MaterialLengthComponent length, MaterialHeightComponent height, MaterialWidthComponent width, String description, int costPrice, int category, String helpText) {
         this.materialID = materialID;
         this.length = length;
         this.height = height;
@@ -57,6 +62,22 @@ public class Materials {
 
     public String getHelpText() {
         return helpText;
+    }
+
+    public ArrayList<MaterialLengthComponent> getMaterialsLengths() {
+        return materialsLengths;
+    }
+
+    public void setMaterialsLengths(ArrayList<MaterialLengthComponent> materialsLengths) {
+        this.materialsLengths = materialsLengths;
+    }
+
+    public ArrayList<MaterialHeightComponent> getMaterialsHeight() {
+        return materialsHeight;
+    }
+
+    public void setMaterialsHeight(ArrayList<MaterialHeightComponent> materialsHeight) {
+        this.materialsHeight = materialsHeight;
     }
 }
 
