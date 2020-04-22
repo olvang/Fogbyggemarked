@@ -30,6 +30,7 @@ INSERT INTO `FogByggemarked`.`materials` (`length`, `width`, `name`,`price`) VAL
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('stalddørsgreb 50x75',92);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `name`,`price`) VALUES ('390', 't hængsel 390 mm',13);
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('vinkelbeslag 35',23);
+INSERT INTO `FogByggemarked`.`materials` (`length`, `width`, `name`,`price`) VALUES ('360', '109', 'Plastmo Ecolite blåtonet(360 x 109)',61);
 INSERT INTO `FogByggemarked`.`orders` VALUES (1,300,300,300,0);
 INSERT INTO `FogByggemarked`.`orders` VALUES (2,400,400,400,0);
 INSERT INTO `FogByggemarked`.`orders` VALUES (3,500,500,500,0);
@@ -102,3 +103,4 @@ INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`
 INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (18,26);
 INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (19,27);
 INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (20,28);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (22,15);
