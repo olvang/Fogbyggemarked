@@ -9,23 +9,24 @@ import java.util.ArrayList;
 
 public class Material {
     private int materialID;
-    private MaterialLengthComponent length;
     private MaterialHeightComponent height;
-    private MaterialWidthComponent width;
     private String description;
     private int costPrice;
     private int category;
     private String helpText;
 
     //Used by BillCalculator
-    private ArrayList<MaterialLengthComponent> materialsLengths;
-    private ArrayList<MaterialHeightComponent> materialsHeight;
+    private ArrayList<MaterialLengthComponent> materialLengths;
+    private ArrayList<MaterialWidthComponent> materialWidths;
 
     public Material(int materialID, MaterialLengthComponent length, MaterialHeightComponent height, MaterialWidthComponent width, String description, int costPrice, int category, String helpText) {
+        materialLengths = new ArrayList<>();
+        materialWidths = new ArrayList<>();
+        addMaterialLength(length);
+        addMaterialWidth(width);
+
         this.materialID = materialID;
-        this.length = length;
         this.height = height;
-        this.width = width;
         this.description = description;
         this.costPrice = costPrice;
         this.category = category;
@@ -36,16 +37,8 @@ public class Material {
         return materialID;
     }
 
-    public MaterialLengthComponent getLength() {
-        return length;
-    }
-
     public MaterialHeightComponent getHeight() {
         return height;
-    }
-
-    public MaterialWidthComponent getWidth() {
-        return width;
     }
 
     public String getDescription() {
@@ -64,20 +57,28 @@ public class Material {
         return helpText;
     }
 
-    public ArrayList<MaterialLengthComponent> getMaterialsLengths() {
-        return materialsLengths;
+    public ArrayList<MaterialLengthComponent> getMaterialLengths() {
+        return materialLengths;
     }
 
-    public void setMaterialsLengths(ArrayList<MaterialLengthComponent> materialsLengths) {
-        this.materialsLengths = materialsLengths;
+    public void setMaterialLengths(ArrayList<MaterialLengthComponent> materialsLengths) {
+        this.materialLengths = materialsLengths;
     }
 
-    public ArrayList<MaterialHeightComponent> getMaterialsHeight() {
-        return materialsHeight;
+    public ArrayList<MaterialWidthComponent> getMaterialWidth() {
+        return materialWidths;
     }
 
-    public void setMaterialsHeight(ArrayList<MaterialHeightComponent> materialsHeight) {
-        this.materialsHeight = materialsHeight;
+    public void setMaterialWidth(ArrayList<MaterialWidthComponent> materialsWidth) {
+        this.materialWidths = materialsWidth;
+    }
+
+    public void addMaterialWidth(MaterialWidthComponent widthToAdd) {
+        materialWidths.add(widthToAdd);
+    }
+
+    public void addMaterialLength(MaterialLengthComponent lengthToAdd) {
+        materialLengths.add(lengthToAdd);
     }
 }
 
