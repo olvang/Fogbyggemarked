@@ -4,7 +4,7 @@ import Components.MaterialHeightComponent;
 import Components.MaterialLengthComponent;
 import Components.MaterialWidthComponent;
 import FunctionLayer.Exceptions.ValidationFailedException;
-import FunctionLayer.Materials;
+import FunctionLayer.Material;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ import java.util.List;
 public class MaterialsMapper {
 
     public static ArrayList getAllMaterials() {
-        ArrayList<Materials> listOfMaterials = new ArrayList();
+        ArrayList<Material> listOfMaterials = new ArrayList();
         String SQL = "SELECT materials_id, length, height, width, amount, name FROM materials";
         try (Connection con = Connector.connection(); PreparedStatement ps = con.prepareStatement(SQL)) {
             ResultSet rs = ps.executeQuery();
@@ -29,7 +29,7 @@ public class MaterialsMapper {
                 String name = rs.getString("name");
                 //TODO When price, category and description text can be saved in DB, update this instantiation
                 listOfMaterials.add
-                        (new Materials(id, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
+                        (new Material(id, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
                                 new MaterialWidthComponent(width), name, -1, -1, "temp"));
             }
         } catch (SQLException e) {
@@ -43,7 +43,7 @@ public class MaterialsMapper {
     }
 
     public static ArrayList getTheseMaterials(List<Integer> idsToGet ) {
-        ArrayList<Materials> listOfMaterials = new ArrayList(); //To hold the materials
+        ArrayList<Material> listOfMaterials = new ArrayList(); //To hold the materials
 
         //Goes through list of ids and adds each to the query, separated by a comma-
         String SQL = "SELECT materials_id, length, height, width, amount, name FROM materials WHERE materials_id IN (";
@@ -67,7 +67,7 @@ public class MaterialsMapper {
                 String name = rs.getString("name");
                 //TODO When price, category and description text can be saved in DB, update this instantiation
                 listOfMaterials.add
-                        (new Materials(id, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
+                        (new Material(id, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
                                 new MaterialWidthComponent(width), name, -1, -1, "temp"));
             }
         } catch (SQLException e) {

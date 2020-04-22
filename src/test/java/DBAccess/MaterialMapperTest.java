@@ -1,7 +1,7 @@
 package DBAccess;
 
 
-import FunctionLayer.Materials;
+import FunctionLayer.Material;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 
-public class MaterialsMapperTest {
+public class MaterialMapperTest {
 
     @Test
     public void testGetAllMaterialsByContent() {
         int indexToCheck = 5;
         String expected = "45x95 mm. Reglar ub.";
-        ArrayList<Materials> test = MaterialsMapper.getAllMaterials();
+        ArrayList<Material> test = MaterialsMapper.getAllMaterials();
 
         assertEquals(expected, test.get(5).getDescription());
     }
@@ -36,8 +36,8 @@ public class MaterialsMapperTest {
             }
         };
 
-        ArrayList<Materials> test = MaterialsMapper.getTheseMaterials(ids);
-        for (Materials mat : test) {
+        ArrayList<Material> test = MaterialsMapper.getTheseMaterials(ids);
+        for (Material mat : test) {
             System.out.println(mat.getDescription());
         };
         assertEquals(ids.size(), test.size());
