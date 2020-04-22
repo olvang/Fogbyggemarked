@@ -30,7 +30,7 @@ public class OrderMapperTest extends TestDataSetup {
             e.printStackTrace();
         }
 
-        ord = new Order(depth,height,width,0);
+        ord = new Order(depth,height,width,0, false);
     }
 
     @Test
