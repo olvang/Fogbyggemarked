@@ -1,6 +1,5 @@
 USE FogByggemareked;
 SET SQL_MODE =  'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION';
-
 INSERT INTO `fogbyggemareked`.`materials` (`length`, `height`, `width`, `name`) VALUES ('360', '25', '200', '25x200 mm. trykimp. Brædt');
 INSERT INTO `fogbyggemareked`.`materials` (`length`, `height`, `width`, `name`) VALUES ('540', '25', '200', '25x200 mm. trykimp. Brædt');
 INSERT INTO `fogbyggemareked`.`materials` (`length`, `height`, `width`, `name`) VALUES ('360', '25', '125', '25x125mm. trykimp. Brædt');
@@ -29,3 +28,16 @@ INSERT INTO `fogbyggemareked`.`materials` (`length`, `width`, `name`) VALUES ('5
 INSERT INTO `fogbyggemareked`.`materials` (`name`) VALUES ('stalddørsgreb 50x75');
 INSERT INTO `fogbyggemareked`.`materials` (`length`, `name`) VALUES ('390', 't hængsel 390 mm');
 INSERT INTO `fogbyggemareked`.`materials` (`name`) VALUES ('vinkelbeslag 35');
+INSERT INTO `orders` VALUES (1,300,300,300,0);
+INSERT INTO `orders` VALUES (2,400,400,400,0);
+INSERT INTO `orders` VALUES (3,500,500,500,0);
+INSERT INTO `orders` VALUES (4,600,600,600,0);
+INSERT INTO `orders` VALUES (5,300,300,300,10);
+INSERT INTO `orders` VALUES (6,400,400,400,15);
+INSERT INTO `orders` VALUES (7,500,500,500,20);
+INSERT INTO `orders` VALUES (8,600,600,600,25);
+INSERT INTO `orders` VALUES (9,200,200,200,0);
+INSERT INTO `sheds` VALUES (1,5,50,50);
+INSERT INTO `sheds` VALUES (2,6,60,60);
+INSERT INTO `sheds` VALUES (3,7,70,70);
+INSERT INTO `sheds` VALUES (4,8,80,80);
