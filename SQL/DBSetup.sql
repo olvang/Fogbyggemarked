@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS `FogByggemareked`;
-CREATE SCHEMA `FogByggemareked`;
-USE FogByggemareked;
+CREATE SCHEMA `FogByggemarked`;
+USE FogByggemarked;
 SET SQL_MODE =  'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION';
 
 CREATE TABLE `orders` (
@@ -38,12 +38,36 @@ CREATE TABLE `sheds` (
 );
 
 CREATE TABLE `materials` (
-  `materials_id` INT NOT NULL AUTO_INCREMENT,
+  `materials_id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `length` INT NOT NULL DEFAULT 0,
   `height` INT NULL DEFAULT 0,
   `width` INT NULL DEFAULT 0,
   `amount` INT NOT NULL DEFAULT 1,
   `name` VARCHAR(55) NOT NULL,
-  -- `category_id` INT NOT NULL,
-  PRIMARY KEY (`materials_id`),
-  UNIQUE INDEX `materials_id_UNIQUE` (`materials_id` ASC) VISIBLE);
+  `price` int not null
+);
+
+CREATE TABLE category (
+	`category_id` INT primary key not null auto_increment,
+    `decription` varchar(250) not null
+);
+
+CREATE TABLE material_to_category(
+	`material_id` int not null,
+    `category_id` int not null, 
+    
+    CONSTRAINT material_id_fkey
+		FOREIGN KEY (`material_id`) 
+		REFERENCES materials(`materials_id`),
+	CONSTRAINT category_id_fkey
+		FOREIGN KEY (`category_id`) 
+		REFERENCES category(`category_id`)
+);
+CREATE TABLE variant(
+	`variant_id` int primary key not null auto_increment,
+    `variant_name` varchar(250) not null, 
+	`category_id` int not null,
+    CONSTRAINT variant_category_fkey
+		FOREIGN KEY (`category_id`) 
+		REFERENCES category(`category_id`)
+);
