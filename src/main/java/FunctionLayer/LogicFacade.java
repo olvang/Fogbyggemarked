@@ -30,9 +30,18 @@ public class LogicFacade {
         orderMapper.createOrder(order);
     }
 
+    public static Order getOrder(int orderID) throws Exception {
+        OrderMapper orderMapper = new OrderMapper();
+        return orderMapper.getOrder(orderID);
+    }
+
     public static ArrayList<Material> getTheseMaterials(int[] categoriesNeeded) throws CommandException, SQLException, ValidationFailedException, ClassNotFoundException {
         MaterialsMapper materialsMapper = new MaterialsMapper();
         return materialsMapper.getTheseMaterials(categoriesNeeded);
     }
 
+    public static ArrayList<BillLine> getBillLines(int orderID) throws Exception {
+        BillCalculator billCalculator = new BillCalculator();
+        return billCalculator.calculateBillFromOrder(getOrder(orderID));
+    }
 }
