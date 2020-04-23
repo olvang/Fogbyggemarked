@@ -21,6 +21,7 @@ public class Order {
         this.shedDepth = shedDepth;
         this.shedWidth = shedWidth;
         this.incline = incline;
+        this.withShed = withShed;
     }
 
     public Order(DepthComponent depth, HeightComponent height, WidthComponent width, int incline, boolean withShed){
@@ -29,6 +30,7 @@ public class Order {
         this.height = height;
         this.width = width;
         this.incline = incline;
+        this.withShed = withShed;
     }
 
     public DepthComponent getDepth() {
