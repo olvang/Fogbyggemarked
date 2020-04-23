@@ -5,6 +5,7 @@ import Components.HeightComponent;
 import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Material;
+import FunctionLayer.Order;
 
 import java.util.ArrayList;
 
@@ -35,13 +36,19 @@ public class CarportGenerator {
         return null;
     }
 
-    public static BillLine posts(ArrayList<Material> materialsUsedInGenerator, WidthComponent carportWidthComponent, DepthComponent carportDepthComponent) {
-        //TODO take shed into account or create another category for post calculation with shed
+    public static BillLine posts(ArrayList<Material> materialsUsedInGenerator, Order order) {
         int numberOfPostRows = 2;
         int numberOfPostPerRow = 2;
         int total = 0;
-        int carportWidth = carportWidthComponent.getWidth();
-        int carportDepth = carportDepthComponent.getDepth();
+        int carportWidth = order.getWidth().getWidth();
+        int carportDepth = order.getDepth().getDepth();
+
+        //If order has shed, subtract they width of the shed
+        //ShedGenerator calculates how many post are needed within the shed
+        if(order.isWithShed()){
+            carportDepth -= order.getShedDepth().getDepth();
+        }
+
 
         //For each 600 cm, add another post row
         if(carportWidth > 600){
@@ -56,9 +63,9 @@ public class CarportGenerator {
 
         total = numberOfPostPerRow * numberOfPostRows;
 
-        //TODO calculate variant
+        //TODO calculate best material fit
 
-        BillLine billLine = new BillLine(materialsUsedInGenerator.get(1),total);
+        BillLine billLine = new BillLine(materialsUsedInGenerator.get(0),total);
         return billLine;
     }
 
