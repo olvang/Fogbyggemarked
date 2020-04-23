@@ -38,7 +38,7 @@ public class BillCalculator {
                 categoriesNeeded = new int[]{1,2,3,4,5,6,7,11};
                 break;
             case 2: //Flat roof, with shed
-                categoriesNeeded = new int[]{2};
+                categoriesNeeded = new int[]{2,11};
                 break;
             case 3: //Inclined roof, no shed
                 categoriesNeeded = new int[]{3};
@@ -173,7 +173,7 @@ public class BillCalculator {
                     materialsUsedInGenerator = getMaterialsUsedInGenerator(categoriesUsedInGenerator, materialsAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.posts(materialsUsedInGenerator,order.getWidth(),order.getDepth());
+                    billLine = CarportGenerator.posts(materialsUsedInGenerator,order);
                     break;
                 case 12: //til beklædning af skur 1 på 2
                     //The material categories needed in the generator method
