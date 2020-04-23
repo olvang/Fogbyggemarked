@@ -7,7 +7,6 @@ import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
 import org.junit.Test;
 
-import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -19,7 +18,7 @@ public class MaterialMapperTest {
     @Test
     public void testGetAllMaterialsByContent() throws SQLException, ValidationFailedException, ClassNotFoundException {
         int indexToCheck = 5;
-        String expected = "45x95 mm. Reglar ub.";
+        String expected = "38x73 mm. Lægte ubh.";
         ArrayList<Material> test = MaterialsMapper.getAllMaterials();
 
         assertEquals(expected, test.get(5).getDescription());
@@ -48,21 +47,21 @@ public class MaterialMapperTest {
         ArrayList<Material> test = MaterialsMapper.getTheseMaterials(ids);
 
         //For visualisation purposes
-/*        for (Material mat : test) {
+        /*for (Material mat : test) {
             System.out.println(mat.getDescription() + ": ");
-            for(MaterialLengthComponent len : mat.getMaterialLengths()) {
+            for(MaterialLengthComponent len : mat.getMaterialLengths().values() ) {
                 System.out.println("length: " + len.getLength());
             }
-            for(MaterialWidthComponent wid : mat.getMaterialWidth()) {
+            for(MaterialWidthComponent wid : mat.getMaterialWidths().values()) {
                 System.out.println("width: " + wid.getWidth());
             }
             System.out.println("");
         }*/
 
-        assertEquals(expectedLength1, test.get(3).getMaterialLengths().get(0).getLength());
-        assertEquals(expectedLength2, test.get(3).getMaterialLengths().get(1).getLength());
-        assertEquals(expectedWidth, test.get(3).getMaterialWidth().get(0).getWidth());
-        assertEquals(expectedWidth, test.get(3).getMaterialWidth().get(1).getWidth());
+        assertEquals(expectedLength1, test.get(3).getMaterialLengths().get(8).getLength());
+        assertEquals(expectedLength2, test.get(3).getMaterialLengths().get(22).getLength());
+        assertEquals(expectedWidth, test.get(3).getMaterialWidths().get(8).getWidth());
+        assertEquals(expectedWidth, test.get(3).getMaterialWidths().get(22).getWidth());
     }
 
     
