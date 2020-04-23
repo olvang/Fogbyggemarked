@@ -5,6 +5,7 @@ import Components.MaterialHeightComponent;
 import Components.MaterialWidthComponent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Material {
@@ -16,14 +17,14 @@ public class Material {
     private String helpText;
 
     //Used by BillCalculator
-    private ArrayList<MaterialLengthComponent> materialLengths;
-    private ArrayList<MaterialWidthComponent> materialWidths;
+    private HashMap<Integer, MaterialLengthComponent> materialLengths;
+    private HashMap<Integer, MaterialWidthComponent> materialWidths;
 
     public Material(int materialID, MaterialLengthComponent length, MaterialHeightComponent height, MaterialWidthComponent width, String description, int costPrice, int category, String helpText) {
-        materialLengths = new ArrayList<>();
-        materialWidths = new ArrayList<>();
-        addMaterialLength(length);
-        addMaterialWidth(width);
+        materialLengths = new HashMap<>();
+        materialWidths = new HashMap<>();
+        addMaterialLength(materialID, length);
+        addMaterialWidth(materialID, width);
 
         this.materialID = materialID;
         this.height = height;
@@ -33,6 +34,9 @@ public class Material {
         this.helpText = helpText;
     }
 
+    //---------//
+    // Getters //
+    //---------//
     public int getMaterialID() {
         return materialID;
     }
@@ -57,28 +61,32 @@ public class Material {
         return helpText;
     }
 
-    public ArrayList<MaterialLengthComponent> getMaterialLengths() {
+    public HashMap<Integer, MaterialLengthComponent> getMaterialLengths() {
         return materialLengths;
     }
 
-    public void setMaterialLengths(ArrayList<MaterialLengthComponent> materialsLengths) {
-        this.materialLengths = materialsLengths;
-    }
-
-    public ArrayList<MaterialWidthComponent> getMaterialWidth() {
+    public HashMap<Integer, MaterialWidthComponent> getMaterialWidths() {
         return materialWidths;
     }
 
-    public void setMaterialWidth(ArrayList<MaterialWidthComponent> materialsWidth) {
+    //---------//
+    // Setters //
+    //---------//
+    public void setMaterialLengths(HashMap<Integer, MaterialLengthComponent> materialsLengths) {
+        this.materialLengths = materialsLengths;
+    }
+    public void setMaterialWidths(HashMap<Integer, MaterialWidthComponent> materialsWidth) {
         this.materialWidths = materialsWidth;
     }
 
-    public void addMaterialWidth(MaterialWidthComponent widthToAdd) {
-        materialWidths.add(widthToAdd);
+    //--------//
+    // Adders //
+    //--------//
+    public void addMaterialWidth(int materialID, MaterialWidthComponent widthToAdd) {
+        materialWidths.put(materialID, widthToAdd);
     }
-
-    public void addMaterialLength(MaterialLengthComponent lengthToAdd) {
-        materialLengths.add(lengthToAdd);
+    public void addMaterialLength(int materialID, MaterialLengthComponent lengthToAdd) {
+        materialLengths.put(materialID, lengthToAdd);
     }
 }
 
