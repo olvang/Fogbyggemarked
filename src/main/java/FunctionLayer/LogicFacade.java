@@ -26,18 +26,15 @@ public class LogicFacade {
     }
 
     public static void createOrder( Order order) throws CommandException, SQLException {
-        OrderMapper orderMapper = new OrderMapper();
-        orderMapper.createOrder(order);
+        OrderMapper.createOrder(order);
     }
 
     public static Order getOrder(int orderID) throws Exception {
-        OrderMapper orderMapper = new OrderMapper();
-        return orderMapper.getOrder(orderID);
+        return OrderMapper.getOrder(orderID);
     }
 
-    public static ArrayList<Material> getTheseMaterials(int[] categoriesNeeded) throws CommandException, SQLException, ValidationFailedException, ClassNotFoundException {
-        MaterialsMapper materialsMapper = new MaterialsMapper();
-        return materialsMapper.getTheseMaterials(categoriesNeeded);
+    public static ArrayList<Category> getTheseCategories(int[] categoriesNeeded) throws CommandException, SQLException, ValidationFailedException, ClassNotFoundException {
+        return MaterialsMapper.getTheseCategories(categoriesNeeded);
     }
 
     public static ArrayList<BillLine> getBillLines(int orderID) throws Exception {

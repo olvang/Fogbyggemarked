@@ -3,6 +3,7 @@ package DBAccess;
 import Components.MaterialHeightComponent;
 import Components.MaterialLengthComponent;
 import Components.MaterialWidthComponent;
+import FunctionLayer.Category;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
 
@@ -15,8 +16,8 @@ import java.util.List;
 
 public class MaterialsMapper {
 
-    public static ArrayList getAllMaterials() throws ValidationFailedException, SQLException, ClassNotFoundException {
-        ArrayList<Material> listOfMaterials = new ArrayList();
+    public static ArrayList<Category> getAllCategories() throws ValidationFailedException, SQLException, ClassNotFoundException {
+        ArrayList<Category> listOfCategories = new ArrayList();
         String SQL = "SELECT `materials_id`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
                 "`category`.`decription` FROM `materials` " +
                 "LEFT JOIN `material_to_category` ON `materials`.`materials_id` = `material_to_category`.`material_id` " +
@@ -24,33 +25,8 @@ public class MaterialsMapper {
                 "ORDER BY `category`.`category_id` ";
         try (Connection con = Connector.connection(); PreparedStatement ps = con.prepareStatement(SQL)) {
             ResultSet rs = ps.executeQuery();
-            int previousId = -1;
-            while(rs.next() ) {
-                int categoryId = rs.getInt("category_id");
-                int length = rs.getInt("length");
-                int width = rs.getInt("width");
-                int id = rs.getInt("materials_id");
+            fillList(listOfCategories, rs);
 
-                //If the current material is of same category as the previous one,
-                //all the information needed is already present and there is no need to pull it again
-                //On the other hand, we pull the length and width and add them to the list of this category's different
-                //available sizes. This will always be the most recent material in the list.
-                if(categoryId == previousId) {
-                    listOfMaterials.get(listOfMaterials.size() - 1).addMaterialWidth(id, new MaterialWidthComponent(width));
-                    listOfMaterials.get(listOfMaterials.size() - 1).addMaterialLength(id, new MaterialLengthComponent(length));
-                }else {
-                    int height = rs.getInt("height");
-                    int amount = rs.getInt("amount");
-                    int price = rs.getInt("price");
-                    String name = rs.getString("name");
-                    String description = rs.getString("decription");
-                    //TODO When price, category and description text can be saved in DB, update this instantiation
-                    listOfMaterials.add
-                            (new Material(id, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
-                                    new MaterialWidthComponent(width), name, price, categoryId, description));
-                }
-                previousId = categoryId;
-            }
         } catch (SQLException e) {
             throw new SQLException("SQLError in MaterialMapper " + e.getMessage());
         } catch (ClassNotFoundException e) {
@@ -58,12 +34,12 @@ public class MaterialsMapper {
         } catch (ValidationFailedException e) {
             throw new ValidationFailedException("Validation failed: " + e.getMessage());
         }
-        return listOfMaterials;
+        return listOfCategories;
     }
 
     
-    public static ArrayList getTheseMaterials(int[] idsToGet ) throws SQLException, ValidationFailedException, ClassNotFoundException {
-        ArrayList<Material> listOfMaterials = new ArrayList(); //To hold the materials
+    public static ArrayList<Category> getTheseCategories(int[] idsToGet ) throws SQLException, ValidationFailedException, ClassNotFoundException {
+        ArrayList<Category> listOfMaterials = new ArrayList(); //To hold the materials
 
         StringBuilder queryBuilder = new StringBuilder
                 ("SELECT `materials_id`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
@@ -85,33 +61,7 @@ public class MaterialsMapper {
 
         try (Connection con = Connector.connection(); PreparedStatement ps = con.prepareStatement(SQL)) {
             ResultSet rs = ps.executeQuery();
-            int previousId = -1;
-            while(rs.next() ) {
-                int categoryId = rs.getInt("category_id");
-                int length = rs.getInt("length");
-                int width = rs.getInt("width");
-                int id = rs.getInt("materials_id");
-
-                //If the current material is of same category as the previous one,
-                //all the information needed is already present and there is no need to pull it again
-                //On the other hand, we pull the length and width and add them to the list of this category's different
-                //available sizes. This will always be the most recent material in the list.
-                if(categoryId == previousId) {
-                    listOfMaterials.get(listOfMaterials.size() - 1).addMaterialWidth(id, new MaterialWidthComponent(width));
-                    listOfMaterials.get(listOfMaterials.size() - 1).addMaterialLength(id, new MaterialLengthComponent(length));
-                }else {
-                    int height = rs.getInt("height");
-                    int amount = rs.getInt("amount");
-                    int price = rs.getInt("price");
-                    String name = rs.getString("name");
-                    String description = rs.getString("decription");
-                    //TODO When price, category and description text can be saved in DB, update this instantiation
-                    listOfMaterials.add
-                            (new Material(id, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
-                                    new MaterialWidthComponent(width), name, price, categoryId, description));
-                }
-                previousId = categoryId;
-            }
+            fillList(listOfMaterials, rs);
         } catch (SQLException e) {
             throw new SQLException("SQLError in MaterialMapper " + e.getMessage());
         } catch (ClassNotFoundException e) {
@@ -120,5 +70,34 @@ public class MaterialsMapper {
             throw new ValidationFailedException("Validation failed: " + e.getMessage());
         }
         return listOfMaterials;
+    }
+
+    private static void fillList(ArrayList<Category> listToFill, ResultSet rs) throws SQLException, ValidationFailedException {
+        int previousId = -1;
+        while(rs.next() ) {
+            int categoryId = rs.getInt("category_id");
+            int length = rs.getInt("length");
+            int width = rs.getInt("width");
+            int materialId = rs.getInt("materials_id");
+            int height = rs.getInt("height");
+            int amount = rs.getInt("amount");
+            int price = rs.getInt("price");
+            String name = rs.getString("name");
+            String description = rs.getString("decription");
+
+            if(previousId != categoryId) {
+                Material mat = new Material(
+                        materialId, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
+                        new MaterialWidthComponent(width), name, price, categoryId);
+                listToFill.add(
+                        new Category(categoryId, mat, description));
+            }else {
+                Material mat = new Material(
+                        materialId, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
+                        new MaterialWidthComponent(width), name, price, categoryId);
+                listToFill.get(listToFill.size() - 1).addMaterial(mat);
+            }
+            previousId = categoryId;
+        }
     }
 }

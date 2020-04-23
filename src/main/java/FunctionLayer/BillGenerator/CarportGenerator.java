@@ -4,6 +4,7 @@ import Components.DepthComponent;
 import Components.HeightComponent;
 import Components.WidthComponent;
 import FunctionLayer.BillLine;
+import FunctionLayer.Category;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
 
@@ -11,32 +12,32 @@ import java.util.ArrayList;
 
 public class CarportGenerator {
 
-    public static BillLine underSternsBredderFrontAndBack(ArrayList<Material> materialsUsedInGenerator, WidthComponent carpotWidth) {
+    public static BillLine underSternsBredderFrontAndBack(ArrayList<Category> categoriesUsedInGenerator, WidthComponent carpotWidth) {
         return null;
     }
 
-    public static BillLine underSternsBredderSides(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine underSternsBredderSides(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
 
-    public static BillLine overSternBredderFront(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine overSternBredderFront(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
 
-    public static BillLine overSternBredderSides(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine overSternBredderSides(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
     
 
-    public static BillLine RemInSidesCarport(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine RemInSidesCarport(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
 
-    public static BillLine sperOnRem(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine sperOnRem(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
 
-    public static BillLine posts(ArrayList<Material> materialsUsedInGenerator, Order order) {
+    public static BillLine posts(ArrayList<Category> categoriesUsedInGenerator, Order order) {
         int numberOfPostRows = 2;
         int numberOfPostPerRow = 2;
         int total = 0;
@@ -65,43 +66,43 @@ public class CarportGenerator {
 
         //TODO calculate best material fit
 
-        BillLine billLine = new BillLine(materialsUsedInGenerator.get(0),total);
+        BillLine billLine = new BillLine(categoriesUsedInGenerator.get(0),total);
         return billLine;
     }
 
-    public static BillLine perforatedBand(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine perforatedBand(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
 
-    public static BillLine UniversalBeslagRight(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine UniversalBeslagRight(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
 
-    public static BillLine screwsForSternAndWaterBoard(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine screwsForSternAndWaterBoard(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
 
-    public static BillLine screwsForUniversalBeslagAndPerforatedBand(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine screwsForUniversalBeslagAndPerforatedBand(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
 
-    public static BillLine boltsForRemOnPost(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine boltsForRemOnPost(ArrayList<Category> materialsUsedInGenerator) {
         return null;
     }
 
-    public static BillLine skiverForRemOnPost(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine skiverForRemOnPost(ArrayList<Category> materialsUsedInGenerator) {
         return null;
     }
 
-    public static BillLine screwsForOuter(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine screwsForOuter(ArrayList<Category> materialsUsedInGenerator) {
         return null;
     }
 
-    public static BillLine screwsForInner(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine screwsForInner(ArrayList<Category> materialsUsedInGenerator) {
         return null;
     }
 
-    public static BillLine UniversalBeslagLeft(ArrayList<Material> materialsUsedInGenerator) {
+    public static BillLine UniversalBeslagLeft(ArrayList<Category> materialsUsedInGenerator) {
         return null;
     }
 }
