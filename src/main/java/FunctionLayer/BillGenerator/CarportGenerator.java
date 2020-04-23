@@ -65,7 +65,6 @@ public class CarportGenerator {
         total = numberOfPostPerRow * numberOfPostRows;
 
         //TODO calculate best material fit
-
         BillLine billLine = new BillLine(categoriesUsedInGenerator.get(0),total);
         return billLine;
     }
