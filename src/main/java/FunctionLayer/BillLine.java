@@ -1,20 +1,20 @@
 package FunctionLayer;
 
 public class BillLine {
-    private Material material;
+    private Category category;
     private int amount;
 
-    public BillLine(Material material, int amount) {
-        this.material = material;
+    public BillLine(Category category, int amount) {
+        this.category = category;
         this.amount = amount;
     }
 
-    public Material getMaterial() {
-        return material;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setMaterial(Material material) {
-        this.material = material;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getAmount() {
