@@ -6,6 +6,7 @@ import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
 import FunctionLayer.Exceptions.CommandException;
+import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
@@ -48,6 +49,22 @@ public class CarportGeneratorTest {
         assertEquals(expectedAmount1, billLine.get(0).getAmount());
 
     }
+    @Test
+    public void underSternsBredderFrontAndBackTest() throws Exception {
+        //These three lines need to be in every test, but change the target method in CarportGenerator,
+        // the order to fit your testdata and the categories needed
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{1});
+        WidthComponent orderWidth = new WidthComponent(600);
+        ArrayList<BillLine> billLine = CarportGenerator.underSternsBredderFrontAndBack(categoriesUsedInGenerator, orderWidth);
+
+
+        String expected = "25x200 mm. trykimp. Brædt";
+        int expectedAmount = 4;
+
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+        assertEquals(expected, billLine.get(0).getMaterial().getName() );
+    }
+
 
 
 

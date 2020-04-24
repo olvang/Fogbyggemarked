@@ -14,8 +14,52 @@ import java.util.ArrayList;
 
 public class CarportGenerator {
 
-    public static ArrayList<BillLine> underSternsBredderFrontAndBack(ArrayList<Category> categoriesUsedInGenerator, WidthComponent carpotWidth) {
-        return null;
+    public static ArrayList<BillLine> underSternsBredderFrontAndBack(ArrayList<Category> categoriesUsedInGenerator, WidthComponent carportWidth) throws GeneratorException {
+        ArrayList<BillLine> billLines = new ArrayList<BillLine>();
+        BillLine billLine;
+        Material material  = null;
+        int boardAmount = 0;
+
+        //* 2 (2x because front & back)
+        //5 cm for each end, 5 cm * 2 ends * 2 sides = 20 cm extra
+        int fullWidth = carportWidth.getWidth() * 2 + 20;
+
+
+        //Sorts the materials(underSternsBredder) by their length, DESC
+        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
+
+
+        //Loops through all underSternsBredder, to find best fits starting with the smallest first
+        //The first board that is higher than the width will be used
+        for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
+            material =  materialsSortedByLength.get(i);
+
+            //If the the material length is bigger than the width of the carport, we use that material
+            if(material.getLength().getLength() / carportWidth.getWidth()  >= 1){
+                //Material found
+                //Count two as we need one of the material for front and back of carport
+                boardAmount = 2;
+                break;
+            }else if(i == 0){
+                int fullWidthCalc = fullWidth;
+                //If No material found, we use the material anyway as it is the biggest we have
+                //We then calculate how many are needed to fill out the full width of the carport
+                while (fullWidthCalc > 0){
+                    boardAmount++;
+                    fullWidthCalc -= material.getLength().getLength();
+                }
+            }
+        }
+
+
+        //If boardAmount is more than 1 a calculation has been made, else something went wrong
+        if(boardAmount >= 1){
+            billLine = new BillLine(material,boardAmount);
+            billLines.add(billLine);
+        }else{
+            throw new GeneratorException("understernbrædder til for & bag ende kunne ikke beregnes");
+        }
+        return billLines;
     }
 
     public static ArrayList<BillLine> underSternsBredderSides(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom) {
