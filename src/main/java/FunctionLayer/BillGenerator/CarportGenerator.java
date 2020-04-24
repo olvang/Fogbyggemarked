@@ -4,6 +4,7 @@ import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
 import FunctionLayer.Exceptions.CommandException;
+import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
 
@@ -36,7 +37,7 @@ public class CarportGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) {
+    public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;
 
@@ -45,7 +46,8 @@ public class CarportGenerator {
         int total = 0;
         int carportWidth = order.getWidth().getWidth();
         int carportDepth = order.getDepth().getDepth();
-        int carportHeight = order.getHeight().getHeight();
+        //Subtract 90 cm, because that is how much the post needs to go down in the ground
+        int carportHeight = order.getHeight().getHeight() - 90;
 
         //If order has shed, subtract they width of the shed
         //ShedGenerator calculates how many post are needed within the shed
@@ -92,12 +94,7 @@ public class CarportGenerator {
         if(billLine != null){
             billLines.add(billLine);
         }else{
-            //TODO Throw correct exception
-            try {
-                throw new CommandException("Kunne ikke udregne stoplerne");
-            } catch (CommandException e) {
-                e.printStackTrace();
-            }
+                throw new GeneratorException("Kunne ikke udregne stoplerne");
         }
         return billLines;
     }

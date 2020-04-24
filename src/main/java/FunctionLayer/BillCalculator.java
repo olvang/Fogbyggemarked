@@ -4,13 +4,14 @@ import FunctionLayer.BillGenerator.CarportGenerator;
 import FunctionLayer.BillGenerator.FlatRoofGenerator;
 import FunctionLayer.BillGenerator.ShedGenerator;
 import FunctionLayer.Exceptions.CommandException;
+import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BillCalculator {
-    public ArrayList<BillLine> calculateBillFromOrder(Order order) throws CommandException, SQLException, ValidationFailedException, ClassNotFoundException {
+    public ArrayList<BillLine> calculateBillFromOrder(Order order) throws SQLException, ValidationFailedException, ClassNotFoundException, GeneratorException, CommandException {
         int[] categoriesNeeded = null;
         int orderType;
 
