@@ -54,10 +54,10 @@ public class BillCalculator {
         //Used to calculate bill lines
         ArrayList<Category> categoriesUsedInGenerator = null;
         int[] categoryIdsUsedInGenerator = null;
-        BillLine billLine = null;
+        ArrayList<BillLine> billLine = null;
 
         //Used to hold all BillLines
-        ArrayList<BillLine> billLines = new ArrayList<BillLine>();
+        ArrayList<BillLine> billLinesFinal = new ArrayList<BillLine>();
 
         //For each category calculate materials needed
         for(int category : categoriesNeeded){
@@ -167,7 +167,7 @@ public class BillCalculator {
                     break;
                 case 11: //Stolper nedgraves 90 cm. i jord
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{11};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
@@ -347,13 +347,13 @@ public class BillCalculator {
                     break;
             }
             if(billLine != null){
-                billLines.add(billLine);
+                billLinesFinal.addAll(billLine);
                 categoriesUsedInGenerator.clear();
             }
 
         }
 
-        return billLines;
+        return billLinesFinal;
     }
 
     private ArrayList<Category> getCategoriesUsedInGenerator(int[] categoryIdsUsedInGenerator, ArrayList<Category> categoriesAvailable) {
