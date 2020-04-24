@@ -86,20 +86,20 @@ public class CarportGenerator {
                 billLine = new BillLine(material,total);
             }
 
-            if(billLine != null){
-                billLines.add(billLine);
-                return billLines;
-            }else{
-                //TODO Throw correct exception
-                try {
-                    throw new CommandException("Kunne ikke udregne stoplerne");
-                } catch (CommandException e) {
-                    e.printStackTrace();
-                }
-            }
+
 
         }
-        return null;
+        if(billLine != null){
+            billLines.add(billLine);
+        }else{
+            //TODO Throw correct exception
+            try {
+                throw new CommandException("Kunne ikke udregne stoplerne");
+            } catch (CommandException e) {
+                e.printStackTrace();
+            }
+        }
+        return billLines;
     }
 
     public static ArrayList<BillLine> perforatedBand(ArrayList<Category> categoriesUsedInGenerator) {
