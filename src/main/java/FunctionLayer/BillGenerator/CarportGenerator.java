@@ -46,7 +46,8 @@ public class CarportGenerator {
         int total = 0;
         int carportWidth = order.getWidth().getWidth();
         int carportDepth = order.getDepth().getDepth();
-        int carportHeight = order.getHeight().getHeight();
+        //Subtract 90 cm, because that is how much the post needs to go down in the ground
+        int carportHeight = order.getHeight().getHeight() - 90;
 
         //If order has shed, subtract they width of the shed
         //ShedGenerator calculates how many post are needed within the shed
@@ -93,9 +94,7 @@ public class CarportGenerator {
         if(billLine != null){
             billLines.add(billLine);
         }else{
-            //TODO Throw correct exception
                 throw new GeneratorException("Kunne ikke udregne stoplerne");
-
         }
         return billLines;
     }
