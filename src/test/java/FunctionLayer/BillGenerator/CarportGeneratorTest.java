@@ -35,6 +35,21 @@ public class CarportGeneratorTest {
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
     }
 
+    @Test
+    public void testSperOnRem() throws Exception {
+        //These three lines need to be in every test, but change the target method in CarportGenerator,
+        // the order to fit your testdata and the categories needed
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{10});
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(270), 0 ,false);
+        BillLine billLine = CarportGenerator.sperOnRem(categoriesUsedInGenerator, order).get(0);
+
+        String expected = "45x95 mm. Reglar ub.";
+        int expectedAmount = 18;
+
+        assertEquals(expectedAmount, billLine.getAmount());
+
+    }
+
 
 
 

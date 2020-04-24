@@ -7,6 +7,7 @@ import FunctionLayer.Exceptions.CommandException;
 import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
+import PresentationLayer.Bill;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -79,8 +80,46 @@ public class CarportGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> sperOnRem(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> sperOnRem(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
+        int carportDepth = order.getDepth().getDepth();
+        int carportWidth = order.getWidth().getWidth();
+        Category category = categoriesUsedInGenerator.get(0);
+        ArrayList<Material> list = category.getMaterials();
+
+        Material sperToUse = null;
+        int amount;
+        BillLine line;
+
+        GeneratorUtilities.sortMaterialsByLength(list);
+
+        if(carportWidth > list.get(0).getLength().getLength() ) {
+            throw new GeneratorException("Carport is too wide");
+        }
+
+
+        if(list.size() == 1) {
+            sperToUse = list.get(0);
+        } else {
+            //Loop through the list, largest to smallest, and each time a plank is longer than the carport, it
+            // is added as the sperToUse. As soon as a plank is shorter than the carport, the loop is broken and
+            // we know the previous plank is the shortest possible one that is still longer than the carport.
+            for(int i = 0; i < list.size(); i++) {
+                if(list.get(i).getLength().getLength() >= carportWidth) {
+                    sperToUse = list.get(i);
+                } else {
+                    break;
+                }
+            }
+        }
+
+        amount = carportDepth / 55;
+        if(sperToUse != null) {
+            line = new BillLine(sperToUse, amount);
+        } else {
+            throw new GeneratorException("Something went wrong while calculating the spærs.");
+        }
+
+        return new ArrayList<BillLine>() {{add(line);}};
     }
 
     public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
