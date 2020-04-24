@@ -1,5 +1,6 @@
 package FunctionLayer.BillGenerator;
 
+import Components.DepthComponent;
 import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
@@ -17,8 +18,52 @@ public class CarportGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> underSternsBredderSides(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> underSternsBredderSides(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom) {
+
+        ArrayList<BillLine> billLines = new ArrayList<BillLine>();
+        BillLine billLine = null;
+        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
+
+        //Gets the length of the longest material in this category
+        int longestMaterialLength = materialsSortedByLength.get(materialsSortedByLength.size()-1).getLength().getLength();
+        //It's required we add 2.5cm on each end of the carport
+        final int CONSTANT_ADD_EACH_SIDE = 5;
+
+        int amountUsed = 0;
+        int rest = 0;
+        //The total depth of a carport
+        int depth = depthCom.getDepth() + CONSTANT_ADD_EACH_SIDE;
+
+        //If the carport is shorter than the longest material
+        if(depth<longestMaterialLength){
+            //Only two is needed of the longest material is needed. Might need a for loop here to find the best material
+            amountUsed = 2;
+            billLine = new BillLine(materialsSortedByLength.get(materialsSortedByLength.size()-1),amountUsed);
+            billLines.add(billLine);
+            return billLines;
+        }else{
+            //Else we need to find how many times the longest material go into the depth.
+            amountUsed = (depth / longestMaterialLength) * 2;
+            //And then find the rest
+            rest = depth % longestMaterialLength;
+        }
+        //Then loop through all materials in the category to find the best suited for the purpose.
+        for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
+            Material material =  materialsSortedByLength.get(i);
+
+            //If the rest - the current lenght is less than 0. We know
+            //The current lenght is long enough.
+            if(rest - material.getLength().getLength() < 0){
+                amountUsed = amountUsed + 2;
+                billLine = new BillLine(material,amountUsed);
+
+            } else if(i == 0){
+                //If it is the last material(largest) then use that
+                billLine = new BillLine(material,amountUsed);
+            }
+            billLines.add(billLine);
+        }
+        return billLines;
     }
 
     public static ArrayList<BillLine> overSternBredderFront(ArrayList<Category> categoriesUsedInGenerator, Order order) {
