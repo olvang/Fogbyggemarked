@@ -9,6 +9,7 @@ TRUNCATE TABLE sheds;
 TRUNCATE TABLE variant;
 set foreign_key_checks=1;
 SET SQL_MODE =  'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION';
+INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('360', '25', '200', '25x200 mm. trykimp. Brædt',20);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('540', '25', '200', '25x200 mm. trykimp. Brædt',20);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('360', '25', '125', '25x125mm. trykimp. Brædt',30);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('600', '45', '195', '45x195 mm. spærtræ ubh.',40);

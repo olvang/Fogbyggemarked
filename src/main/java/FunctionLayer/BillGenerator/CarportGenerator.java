@@ -17,7 +17,6 @@ public class CarportGenerator {
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine;
         Material material  = null;
-        int count = 0;
         int boardAmount = 0;
 
         //* 2 (2x because front & back)
@@ -34,25 +33,22 @@ public class CarportGenerator {
         for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
             material =  materialsSortedByLength.get(i);
 
-            //If the the material height is bigger than the width of the carport, we use that material
-            if(fullWidth / material.getLength().getLength() >= 1){
+            //If the the material length is bigger than the width of the carport, we use that material
+            if(material.getLength().getLength() / carportWidth.getWidth()  >= 1){
                 //Material found
-                count = 1;
+                //Count two as we need one of the material for front and back of carport
+                boardAmount = 2;
                 break;
             }else if(i == 0){
                 int fullWidthCalc = fullWidth;
                 //If No material found, we use the material anyway as it is the biggest we have
                 //We then calculate how many are needed to fill out the full width of the carport
-                while (fullWidthCalc / material.getLength().getLength() > 0){
-                    count++;
+                while (fullWidthCalc > 0){
+                    boardAmount++;
                     fullWidthCalc -= material.getLength().getLength();
                 }
             }
         }
-
-        //We can now use the material from above
-        //Width of carport * 2 (2x because front & back) / length of underSternsBredder (Calculate best fit)
-        boardAmount = (fullWidth / material.getLength().getLength()) * count;
 
 
         //If boardAmount is more than 1 a calculation has been made, else something went wrong
