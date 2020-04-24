@@ -9,7 +9,6 @@ TRUNCATE TABLE sheds;
 TRUNCATE TABLE variant;
 set foreign_key_checks=1;
 SET SQL_MODE =  'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION';
-INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('360', '25', '200', '25x200 mm. trykimp. Brædt',20);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('540', '25', '200', '25x200 mm. trykimp. Brædt',20);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('360', '25', '125', '25x125mm. trykimp. Brædt',30);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('600', '45', '195', '45x195 mm. spærtræ ubh.',40);
@@ -32,6 +31,7 @@ INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('stalddørsgre
 INSERT INTO `FogByggemarked`.`materials` (`length`, `name`,`price`) VALUES ('390', 't hængsel 390 mm',13);
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('vinkelbeslag 35',23);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `width`, `name`,`price`) VALUES ('360', '109', 'Plastmo Ecolite blåtonet(360 x 109)',61);
+INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('360', '25', '200', '25x200 mm. trykimp. Brædt',20);
 INSERT INTO `FogByggemarked`.`orders` VALUES (1,300,300,300,0);
 INSERT INTO `FogByggemarked`.`orders` VALUES (2,400,400,400,0);
 INSERT INTO `FogByggemarked`.`orders` VALUES (3,500,500,500,0);
@@ -76,7 +76,7 @@ INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('Til montering af l
 INSERT INTO `FogByggemarked`.`variant` (variant_name,category_id) VALUES ('Plastmo Ecolite Blaaligt', 15);
 INSERT INTO `FogByggemarked`.`variant`(variant_name,category_id) VALUES ('Plastmo Ecolite Groonligt', 15);
 INSERT INTO `FogByggemarked`.`variant` (variant_name,category_id)VALUES ('Plastmo Ecolite Gulligt', 15);
-INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (1,1);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (23,1);
 INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (1,2);
 INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (2,3);
 INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (2,4);
