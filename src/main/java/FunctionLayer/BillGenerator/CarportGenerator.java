@@ -4,6 +4,7 @@ import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
 import FunctionLayer.Exceptions.CommandException;
+import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
 
@@ -36,7 +37,7 @@ public class CarportGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) {
+    public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;
 
@@ -93,11 +94,8 @@ public class CarportGenerator {
             billLines.add(billLine);
         }else{
             //TODO Throw correct exception
-            try {
-                throw new CommandException("Kunne ikke udregne stoplerne");
-            } catch (CommandException e) {
-                e.printStackTrace();
-            }
+                throw new GeneratorException("Kunne ikke udregne stoplerne");
+
         }
         return billLines;
     }
