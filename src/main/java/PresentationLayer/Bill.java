@@ -17,7 +17,7 @@ public class Bill extends Command{
         try {
             billLines = LogicFacade.getBillLines(1);
             for(BillLine line: billLines){
-                System.out.println(line.getCategory().getMaterialAtIndex(0).getName() + " Antal: " + line.getAmount());
+                System.out.println(line.getMaterial().getName() + " Antal: " + line.getAmount());
             }
         } catch (Exception e) {
             e.printStackTrace();
