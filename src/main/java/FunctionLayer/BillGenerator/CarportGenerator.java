@@ -8,6 +8,7 @@ import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CarportGenerator {
@@ -68,8 +69,53 @@ public class CarportGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> overSternBredderFront(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> overSternBredderFront(ArrayList<Category> categoriesUsedInGenerator, Order order) {
+        int carportWidth = order.getWidth().getWidth();
+        BillLine toBeReturned;
+        Category cat = categoriesUsedInGenerator.get(0);
+        ArrayList<Material> materials = cat.getMaterials();
+
+        //We need to find the size that can
+        if(materials.size() > 1) {
+            int fewest = Integer.MAX_VALUE;
+            int leftoverOfFewest = Integer.MIN_VALUE;
+            int indexOfFewest = -1;
+
+            for(int i = 0; i < materials.size(); i++) {
+                int widthLeftover = carportWidth;
+                int amountNeeded = 0;
+                while (widthLeftover > 0) {
+                    widthLeftover -= materials.get(i).getLength().getLength();
+                    amountNeeded++;
+                }
+
+                if( amountNeeded < fewest && amountNeeded != 0 ) {
+                    //if current amount needed is the lowest
+                    fewest = amountNeeded;
+                    leftoverOfFewest = widthLeftover;
+                    indexOfFewest = i;
+                }else if(amountNeeded == fewest) {
+                    //If the same number of materials are needed, we check which one
+                    // has to be cut the least
+                    if(widthLeftover > leftoverOfFewest) {
+                        fewest = amountNeeded;
+                        leftoverOfFewest = widthLeftover;
+                        indexOfFewest = i;
+                    }
+                }
+            }
+            toBeReturned = new BillLine(materials.get(indexOfFewest), fewest);
+        } else {
+            int widthLeftover = carportWidth;
+            int amountNeeded = 0;
+            while (widthLeftover > 0) {
+                widthLeftover -= materials.get(0).getLength().getLength();
+                amountNeeded++;
+            }
+            toBeReturned = new BillLine(materials.get(0), amountNeeded);
+        }
+
+        return new ArrayList<BillLine>() {{add(toBeReturned);}};
     }
 
     public static ArrayList<BillLine> overSternBredderSides(ArrayList<Category> categoriesUsedInGenerator) {
