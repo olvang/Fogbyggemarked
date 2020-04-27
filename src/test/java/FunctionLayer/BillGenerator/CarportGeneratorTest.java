@@ -33,28 +33,48 @@ public class CarportGeneratorTest {
     @Test
     public void testunderSternsBredderSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{2});
-        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(10), 0 ,false);
+        Order order = new Order(new DepthComponent(1500), new HeightComponent(10), new WidthComponent(10), 0 ,false);
         ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "25x200 mm. trykimp. Brædt";
-        int expectedAmount1 = 6;
+        int expectedAmount1 = 4;
+        int exspectedLength1 = 540;
 
-        assertEquals(expected, billLine.get(0).getMaterial().getName() );
+        int expectedAmount2 = 2;
+        int exspectedLength2 = 360;
+
+        System.out.println(billLine.get(1).getMaterial().getLength());
+        System.out.println(billLine.get(1).getAmount());
+        System.out.println(billLine.get(0).getMaterial().getLength());
+        System.out.println(billLine.get(0).getAmount());
+        assertEquals(expected, billLine.get(0).getMaterial().getName());
+
         assertEquals(expectedAmount1, billLine.get(0).getAmount());
+        assertEquals(expectedAmount2, billLine.get(1).getAmount());
+
+        assertEquals(exspectedLength1,billLine.get(1).getMaterial().getLength());
+        assertEquals(exspectedLength2,billLine.get(0).getMaterial().getLength());
 
     }
     @Test
     public void testoverSternsBredderSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{4});
-        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(10), 0 ,false);
+        Order order = new Order(new DepthComponent(780), new HeightComponent(10), new WidthComponent(10), 0 ,false);
         ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "25x125 mm. trykimp. Brædt";
-        int expectedAmount1 = 6;
+        int expectedAmount1 = 2;
+        int exspectLength1 = 540;
 
-        assertEquals(expected, billLine.get(0).getMaterial().getName() );
+        int exspectedAmount2 = 2;
+        int exspectedLength2 = 360;
+
+        assertEquals(expected, billLine.get(0).getMaterial().getName());
         assertEquals(expectedAmount1, billLine.get(0).getAmount());
+        assertEquals(exspectLength1, billLine.get(0).getMaterial().getLength());
 
+        assertEquals(exspectedAmount2, billLine.get(1).getAmount());
+        assertEquals(exspectedLength2, billLine.get(1).getMaterial().getLength());
     }
     @Test
     public void testSperOnRem() throws Exception {

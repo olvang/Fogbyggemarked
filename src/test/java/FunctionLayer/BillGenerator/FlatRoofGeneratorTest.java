@@ -22,10 +22,19 @@ public class FlatRoofGeneratorTest {
         ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "19x100 mm. trykimp. Brædt";
-        int expectedAmount1 = 4;
+        int expectedAmount1 = 2;
+        int exspectedLength1 = 540;
+
+        int exspectedAmount2 = 2;
+        int exspectedLength2 = 360;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
+
         assertEquals(expectedAmount1, billLine.get(0).getAmount());
+        assertEquals(exspectedLength1, billLine.get(0).getMaterial().getLength());
+
+        assertEquals(exspectedAmount2, billLine.get(1).getAmount());
+        assertEquals(exspectedLength2, billLine.get(1).getMaterial().getLength());
     }
 
     @Test
