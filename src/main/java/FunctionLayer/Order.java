@@ -88,11 +88,4 @@ public class Order {
     public void setWithShed(boolean withShed) {
         this.withShed = withShed;
     }
-
-    @Override
-    public String toString() {
-        return "depth " + depth.getDepth() + " height " + height.getHeight() + "  width" + width.getWidth()
-                + " shed depth " + shedDepth.getDepth() + " shed width " + shedWidth.getWidth();
-
-    }
 }
