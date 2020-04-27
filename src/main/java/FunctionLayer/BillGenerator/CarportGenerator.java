@@ -83,7 +83,7 @@ public class CarportGenerator {
         if(depth<longestMaterialLength){
             //Only two of the longest material is needed. Might need a for loop here to find the best material
             amountUsed = 2;
-            billLine = new BillLine(materialsSortedByLength.get(materialsSortedByLength.size()-1),amountUsed);
+            billLine = new BillLine(materialsSortedByLength.get(0),amountUsed);
             billLines.add(billLine);
             return billLines;
         }else{
@@ -106,8 +106,8 @@ public class CarportGenerator {
                 //If it is the last material(largest) then use that
                 billLine = new BillLine(material,amountUsed);
             }
-            billLines.add(billLine);
         }
+        billLines.add(billLine);
         return billLines;
     }
 
