@@ -26,7 +26,7 @@ INSERT INTO `FogByggemarked`.`materials` (`length`, `width`, `name`,`price`) VAL
 INSERT INTO `FogByggemarked`.`materials` (`length`, `width`, `name`,`price`) VALUES ('360', '109', 'Plastmo Ecolite blåtonet(360 x 109)',61);
 
 INSERT INTO `FogByggemarked`.`materials` (`length`, `amount`, `name`,`price`) VALUES ('0', '200', 'plastmo bundskruer 200 stk.',81);
-INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('hulbånd 1x20 mm. 10 mtr.',91);
+INSERT INTO `FogByggemarked`.`materials` (`length`, `name`,`price`) VALUES ('1000','hulbånd 1x20 mm. 10 mtr.',91);
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('universal 190 mm højre',12);
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('universal 190 mm venstre',22);
 INSERT INTO `FogByggemarked`.`materials` (`amount`, `name`,`price`) VALUES ('200', '4,5 x 60 mm. skruer 200 stk.',32);

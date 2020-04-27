@@ -326,8 +326,22 @@ public class CarportGenerator {
         return billLines;
     }
 
-    public static ArrayList<BillLine> perforatedBand(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> perforatedBand(ArrayList<Category> categoriesUsedInGenerator, Order order) {
+        int width = order.getWidth().getWidth();
+        int depth = order.getDepth().getDepth();
+        int diagonal = (int) Math.ceil( Math.sqrt((width*width) + (depth*depth)) );
+
+        Category category = categoriesUsedInGenerator.get(0);
+        ArrayList<Material> list = category.getMaterials();
+        GeneratorUtilities.sortMaterialsByLength(list);
+
+        Material materialToUse = list.get(0);
+
+        // times 2 because we need one going each diagonal direction
+        int amountToBeOrdered = (int) (Math.ceil(1.0 * diagonal / materialToUse.getLength())) * 2;
+
+
+        return new ArrayList<BillLine>() {{add(new BillLine(materialToUse, amountToBeOrdered));}};
     }
 
     public static ArrayList<BillLine> UniversalBeslagRight(ArrayList<Category> categoriesUsedInGenerator) {
