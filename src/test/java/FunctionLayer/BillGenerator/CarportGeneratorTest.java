@@ -38,12 +38,11 @@ public class CarportGeneratorTest {
     @Test
     public void testunderSternsBredderSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{1});
-        Order order = new Order(new DepthComponent(1), new HeightComponent(10), new WidthComponent(10), 0 ,false);
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(10), 0 ,false);
         ArrayList<BillLine> billLine = CarportGenerator.underSternsBredderSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "25x200 mm. trykimp. Brædt";
-        int expectedAmount1 = 2;
-        int expectedAmount2 = 1;
+        int expectedAmount1 = 4;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
         assertEquals(expectedAmount1, billLine.get(0).getAmount());
