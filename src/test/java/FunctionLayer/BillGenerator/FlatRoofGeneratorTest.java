@@ -19,10 +19,23 @@ public class FlatRoofGeneratorTest {
     public void testwaterBoardOnSternSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{13});
         Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600), 0 ,false);
-        ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
+        ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "19x100 mm. trykimp. Brædt";
         int expectedAmount1 = 4;
+
+        assertEquals(expected, billLine.get(0).getMaterial().getName() );
+        assertEquals(expectedAmount1, billLine.get(0).getAmount());
+    }
+
+    @Test
+    public void testwaterBoardOnSternFront() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{14});
+        Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600), 0 ,false);
+        ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternFront(categoriesUsedInGenerator, order);
+
+        String expected = "19x100 mm. trykimp. Brædt";
+        int expectedAmount1 = 2;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
         assertEquals(expectedAmount1, billLine.get(0).getAmount());
