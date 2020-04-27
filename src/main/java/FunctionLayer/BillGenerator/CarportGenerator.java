@@ -164,8 +164,55 @@ public class CarportGenerator {
     }
     
 
-    public static ArrayList<BillLine> RemInSidesCarport(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> RemInSidesCarport(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom, WidthComponent widthCom) {
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        BillLine billLine = null;
+        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
+        int rows = 0;
+        int amountUsed = 0;
+        int rest = 0;
+        int longestMaterialLength = materialsSortedByLength.get(materialsSortedByLength.size()-1).getLength();
+
+        int depth = depthCom.getDepth();
+        int width = widthCom.getWidth();
+
+        if(width < 600){
+            rows = 3;
+        }else{
+            rows = 2;
+        }
+
+        if(depth < longestMaterialLength){
+            for (Material mat: materialsSortedByLength) {
+                if(mat.getLength() - depth > 0){
+                    billLine = new BillLine(mat,rows);
+                    billLines.add(billLine);
+                    return billLines;
+                }
+            }
+        }else{
+            //Else we need to find how many times the longest material go into the depth.
+            amountUsed = (depth / longestMaterialLength) * rows;
+            //And then find the rest
+            rest = depth % longestMaterialLength;
+        }
+
+        for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
+            Material material =  materialsSortedByLength.get(i);
+
+            //If the rest - the current lenght is less than 0. We know
+            //The current lenght is long enough.
+            if(rest - material.getLength() < 0){
+                amountUsed = amountUsed + rows;
+                billLine = new BillLine(material,amountUsed);
+
+            } else if(i == 0){
+                //If it is the last material(largest) then use that
+                billLine = new BillLine(material,amountUsed);
+            }
+            billLines.add(billLine);
+        }
+        return billLines;
     }
 
     public static ArrayList<BillLine> sperOnRem(ArrayList<Category> categoriesUsedInGenerator) {
