@@ -41,7 +41,20 @@ public class FlatRoofGeneratorTest {
         assertEquals(expectedAmount1, billLine.get(0).getAmount());
     }
 
+    @Test
+    public void testRoofPanels() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{15});
+        Order order = new Order(new DepthComponent(1234), new HeightComponent(220), new WidthComponent(600), 0 ,false);
+        ArrayList<BillLine> billLine = FlatRoofGenerator.roofPanels(categoriesUsedInGenerator, order);
 
+        String expected = "Plastmo Ecolite blåtonet(600 x 109)";
+        int expectedAmountOf600 = 2;
+        int expectedAmountOf360 = 1;
+
+        assertEquals(expected, billLine.get(0).getMaterial().getName());
+        assertEquals(expectedAmountOf600, billLine.get(0).getAmount());
+        assertEquals(expectedAmountOf360, billLine.get(1).getAmount());
+    }
 
 
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{

@@ -34,8 +34,13 @@ public class FlatRoofGenerator {
             for(int i = 0; i < listOfMaterials.size(); i++) {
                 if(remainingDepth - listOfMaterials.get(i).getLength() > 0) {
                     amountForEach[i]++;
+                    remainingDepth -= listOfMaterials.get(i).getLength();
                     break;
                 }
+            }
+            if(remainingDepth < listOfMaterials.get(listOfMaterials.size() - 1).getLength()) {
+                amountForEach[listOfMaterials.size() - 1]++;
+                remainingDepth -= listOfMaterials.get(listOfMaterials.size() - 1).getLength();
             }
         }
 
