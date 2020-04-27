@@ -89,6 +89,7 @@ public class CarportGenerator {
         }else{
             //Else we need to find how many times the longest material go into the depth.
             amountUsed = (depth / longestMaterialLength) * 2;
+            billLines.add(new BillLine(materialsSortedByLength.get(0),amountUsed));
             //And then find the rest
             rest = depth % longestMaterialLength;
         }
@@ -99,15 +100,19 @@ public class CarportGenerator {
             //If the rest - the current lenght is less than 0. We know
             //The current lenght is long enough.
             if(rest - material.getLength() < 0){
-                amountUsed = amountUsed + 2;
+                amountUsed = 2;
+                //TODO Change name of material
                 billLine = new BillLine(material,amountUsed);
+                billLines.add(billLine);
+                return billLines;
 
             } else if(i == 0){
                 //If it is the last material(largest) then use that
                 billLine = new BillLine(material,amountUsed);
+                billLines.add(billLine);
+                return billLines;
             }
         }
-        billLines.add(billLine);
         return billLines;
     }
 
