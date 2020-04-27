@@ -144,7 +144,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(), order.getWidth());
                     break;
                 case 9: //Remme i sider, sadles ned i stolper (skur del, deles)
                     //The material categories needed in the generator method
