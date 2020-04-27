@@ -36,10 +36,10 @@ public class BillCalculator {
         //Select which categories are needed for the selected order type
         switch (orderType){
             case 1: //Flat roof, no shed
-                categoriesNeeded = new int[]{1,2,3,4,5,6,7,11};
+                categoriesNeeded = new int[]{1,2,3,4,5,6,7,11,13,14,15,16,17,18,19,20,21,22,23};
                 break;
             case 2: //Flat roof, with shed
-                categoriesNeeded = new int[]{2,11};
+                categoriesNeeded = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28};
                 break;
             case 3: //Inclined roof, no shed
                 categoriesNeeded = new int[]{3};
