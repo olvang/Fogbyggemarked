@@ -19,10 +19,10 @@ public class GeneratorUtilitiesTest {
         ArrayList<Material> expected = new ArrayList<Material>();
 
         try {
-            Material material1 = new Material(1,new MaterialLengthComponent(10),new MaterialHeightComponent(10),new MaterialWidthComponent(10),"Name1",10,1);
-            Material material2 = new Material(2,new MaterialLengthComponent(20),new MaterialHeightComponent(20),new MaterialWidthComponent(20),"Name2",20,1);
-            Material material3 = new Material(3,new MaterialLengthComponent(30),new MaterialHeightComponent(30),new MaterialWidthComponent(30),"Name3",30,1);
-            Material material4 = new Material(4,new MaterialLengthComponent(40),new MaterialHeightComponent(40),new MaterialWidthComponent(40),"Name4",40,1);
+            Material material1 = new Material(1,new MaterialLengthComponent(10),new MaterialHeightComponent(10),new MaterialWidthComponent(10),"Name1",10,1, 1);
+            Material material2 = new Material(2,new MaterialLengthComponent(20),new MaterialHeightComponent(20),new MaterialWidthComponent(20),"Name2",20,1, 1);
+            Material material3 = new Material(3,new MaterialLengthComponent(30),new MaterialHeightComponent(30),new MaterialWidthComponent(30),"Name3",30,1, 1);
+            Material material4 = new Material(4,new MaterialLengthComponent(40),new MaterialHeightComponent(40),new MaterialWidthComponent(40),"Name4",40,1, 1);
             categoriesUsedInGenerator.add(material1);
             categoriesUsedInGenerator.add(material2);
             categoriesUsedInGenerator.add(material3);
@@ -48,14 +48,14 @@ public class GeneratorUtilitiesTest {
         ArrayList<Material> expected = new ArrayList<Material>();
 
         try {
-            Material material1 = new Material(23,new MaterialLengthComponent(1122),new MaterialHeightComponent(284),new MaterialWidthComponent(1265),"Name1",120,1);
-            Material material2 = new Material(27,new MaterialLengthComponent(731),new MaterialHeightComponent(2672),new MaterialWidthComponent(2362),"Name2",731,1);
-            Material material3 = new Material(34,new MaterialLengthComponent(3229),new MaterialHeightComponent(2330),new MaterialWidthComponent(855),"Name3",236,1);
-            Material material4 = new Material(47,new MaterialLengthComponent(267),new MaterialHeightComponent(3461),new MaterialWidthComponent(243),"Name4",346,1);
-            Material material5 = new Material(89,new MaterialLengthComponent(1123),new MaterialHeightComponent(284),new MaterialWidthComponent(1265),"Name5",346,1);
-            Material material6 = new Material(74,new MaterialLengthComponent(262),new MaterialHeightComponent(2672),new MaterialWidthComponent(2362),"Name6",2346,1);
-            Material material7 = new Material(25,new MaterialLengthComponent(3230),new MaterialHeightComponent(2330),new MaterialWidthComponent(855),"Name7",234,1);
-            Material material8 = new Material(78,new MaterialLengthComponent(598),new MaterialHeightComponent(3461),new MaterialWidthComponent(243),"Name8",47310,1);
+            Material material1 = new Material(23,new MaterialLengthComponent(1122),new MaterialHeightComponent(284),new MaterialWidthComponent(1265),"Name1",120,1, 1);
+            Material material2 = new Material(27,new MaterialLengthComponent(731),new MaterialHeightComponent(2672),new MaterialWidthComponent(2362),"Name2",731,1, 1);
+            Material material3 = new Material(34,new MaterialLengthComponent(3229),new MaterialHeightComponent(2330),new MaterialWidthComponent(855),"Name3",236,1, 1);
+            Material material4 = new Material(47,new MaterialLengthComponent(267),new MaterialHeightComponent(3461),new MaterialWidthComponent(243),"Name4",346,1, 1);
+            Material material5 = new Material(89,new MaterialLengthComponent(1123),new MaterialHeightComponent(284),new MaterialWidthComponent(1265),"Name5",346,1, 1);
+            Material material6 = new Material(74,new MaterialLengthComponent(262),new MaterialHeightComponent(2672),new MaterialWidthComponent(2362),"Name6",2346,1, 1);
+            Material material7 = new Material(25,new MaterialLengthComponent(3230),new MaterialHeightComponent(2330),new MaterialWidthComponent(855),"Name7",234,1, 1);
+            Material material8 = new Material(78,new MaterialLengthComponent(598),new MaterialHeightComponent(3461),new MaterialWidthComponent(243),"Name8",47310,1, 1);
             categoriesUsedInGenerator.add(material1);
             categoriesUsedInGenerator.add(material2);
             categoriesUsedInGenerator.add(material3);
@@ -90,10 +90,10 @@ public class GeneratorUtilitiesTest {
         ArrayList<Material> expected = new ArrayList<Material>();
 
         try {
-            Material material1 = new Material(1,new MaterialLengthComponent(10),new MaterialHeightComponent(10),new MaterialWidthComponent(10),"Name1",10,1);
-            Material material2 = new Material(2,new MaterialLengthComponent(20),new MaterialHeightComponent(20),new MaterialWidthComponent(20),"Name2",20,1);
-            Material material3 = new Material(3,new MaterialLengthComponent(30),new MaterialHeightComponent(30),new MaterialWidthComponent(30),"Name3",30,1);
-            Material material4 = new Material(4,new MaterialLengthComponent(40),new MaterialHeightComponent(40),new MaterialWidthComponent(40),"Name4",40,1);
+            Material material1 = new Material(1,new MaterialLengthComponent(10),new MaterialHeightComponent(10),new MaterialWidthComponent(10),"Name1",10,1, 1);
+            Material material2 = new Material(2,new MaterialLengthComponent(20),new MaterialHeightComponent(20),new MaterialWidthComponent(20),"Name2",20,1, 1);
+            Material material3 = new Material(3,new MaterialLengthComponent(30),new MaterialHeightComponent(30),new MaterialWidthComponent(30),"Name3",30,1, 1);
+            Material material4 = new Material(4,new MaterialLengthComponent(40),new MaterialHeightComponent(40),new MaterialWidthComponent(40),"Name4",40,1, 1);
             categoriesUsedInGenerator.add(material1);
             categoriesUsedInGenerator.add(material2);
             categoriesUsedInGenerator.add(material3);
@@ -119,14 +119,14 @@ public class GeneratorUtilitiesTest {
         ArrayList<Material> expected = new ArrayList<Material>();
 
         try {
-            Material material1 = new Material(23, new MaterialLengthComponent(1122), new MaterialHeightComponent(284), new MaterialWidthComponent(1265), "Name1", 120, 1);
-            Material material2 = new Material(27, new MaterialLengthComponent(731), new MaterialHeightComponent(2672), new MaterialWidthComponent(2362), "Name2", 731, 1);
-            Material material3 = new Material(34, new MaterialLengthComponent(3229), new MaterialHeightComponent(2330), new MaterialWidthComponent(855), "Name3", 236, 1);
-            Material material4 = new Material(47, new MaterialLengthComponent(267), new MaterialHeightComponent(3461), new MaterialWidthComponent(243), "Name4", 346, 1);
-            Material material5 = new Material(89, new MaterialLengthComponent(1123), new MaterialHeightComponent(284), new MaterialWidthComponent(1265), "Name5", 346, 1);
-            Material material6 = new Material(74, new MaterialLengthComponent(262), new MaterialHeightComponent(2672), new MaterialWidthComponent(2362), "Name6", 2346, 1);
-            Material material7 = new Material(25, new MaterialLengthComponent(3230), new MaterialHeightComponent(2330), new MaterialWidthComponent(855), "Name7", 234, 1);
-            Material material8 = new Material(78, new MaterialLengthComponent(598), new MaterialHeightComponent(3461), new MaterialWidthComponent(243), "Name8", 47310, 1);
+            Material material1 = new Material(23, new MaterialLengthComponent(1122), new MaterialHeightComponent(284), new MaterialWidthComponent(1265), "Name1", 120, 1, 1);
+            Material material2 = new Material(27, new MaterialLengthComponent(731), new MaterialHeightComponent(2672), new MaterialWidthComponent(2362), "Name2", 731, 1, 1);
+            Material material3 = new Material(34, new MaterialLengthComponent(3229), new MaterialHeightComponent(2330), new MaterialWidthComponent(855), "Name3", 236, 1, 1);
+            Material material4 = new Material(47, new MaterialLengthComponent(267), new MaterialHeightComponent(3461), new MaterialWidthComponent(243), "Name4", 346, 1, 1);
+            Material material5 = new Material(89, new MaterialLengthComponent(1123), new MaterialHeightComponent(284), new MaterialWidthComponent(1265), "Name5", 346, 1, 1);
+            Material material6 = new Material(74, new MaterialLengthComponent(262), new MaterialHeightComponent(2672), new MaterialWidthComponent(2362), "Name6", 2346, 1, 1);
+            Material material7 = new Material(25, new MaterialLengthComponent(3230), new MaterialHeightComponent(2330), new MaterialWidthComponent(855), "Name7", 234, 1, 1);
+            Material material8 = new Material(78, new MaterialLengthComponent(598), new MaterialHeightComponent(3461), new MaterialWidthComponent(243), "Name8", 47310, 1, 1);
             categoriesUsedInGenerator.add(material1);
             categoriesUsedInGenerator.add(material2);
             categoriesUsedInGenerator.add(material3);
