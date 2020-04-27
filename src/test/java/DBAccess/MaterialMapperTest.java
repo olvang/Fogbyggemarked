@@ -17,7 +17,7 @@ public class MaterialMapperTest {
     @Test
     public void testGetAllMaterialsByContent() throws SQLException, ValidationFailedException, ClassNotFoundException {
         int indexToCheck = 5;
-        String expected = "38x73 mm. Lægte ubh.";
+        String expected = "45x95 mm. Reglar ub.";
         ArrayList<Category> test = MaterialsMapper.getAllCategories();
 
         assertEquals(expected, test.get(5).getMaterialAtIndex(0).getName());
@@ -57,10 +57,10 @@ public class MaterialMapperTest {
             System.out.println("");
         }*/
 
-        assertEquals(expectedLength1, test.get(3).getMaterialByMaterialId(8).getLength());
-        assertEquals(expectedLength2, test.get(3).getMaterialByMaterialId(22).getLength());
-        assertEquals(expectedWidth, test.get(3).getMaterialByMaterialId(8).getWidth());
-        assertEquals(expectedWidth, test.get(3).getMaterialByMaterialId(22).getWidth());
+        assertEquals(expectedLength1, test.get(3).getMaterialByMaterialId(14).getLength());
+        assertEquals(expectedLength2, test.get(3).getMaterialByMaterialId(15).getLength());
+        assertEquals(expectedWidth, test.get(3).getMaterialByMaterialId(14).getWidth());
+        assertEquals(expectedWidth, test.get(3).getMaterialByMaterialId(15).getWidth());
     }
 
     

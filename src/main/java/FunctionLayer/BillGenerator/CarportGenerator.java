@@ -63,7 +63,7 @@ public class CarportGenerator {
         return billLines;
     }
 
-    public static ArrayList<BillLine> underSternsBredderSides(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom) {
+    public static ArrayList<BillLine> sternsBredderSides(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom) {
 
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;

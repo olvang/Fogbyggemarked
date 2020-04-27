@@ -5,15 +5,10 @@ import Components.HeightComponent;
 import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
-import FunctionLayer.Exceptions.CommandException;
-import FunctionLayer.Exceptions.GeneratorException;
-import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 import org.junit.Test;
-import org.junit.Assert.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -29,8 +24,8 @@ public class CarportGeneratorTest {
         ArrayList<BillLine> billLine = CarportGenerator.overSternBredderFront(categoriesUsedInGenerator, order);
 
 
-        String expected = "25x125mm. trykimp. Brædt";
-        int expectedAmount = 3;
+        String expected = "25x125 mm. trykimp. Brædt";
+        int expectedAmount = 2;
 
         assertEquals(expectedAmount, billLine.get(0).getAmount());
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
@@ -39,9 +34,22 @@ public class CarportGeneratorTest {
     public void testunderSternsBredderSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{2});
         Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(10), 0 ,false);
-        ArrayList<BillLine> billLine = CarportGenerator.underSternsBredderSides(categoriesUsedInGenerator, order.getDepth());
+        ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "25x200 mm. trykimp. Brædt";
+        int expectedAmount1 = 6;
+
+        assertEquals(expected, billLine.get(0).getMaterial().getName() );
+        assertEquals(expectedAmount1, billLine.get(0).getAmount());
+
+    }
+    @Test
+    public void testoverSternsBredderSides() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{4});
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(10), 0 ,false);
+        ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
+
+        String expected = "25x125 mm. trykimp. Brædt";
         int expectedAmount1 = 6;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
@@ -74,7 +82,7 @@ public class CarportGeneratorTest {
 
 
         String expected = "25x200 mm. trykimp. Brædt";
-        int expectedAmount = 4;
+        int expectedAmount = 3;
 
         assertEquals(expectedAmount, billLine.get(0).getAmount());
         assertEquals(expected, billLine.get(0).getMaterial().getName() );

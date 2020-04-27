@@ -18,7 +18,7 @@ public class UserMapperTest {
 //    (3,'robin@somewhere.com','batman','employee'),
 //    (4,'someone@nowhere.com','sesam','customer');
 
-    private static Connection testConnection;
+    /*private static Connection testConnection;
     private static String USER = "testinguser";
     private static String USERPW = "try1try2tryAgain";
     private static String DBNAME = "useradminTest";
@@ -83,5 +83,5 @@ public class UserMapperTest {
         UserMapper.createUser( original );
         User retrieved = UserMapper.login( "king@kong.com", "uhahvorhemmeligt" );
         assertEquals( "konge", retrieved.getRole() );
-    }
+    }*/
 }
