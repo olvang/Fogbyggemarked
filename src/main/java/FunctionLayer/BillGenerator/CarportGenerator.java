@@ -34,7 +34,7 @@ public class CarportGenerator {
             material =  materialsSortedByLength.get(i);
 
             //If the the material length is bigger than the width of the carport, we use that material
-            if(material.getLength().getLength() / carportWidth.getWidth()  >= 1){
+            if(material.getLength() / carportWidth.getWidth()  >= 1){
                 //Material found
                 //Count two as we need one of the material for front and back of carport
                 boardAmount = 2;
@@ -45,7 +45,7 @@ public class CarportGenerator {
                 //We then calculate how many are needed to fill out the full width of the carport
                 while (fullWidthCalc > 0){
                     boardAmount++;
-                    fullWidthCalc -= material.getLength().getLength();
+                    fullWidthCalc -= material.getLength();
                 }
             }
         }
@@ -81,7 +81,7 @@ public class CarportGenerator {
                 int widthLeftover = carportWidth;
                 int amountNeeded = 0;
                 while (widthLeftover > 0) {
-                    widthLeftover -= materials.get(i).getLength().getLength();
+                    widthLeftover -= materials.get(i).getLength();
                     amountNeeded++;
                 }
 
@@ -105,7 +105,7 @@ public class CarportGenerator {
             int widthLeftover = carportWidth;
             int amountNeeded = 0;
             while (widthLeftover > 0) {
-                widthLeftover -= materials.get(0).getLength().getLength();
+                widthLeftover -= materials.get(0).getLength();
                 amountNeeded++;
             }
             toBeReturned = new BillLine(materials.get(0), amountNeeded);
@@ -169,7 +169,7 @@ public class CarportGenerator {
             Material material =  materialsSortedByLength.get(i);
 
             //If the the material height can fit within remaining carport heigth
-            if(carportHeight / material.getLength().getLength() > 0){
+            if(carportHeight / material.getLength() > 0){
                 billLine = new BillLine(material,total);
 
 

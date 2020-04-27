@@ -41,7 +41,7 @@ public class Category {
     public Material getLongestMaterial() {
         Material longest = materials.get(0);
         for(int i = 1; i < materials.size(); i++) {
-            if (materials.get(i).getLength().getLength() > longest.getLength().getLength()) {
+            if (materials.get(i).getLength() > longest.getLength()) {
                 longest = materials.get(i);
             }
         }
@@ -50,7 +50,7 @@ public class Category {
     public Material getWidestMaterial() {
         Material widest = materials.get(0);
         for(int i = 1; i < materials.size(); i++) {
-            if (materials.get(i).getWidth().getWidth() > widest.getWidth().getWidth()) {
+            if (materials.get(i).getWidth() > widest.getWidth() ) {
                 widest = materials.get(i);
             }
         }
@@ -59,7 +59,7 @@ public class Category {
     public Material getHighestMaterial() {
         Material highest = materials.get(0);
         for(int i = 1; i < materials.size(); i++) {
-            if (materials.get(i).getHeight().getHeight() > highest.getHeight().getHeight()) {
+            if (materials.get(i).getHeight() > highest.getHeight()) {
                 highest = materials.get(i);
             }
         }
