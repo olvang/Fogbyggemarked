@@ -48,8 +48,8 @@ public class FlatRoofGeneratorTest {
         ArrayList<BillLine> billLine = FlatRoofGenerator.roofPanels(categoriesUsedInGenerator, order);
 
         String expected = "Plastmo Ecolite blåtonet(600 x 109)";
-        int expectedAmountOf600 = 2;
-        int expectedAmountOf360 = 1;
+        int expectedAmountOf600 = 12;
+        int expectedAmountOf360 = 6;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName());
         assertEquals(expectedAmountOf600, billLine.get(0).getAmount());
