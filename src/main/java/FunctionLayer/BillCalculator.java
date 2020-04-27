@@ -84,7 +84,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.underSternsBredderSides(categoriesUsedInGenerator,order.getDepth());
+                    billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator,order.getDepth());
                     break;
                 case 3: //oversternbrædder til forenden
                     //The material categories needed in the generator method
@@ -98,13 +98,13 @@ public class BillCalculator {
                     break;
                 case 4: //oversternbrædder til siderne
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{4};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.overSternBredderSides(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator,order.getDepth());
                     break;
                 case 5: //til z på bagside af dør
                     //The material categories needed in the generator method
