@@ -88,13 +88,13 @@ public class MaterialsMapper {
             if(previousId != categoryId) {
                 Material mat = new Material(
                         materialId, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
-                        new MaterialWidthComponent(width), name, price, categoryId);
+                        new MaterialWidthComponent(width), name, price, categoryId,amount);
                 listToFill.add(
                         new Category(categoryId, mat, description));
             }else {
                 Material mat = new Material(
                         materialId, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
-                        new MaterialWidthComponent(width), name, price, categoryId);
+                        new MaterialWidthComponent(width), name, price, categoryId,amount);
                 listToFill.get(listToFill.size() - 1).addMaterial(mat);
             }
             previousId = categoryId;
