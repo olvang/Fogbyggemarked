@@ -208,13 +208,13 @@ public class BillCalculator {
                     break;
                 case 15: //tagplader monteres på spær
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{15};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = FlatRoofGenerator.roofPanels(categoriesUsedInGenerator);
+                    billLine = FlatRoofGenerator.roofPanels(categoriesUsedInGenerator, order);
                     break;
                 case 16: //Skruer til tagplader
                     //The material categories needed in the generator method
