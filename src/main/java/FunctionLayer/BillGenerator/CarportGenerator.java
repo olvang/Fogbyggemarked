@@ -69,7 +69,7 @@ public class CarportGenerator {
         ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
 
         //Gets the length of the longest material in this category
-        int longestMaterialLength = materialsSortedByLength.get(materialsSortedByLength.size()-1).getLength().getLength();
+        int longestMaterialLength = materialsSortedByLength.get(materialsSortedByLength.size()-1).getLength();
         //It's required we add 2.5cm on each end of the carport
         final int CONSTANT_ADD_EACH_SIDE = 5;
 
@@ -97,7 +97,7 @@ public class CarportGenerator {
 
             //If the rest - the current lenght is less than 0. We know
             //The current lenght is long enough.
-            if(rest - material.getLength().getLength() < 0){
+            if(rest - material.getLength() < 0){
                 amountUsed = amountUsed + 2;
                 billLine = new BillLine(material,amountUsed);
 
