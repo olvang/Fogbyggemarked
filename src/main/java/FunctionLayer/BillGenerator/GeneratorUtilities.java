@@ -25,7 +25,7 @@ class lengthSorter implements Comparator<Material>
     //Compares two lengths and returns a Integer used by .sort
     @Override
     public int compare(Material o1, Material o2) {
-        return Integer.compare(o2.getLength().getLength(),o1.getLength().getLength());
+        return Integer.compare(o2.getLength(),o1.getLength());
     }
 }
 
@@ -34,6 +34,6 @@ class widthSorter implements Comparator<Material>
     //Compares two widths and returns a Integer used by .sort
     @Override
     public int compare(Material o1, Material o2) {
-        return Integer.compare(o2.getWidth().getWidth(),o1.getWidth().getWidth());
+        return Integer.compare(o2.getWidth(),o1.getWidth());
     }
 }

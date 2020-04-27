@@ -57,10 +57,10 @@ public class MaterialMapperTest {
             System.out.println("");
         }*/
 
-        assertEquals(expectedLength1, test.get(3).getMaterialByMaterialId(8).getLength().getLength());
-        assertEquals(expectedLength2, test.get(3).getMaterialByMaterialId(22).getLength().getLength());
-        assertEquals(expectedWidth, test.get(3).getMaterialByMaterialId(8).getWidth().getWidth());
-        assertEquals(expectedWidth, test.get(3).getMaterialByMaterialId(22).getWidth().getWidth());
+        assertEquals(expectedLength1, test.get(3).getMaterialByMaterialId(8).getLength());
+        assertEquals(expectedLength2, test.get(3).getMaterialByMaterialId(22).getLength());
+        assertEquals(expectedWidth, test.get(3).getMaterialByMaterialId(8).getWidth());
+        assertEquals(expectedWidth, test.get(3).getMaterialByMaterialId(22).getWidth());
     }
 
     
