@@ -188,13 +188,13 @@ public class BillCalculator {
                     break;
                 case 13: //vandbrædt på stern i sider
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{13};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator);
+                    billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator,order.getDepth());
                     break;
                 case 14: //vandbrædt på stern i forende
                     //The material categories needed in the generator method
