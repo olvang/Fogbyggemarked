@@ -24,8 +24,8 @@ public class CarportGeneratorTest {
         ArrayList<BillLine> billLine = CarportGenerator.overSternBredderFront(categoriesUsedInGenerator, order);
 
 
-        String expected = "25x125mm. trykimp. Brædt";
-        int expectedAmount = 3;
+        String expected = "25x125 mm. trykimp. Brædt";
+        int expectedAmount = 2;
 
         assertEquals(expectedAmount, billLine.get(0).getAmount());
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
@@ -37,7 +37,7 @@ public class CarportGeneratorTest {
         ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "25x200 mm. trykimp. Brædt";
-        int expectedAmount1 = 4;
+        int expectedAmount1 = 6;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
         assertEquals(expectedAmount1, billLine.get(0).getAmount());
@@ -49,7 +49,7 @@ public class CarportGeneratorTest {
         Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(10), 0 ,false);
         ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
 
-        String expected = "25x125mm. trykimp. Brædt";
+        String expected = "25x125 mm. trykimp. Brædt";
         int expectedAmount1 = 6;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
@@ -82,7 +82,7 @@ public class CarportGeneratorTest {
 
 
         String expected = "25x200 mm. trykimp. Brædt";
-        int expectedAmount = 4;
+        int expectedAmount = 3;
 
         assertEquals(expectedAmount, billLine.get(0).getAmount());
         assertEquals(expected, billLine.get(0).getMaterial().getName() );

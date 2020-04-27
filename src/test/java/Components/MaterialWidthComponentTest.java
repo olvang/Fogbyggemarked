@@ -39,9 +39,10 @@ public class MaterialWidthComponentTest {
         MaterialWidthComponent component = new MaterialWidthComponent("hej");
     }
 
-    @Test (expected = ValidationFailedException.class)
+    @Test
     public void testZero() throws ValidationFailedException {
         MaterialWidthComponent component = new MaterialWidthComponent(0);
+        assertEquals(0, component.getWidth());
     }
 
     @Test (expected = ValidationFailedException.class)
