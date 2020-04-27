@@ -158,13 +158,13 @@ public class BillCalculator {
                     break;
                 case 10: //Spær, monteres på rem
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{10};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.sperOnRem(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.sperOnRem(categoriesUsedInGenerator, order);
                     break;
                 case 11: //Stolper nedgraves 90 cm. i jord
                     //The material categories needed in the generator method
