@@ -65,6 +65,19 @@ public class FlatRoofGeneratorTest {
         assertEquals(expectedAmountOf360, billLine.get(1).getAmount());
     }
 
+    @Test
+    public void testScrewsForRoofPanels() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{16});
+        Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600), 0 ,false);
+        ArrayList<BillLine> billLine = FlatRoofGenerator.screwsForRoofPanels(categoriesUsedInGenerator, order);
+
+        String expected = "plastmo bundskruer 200 stk.";
+        int expectedAmountOfPacks = 3;
+
+        assertEquals(expected, billLine.get(0).getMaterial().getName());
+        assertEquals(expectedAmountOfPacks, billLine.get(0).getAmount());
+    }
+
 
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{
         ArrayList<Category> categoriesAvailable = LogicFacade.getTheseCategories(categoryIdsUsedInGenerator);

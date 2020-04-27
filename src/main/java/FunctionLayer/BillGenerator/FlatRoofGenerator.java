@@ -5,6 +5,7 @@ import FunctionLayer.BillLine;
 import FunctionLayer.Category;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
+import PresentationLayer.Bill;
 
 import java.util.ArrayList;
 
@@ -72,7 +73,31 @@ public class FlatRoofGenerator {
         return listToBeReturned;
     }
 
-    public static ArrayList<BillLine> screwsForRoofPanels(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> screwsForRoofPanels(ArrayList<Category> categoriesUsedInGenerator,Order order) {
+        ArrayList<BillLine> billLines = new ArrayList<BillLine>();
+        //divided by 100 to convert to meter
+        int orderWidth = order.getWidth().getWidth() / 100;
+        int orderDepth = order.getDepth().getDepth() / 100;
+        int amountOfScrewPacks = 0;
+        //As of now, we use the first screw pack in the category
+        Material screwPackMaterial = categoriesUsedInGenerator.get(0).getMaterialAtIndex(0);
+        int screwsPerPack = screwPackMaterial.getAmount();
+
+        //square meter
+        double squareMeter = orderWidth * orderDepth;
+
+        //We need 12 screws per square meter
+        int neededScrews = (int) (squareMeter * 12);
+
+        //Calculate how many packs are needed
+        while(neededScrews > 0){
+            neededScrews -= screwsPerPack;
+            amountOfScrewPacks++;
+        }
+
+        BillLine billLine = new BillLine(screwPackMaterial,amountOfScrewPacks);
+        billLines.add(billLine);
+
+        return billLines;
     }
 }
