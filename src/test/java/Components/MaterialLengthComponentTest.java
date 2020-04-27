@@ -38,9 +38,10 @@ public class MaterialLengthComponentTest {
         MaterialLengthComponent component = new MaterialLengthComponent("hej");
     }
 
-    @Test (expected = ValidationFailedException.class)
+    @Test
     public void testZero() throws ValidationFailedException {
         MaterialLengthComponent component = new MaterialLengthComponent(0);
+        assertEquals(0, component.getLength());
     }
 
     @Test (expected = ValidationFailedException.class)
