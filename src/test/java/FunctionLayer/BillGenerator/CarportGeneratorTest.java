@@ -89,6 +89,19 @@ public class CarportGeneratorTest {
     }
 
 
+    @Test
+    public void testPerforatedBand() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{17});
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(500), 0 ,false);
+        ArrayList<BillLine> billLine = CarportGenerator.perforatedBand(categoriesUsedInGenerator, order);
+
+        String expected = "hulbånd 1x20 mm. 10 mtr.";
+        int expectedAmount = 4;
+
+        assertEquals(expected, billLine.get(0).getMaterial().getName());
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+    }
+
 
 
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{
