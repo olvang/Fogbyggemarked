@@ -1,5 +1,6 @@
 package FunctionLayer;
 
+import Components.HeightComponent;
 import Components.MaterialLengthComponent;
 import Components.MaterialHeightComponent;
 import Components.MaterialWidthComponent;
@@ -34,13 +35,22 @@ public class Material {
     public int getMaterialID() {
         return materialID;
     }
-    public MaterialHeightComponent getHeight() {
+    public int getHeight() {
+        return height.getHeight();
+    }
+    public int getWidth() {
+        return width.getWidth();
+    }
+    public int getLength() {
+        return length.getLength();
+    }
+    public MaterialHeightComponent getHeightComponent() {
         return height;
     }
-    public MaterialWidthComponent getWidth() {
+    public MaterialWidthComponent getWidthtComponent() {
         return width;
     }
-    public MaterialLengthComponent getLength() {
+    public MaterialLengthComponent getLengthComponent() {
         return length;
     }
     public String getName() {

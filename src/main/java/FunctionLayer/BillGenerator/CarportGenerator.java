@@ -14,8 +14,52 @@ import java.util.ArrayList;
 
 public class CarportGenerator {
 
-    public static ArrayList<BillLine> underSternsBredderFrontAndBack(ArrayList<Category> categoriesUsedInGenerator, WidthComponent carpotWidth) {
-        return null;
+    public static ArrayList<BillLine> underSternsBredderFrontAndBack(ArrayList<Category> categoriesUsedInGenerator, WidthComponent carportWidth) throws GeneratorException {
+        ArrayList<BillLine> billLines = new ArrayList<BillLine>();
+        BillLine billLine;
+        Material material  = null;
+        int boardAmount = 0;
+
+        //* 2 (2x because front & back)
+        //5 cm for each end, 5 cm * 2 ends * 2 sides = 20 cm extra
+        int fullWidth = carportWidth.getWidth() * 2 + 20;
+
+
+        //Sorts the materials(underSternsBredder) by their length, DESC
+        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
+
+
+        //Loops through all underSternsBredder, to find best fits starting with the smallest first
+        //The first board that is higher than the width will be used
+        for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
+            material =  materialsSortedByLength.get(i);
+
+            //If the the material length is bigger than the width of the carport, we use that material
+            if(material.getLength() / carportWidth.getWidth()  >= 1){
+                //Material found
+                //Count two as we need one of the material for front and back of carport
+                boardAmount = 2;
+                break;
+            }else if(i == 0){
+                int fullWidthCalc = fullWidth;
+                //If No material found, we use the material anyway as it is the biggest we have
+                //We then calculate how many are needed to fill out the full width of the carport
+                while (fullWidthCalc > 0){
+                    boardAmount++;
+                    fullWidthCalc -= material.getLength();
+                }
+            }
+        }
+
+
+        //If boardAmount is more than 1 a calculation has been made, else something went wrong
+        if(boardAmount >= 1){
+            billLine = new BillLine(material,boardAmount);
+            billLines.add(billLine);
+        }else{
+            throw new GeneratorException("understernbrædder til for & bag ende kunne ikke beregnes");
+        }
+        return billLines;
     }
 
     public static ArrayList<BillLine> underSternsBredderSides(ArrayList<Category> categoriesUsedInGenerator) {
@@ -38,7 +82,7 @@ public class CarportGenerator {
                 int widthLeftover = carportWidth;
                 int amountNeeded = 0;
                 while (widthLeftover > 0) {
-                    widthLeftover -= materials.get(i).getLength().getLength();
+                    widthLeftover -= materials.get(i).getLength();
                     amountNeeded++;
                 }
 
@@ -62,7 +106,7 @@ public class CarportGenerator {
             int widthLeftover = carportWidth;
             int amountNeeded = 0;
             while (widthLeftover > 0) {
-                widthLeftover -= materials.get(0).getLength().getLength();
+                widthLeftover -= materials.get(0).getLength();
                 amountNeeded++;
             }
             toBeReturned = new BillLine(materials.get(0), amountNeeded);
@@ -92,7 +136,8 @@ public class CarportGenerator {
 
         GeneratorUtilities.sortMaterialsByLength(list);
 
-        if(carportWidth > list.get(0).getLength().getLength() ) {
+        //If carport is wider than the longest plank, it cannot be built.
+        if(carportWidth > list.get(0).getLength() ) {
             throw new GeneratorException("Carport is too wide");
         }
 
@@ -104,7 +149,7 @@ public class CarportGenerator {
             // is added as the sperToUse. As soon as a plank is shorter than the carport, the loop is broken and
             // we know the previous plank is the shortest possible one that is still longer than the carport.
             for(int i = 0; i < list.size(); i++) {
-                if(list.get(i).getLength().getLength() >= carportWidth) {
+                if(list.get(i).getLength() >= carportWidth) {
                     sperToUse = list.get(i);
                 } else {
                     break;
@@ -112,7 +157,7 @@ public class CarportGenerator {
             }
         }
 
-        amount = carportDepth / 55;
+        amount = (int) Math.ceil(carportDepth / 55.0);
         if(sperToUse != null) {
             line = new BillLine(sperToUse, amount);
         } else {
@@ -164,7 +209,7 @@ public class CarportGenerator {
             Material material =  materialsSortedByLength.get(i);
 
             //If the the material height can fit within remaining carport heigth
-            if(carportHeight / material.getLength().getLength() > 0){
+            if(carportHeight / material.getLength() > 0){
                 billLine = new BillLine(material,total);
 
 
