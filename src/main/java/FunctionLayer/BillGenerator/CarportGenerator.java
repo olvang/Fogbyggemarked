@@ -362,9 +362,9 @@ public class CarportGenerator {
         //We need 2 bolts for each post
         int boltAmount = amountOfPosts * 2;
 
-        //If there is a shed, we need two more
+        //If there is a shed, we need 4 more
         if(withShed){
-            boltAmount += 2;
+            boltAmount += 4;
         }
 
         //Since there is no calculation for which bolts to select, we just use the first one available to us

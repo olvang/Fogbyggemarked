@@ -160,7 +160,7 @@ public class CarportGeneratorTest {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{22});
         int amountOfPosts = 6;
         int expectedNoShed = 12;
-        int expectedWithShed = 14;
+        int expectedWithShed = 16;
         String expectedName = "bræddebolt 10 x 120 mm.";
 
         ArrayList<BillLine> billLineNoShed = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator, amountOfPosts,false);
