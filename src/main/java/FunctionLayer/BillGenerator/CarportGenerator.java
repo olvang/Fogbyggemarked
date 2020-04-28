@@ -375,6 +375,7 @@ public class CarportGenerator {
         return billLines;
     }
 
+
     public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator,int amountOfBolts) {
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine = null;
