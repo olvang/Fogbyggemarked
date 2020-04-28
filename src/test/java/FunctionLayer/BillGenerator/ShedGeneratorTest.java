@@ -1,5 +1,6 @@
 package FunctionLayer.BillGenerator;
 
+import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
 import FunctionLayer.LogicFacade;
@@ -48,5 +49,21 @@ public class ShedGeneratorTest {
             }
         }
         return categoriesUsedInGenerator;
+    }
+
+    @Test
+    public void losholterGabledTest() throws Exception {
+        //These three lines need to be in every test, but change the target method in CarportGenerator,
+        // the order to fit your testdata and the categories needed
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{6});
+        WidthComponent orderWidth = new WidthComponent(600);
+        ArrayList<BillLine> billLine = ShedGenerator.losholterGabled(categoriesUsedInGenerator, orderWidth.getWidth());
+
+
+        String expected = "45x95 mm. Reglar ub.";
+        int expectedAmount = 14;
+
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+        assertEquals(expected, billLine.get(0).getMaterial().getName() );
     }
 }
