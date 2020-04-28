@@ -344,10 +344,32 @@ public class CarportGenerator {
         return new ArrayList<BillLine>() {{add(new BillLine(materialToUse, amountToBeOrdered));}};
     }
 
-    public static ArrayList<BillLine> UniversalBeslagRight(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
-    }
+    public static ArrayList<BillLine> UniversalBeslagRight(ArrayList<Category> categoriesUsedInGenerator, int sper, int remme) {
 
+        ArrayList<BillLine> billLines = new ArrayList<BillLine>();
+        BillLine billLine = null;
+
+        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
+
+        int amountUsed = sper * ((remme/2)-1);
+
+        billLine = new BillLine(materialsSortedByLength.get(0),amountUsed);
+        billLines.add(billLine);
+
+        return billLines;
+    }
+    public static ArrayList<BillLine> UniversalBeslagLeft(ArrayList<Category> materialsUsedInGenerator, int sper) {
+
+        ArrayList<BillLine> billLines = new ArrayList<BillLine>();
+        BillLine billLine = null;
+
+        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(materialsUsedInGenerator.get(0).getMaterials());
+
+        billLine = new BillLine(materialsSortedByLength.get(0),sper);
+        billLines.add(billLine);
+
+        return billLines;
+    }
     public static ArrayList<BillLine> screwsForSternAndWaterBoard(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
@@ -372,7 +394,5 @@ public class CarportGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> UniversalBeslagLeft(ArrayList<Category> materialsUsedInGenerator) {
-        return null;
-    }
+
 }
