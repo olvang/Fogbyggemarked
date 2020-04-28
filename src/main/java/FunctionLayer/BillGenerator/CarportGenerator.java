@@ -375,8 +375,20 @@ public class CarportGenerator {
         return billLines;
     }
 
-    public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> materialsUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> materialsUsedInGenerator,int amountOfBolts) {
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        BillLine billLine = null;
+
+        //We need 1 skive for each bolt
+        int skiveAmount = amountOfBolts;
+
+
+        //Since there is no calculation for which skiver to select, we just use the first one available to us
+        billLine = new BillLine(materialsUsedInGenerator.get(0).getMaterialAtIndex(0),skiveAmount);
+
+        billLines.add(billLine);
+
+        return billLines;
     }
 
     public static ArrayList<BillLine> screwsForOuter(ArrayList<Category> materialsUsedInGenerator) {
