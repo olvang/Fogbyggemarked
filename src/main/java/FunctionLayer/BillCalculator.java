@@ -2,6 +2,7 @@ package FunctionLayer;
 
 import FunctionLayer.BillGenerator.CarportGenerator;
 import FunctionLayer.BillGenerator.FlatRoofGenerator;
+import FunctionLayer.BillGenerator.GeneratorUtilities;
 import FunctionLayer.BillGenerator.ShedGenerator;
 import FunctionLayer.Exceptions.CommandException;
 import FunctionLayer.Exceptions.GeneratorException;
@@ -108,7 +109,7 @@ public class BillCalculator {
                     break;
                 case 5: //til z på bagside af dør
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{5};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
@@ -278,23 +279,29 @@ public class BillCalculator {
                     break;
                 case 22: //Til montering af rem på stolper - bolte
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{22};
+
+                    //We need the amount of posts calculated
+                    int amountOfPosts = GeneratorUtilities.searchForAmountInACategoryFromBillLines(11,billLinesFinal);
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator,amountOfPosts,order.isWithShed());
                     break;
                 case 23: //Til montering af rem på stolper - skiver
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{23};
+
+                    //We need the amount of posts calculated
+                    int amountOfBolts = GeneratorUtilities.searchForAmountInACategoryFromBillLines(22,billLinesFinal);
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.skiverForRemOnPost(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.skiverForRemOnPost(categoriesUsedInGenerator,amountOfBolts);
                     break;
                 case 24: //til montering af yderste beklædning
                     //The material categories needed in the generator method

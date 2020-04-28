@@ -156,6 +156,7 @@ public class CarportGeneratorTest {
     }
 
     @Test
+
     public void testScrewsForSternAndWaterboard() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{13,14,20});
         Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(1000), 0 ,false);
@@ -164,10 +165,42 @@ public class CarportGeneratorTest {
         String expected = "4,5 x 60 mm. skruer 200 stk.";
         int expectedAmount = 2;
         //total length 3240
-
+  
         assertEquals(expected, billLine.get(0).getMaterial().getName());
         assertEquals(expectedAmount, billLine.get(0).getAmount());
     }
+
+    public void testboltsForRemOnPost() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{22});
+        int amountOfPosts = 6;
+        int expectedNoShed = 12;
+        int expectedWithShed = 16;
+        String expectedName = "bræddebolt 10 x 120 mm.";
+
+        ArrayList<BillLine> billLineNoShed = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator, amountOfPosts,false);
+        ArrayList<BillLine> billLineWithShed = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator, amountOfPosts,true);
+
+        assertEquals(expectedName, billLineNoShed.get(0).getMaterial().getName());
+        assertEquals(expectedNoShed, billLineNoShed.get(0).getAmount());
+        assertEquals(expectedName, billLineWithShed.get(0).getMaterial().getName());
+        assertEquals(expectedWithShed, billLineWithShed.get(0).getAmount());
+    }
+
+    @Test
+    public void TestskiverForRemOnPost() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{23});
+        int amountOfBolts = 28;
+        int expected = 28;
+        String expectedName = "firkantskiver 40x40x11mm";
+
+        ArrayList<BillLine> billLineNoShed = CarportGenerator.skiverForRemOnPost(categoriesUsedInGenerator, amountOfBolts);
+
+        assertEquals(expectedName, billLineNoShed.get(0).getMaterial().getName());
+        assertEquals(expected, billLineNoShed.get(0).getAmount());
+    }
+
+
+
 
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{
         ArrayList<Category> categoriesAvailable = LogicFacade.getTheseCategories(categoryIdsUsedInGenerator);

@@ -1,5 +1,6 @@
 package FunctionLayer.BillGenerator;
 
+import FunctionLayer.BillLine;
 import FunctionLayer.Material;
 import java.util.*;
 
@@ -15,6 +16,18 @@ public class GeneratorUtilities {
         //Sort the array by width
         categoriesUsedInGenerator.sort(new widthSorter());
         return categoriesUsedInGenerator;
+    }
+
+    public static int searchForAmountInACategoryFromBillLines(int categoryID, ArrayList<BillLine> billLines){
+        int amount = 0;
+        //Goes trough each billLine to find billLines with the categoryID.
+        for (BillLine billLine : billLines) {
+            if(billLine.getMaterial().getCategory() == categoryID ){
+                //When found, adds the amount
+                amount += billLine.getAmount();
+            }
+        }
+        return amount;
     }
 
 }
