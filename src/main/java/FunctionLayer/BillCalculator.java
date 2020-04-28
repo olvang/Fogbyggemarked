@@ -129,13 +129,13 @@ public class BillCalculator {
                     break;
                 case 7: //løsholter til skur sider
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{7};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.losholterSides(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.losholterSides(categoriesUsedInGenerator,order.getShedDepth().getDepth());
                     break;
                 case 8: //Remme i sider, sadles ned i stolpe
                     //The material categories needed in the generator method
