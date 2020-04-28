@@ -3,6 +3,7 @@ package FunctionLayer.BillGenerator;
 import Components.MaterialHeightComponent;
 import Components.MaterialLengthComponent;
 import Components.MaterialWidthComponent;
+import FunctionLayer.BillLine;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
 import org.junit.Test;
@@ -14,7 +15,7 @@ import static org.junit.Assert.*;
 public class GeneratorUtilitiesTest {
     
     @Test
-    public void sortMaterialsByLengthSimple() {
+    public void sortMaterialsByLengthSimpleTest() {
         ArrayList<Material> categoriesUsedInGenerator = new ArrayList<Material>();
         ArrayList<Material> expected = new ArrayList<Material>();
 
@@ -43,7 +44,7 @@ public class GeneratorUtilitiesTest {
     }
 
     @Test
-    public void sortMaterialsByLengthComplex() {
+    public void sortMaterialsByLengthComplexTest() {
         ArrayList<Material> categoriesUsedInGenerator = new ArrayList<Material>();
         ArrayList<Material> expected = new ArrayList<Material>();
 
@@ -85,7 +86,7 @@ public class GeneratorUtilitiesTest {
     }
 
     @Test
-    public void sortMaterialsByWidthSimple() {
+    public void sortMaterialsByWidthSimpleTest() {
         ArrayList<Material> categoriesUsedInGenerator = new ArrayList<Material>();
         ArrayList<Material> expected = new ArrayList<Material>();
 
@@ -114,7 +115,7 @@ public class GeneratorUtilitiesTest {
     }
 
     @Test
-    public void sortMaterialsByWidthComplex() {
+    public void sortMaterialsByWidthComplexTest() {
         ArrayList<Material> categoriesUsedInGenerator = new ArrayList<Material>();
         ArrayList<Material> expected = new ArrayList<Material>();
 
@@ -152,6 +153,34 @@ public class GeneratorUtilitiesTest {
         ArrayList<Material> actual = GeneratorUtilities.sortMaterialsByWidth(categoriesUsedInGenerator);
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void searchForAmountInACategoryFromBillLinesTest() {
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        int expectedCat1 = 3;
+        int expectedCat2 = 7;
+        try {
+            Material material1 = new Material(23, new MaterialLengthComponent(1122), new MaterialHeightComponent(284), new MaterialWidthComponent(1265), "Name1", 120, 1, 1);
+            Material material2 = new Material(27, new MaterialLengthComponent(731), new MaterialHeightComponent(2672), new MaterialWidthComponent(2362), "Name2", 731, 1, 1);
+            Material material3 = new Material(34, new MaterialLengthComponent(3229), new MaterialHeightComponent(2330), new MaterialWidthComponent(855), "Name3", 236, 2, 1);
+            Material material4 = new Material(47, new MaterialLengthComponent(267), new MaterialHeightComponent(3461), new MaterialWidthComponent(243), "Name4", 346, 2, 1);
+            BillLine billLine1 = new BillLine(material1,1);
+            BillLine billLine2 = new BillLine(material2,2);
+            BillLine billLine3 = new BillLine(material3,3);
+            BillLine billLine4 = new BillLine(material4,4);
+            billLines.add(billLine1);
+            billLines.add(billLine2);
+            billLines.add(billLine3);
+            billLines.add(billLine4);
+        } catch (ValidationFailedException e) {
+            fail("Could not setup test");
+        }
+        int actualCat1 = GeneratorUtilities.searchForAmountInACategoryFromBillLines(1,billLines);
+        int actualCat2 = GeneratorUtilities.searchForAmountInACategoryFromBillLines(2,billLines);
+
+        assertEquals(expectedCat1, actualCat1);
+        assertEquals(expectedCat2, actualCat2);
     }
 
 }
