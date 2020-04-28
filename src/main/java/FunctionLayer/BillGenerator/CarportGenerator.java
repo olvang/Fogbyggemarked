@@ -177,15 +177,15 @@ public class CarportGenerator {
         int rows = 0;
         int amountUsed = 0;
         int rest = 0;
-        int longestMaterialLength = materialsSortedByLength.get(materialsSortedByLength.size()-1).getLength();
+        int longestMaterialLength = materialsSortedByLength.get(0).getLength();
 
         int depth = depthCom.getDepth();
         int width = widthCom.getWidth();
 
         if(width < 600){
-            rows = 3;
-        }else{
             rows = 2;
+        }else{
+            rows = 3;
         }
 
         if(depth < longestMaterialLength){
