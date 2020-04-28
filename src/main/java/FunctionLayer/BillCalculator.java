@@ -139,7 +139,7 @@ public class BillCalculator {
                     break;
                 case 8: //Remme i sider, sadles ned i stolpe
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{8};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
@@ -239,23 +239,30 @@ public class BillCalculator {
                     break;
                 case 18: //Til montering af spær på rem - højre
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{18};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    //Gets the amount of spær and remme used
+                    int sper = GeneratorUtilities.searchForAmountInACategoryFromBillLines(10, billLinesFinal);
+                    int remme = GeneratorUtilities.searchForAmountInACategoryFromBillLines(8, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.UniversalBeslagRight(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.UniversalBeslagRight(categoriesUsedInGenerator, sper, remme);
                     break;
                 case 19: //Til montering af spær på rem - venstre
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{19};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    //Get the amount of spær used
+                    sper = GeneratorUtilities.searchForAmountInACategoryFromBillLines(10, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.UniversalBeslagLeft(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.UniversalBeslagLeft(categoriesUsedInGenerator, sper);
                     break;
                 case 20: //Til montering af stern & vandbrædt
                     //The material categories needed in the generator method

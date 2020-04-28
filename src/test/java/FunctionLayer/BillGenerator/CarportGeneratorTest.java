@@ -31,6 +31,30 @@ public class CarportGeneratorTest {
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
     }
     @Test
+    public void testUniversalBeslagRight() throws Exception {
+        Order order = new Order(new DepthComponent(780), new HeightComponent(10), new WidthComponent(540), 0 ,false);
+
+        ArrayList<Category> categoriesUsedInGeneratorRemme = getCategoriesAvailable(new int[]{8});
+        ArrayList<BillLine> billLineRemme = CarportGenerator.RemInSidesCarport(categoriesUsedInGeneratorRemme, order.getDepth(),order.getWidth());
+
+        ArrayList<Category> categoriesUsedInGeneratorSper = getCategoriesAvailable(new int[]{10});
+        ArrayList<BillLine> billLineSper = CarportGenerator.sperOnRem(categoriesUsedInGeneratorSper, order);
+
+        int Remme = billLineRemme.get(0).getAmount();
+        int Sper = billLineSper.get(0).getAmount();
+
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{18});
+        ArrayList<BillLine> billLineBeslag = CarportGenerator.UniversalBeslagRight(categoriesUsedInGenerator, Sper, Remme);
+
+        assertEquals( 4, Remme);
+        assertEquals(15,Sper);
+
+        int exspectedBeslag = 15;
+
+        assertEquals(exspectedBeslag,billLineBeslag.get(0).getAmount());
+
+    }
+    @Test
     public void testRemInSidesCarportUnder600() throws Exception {
 
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
