@@ -292,13 +292,16 @@ public class BillCalculator {
                     break;
                 case 23: //Til montering af rem på stolper - skiver
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{23};
+
+                    //We need the amount of posts calculated
+                    int amountOfBolts = GeneratorUtilities.searchForAmountInACategoryFromBillLines(22,billLinesFinal);
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.skiverForRemOnPost(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.skiverForRemOnPost(categoriesUsedInGenerator,amountOfBolts);
                     break;
                 case 24: //til montering af yderste beklædning
                     //The material categories needed in the generator method
