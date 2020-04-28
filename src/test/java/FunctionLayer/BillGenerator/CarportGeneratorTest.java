@@ -36,6 +36,39 @@ public class CarportGeneratorTest {
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
     }
     @Test
+    public void testRemInSidesCarportUnder600() throws Exception {
+
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
+        Order order = new Order(new DepthComponent(500), new HeightComponent(10), new WidthComponent(550), 0 ,false);
+        ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(),order.getWidth());
+
+        int expectedAmount = 2;
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+
+    }
+    @Test
+    public void testRemInSidesCarportAbove600() throws Exception {
+
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
+        Order order = new Order(new DepthComponent(500), new HeightComponent(10), new WidthComponent(780), 0 ,false);
+        ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(),order.getWidth());
+
+        int expectedAmount = 3;
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+
+    }
+    @Test
+    public void testRemInSidesCarportAbove600AndAbove600() throws Exception {
+
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
+        Order order = new Order(new DepthComponent(650), new HeightComponent(10), new WidthComponent(780), 0 ,false);
+        ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(),order.getWidth());
+
+        int expectedAmount = 6;
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+
+    }
+    @Test
     public void testunderSternsBredderSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{2});
         Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(10), 0 ,false);
