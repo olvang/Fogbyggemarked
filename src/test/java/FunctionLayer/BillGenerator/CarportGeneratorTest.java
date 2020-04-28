@@ -155,7 +155,19 @@ public class CarportGeneratorTest {
         assertEquals(expectedAmount, billLine.get(0).getAmount());
     }
 
+    @Test
+    public void testScrewsForSternAndWaterboard() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{13,14,20});
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(1000), 0 ,false);
+        ArrayList<BillLine> billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator, order, new ArrayList<BillLine>());
 
+        String expected = "4,5 x 60 mm. skruer 200 stk.";
+        int expectedAmount = 2;
+        //total length 3240
+
+        assertEquals(expected, billLine.get(0).getMaterial().getName());
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+    }
 
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{
         ArrayList<Category> categoriesAvailable = LogicFacade.getTheseCategories(categoryIdsUsedInGenerator);

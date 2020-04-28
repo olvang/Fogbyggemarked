@@ -258,13 +258,13 @@ public class BillCalculator {
                     break;
                 case 20: //Til montering af stern & vandbrædt
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{13,14,20};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator, order, billLinesFinal);
                     break;
                 case 21: //Til montering af universalbeslag + hulbånd
                     //The material categories needed in the generator method
