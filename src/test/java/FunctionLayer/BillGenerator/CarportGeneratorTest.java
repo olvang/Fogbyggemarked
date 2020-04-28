@@ -189,7 +189,7 @@ public class CarportGeneratorTest {
         String expected = "4,5 x 60 mm. skruer 200 stk.";
         int expectedAmount = 2;
         //total length 3240
-  
+
         assertEquals(expected, billLine.get(0).getMaterial().getName());
         assertEquals(expectedAmount, billLine.get(0).getAmount());
     }
@@ -223,6 +223,20 @@ public class CarportGeneratorTest {
         assertEquals(expected, billLineNoShed.get(0).getAmount());
     }
 
+    @Test
+    public void testScrewsForUniversalBeslagAndPerforatedBand() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{10,21});
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(580), 0 ,false);
+
+        //If sper is calculated correctly, there should be 38 beslag
+        ArrayList<BillLine> billLine =
+                CarportGenerator.screwsForUniversalBeslagAndPerforatedBand(categoriesUsedInGenerator, order, 38);
+
+        int expectedAmount = 2;
+        //expect about 418 screws
+
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+    }
 
 
 
