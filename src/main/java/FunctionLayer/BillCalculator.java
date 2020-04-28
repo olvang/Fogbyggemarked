@@ -37,7 +37,7 @@ public class BillCalculator {
         //Select which categories are needed for the selected order type
         switch (orderType){
             case 1: //Flat roof, no shed
-                categoriesNeeded = new int[]{1,2,3,4,5,6,7,11,13,14,15,16,17,18,19,20,21,22,23};
+                categoriesNeeded = new int[]{1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,21,22,23};
                 break;
             case 2: //Flat roof, with shed
                 categoriesNeeded = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28};
@@ -276,13 +276,17 @@ public class BillCalculator {
                     break;
                 case 21: //Til montering af universalbeslag + hulbånd
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{10,21};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int amountOfBeslag = 0;
+                    amountOfBeslag += GeneratorUtilities.searchForAmountInACategoryFromBillLines(18, billLinesFinal);
+                    amountOfBeslag += GeneratorUtilities.searchForAmountInACategoryFromBillLines(19, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.screwsForUniversalBeslagAndPerforatedBand(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.screwsForUniversalBeslagAndPerforatedBand(categoriesUsedInGenerator, order, amountOfBeslag);
                     break;
                 case 22: //Til montering af rem på stolper - bolte
                     //The material categories needed in the generator method
