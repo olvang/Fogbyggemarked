@@ -174,6 +174,21 @@ public class CarportGeneratorTest {
         assertEquals(expectedWithShed, billLineWithShed.get(0).getAmount());
     }
 
+    @Test
+    public void TestskiverForRemOnPost() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{23});
+        int amountOfBolts = 28;
+        int expected = 28;
+        String expectedName = "firkantskiver 40x40x11mm";
+
+        ArrayList<BillLine> billLineNoShed = CarportGenerator.skiverForRemOnPost(categoriesUsedInGenerator, amountOfBolts);
+
+
+
+        assertEquals(expectedName, billLineNoShed.get(0).getMaterial().getName());
+        assertEquals(expected, billLineNoShed.get(0).getAmount());
+    }
+
 
 
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{
