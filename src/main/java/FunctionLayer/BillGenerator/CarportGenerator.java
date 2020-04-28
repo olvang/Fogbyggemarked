@@ -370,20 +370,121 @@ public class CarportGenerator {
 
         return billLines;
     }
-    public static ArrayList<BillLine> screwsForSternAndWaterBoard(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+
+    public static ArrayList<BillLine> screwsForSternAndWaterBoard(ArrayList<Category> categoriesUsedInGenerator, Order order, ArrayList<BillLine> finishedList) {
+        //Desc: Længden af vand brædder / 13,5
+        ArrayList<Material> waterboards = new ArrayList();
+        Category screws = categoriesUsedInGenerator.get(2);
+        //<editor-fold desc="Gets the waterboards, one way or another" defaultstate="collapsed">
+
+        //These screws are based on the length of the waterboards. We therefore need to check the results of
+        // that calculation.
+        for(BillLine line : finishedList) {
+            if(line.getMaterial().getCategory() == 13 || line.getMaterial().getCategory() == 14) {
+                Material mat = line.getMaterial();
+                mat.setAmount(line.getAmount());
+                waterboards.add(mat);
+            }
+        }
+        //There is however a chance that this is being calculated before the waterboards have been.
+        //If that is the case, we'll have to run the calculation ourselves.
+        if(waterboards.size() == 0) {
+            ArrayList<BillLine> frontBoards = FlatRoofGenerator.waterBoardOnSternFront(
+                    new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(0));}}, order
+            );
+            ArrayList<BillLine> sideBoards = FlatRoofGenerator.waterBoardOnSternSides(
+                    new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(1));}}, order.getDepth()
+            );
+            for(BillLine line : frontBoards) {
+                line.getMaterial().setAmount(line.getAmount());
+                waterboards.add(line.getMaterial());
+            }
+            for(BillLine line : sideBoards) {
+                line.getMaterial().setAmount(line.getAmount());
+                waterboards.add(line.getMaterial());
+            }
+        }
+        //</editor-fold>
+
+        //At this point we can be sure that we have access to the waterboards.
+        int amountOfScrewsNeeded = 0;
+        int fullLength = 0;
+        for(Material board : waterboards) {
+            fullLength += board.getLength() * board.getAmount();
+        }
+        amountOfScrewsNeeded = (int) Math.ceil(fullLength / 13.5);
+
+        //If there is only one box size to choose from, we just use that.
+        if(screws.getMaterials().size() == 1) {
+            Material materialUsed = screws.getMaterials().get(0);
+            int amountInBox = screws.getMaterials().get(0).getAmount();
+            int total = (int) Math.ceil(1.0 * amountOfScrewsNeeded / amountInBox);
+            return new ArrayList<BillLine>() {
+                {
+                    add(new BillLine(materialUsed, total));
+                }
+            };
+        }
+
+        //Otherwise we have to find the most fitting one
+        Material fewest = screws.getMaterials().get(0);
+        int boxesNeeded = -1;
+        for(Material box : screws.getMaterials()) {
+            int amountInBox = box.getAmount();
+            double total = amountOfScrewsNeeded / amountInBox;
+            if(total < fewest.getAmount() && total > 1) {
+                fewest = box;
+                boxesNeeded = (int) Math.ceil(total);
+            }
+        }
+
+        Material finalFewest = fewest;
+        int finalBoxesNeeded = boxesNeeded;
+        return new ArrayList<BillLine>() {
+            {
+                add(new BillLine(finalFewest, finalBoxesNeeded));
+            }
+        };
     }
 
     public static ArrayList<BillLine> screwsForUniversalBeslagAndPerforatedBand(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
 
-    public static ArrayList<BillLine> boltsForRemOnPost(ArrayList<Category> materialsUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> boltsForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator, int amountOfPosts, boolean withShed) {
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        BillLine billLine = null;
+        //We need 2 bolts for each post
+        int boltAmount = amountOfPosts * 2;
+
+        //If there is a shed, we need 4 more
+        if(withShed){
+            boltAmount += 4;
+        }
+
+        //Since there is no calculation for which bolts to select, we just use the first one available to us
+        billLine = new BillLine(CategoriesUsedInGenerator.get(0).getMaterialAtIndex(0),boltAmount);
+
+        billLines.add(billLine);
+
+        return billLines;
     }
 
-    public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> materialsUsedInGenerator) {
-        return null;
+
+    public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator,int amountOfBolts) {
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        BillLine billLine = null;
+
+        //We need 1 skive for each bolt
+        int skiveAmount = amountOfBolts;
+
+
+        //Since there is no calculation for which skiver to select, we just use the first one available to us
+        billLine = new BillLine(CategoriesUsedInGenerator.get(0).getMaterialAtIndex(0),skiveAmount);
+
+        billLines.add(billLine);
+
+        return billLines;
     }
 
     public static ArrayList<BillLine> screwsForOuter(ArrayList<Category> materialsUsedInGenerator) {
