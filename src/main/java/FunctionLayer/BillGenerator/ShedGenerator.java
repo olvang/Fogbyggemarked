@@ -7,7 +7,17 @@ import java.util.ArrayList;
 
 public class ShedGenerator {
     public static ArrayList<BillLine> zOnBackOfDoor(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+        //We only need one a material in the category
+        //For now there is no calculation so we just return the first material in the category
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        BillLine billLine = null;
+
+        //Since there is no calculation for which skiver to select, we just use the first one available to us, and set the amount to 1
+        billLine = new BillLine(categoriesUsedInGenerator.get(0).getMaterialAtIndex(0),1);
+
+        billLines.add(billLine);
+
+        return billLines;
     }
 
     public static ArrayList<BillLine> losholterGabled(ArrayList<Category> categoriesUsedInGenerator) {

@@ -356,7 +356,7 @@ public class CarportGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> boltsForRemOnPost(ArrayList<Category> materialsUsedInGenerator, int amountOfPosts, boolean withShed) {
+    public static ArrayList<BillLine> boltsForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator, int amountOfPosts, boolean withShed) {
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine = null;
         //We need 2 bolts for each post
@@ -368,14 +368,14 @@ public class CarportGenerator {
         }
 
         //Since there is no calculation for which bolts to select, we just use the first one available to us
-        billLine = new BillLine(materialsUsedInGenerator.get(0).getMaterialAtIndex(0),boltAmount);
+        billLine = new BillLine(CategoriesUsedInGenerator.get(0).getMaterialAtIndex(0),boltAmount);
 
         billLines.add(billLine);
 
         return billLines;
     }
 
-    public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> materialsUsedInGenerator,int amountOfBolts) {
+    public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator,int amountOfBolts) {
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine = null;
 
@@ -384,7 +384,7 @@ public class CarportGenerator {
 
 
         //Since there is no calculation for which skiver to select, we just use the first one available to us
-        billLine = new BillLine(materialsUsedInGenerator.get(0).getMaterialAtIndex(0),skiveAmount);
+        billLine = new BillLine(CategoriesUsedInGenerator.get(0).getMaterialAtIndex(0),skiveAmount);
 
         billLines.add(billLine);
 
