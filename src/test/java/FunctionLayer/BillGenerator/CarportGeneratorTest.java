@@ -155,6 +155,25 @@ public class CarportGeneratorTest {
         assertEquals(expectedAmount, billLine.get(0).getAmount());
     }
 
+    @Test
+    public void testboltsForRemOnPost() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{22});
+        int amountOfPosts = 6;
+        int expectedNoShed = 12;
+        int expectedWithShed = 14;
+        String expectedName = "bræddebolt 10 x 120 mm.";
+
+        ArrayList<BillLine> billLineNoShed = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator, amountOfPosts,false);
+        ArrayList<BillLine> billLineWithShed = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator, amountOfPosts,true);
+
+
+
+        assertEquals(expectedName, billLineNoShed.get(0).getMaterial().getName());
+        assertEquals(expectedNoShed, billLineNoShed.get(0).getAmount());
+        assertEquals(expectedName, billLineWithShed.get(0).getMaterial().getName());
+        assertEquals(expectedWithShed, billLineWithShed.get(0).getAmount());
+    }
+
 
 
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{

@@ -356,8 +356,23 @@ public class CarportGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> boltsForRemOnPost(ArrayList<Category> materialsUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> boltsForRemOnPost(ArrayList<Category> materialsUsedInGenerator, int amountOfPosts, boolean withShed) {
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        BillLine billLine = null;
+        //We need 2 bolts for each post
+        int boltAmount = amountOfPosts * 2;
+
+        //If there is a shed, we need two more
+        if(withShed){
+            boltAmount += 2;
+        }
+
+        //Since there is no calculation for which bolts to select, we just use the first one available to us
+        billLine = new BillLine(materialsUsedInGenerator.get(0).getMaterialAtIndex(0),boltAmount);
+
+        billLines.add(billLine);
+
+        return billLines;
     }
 
     public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> materialsUsedInGenerator) {
