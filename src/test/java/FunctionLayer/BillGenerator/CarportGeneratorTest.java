@@ -156,6 +156,20 @@ public class CarportGeneratorTest {
     }
 
     @Test
+
+    public void testScrewsForSternAndWaterboard() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{13,14,20});
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(1000), 0 ,false);
+        ArrayList<BillLine> billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator, order, new ArrayList<BillLine>());
+
+        String expected = "4,5 x 60 mm. skruer 200 stk.";
+        int expectedAmount = 2;
+        //total length 3240
+  
+        assertEquals(expected, billLine.get(0).getMaterial().getName());
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+    }
+
     public void testboltsForRemOnPost() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{22});
         int amountOfPosts = 6;
@@ -165,8 +179,6 @@ public class CarportGeneratorTest {
 
         ArrayList<BillLine> billLineNoShed = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator, amountOfPosts,false);
         ArrayList<BillLine> billLineWithShed = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator, amountOfPosts,true);
-
-
 
         assertEquals(expectedName, billLineNoShed.get(0).getMaterial().getName());
         assertEquals(expectedNoShed, billLineNoShed.get(0).getAmount());
@@ -183,11 +195,10 @@ public class CarportGeneratorTest {
 
         ArrayList<BillLine> billLineNoShed = CarportGenerator.skiverForRemOnPost(categoriesUsedInGenerator, amountOfBolts);
 
-
-
         assertEquals(expectedName, billLineNoShed.get(0).getMaterial().getName());
         assertEquals(expected, billLineNoShed.get(0).getAmount());
     }
+
 
 
 
