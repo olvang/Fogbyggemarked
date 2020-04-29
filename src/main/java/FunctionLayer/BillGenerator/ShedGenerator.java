@@ -147,4 +147,12 @@ public class ShedGenerator {
 
         return lineToReturn;
     }
+
+    public static ArrayList<BillLine> screwsForOuter(ArrayList<Category> materialsUsedInGenerator) {
+        return null;
+    }
+
+    public static ArrayList<BillLine> screwsForInner(ArrayList<Category> materialsUsedInGenerator) {
+        return null;
+    }
 }
