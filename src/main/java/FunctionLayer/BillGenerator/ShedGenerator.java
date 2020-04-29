@@ -115,8 +115,15 @@ public class ShedGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> stalddorsgreb(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> stalddorsgreb(ArrayList<Category> categoriesUsedInGenerator, int amountOfDoors) {
+        //The amount of staldørsgreb to use is based on the amount of doors.
+        //There aren't really any calculations to do here.
+        ArrayList<BillLine> lineToReturn = new ArrayList<>();
+        Material mat = categoriesUsedInGenerator.get(0).getMaterialAtIndex(0);
+        BillLine line = new BillLine(mat, amountOfDoors);
+        lineToReturn.add(line);
+
+        return lineToReturn;
     }
 
     public static ArrayList<BillLine> hingeForDoor(ArrayList<Category> categoriesUsedInGenerator, int amountOfDoors) {

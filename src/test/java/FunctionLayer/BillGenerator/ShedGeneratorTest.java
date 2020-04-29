@@ -59,6 +59,7 @@ public class ShedGeneratorTest {
     }
 
 
+
     @Test
     public void testHingeForDoor() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{27});
@@ -66,6 +67,19 @@ public class ShedGeneratorTest {
 
         String expectedName = "t hængsel 390 mm";
         int expectedAmount = 6;
+        
+        assertEquals(expectedAmount, lines.get(0).getAmount());
+        assertEquals(expectedName, lines.get(0).getMaterial().getName());
+    }
+
+    @Test
+    public void testStaldorsgreb() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{26});
+        ArrayList<BillLine> lines = ShedGenerator.stalddorsgreb(categoriesUsedInGenerator, 3);
+
+        String expectedName = "stalddørsgreb 50x75";
+        int expectedAmount = 3;
+
 
         assertEquals(expectedAmount, lines.get(0).getAmount());
         assertEquals(expectedName, lines.get(0).getMaterial().getName());
