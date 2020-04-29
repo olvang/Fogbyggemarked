@@ -348,13 +348,15 @@ public class BillCalculator {
                     break;
                 case 27: //Til skurdør
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{27};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int amountOfDoors = GeneratorUtilities.searchForAmountInACategoryFromBillLines(5, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.hingeForDoor(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.hingeForDoor(categoriesUsedInGenerator, amountOfDoors);
                     break;
                 case 28: //Til montering af løsholter i skur
                     //The material categories needed in the generator method
