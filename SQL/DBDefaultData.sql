@@ -34,7 +34,7 @@ INSERT INTO `FogByggemarked`.`materials` (`amount`, `name`,`price`) VALUES ('250
 INSERT INTO `FogByggemarked`.`materials` (`length`, `width`, `name`,`price`) VALUES ('120', '10', 'bræddebolt 10 x 120 mm.',52);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('40', '11', '40', 'firkantskiver 40x40x11mm',62);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `width`, `amount`, `name`,`price`) VALUES ('70', '5', '400', '4.5 x 70 mm. Skruer 400 stk.',72);
-INSERT INTO `FogByggemarked`.`materials` (`length`, `width`, `name`,`price`) VALUES ('50', '5', '4,5 x 50 mm. Skruer 300 stk.',82);
+INSERT INTO `FogByggemarked`.`materials` (`length`, `width`, `amount`,`name`,`price`) VALUES ('50', '5', '300', '4,5 x 50 mm. Skruer 300 stk.',82);
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('stalddørsgreb 50x75',92);
 INSERT INTO `FogByggemarked`.`materials` (`length`, `name`,`price`) VALUES ('390', 't hængsel 390 mm',13);
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('vinkelbeslag 35',23);
