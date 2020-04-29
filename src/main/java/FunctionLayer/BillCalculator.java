@@ -353,10 +353,10 @@ public class BillCalculator {
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
-                    int amountOfDoors = GeneratorUtilities.searchForAmountInACategoryFromBillLines(5, billLinesFinal);
+                    int numberOfDoors = GeneratorUtilities.searchForAmountInACategoryFromBillLines(5, billLinesFinal);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.hingeForDoor(categoriesUsedInGenerator, amountOfDoors);
+                    billLine = ShedGenerator.hingeForDoor(categoriesUsedInGenerator, numberOfDoors);
                     break;
                 case 28: //Til montering af løsholter i skur
                     //The material categories needed in the generator method
