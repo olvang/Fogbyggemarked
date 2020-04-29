@@ -336,33 +336,41 @@ public class BillCalculator {
                     break;
                 case 26: //Til lås på dør i skur
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{26};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int amountOfDoors = GeneratorUtilities.searchForAmountInACategoryFromBillLines(5, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.stalddorsgreb(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.stalddorsgreb(categoriesUsedInGenerator, amountOfDoors);
                     break;
                 case 27: //Til skurdør
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{27};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int numberOfDoors = GeneratorUtilities.searchForAmountInACategoryFromBillLines(5, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.hingeForDoor(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.hingeForDoor(categoriesUsedInGenerator, numberOfDoors);
                     break;
                 case 28: //Til montering af løsholter i skur
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{28};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int amountOfLosholter = 0;
+                    amountOfLosholter += GeneratorUtilities.searchForAmountInACategoryFromBillLines(6, billLinesFinal);
+                    amountOfLosholter += GeneratorUtilities.searchForAmountInACategoryFromBillLines(7, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.vinkelBeslag(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.vinkelBeslag(categoriesUsedInGenerator, amountOfLosholter);
                     break;
             }
             if(billLine != null){
