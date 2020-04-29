@@ -322,7 +322,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.screwsForOuter(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.screwsForOuter(categoriesUsedInGenerator);
                     break;
                 case 25: //til montering af inderste beklædning
                     //The material categories needed in the generator method
@@ -332,7 +332,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.screwsForInner(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.screwsForInner(categoriesUsedInGenerator);
                     break;
                 case 26: //Til lås på dør i skur
                     //The material categories needed in the generator method
