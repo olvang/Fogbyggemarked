@@ -326,13 +326,13 @@ public class BillCalculator {
                     break;
                 case 25: //til montering af inderste beklædning
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{6, 7, 25};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.screwsForInner(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.screwsForInner(categoriesUsedInGenerator, order);
                     break;
                 case 26: //Til lås på dør i skur
                     //The material categories needed in the generator method

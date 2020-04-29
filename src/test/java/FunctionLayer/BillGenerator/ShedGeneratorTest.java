@@ -1,9 +1,10 @@
 package FunctionLayer.BillGenerator;
 
-import Components.WidthComponent;
+import Components.*;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
 import FunctionLayer.LogicFacade;
+import FunctionLayer.Order;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -93,6 +94,29 @@ public class ShedGeneratorTest {
         String expectedName = "vinkelbeslag 35";
         int expectedAmount = 6;
 
+
+        assertEquals(expectedAmount, lines.get(0).getAmount());
+        assertEquals(expectedName, lines.get(0).getMaterial().getName());
+    }
+
+    @Test
+    public void testScrewsForInner() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{6, 7, 25});
+        Order order = new Order(new DepthComponent(700), new HeightComponent(200), new WidthComponent(700),
+                new ShedDepthComponent(225, new DepthComponent(600)),
+                new ShedWidthComponent(600, new WidthComponent(700)), 0, true);
+        ArrayList<BillLine> lines = ShedGenerator.screwsForInner(categoriesUsedInGenerator, order);
+
+        //LøsholterForGable should contain 14
+        //LøsholterForSides should contain 6
+        //Total should be 20
+        //Lengths should be 270 and 240
+        //The calculation should be:
+        // ( (14 * 270) + (6 * 240) ) / 7 = ~745
+        //When each box contains 300 screws, that should be 3 boxes
+
+        int expectedAmount = 3;
+        String expectedName = "4,5 x 50 mm. Skruer 300 stk.";
 
         assertEquals(expectedAmount, lines.get(0).getAmount());
         assertEquals(expectedName, lines.get(0).getMaterial().getName());

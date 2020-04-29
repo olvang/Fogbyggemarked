@@ -4,6 +4,8 @@ import FunctionLayer.BillLine;
 import FunctionLayer.Category;
 import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Material;
+import FunctionLayer.Order;
+import PresentationLayer.Bill;
 
 import java.util.ArrayList;
 
@@ -152,7 +154,67 @@ public class ShedGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> screwsForInner(ArrayList<Category> materialsUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> screwsForInner(ArrayList<Category> materialsUsedInGenerator, Order order) {
+        //DESC: Antal af løsholter til skur-gavle * længden deraf
+        // + Antal af løsholter til skur-sider * længden deraf, divideret med 7
+
+        //Getting løsholter
+        ArrayList<BillLine> losholter1 = losholterGabled(
+                new ArrayList<Category>() {{add(materialsUsedInGenerator.get(0));}}, order.getShedWidth().getWidth()
+        );
+        ArrayList<BillLine> losholter2 = losholterSides(
+                new ArrayList<Category>() {{add(materialsUsedInGenerator.get(1));}}, order.getShedDepth().getDepth()
+        );
+
+        ArrayList<BillLine> listToReturn = new ArrayList<>();
+        Material materialToUse;
+        BillLine lineToReturn;
+        ArrayList<Material> screws = materialsUsedInGenerator.get(2).getMaterials();
+
+        //Calculating screws needed:
+        int amountOfScrews = 0;
+        int amountOfLosholterForGable = 0;
+        int lengthOfLosholterForGable = 0;
+        for(BillLine line : losholter1) {
+            amountOfLosholterForGable += line.getAmount();
+            lengthOfLosholterForGable += line.getMaterial().getLength();
+        }
+        int amountOfLosholterForSides = 0;
+        int lengthOfLosholterForSides = 0;
+        for(BillLine line : losholter2) {
+            amountOfLosholterForSides += line.getAmount();
+            lengthOfLosholterForSides += line.getMaterial().getLength();
+        }
+
+        amountOfScrews = ((amountOfLosholterForGable * lengthOfLosholterForGable)
+                + (amountOfLosholterForSides * lengthOfLosholterForSides) ) / 7;
+
+        //Finding the most fitting box size
+        //If there is only one box size to choose from, we just use that.
+        if(screws.size() == 1) {
+            materialToUse = screws.get(0);
+            int amountInBox = screws.get(0).getAmount();
+            int total = (int) Math.ceil(1.0 * amountOfScrews / amountInBox);
+            lineToReturn = new BillLine(materialToUse, total);
+            listToReturn.add(lineToReturn);
+            return listToReturn;
+        }
+
+        //Otherwise we have to find the most fitting one
+        materialToUse = screws.get(0);
+        int boxesNeeded = -1;
+        for(Material box : screws) {
+            int amountInBox = box.getAmount();
+            double total = amountOfScrews / amountInBox;
+            if(total < materialToUse.getAmount() && total > 1) {
+                materialToUse = box;
+                boxesNeeded = (int) Math.ceil(total);
+            }
+        }
+
+        lineToReturn = new BillLine(materialToUse, boxesNeeded);
+        listToReturn.add(lineToReturn);
+
+        return listToReturn;
     }
 }
