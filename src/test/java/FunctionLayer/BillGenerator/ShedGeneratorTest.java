@@ -85,6 +85,19 @@ public class ShedGeneratorTest {
         assertEquals(expectedName, lines.get(0).getMaterial().getName());
     }
 
+    @Test
+    public void testVinkelBeslag() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{28});
+        ArrayList<BillLine> lines = ShedGenerator.vinkelBeslag(categoriesUsedInGenerator, 3);
+
+        String expectedName = "vinkelbeslag 35";
+        int expectedAmount = 6;
+
+
+        assertEquals(expectedAmount, lines.get(0).getAmount());
+        assertEquals(expectedName, lines.get(0).getMaterial().getName());
+    }
+
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{
         ArrayList<Category> categoriesAvailable = LogicFacade.getTheseCategories(categoryIdsUsedInGenerator);
 

@@ -138,7 +138,13 @@ public class ShedGenerator {
         return lineToReturn;
     }
 
-    public static ArrayList<BillLine> vinkelBeslag(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> vinkelBeslag(ArrayList<Category> categoriesUsedInGenerator, int amountOfLosholter) {
+        //The amount of vinkelbeslag is just the double of løsholter
+        ArrayList<BillLine> lineToReturn = new ArrayList<>();
+        Material mat = categoriesUsedInGenerator.get(0).getMaterialAtIndex(0);
+        BillLine line = new BillLine(mat, (amountOfLosholter * 2) );
+        lineToReturn.add(line);
+
+        return lineToReturn;
     }
 }
