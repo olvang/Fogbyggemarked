@@ -9,8 +9,9 @@ import java.sql.Statement;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import testDataSetup.TestDataSetup;
 
-public class UserMapperTest {
+public class UserMapperTest extends TestDataSetup {
 //    Test date in the UsersTest table
 //    INSERT INTO `UsersTest` VALUES 
 //    (1,'jens@somewhere.com','jensen','customer'),

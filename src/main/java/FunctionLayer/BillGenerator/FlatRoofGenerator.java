@@ -48,9 +48,9 @@ public class FlatRoofGenerator {
             // the remaining area is found. Once it is found, add it to the amount, subtract it's length from the
             // remaining depth and stop the for loop.
             for(int i = 0; i < listOfMaterials.size(); i++) {
-                if(remainingDepth - listOfMaterials.get(i).getLength() > 0) {
+                if(remainingDepth - (listOfMaterials.get(i).getLength() / 10) > 0) {
                     amountUsedForEachMaterial[i] += multiplier;
-                    remainingDepth -= listOfMaterials.get(i).getLength();
+                    remainingDepth -= (listOfMaterials.get(i).getLength()/ 10);
                     break;
                 }
             }
@@ -58,9 +58,9 @@ public class FlatRoofGenerator {
             // so we need to check if the shortest (final entry in list since we sorted it) panel is longer than
             // the remaining depth. If it is, we add it to the list and subtract it's length. This gets remainingDepth
             // below 0, ending the loop.
-            if(remainingDepth < listOfMaterials.get(listOfMaterials.size() - 1).getLength()) {
+            if(remainingDepth < (listOfMaterials.get(listOfMaterials.size() - 1).getLength() / 10)) {
                 amountUsedForEachMaterial[listOfMaterials.size() - 1] += multiplier;
-                remainingDepth -= listOfMaterials.get(listOfMaterials.size() - 1).getLength();
+                remainingDepth -= listOfMaterials.get(listOfMaterials.size() - 1).getLength() / 10;
             }
         }
 

@@ -7,12 +7,13 @@ import FunctionLayer.BillLine;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
 import org.junit.Test;
+import testDataSetup.TestDataSetup;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class GeneratorUtilitiesTest {
+public class GeneratorUtilitiesTest extends TestDataSetup {
     
     @Test
     public void sortMaterialsByLengthSimpleTest() {

@@ -38,7 +38,7 @@ public class CarportGenerator {
             material =  materialsSortedByLength.get(i);
 
             //If the the material length is bigger than the width of the carport, we use that material
-            if(material.getLength() / carportWidth.getWidth()  >= 1){
+            if((material.getLength() / 10) / carportWidth.getWidth()  >= 1){
                 //Material found
                 //Count two as we need one of the material for front and back of carport
                 boardAmount = 2;
@@ -49,7 +49,7 @@ public class CarportGenerator {
                 //We then calculate how many are needed to fill out the full width of the carport
                 while (fullWidthCalc > 0){
                     boardAmount++;
-                    fullWidthCalc -= material.getLength();
+                    fullWidthCalc -= material.getLength() / 10;
                 }
             }
         }
@@ -72,7 +72,7 @@ public class CarportGenerator {
         ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
 
         //Gets the length of the longest material in this category
-        int longestMaterialLength = materialsSortedByLength.get(0).getLength();
+        int longestMaterialLength = materialsSortedByLength.get(0).getLength() / 10;
         //It's required we add 2.5cm on each end of the carport
         final int CONSTANT_ADD_EACH_SIDE = 5;
 
@@ -101,7 +101,7 @@ public class CarportGenerator {
 
             //If the rest - the current lenght is less than 0. We know
             //The current lenght is long enough.
-            if(rest - material.getLength() < 0){
+            if(rest - (material.getLength() /10) < 0){
                 amountUsed = 2;
                 //TODO Change name of material
                 billLine = new BillLine(material,amountUsed);
@@ -134,7 +134,7 @@ public class CarportGenerator {
                 int widthLeftover = carportWidth;
                 int amountNeeded = 0;
                 while (widthLeftover > 0) {
-                    widthLeftover -= materials.get(i).getLength();
+                    widthLeftover -= materials.get(i).getLength() / 10;
                     amountNeeded++;
                 }
 
@@ -158,7 +158,7 @@ public class CarportGenerator {
             int widthLeftover = carportWidth;
             int amountNeeded = 0;
             while (widthLeftover > 0) {
-                widthLeftover -= materials.get(0).getLength();
+                widthLeftover -= materials.get(0).getLength() /10;
                 amountNeeded++;
             }
             toBeReturned = new BillLine(materials.get(0), amountNeeded);
@@ -179,7 +179,7 @@ public class CarportGenerator {
         int rows = 0;
         int amountUsed = 0;
         int rest = 0;
-        int longestMaterialLength = materialsSortedByLength.get(0).getLength();
+        int longestMaterialLength = materialsSortedByLength.get(0).getLength() / 10;
 
         int depth = depthCom.getDepth();
         int width = widthCom.getWidth();
@@ -192,7 +192,7 @@ public class CarportGenerator {
 
         if(depth < longestMaterialLength){
             for (Material mat: materialsSortedByLength) {
-                if(mat.getLength() - depth > 0){
+                if(mat.getLength() / 10 - depth > 0){
                     billLine = new BillLine(mat,rows);
                     billLines.add(billLine);
                     return billLines;
@@ -210,7 +210,7 @@ public class CarportGenerator {
 
             //If the rest - the current lenght is less than 0. We know
             //The current lenght is long enough.
-            if(rest - material.getLength() < 0){
+            if(rest - material.getLength() / 10 < 0){
                 amountUsed = amountUsed + rows;
                 billLine = new BillLine(material,amountUsed);
 
@@ -340,7 +340,7 @@ public class CarportGenerator {
         Material materialToUse = list.get(0);
 
         // times 2 because we need one going each diagonal direction
-        int amountToBeOrdered = (int) (Math.ceil(1.0 * diagonal / materialToUse.getLength())) * 2;
+        int amountToBeOrdered = (int) (Math.ceil(1.0 * diagonal / (materialToUse.getLength() / 10))) * 2;
 
 
         return new ArrayList<BillLine>() {{add(new BillLine(materialToUse, amountToBeOrdered));}};
@@ -412,7 +412,7 @@ public class CarportGenerator {
         int amountOfScrewsNeeded = 0;
         int fullLength = 0;
         for(Material board : waterboards) {
-            fullLength += board.getLength() * board.getAmount();
+            fullLength += (board.getLength() / 10) * board.getAmount();
         }
         amountOfScrewsNeeded = (int) Math.ceil(fullLength / 13.5);
 
