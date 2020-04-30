@@ -117,6 +117,7 @@ public class ShedGenerator {
         BillLine billLine;
         Material material;
         Material materialToUse  = null;
+        orderHeight = orderHeight * 10; //cm to mm
         int amountOfBoardsPerColumn = 1;
 
         //First we need to get the material to use
@@ -131,11 +132,10 @@ public class ShedGenerator {
 
             //Since the materials are sorted by length, and we are checking from the smallest first
             //We know that the first material that is >= than the height, is the height that best fits
-            if(material.getLength() / orderHeight >= 1){
+            if( orderHeight / material.getLength() >= 1){
                 //We then need to check if any of the materials has the same length as the best fitting height
                 //if they do, we need to which of them is widest, and use that material in the bill
                 //But only if its not the last element
-
                 if(i > 0){
                     materialToUse = material;
 
@@ -147,7 +147,7 @@ public class ShedGenerator {
                     if(materialToUse.getLength() == material.getLength()){
 
                         //If the materialToUse width is smaller than the next material, we can set the marterial To Use to the next material
-                        if(materialToUse.getWidth() < material.getWidth()){
+                        if(materialToUse.getWidth()  < material.getWidth()){
                             materialToUse = material;
                         }
                     }else{
@@ -214,7 +214,7 @@ public class ShedGenerator {
         }
 
         //Now we can calculate the amount of boards needed to cover the shed
-        int shedPerimeter = 2 * (orderShedDepth + (orderShedWidth));
+        int shedPerimeter = 2 * ((orderShedDepth + orderShedWidth) * 10);
 
         //(Shed perimeter / twoBoardWidths) * 2 * amountOfBoardsPerColumn
         int amountOfBoards = (shedPerimeter / twoBoardWidths) * 2 * amountOfBoardsPerColumn;

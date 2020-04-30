@@ -57,15 +57,15 @@ public class ShedGeneratorTest {
         assertEquals(expectedAmount, billLine.get(0).getAmount());
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
     }
-    
+
     @Test
     public void boardsForShedTest() throws Exception {
         //These three lines need to be in every test, but change the target method in CarportGenerator,
         // the order to fit your testdata and the categories needed
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{12});
-        int orderHeight = 225;
-        int orderShedWidth = 6000;
-        int orderShedDepth = 2100;
+        int orderHeight = 200;
+        int orderShedWidth = 600;
+        int orderShedDepth = 210;
 
         ArrayList<BillLine> billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator, orderHeight, orderShedWidth, orderShedDepth);
 
