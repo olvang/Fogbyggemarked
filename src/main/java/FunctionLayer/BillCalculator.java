@@ -316,13 +316,19 @@ public class BillCalculator {
                     break;
                 case 24: //til montering af yderste beklædning
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{24};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    //Gets the length and amount of boards used for the shed.
+                    billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator,order.getHeight().getHeight(), order.getShedWidth().getWidth(),order.getShedDepth().getDepth());
+
+                    int length = billLine.get(0).getMaterial().getLength();
+                    int amount = billLine.get(0).getAmount();
+
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.screwsForOuter(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.screwsForOuter(categoriesUsedInGenerator,length,amount);
                     break;
                 case 25: //til montering af inderste beklædning
                     //The material categories needed in the generator method
