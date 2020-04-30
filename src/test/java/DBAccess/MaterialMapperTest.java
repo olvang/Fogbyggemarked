@@ -5,6 +5,7 @@ import FunctionLayer.Category;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
 import org.junit.Test;
+import testDataSetup.TestDataSetup;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 
-public class MaterialMapperTest {
+public class MaterialMapperTest extends TestDataSetup {
 
     @Test
     public void testGetAllMaterialsByContent() throws SQLException, ValidationFailedException, ClassNotFoundException {
@@ -37,8 +38,8 @@ public class MaterialMapperTest {
 
     @Test
     public void testGetTheseMaterialsBySizeVariations() throws SQLException, ValidationFailedException, ClassNotFoundException {
-        int expectedLength1 = 600;
-        int expectedLength2 = 360;
+        int expectedLength1 = 6000;
+        int expectedLength2 = 3600;
         int expectedWidth = 109;
 
         int[] ids = new int[] {3,8,15,6};

@@ -46,7 +46,7 @@ public class ShedGenerator {
             material =  materialsSortedByLength.get(i);
 
             //If the the material length is bigger than the fullWidth, we use that material losholter
-            if(material.getLength() / widthOfShed >= 1){
+            if((material.getLength() / 10) / widthOfShed >= 1){
                 //Material found, which means we need 6 of them for the front and back, 3 for each Gabled
                 losholter = 6;
                 break;
@@ -59,7 +59,7 @@ public class ShedGenerator {
                 //We then keep on adding the material, until the fullLength has been filled
                 while (fullWidthCalc > 0){
                     losholter++;
-                    fullWidthCalc -= material.getLength();
+                    fullWidthCalc -= (material.getLength() / 10);
                 }
             }
         }
@@ -80,13 +80,13 @@ public class ShedGenerator {
         int amountUsed = 2;
         int rest = 0;
 
-        int longestMaterialLength = materialsSortedByLength.get(0).getLength();
+        int longestMaterialLength = materialsSortedByLength.get(0).getLength() / 10;
         int depth = sDepthCom.getDepth();
 
         for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
             Material mat =  materialsSortedByLength.get(i);
 
-            if(mat.getLength() / 2 > depth){
+            if((mat.getLength() / 10) / 2 > depth){
                 billLine = new BillLine(mat,1);
                 billLines.add(billLine);
                 return  billLines;
@@ -107,7 +107,7 @@ public class ShedGenerator {
         for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
             Material mat =  materialsSortedByLength.get(i);
 
-            if(rest - mat.getLength() < 0){
+            if(rest - (mat.getLength() / 10) < 0){
                 amountUsed = amountUsed + 2;
                 billLine = new BillLine(mat,amountUsed);
 
@@ -353,13 +353,13 @@ public class ShedGenerator {
         int lengthOfLosholterForGable = 0;
         for(BillLine line : losholter1) {
             amountOfLosholterForGable += line.getAmount();
-            lengthOfLosholterForGable += line.getMaterial().getLength();
+            lengthOfLosholterForGable += line.getMaterial().getLength() / 10;
         }
         int amountOfLosholterForSides = 0;
         int lengthOfLosholterForSides = 0;
         for(BillLine line : losholter2) {
             amountOfLosholterForSides += line.getAmount();
-            lengthOfLosholterForSides += line.getMaterial().getLength();
+            lengthOfLosholterForSides += line.getMaterial().getLength() / 10;
         }
 
         amountOfScrews = ((amountOfLosholterForGable * lengthOfLosholterForGable)

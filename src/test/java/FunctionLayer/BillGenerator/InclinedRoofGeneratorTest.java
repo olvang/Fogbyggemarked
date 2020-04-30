@@ -9,12 +9,13 @@ import FunctionLayer.Category;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 import org.junit.Test;
+import testDataSetup.TestDataSetup;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class InclinedRoofGeneratorTest {
+public class InclinedRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void soffitTest() throws Exception {

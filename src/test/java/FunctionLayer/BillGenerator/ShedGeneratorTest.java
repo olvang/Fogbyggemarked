@@ -8,12 +8,13 @@ import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 import org.junit.Test;
+import testDataSetup.TestDataSetup;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class ShedGeneratorTest {
+public class ShedGeneratorTest extends TestDataSetup {
     @Test
     public void TestzOnBackOfDoor() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{5});
@@ -40,7 +41,7 @@ public class ShedGeneratorTest {
         ArrayList<BillLine> billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator, order.getShedDepth());
 
         int exspectedAmount = 1;
-        int exspectedLength = 480;
+        int exspectedLength = 4800;
 
         assertEquals(exspectedAmount,billLine.get(0).getAmount());
         assertEquals(exspectedLength,billLine.get(0).getMaterial().getLength());
@@ -68,7 +69,7 @@ public class ShedGeneratorTest {
         ArrayList<BillLine> billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator, order.getShedDepth());
 
         int exspectedAmount = 2;
-        int exspectedLength = 600;
+        int exspectedLength = 6000;
 
         assertEquals(exspectedAmount,billLine.get(0).getAmount());
         assertEquals(exspectedLength,billLine.get(0).getMaterial().getLength());

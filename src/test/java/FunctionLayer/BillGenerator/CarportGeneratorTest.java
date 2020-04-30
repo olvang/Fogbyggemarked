@@ -9,12 +9,13 @@ import FunctionLayer.Category;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 import org.junit.Test;
+import testDataSetup.TestDataSetup;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class CarportGeneratorTest {
+public class CarportGeneratorTest extends TestDataSetup {
 
     @Test
     public void testOverSternBredderFront() throws Exception {
@@ -93,6 +94,7 @@ public class CarportGeneratorTest {
         assertEquals(expectedAmount, billLine.get(0).getAmount());
 
     }
+
     @Test
     public void testunderSternsBredderSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{2});
@@ -100,26 +102,17 @@ public class CarportGeneratorTest {
                 new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
 
-        String expected = "25x200 mm. trykimp. Brædt";
-        int expectedAmount1 = 4;
-        int exspectedLength1 = 540;
+        String expected = "25x150 mm. trykimp. Bræt";
+        int expectedAmount = 4;
+        int expectedLength = 6000;
 
-        int expectedAmount2 = 2;
-        int exspectedLength2 = 360;
-
-        System.out.println(billLine.get(1).getMaterial().getLength());
-        System.out.println(billLine.get(1).getAmount());
-        System.out.println(billLine.get(0).getMaterial().getLength());
-        System.out.println(billLine.get(0).getAmount());
         assertEquals(expected, billLine.get(0).getMaterial().getName());
 
-        assertEquals(expectedAmount1, billLine.get(0).getAmount());
-        assertEquals(expectedAmount2, billLine.get(1).getAmount());
-
-        assertEquals(exspectedLength1,billLine.get(1).getMaterial().getLength());
-        assertEquals(exspectedLength2,billLine.get(0).getMaterial().getLength());
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+        assertEquals(expectedLength,billLine.get(0).getMaterial().getLength());
 
     }
+
     @Test
     public void testoverSternsBredderSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{4});
@@ -129,18 +122,13 @@ public class CarportGeneratorTest {
 
         String expected = "25x125 mm. trykimp. Brædt";
         int expectedAmount1 = 2;
-        int exspectLength1 = 540;
-
-        int exspectedAmount2 = 2;
-        int exspectedLength2 = 360;
+        int exspectLength1 = 5400;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName());
         assertEquals(expectedAmount1, billLine.get(0).getAmount());
         assertEquals(exspectLength1, billLine.get(0).getMaterial().getLength());
-
-        assertEquals(exspectedAmount2, billLine.get(1).getAmount());
-        assertEquals(exspectedLength2, billLine.get(1).getMaterial().getLength());
     }
+
     @Test
     public void testSperOnRem() throws Exception {
         //These three lines need to be in every test, but change the target method in CarportGenerator,
@@ -167,8 +155,8 @@ public class CarportGeneratorTest {
         ArrayList<BillLine> billLine = CarportGenerator.underSternsBredderFrontAndBack(categoriesUsedInGenerator, orderWidth);
 
 
-        String expected = "25x200 mm. trykimp. Brædt";
-        int expectedAmount = 3;
+        String expected = "25x150 mm. trykimp. Bræt";
+        int expectedAmount = 2;
 
         assertEquals(expectedAmount, billLine.get(0).getAmount());
         assertEquals(expected, billLine.get(0).getMaterial().getName() );

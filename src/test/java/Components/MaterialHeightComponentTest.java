@@ -2,11 +2,12 @@ package Components;
 
 import FunctionLayer.Exceptions.ValidationFailedException;
 import org.junit.Test;
+import testDataSetup.TestDataSetup;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 
-public class MaterialHeightComponentTest {
+public class MaterialHeightComponentTest{
 
     @Test
     public void testSuccess() throws ValidationFailedException {

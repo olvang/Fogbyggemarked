@@ -9,12 +9,13 @@ import FunctionLayer.Category;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 import org.junit.Test;
+import testDataSetup.TestDataSetup;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class FlatRoofGeneratorTest {
+public class FlatRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void testwaterBoardOnSternSides() throws Exception {
@@ -25,10 +26,10 @@ public class FlatRoofGeneratorTest {
 
         String expected = "19x100 mm. trykimp. Brædt";
         int expectedAmount1 = 2;
-        int exspectedLength1 = 540;
+        int exspectedLength1 = 5400;
 
         int exspectedAmount2 = 2;
-        int exspectedLength2 = 360;
+        int exspectedLength2 = 3600;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
 
