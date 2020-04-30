@@ -21,9 +21,9 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
     public void soffitTest() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{29});
         Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
-        ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator, order.getDepth());
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.soffit(categoriesUsedInGenerator,order);
 
-        String expected = "25x150 mm. trykimp. Bræt";
+        String expected = "25x200 mm. trykimp. Brædt";
         int expectedAmount = 2;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
