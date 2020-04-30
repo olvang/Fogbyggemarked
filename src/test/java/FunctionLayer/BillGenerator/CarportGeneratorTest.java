@@ -2,6 +2,7 @@ package FunctionLayer.BillGenerator;
 
 import Components.DepthComponent;
 import Components.HeightComponent;
+import Components.InclineComponent;
 import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
@@ -20,7 +21,8 @@ public class CarportGeneratorTest {
         //These three lines need to be in every test, but change the target method in CarportGenerator,
         // the order to fit your testdata and the categories needed
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{3});
-        Order order = new Order(new DepthComponent(10), new HeightComponent(10), new WidthComponent(1000), 0 ,false);
+        Order order = new Order(new DepthComponent(10), new HeightComponent(10), new WidthComponent(1000),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.overSternBredderFront(categoriesUsedInGenerator, order);
 
 
@@ -32,7 +34,8 @@ public class CarportGeneratorTest {
     }
     @Test
     public void testUniversalBeslagRight() throws Exception {
-        Order order = new Order(new DepthComponent(780), new HeightComponent(10), new WidthComponent(540), 0 ,false);
+        Order order = new Order(new DepthComponent(780), new HeightComponent(10), new WidthComponent(540),
+                new InclineComponent(0),false);
 
         ArrayList<Category> categoriesUsedInGeneratorRemme = getCategoriesAvailable(new int[]{8});
         ArrayList<BillLine> billLineRemme = CarportGenerator.RemInSidesCarport(categoriesUsedInGeneratorRemme, order.getDepth(),order.getWidth());
@@ -58,7 +61,8 @@ public class CarportGeneratorTest {
     public void testRemInSidesCarportUnder600() throws Exception {
 
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
-        Order order = new Order(new DepthComponent(500), new HeightComponent(10), new WidthComponent(550), 0 ,false);
+        Order order = new Order(new DepthComponent(500), new HeightComponent(10), new WidthComponent(550),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(),order.getWidth());
 
         int expectedAmount = 2;
@@ -69,7 +73,8 @@ public class CarportGeneratorTest {
     public void testRemInSidesCarportAbove600() throws Exception {
 
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
-        Order order = new Order(new DepthComponent(500), new HeightComponent(10), new WidthComponent(780), 0 ,false);
+        Order order = new Order(new DepthComponent(500), new HeightComponent(10), new WidthComponent(780),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(),order.getWidth());
 
         int expectedAmount = 3;
@@ -80,7 +85,8 @@ public class CarportGeneratorTest {
     public void testRemInSidesCarportAbove600AndAbove600() throws Exception {
 
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
-        Order order = new Order(new DepthComponent(650), new HeightComponent(10), new WidthComponent(780), 0 ,false);
+        Order order = new Order(new DepthComponent(650), new HeightComponent(10), new WidthComponent(780),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(),order.getWidth());
 
         int expectedAmount = 6;
@@ -90,7 +96,8 @@ public class CarportGeneratorTest {
     @Test
     public void testunderSternsBredderSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{2});
-        Order order = new Order(new DepthComponent(1500), new HeightComponent(10), new WidthComponent(10), 0 ,false);
+        Order order = new Order(new DepthComponent(1500), new HeightComponent(10), new WidthComponent(10),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "25x200 mm. trykimp. Brædt";
@@ -116,7 +123,8 @@ public class CarportGeneratorTest {
     @Test
     public void testoverSternsBredderSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{4});
-        Order order = new Order(new DepthComponent(780), new HeightComponent(10), new WidthComponent(10), 0 ,false);
+        Order order = new Order(new DepthComponent(780), new HeightComponent(10), new WidthComponent(10),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "25x125 mm. trykimp. Brædt";
@@ -138,7 +146,8 @@ public class CarportGeneratorTest {
         //These three lines need to be in every test, but change the target method in CarportGenerator,
         // the order to fit your testdata and the categories needed
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{10});
-        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(270), 0 ,false);
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(270),
+                new InclineComponent(0) ,false);
         BillLine billLine = CarportGenerator.sperOnRem(categoriesUsedInGenerator, order).get(0);
 
         String expected = "45x195 mm. spærtræ ubh.";
@@ -169,7 +178,8 @@ public class CarportGeneratorTest {
     @Test
     public void testPerforatedBand() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{17});
-        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(500), 0 ,false);
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(500),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.perforatedBand(categoriesUsedInGenerator, order);
 
         String expected = "hulbånd 1x20 mm. 10 mtr.";
@@ -183,7 +193,8 @@ public class CarportGeneratorTest {
 
     public void testScrewsForSternAndWaterboard() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{13,14,20});
-        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(1000), 0 ,false);
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(1000),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator, order, new ArrayList<BillLine>());
 
         String expected = "4,5 x 60 mm. skruer 200 stk.";
@@ -226,7 +237,8 @@ public class CarportGeneratorTest {
     @Test
     public void testScrewsForUniversalBeslagAndPerforatedBand() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{10,21});
-        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(580), 0 ,false);
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(580),
+                new InclineComponent(0) ,false);
 
         //If sper is calculated correctly, there should be 38 beslag
         ArrayList<BillLine> billLine =

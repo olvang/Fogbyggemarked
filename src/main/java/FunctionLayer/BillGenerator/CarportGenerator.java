@@ -466,7 +466,7 @@ public class CarportGenerator {
                 orderWithoutShedDepth = new Order(
                         new DepthComponent(order.getDepth().getDepth() - order.getShedDepth().getDepth()),
                         new HeightComponent(order.getHeight().getHeight()),
-                        new WidthComponent(order.getWidth().getWidth()), order.getIncline(), false
+                        new WidthComponent(order.getWidth().getWidth()), order.getInclineComponent(), false
                 );
             } else {
                 orderWithoutShedDepth = order;

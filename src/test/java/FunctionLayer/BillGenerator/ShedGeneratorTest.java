@@ -36,7 +36,7 @@ public class ShedGeneratorTest {
                 new WidthComponent(550),
                 new ShedDepthComponent("200","500"),
                 new ShedWidthComponent("200","500"),
-                0 ,false);
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator, order.getShedDepth());
 
         int exspectedAmount = 1;
@@ -64,7 +64,7 @@ public class ShedGeneratorTest {
                 new WidthComponent(550),
                 new ShedDepthComponent("500","550"),
                 new ShedWidthComponent("500","550"),
-                0 ,false);
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator, order.getShedDepth());
 
         int exspectedAmount = 2;
@@ -169,7 +169,7 @@ public class ShedGeneratorTest {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{6, 7, 25});
         Order order = new Order(new DepthComponent(700), new HeightComponent(200), new WidthComponent(700),
                 new ShedDepthComponent(225, new DepthComponent(600)),
-                new ShedWidthComponent(600, new WidthComponent(700)), 0, true);
+                new ShedWidthComponent(600, new WidthComponent(700)), new InclineComponent(0), true);
         ArrayList<BillLine> lines = ShedGenerator.screwsForInner(categoriesUsedInGenerator, order);
 
         //LøsholterForGable should contain 14

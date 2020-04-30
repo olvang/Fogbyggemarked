@@ -2,6 +2,7 @@ package FunctionLayer.BillGenerator;
 
 import Components.DepthComponent;
 import Components.HeightComponent;
+import Components.InclineComponent;
 import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
@@ -18,7 +19,8 @@ public class FlatRoofGeneratorTest {
     @Test
     public void testwaterBoardOnSternSides() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{13});
-        Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600), 0 ,false);
+        Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "19x100 mm. trykimp. Brædt";
@@ -40,7 +42,8 @@ public class FlatRoofGeneratorTest {
     @Test
     public void testwaterBoardOnSternFront() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{14});
-        Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600), 0 ,false);
+        Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternFront(categoriesUsedInGenerator, order);
 
         String expected = "19x100 mm. trykimp. Brædt";
@@ -53,7 +56,8 @@ public class FlatRoofGeneratorTest {
     @Test
     public void testRoofPanels() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{15});
-        Order order = new Order(new DepthComponent(1234), new HeightComponent(220), new WidthComponent(600), 0 ,false);
+        Order order = new Order(new DepthComponent(1234), new HeightComponent(220), new WidthComponent(600),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = FlatRoofGenerator.roofPanels(categoriesUsedInGenerator, order);
 
         String expected = "Plastmo Ecolite blåtonet(600 x 109)";
@@ -68,7 +72,8 @@ public class FlatRoofGeneratorTest {
     @Test
     public void testScrewsForRoofPanels() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{16});
-        Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600), 0 ,false);
+        Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600),
+                new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = FlatRoofGenerator.screwsForRoofPanels(categoriesUsedInGenerator, order);
 
         String expected = "plastmo bundskruer 200 stk.";
