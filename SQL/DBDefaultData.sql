@@ -39,6 +39,20 @@ INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('stalddørsgre
 INSERT INTO `FogByggemarked`.`materials` (`length`, `name`,`price`) VALUES ('390', 't hængsel 390 mm',13);
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('vinkelbeslag 35',23);
 
+INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('480', '25', '150', '25x150 mm. trykimp. Bræt',18);
+INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('600', '25', '150', '25x150 mm. trykimp. Bræt',18);
+INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('240', '19', '100', '19x100 mm. trykimp. Bræt',18);
+INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('540', '25', '50', '25x50 mm. trykimp. Bræt',18);
+INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('540', '38', '73', '38x73 mm. taglægte T1',18);
+INSERT INTO `FogByggemarked`.`materials` (`length`, `height`, `width`, `name`,`price`) VALUES ('420', '38', '73', '38x73 mm. taglægte T1',18);
+INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('B & C Dobbelt -s sort',18);
+INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('B & C Rygsten sort',18);
+INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('B & C Toplægte holder',18);
+INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('B & C rygstensbeslag',18);
+INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('B & C tagstens bindere & nakkekroge', 20);
+INSERT INTO `FogByggemarked`.`materials` (`amount`,`name`,`price`) VALUES ('100', '5,0 x 100 mm. skruer 100 stk.', 30);
+
+
 INSERT INTO `FogByggemarked`.`orders` VALUES (1,300,300,300,0);
 INSERT INTO `FogByggemarked`.`orders` VALUES (2,400,400,400,0);
 INSERT INTO `FogByggemarked`.`orders` VALUES (3,500,500,500,0);
@@ -52,6 +66,7 @@ INSERT INTO `FogByggemarked`.`sheds` VALUES (1,5,50,50);
 INSERT INTO `FogByggemarked`.`sheds` VALUES (2,6,60,60);
 INSERT INTO `FogByggemarked`.`sheds` VALUES (3,7,70,70);
 INSERT INTO `FogByggemarked`.`sheds` VALUES (4,8,80,80);
+INSERT INTO `FogByggemarked`.`sheds` VALUES (5,1,150,150);
 
 INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('understernbrædder til for & bag ende');
 INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('understernbrædder til siderne');
@@ -81,6 +96,19 @@ INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('til montering af i
 INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('Til lås på dør i sku r');
 INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('Til skurdør');
 INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('Til montering af løsholter i skur');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('Vindskeder på rejsning');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('beklædning af gavle 1 på 2');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('til montering oven på tagfodslægte');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('til montering på spær, 7 rækker lægter på hver skiftevis 1 hel & 1 halv lægte');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('toplægte til montering af rygsten lægges i toplægte holder');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('monteres på taglægter 6 rækker af 24 sten på hver side af taget');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('monteres på toplægte med medfølgende beslag se tagstens vejledning');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('monteres på toppen af spæret (til toplægte)');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('Til montering af rygsten');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('til montering af tagsten, alle ydersten + hver anden fastgøres');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('Til montering af Stern, vindskeder, vindkryds & vand bræt');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('Til montering af universalbeslag + toplægte');
+INSERT INTO `FogByggemarked`.`category` (decription) VALUES ('til taglægter');
 
 INSERT INTO `FogByggemarked`.`variant` (variant_name,category_id) VALUES ('Plastmo Ecolite Blaaligt', 15);
 INSERT INTO `FogByggemarked`.`variant`(variant_name,category_id) VALUES ('Plastmo Ecolite Groonligt', 15);
@@ -130,3 +158,31 @@ INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`
 INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (26,26);
 INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (27,27);
 INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (28,28);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (1,29);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (2,29);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (29,29);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (30,29);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (11,30);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (12,30);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (13,30);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (31,30);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (32,31);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (33,32);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (34,32);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (33,33);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (34,33);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (35,34);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (36,35);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (37,36);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (38,37);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (39,38);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (20,39);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (21,40);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (40,41);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (29,1);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (30,1);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (29,2);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (30,2);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (31,12);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (31,13);
+INSERT INTO `FogByggemarked`.`material_to_category` (`material_id`,`category_id`) VAlUES (31,14);
