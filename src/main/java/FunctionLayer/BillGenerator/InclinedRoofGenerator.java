@@ -2,6 +2,7 @@ package FunctionLayer.BillGenerator;
 
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
+import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
 
@@ -19,7 +20,7 @@ public class InclinedRoofGenerator {
         //We know A = incline, b = order Width / 2, and C = 90
         //Therefor we can calculate side c
         // c = b / cos(A)
-        double roofLength = (order.getWidth().getWidth() / 2) / Math.cos(order.getIncline());
+        double roofLength = GeneratorUtilities.calculateRoofLength(order.getInclineComponent(),order.getWidth());
 
         //We know what the length of one side of the roof, on the front end, so to get both sides of the roof * 2
         roofLength *= 2;
