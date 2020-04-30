@@ -1,8 +1,11 @@
 package FunctionLayer.BillGenerator;
 
+import Components.ShedDepthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
+
 import FunctionLayer.Exceptions.GeneratorException;
+
 import FunctionLayer.Material;
 
 import java.util.ArrayList;
@@ -65,8 +68,54 @@ public class ShedGenerator {
         return billLines;
     }
 
-    public static ArrayList<BillLine> RemInSidesShed(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> RemInSidesShed(ArrayList<Category> categoriesUsedInGenerator, ShedDepthComponent sDepthCom) {
+
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        BillLine billLine = null;
+        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
+
+        int amountUsed = 2;
+        int rest = 0;
+
+        int longestMaterialLength = materialsSortedByLength.get(0).getLength();
+        int depth = sDepthCom.getDepth();
+
+        for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
+            Material mat =  materialsSortedByLength.get(i);
+
+            if(mat.getLength() / 2 > depth){
+                billLine = new BillLine(mat,1);
+                billLines.add(billLine);
+                return  billLines;
+            }
+        }
+        amountUsed = depth / longestMaterialLength;
+        rest = depth % longestMaterialLength;
+
+        if(amountUsed != 0){
+            billLine = new BillLine(materialsSortedByLength.get(0),amountUsed);
+            billLines.add(billLine);
+        }
+
+        if(rest == 0){
+            return billLines;
+        }
+
+        for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
+            Material mat =  materialsSortedByLength.get(i);
+
+            if(rest - mat.getLength() < 0){
+                amountUsed = amountUsed + 2;
+                billLine = new BillLine(mat,amountUsed);
+
+            } else if(i == 0){
+                //If it is the last material(largest) then use that
+                billLine = new BillLine(mat,amountUsed);
+            }
+        }
+        billLines.add(billLine);
+
+        return billLines;
     }
 
     public static ArrayList<BillLine> losholterSides(ArrayList<Category> categoriesUsedInGenerator, int depthOfShed) {
