@@ -17,9 +17,9 @@ public class InclinedRoofGenerator {
 
         //We need to calculate the length of the roof
         //We know A = incline, b = order Width / 2, and C = 90
-        //Therefor we can calculate side a
-        // a = b·tan(A)
-        double roofLength = (order.getWidth().getWidth() / 2) * Math.tan(90);
+        //Therefor we can calculate side c
+        // c = b / cos(A)
+        double roofLength = (order.getWidth().getWidth() / 2) / Math.cos(order.getIncline());
 
         //We know what the length of one side of the roof, on the front end, so to get both sides of the roof * 2
         roofLength *= 2;
@@ -48,8 +48,9 @@ public class InclinedRoofGenerator {
             }
         }
 
-        //Returns the billLine
-        billLine = new BillLine(material,amountOfSoffitPerEnd);
+
+        //Returns the billLine, amountOfSoffitPerEnd * 2 since we need
+        billLine = new BillLine(material,amountOfSoffitPerEnd * 2);
         billLines.add(billLine);
 
         return billLines;
