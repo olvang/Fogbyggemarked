@@ -37,7 +37,7 @@ public class BillCalculator {
         //Select which categories are needed for the selected order type
         switch (orderType){
             case 1: //Flat roof, no shed
-                categoriesNeeded = new int[]{1,2,3,4,5,6,7,11,13,14,15,16,17,18,19,20,21,22,23};
+                categoriesNeeded = new int[]{1,2,3,4,8,10,11,13,14,15,16,17,18,19,20,21,22,23};
                 break;
             case 2: //Flat roof, with shed
                 categoriesNeeded = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28};
@@ -119,23 +119,23 @@ public class BillCalculator {
                     break;
                 case 6: //løsholter til skur gavle
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{6};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.losholterGabled(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.losholterGabled(categoriesUsedInGenerator,order.getShedWidth().getWidth());
                     break;
                 case 7: //løsholter til skur sider
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{7};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.losholterSides(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.losholterSides(categoriesUsedInGenerator,order.getShedDepth().getDepth());
                     break;
                 case 8: //Remme i sider, sadles ned i stolpe
                     //The material categories needed in the generator method
@@ -276,13 +276,17 @@ public class BillCalculator {
                     break;
                 case 21: //Til montering af universalbeslag + hulbånd
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{10,21};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int amountOfBeslag = 0;
+                    amountOfBeslag += GeneratorUtilities.searchForAmountInACategoryFromBillLines(18, billLinesFinal);
+                    amountOfBeslag += GeneratorUtilities.searchForAmountInACategoryFromBillLines(19, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.screwsForUniversalBeslagAndPerforatedBand(categoriesUsedInGenerator);
+                    billLine = CarportGenerator.screwsForUniversalBeslagAndPerforatedBand(categoriesUsedInGenerator, order, amountOfBeslag);
                     break;
                 case 22: //Til montering af rem på stolper - bolte
                     //The material categories needed in the generator method
@@ -332,33 +336,41 @@ public class BillCalculator {
                     break;
                 case 26: //Til lås på dør i skur
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{26};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int amountOfDoors = GeneratorUtilities.searchForAmountInACategoryFromBillLines(5, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.stalddorsgreb(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.stalddorsgreb(categoriesUsedInGenerator, amountOfDoors);
                     break;
                 case 27: //Til skurdør
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{27};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int numberOfDoors = GeneratorUtilities.searchForAmountInACategoryFromBillLines(5, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.hingeForDoor(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.hingeForDoor(categoriesUsedInGenerator, numberOfDoors);
                     break;
                 case 28: //Til montering af løsholter i skur
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{28};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int amountOfLosholter = 0;
+                    amountOfLosholter += GeneratorUtilities.searchForAmountInACategoryFromBillLines(6, billLinesFinal);
+                    amountOfLosholter += GeneratorUtilities.searchForAmountInACategoryFromBillLines(7, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.vinkelBeslag(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.vinkelBeslag(categoriesUsedInGenerator, amountOfLosholter);
                     break;
             }
             if(billLine != null){
