@@ -20,7 +20,7 @@ public class Request extends Command {
         HeightComponent carportHeight = null;
         ShedDepthComponent shedDepth = null;
         ShedWidthComponent shedWidth = null;
-        int incline = 0;
+        InclineComponent incline = null;
 
         //Used for error handling
         String shedWidthString = "";
@@ -89,9 +89,17 @@ public class Request extends Command {
         //Roof
         String roofTypeString = request.getParameter( "rooftype" );
         //TODO update logic when user can choose materials
-        if(roofTypeString.equals("inclined")){
-            incline = 30;
+        try {
+            if(roofTypeString.equals("inclined")){
+                incline = new InclineComponent(25);
+            }else {
+                incline = new InclineComponent(0);
+            }
+        }catch (ValidationFailedException e) {
+            request.setAttribute("inclineError",e.getMessage());
+            errorsFound = true;
         }
+
 
 
 

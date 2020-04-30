@@ -2,6 +2,7 @@ package FunctionLayer.BillGenerator;
 
 import Components.DepthComponent;
 import Components.HeightComponent;
+import Components.InclineComponent;
 import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
@@ -18,8 +19,8 @@ public class InclinedRoofGeneratorTest {
     @Test
     public void soffitTest() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{29});
-        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), 25 ,false);
-        ArrayList<BillLine> billLine = InclinedRoofGenerator.soffit(categoriesUsedInGenerator, order);
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator, order.getDepth());
 
         String expected = "25x150 mm. trykimp. Bræt";
         int expectedAmount = 2;

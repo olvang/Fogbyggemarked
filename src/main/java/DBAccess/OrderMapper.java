@@ -74,7 +74,7 @@ public class OrderMapper {
             WidthComponent widthComponent = new WidthComponent(rs.getInt("carport_width"));
             DepthComponent depthComponent = new DepthComponent(rs.getInt("carport_depth"));
             HeightComponent heightComponent = new HeightComponent(rs.getInt("carport_height"));
-            int carportIncline = rs.getInt("carport_incline");
+            InclineComponent carportIncline = new InclineComponent(rs.getInt("carport_incline"));
 
 
             if(doesShedExists(ID)) {

@@ -1,6 +1,7 @@
 package FunctionLayer;
 
 import Components.*;
+import FunctionLayer.Exceptions.ValidationFailedException;
 
 public class Order {
 
@@ -9,11 +10,11 @@ public class Order {
     private WidthComponent width;
     private ShedDepthComponent shedDepth;
     private ShedWidthComponent shedWidth;
-    private int incline;
+    private InclineComponent incline;
     private boolean withShed;
 
     public Order(DepthComponent depth, HeightComponent height, WidthComponent width , ShedDepthComponent shedDepth,
-                 ShedWidthComponent shedWidth, int incline, boolean withShed){
+                 ShedWidthComponent shedWidth, InclineComponent incline, boolean withShed) {
 
         this.depth = depth;
         this.height = height;
@@ -24,7 +25,7 @@ public class Order {
         this.withShed = withShed;
     }
 
-    public Order(DepthComponent depth, HeightComponent height, WidthComponent width, int incline, boolean withShed){
+    public Order(DepthComponent depth, HeightComponent height, WidthComponent width, InclineComponent incline, boolean withShed) {
 
         this.depth = depth;
         this.height = height;
@@ -74,11 +75,15 @@ public class Order {
     }
 
     public int getIncline() {
-        return incline;
+        return incline.getIncline();
     }
 
-    public void setIncline(int incline) {
+    public void setIncline(InclineComponent incline) {
         this.incline = incline;
+    }
+
+    public InclineComponent getInclineComponent() {
+        return incline;
     }
 
     public boolean isWithShed() {
