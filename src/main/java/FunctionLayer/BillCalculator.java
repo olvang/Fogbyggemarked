@@ -1,9 +1,6 @@
 package FunctionLayer;
 
-import FunctionLayer.BillGenerator.CarportGenerator;
-import FunctionLayer.BillGenerator.FlatRoofGenerator;
-import FunctionLayer.BillGenerator.GeneratorUtilities;
-import FunctionLayer.BillGenerator.ShedGenerator;
+import FunctionLayer.BillGenerator.*;
 import FunctionLayer.Exceptions.CommandException;
 import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Exceptions.ValidationFailedException;
@@ -371,6 +368,16 @@ public class BillCalculator {
 
                     //Calls the generator and returns the BillLine
                     billLine = ShedGenerator.vinkelBeslag(categoriesUsedInGenerator, amountOfLosholter);
+                    break;
+                case 29: //Vindskeder på rejsning
+                    //The material categories needed in the generator method
+                    categoryIdsUsedInGenerator = new int[]{29};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = InclinedRoofGenerator.soffit(categoriesUsedInGenerator,order);
                     break;
             }
             if(billLine != null){
