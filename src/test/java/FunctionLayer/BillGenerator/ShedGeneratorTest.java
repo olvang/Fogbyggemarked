@@ -45,6 +45,15 @@ public class ShedGeneratorTest {
         assertEquals(exspectedAmount,billLine.get(0).getAmount());
         assertEquals(exspectedLength,billLine.get(0).getMaterial().getLength());
     }
+    @Test
+    public void testscrewsForOuter() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{24});
+        ArrayList<BillLine> billLine = ShedGenerator.screwsForOuter(categoriesUsedInGenerator,400,400 );
+
+        int exspected = 8;
+
+        assertEquals(exspected,billLine.get(0).getAmount());
+    }
 
     @Test
     public void testRemInSidesShedLong() throws Exception {

@@ -309,8 +309,25 @@ public class ShedGenerator {
         return lineToReturn;
     }
 
-    public static ArrayList<BillLine> screwsForOuter(ArrayList<Category> materialsUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> screwsForOuter(ArrayList<Category> materialsUsedInGenerator, int length, int amount) {
+        //Antal beklædning på skur 1 på 2 * længden af dem, divideret med 52.5
+
+        ArrayList<BillLine> billLines = new ArrayList<BillLine>();
+        BillLine billLine = null;
+        Material materialToUse;
+
+        ArrayList<Material> screws = materialsUsedInGenerator.get(0).getMaterials();
+
+        double amountOfScrewsUsed = amount * length / 52.5;
+
+        materialToUse = screws.get(0);
+
+        int amountInBox = screws.get(0).getAmount();
+        int total = (int) Math.ceil(1.0 * amountOfScrewsUsed / amountInBox);
+        billLine = new BillLine(materialToUse, total);
+        billLines.add(billLine);
+        return billLines;
+
     }
 
     public static ArrayList<BillLine> screwsForInner(ArrayList<Category> materialsUsedInGenerator, Order order) {
