@@ -1,8 +1,6 @@
 package FunctionLayer.BillGenerator;
 
-import Components.MaterialHeightComponent;
-import Components.MaterialLengthComponent;
-import Components.MaterialWidthComponent;
+import Components.*;
 import FunctionLayer.BillLine;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
@@ -181,6 +179,28 @@ public class GeneratorUtilitiesTest {
 
         assertEquals(expectedCat1, actualCat1);
         assertEquals(expectedCat2, actualCat2);
+    }
+
+    @Test
+    public void testCalculateRoofLength() throws ValidationFailedException {
+        InclineComponent incline = new InclineComponent(25);
+        WidthComponent carportWidth = new WidthComponent(300);
+
+        double actual = GeneratorUtilities.calculateRoofLength(incline, carportWidth);
+        double expected = 165.507;
+
+        assertEquals(expected, actual, 0.01);
+    }
+
+    @Test
+    public void testCalculateRoofHeight() throws ValidationFailedException {
+        InclineComponent incline = new InclineComponent(25);
+        WidthComponent carportWidth = new WidthComponent(300);
+
+        double actual = GeneratorUtilities.calculateRoofHeight(incline, carportWidth);
+        double expected = 69.946;
+
+        assertEquals(expected, actual, 0.01);
     }
 
 }

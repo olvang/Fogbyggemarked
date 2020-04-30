@@ -1,10 +1,29 @@
 package FunctionLayer.BillGenerator;
 
+import Components.InclineComponent;
+import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Material;
 import java.util.*;
 
 public class GeneratorUtilities {
+
+    public static double calculateRoofLength(InclineComponent incline, WidthComponent carportWidth) {
+        //Divide by 2 because the input is the entire width of the roof, and we only need to calculate one side
+        //Math.cos uses radians, so we need to convert the angle first
+        double cosineOfA = Math.cos(Math.toRadians(incline.getIncline()));
+        double halfOfWidth = carportWidth.getWidth() / 2;
+
+        double result =  halfOfWidth / cosineOfA;
+        return result;
+    }
+
+    public static double calculateRoofHeight(InclineComponent incline, WidthComponent carportWidth) {
+        //Divide by 2 because the input is the entire width of the roof, and we only need to calculate one side
+        //Math.tan uses radians, so we need to convert the angle first
+        double result = ( carportWidth.getWidth() / 2) * Math.tan(Math.toRadians(incline.getIncline()));
+        return result;
+    }
 
     public static ArrayList<Material> sortMaterialsByLength(ArrayList<Material> categoriesUsedInGenerator){
         //Sort the array by length
