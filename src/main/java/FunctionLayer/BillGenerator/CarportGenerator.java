@@ -557,13 +557,7 @@ public class CarportGenerator {
         return billLines;
     }
 
-    public static ArrayList<BillLine> screwsForOuter(ArrayList<Category> materialsUsedInGenerator) {
-        return null;
-    }
 
-    public static ArrayList<BillLine> screwsForInner(ArrayList<Category> materialsUsedInGenerator) {
-        return null;
-    }
 
 
 }

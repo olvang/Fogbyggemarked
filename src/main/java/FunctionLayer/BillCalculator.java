@@ -149,13 +149,13 @@ public class BillCalculator {
                     break;
                 case 9: //Remme i sider, sadles ned i stolper (skur del, deles)
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{9};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator,order.getShedDepth());
                     break;
                 case 10: //Spær, monteres på rem
                     //The material categories needed in the generator method
@@ -322,17 +322,17 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.screwsForOuter(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.screwsForOuter(categoriesUsedInGenerator);
                     break;
                 case 25: //til montering af inderste beklædning
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{1,2};
+                    categoryIdsUsedInGenerator = new int[]{6, 7, 25};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.screwsForInner(categoriesUsedInGenerator);
+                    billLine = ShedGenerator.screwsForInner(categoriesUsedInGenerator, order);
                     break;
                 case 26: //Til lås på dør i skur
                     //The material categories needed in the generator method
