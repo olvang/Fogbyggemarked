@@ -44,6 +44,18 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         assertEquals(expectedAmount, billLine.get(0).getAmount());
 
     }
+    @Test
+    public void testboardsForGabled() throws Exception {
+
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{30});
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.boardsForGabled(categoriesUsedInGenerator,order);
+
+        int exspected = 44;
+
+        assertEquals(exspected,billLine.get(0).getAmount());
+
+    }
 
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{
         ArrayList<Category> categoriesAvailable = LogicFacade.getTheseCategories(categoryIdsUsedInGenerator);
@@ -70,4 +82,5 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         }
         return categoriesUsedInGenerator;
     }
+
 }
