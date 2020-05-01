@@ -388,12 +388,23 @@ public class BillCalculator {
                 case 30: //Bekældning på gavl
                     //The material categories needed in the generator method
                     categoryIdsUsedInGenerator = new int[]{30};
-
-                    //Gets a list with only the categories needed
+                
+                //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
-
-                    //Calls the generator and returns the BillLine
-                    billLine = InclinedRoofGenerator.boardsForGabled(categoriesUsedInGenerator,order);
+                
+                //Calls the generator and returns the BillLine
+                billLine = InclinedRoofGenerator.boardsForGabled(categoriesUsedInGenerator,order);
+                    break;
+                case 31: //Vindskeder på rejsning
+                    //The material categories needed in the generator method
+                    categoryIdsUsedInGenerator = new int[]{31};
+                
+                //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+                
+                //Calls the generator and returns the BillLine
+                billLine = InclinedRoofGenerator.roofLath(categoriesUsedInGenerator,order);
+                    break;
             }
             if(billLine != null){
                 billLinesFinal.addAll(billLine);

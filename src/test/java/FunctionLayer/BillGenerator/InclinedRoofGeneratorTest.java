@@ -18,6 +18,20 @@ import static org.junit.Assert.assertEquals;
 public class InclinedRoofGeneratorTest extends TestDataSetup {
 
     @Test
+    public void roofLathTest() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{31});
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.roofLath(categoriesUsedInGenerator,order);
+
+        String expected = "25x50 mm. trykimp. Bræt";
+        int expectedAmount = 3;
+
+        assertEquals(expected, billLine.get(0).getMaterial().getName() );
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+
+    }
+
+    @Test
     public void soffitTest() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{29});
         Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
