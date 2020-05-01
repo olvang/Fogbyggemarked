@@ -56,4 +56,44 @@ public class InclinedRoofGenerator {
 
         return billLines;
     }
+
+    public static ArrayList<BillLine> boardsForGabled(ArrayList<Category> categoriesUsedInGenerator, Order order){
+
+        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
+
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        BillLine billLine;
+
+        Material material;
+        Material materialToUse  = null;
+
+        double height = GeneratorUtilities.calculateRoofHeight(order.getInclineComponent(),order.getWidth()) * 10;
+        double width = (order.getWidth().getWidth() / 2.0) * 10;
+
+        //The area of the front facing Gabled
+        double area = height * width;
+
+        for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
+            material = materialsSortedByLength.get(i);
+
+            if(material.getLength() > height){
+                materialToUse = material;
+                break;
+            }
+        }
+
+        //We then need to subtract the minimum coverage = which is 2 * 15 mm = 30 mm
+        int twoBoardWidths = 2 * materialToUse.getWidth() - 30;
+
+        //This is one side
+        double amountOfBoardsToUse = (width / twoBoardWidths) * 2;
+
+        //We need to the back aswell. Plus a error magin of .05
+        int amountOfBoards = (int) Math.ceil(amountOfBoardsToUse * 2.05);
+
+        billLine = new BillLine(materialToUse,amountOfBoards );
+        billLines.add(billLine);
+
+        return billLines;
+    }
 }
