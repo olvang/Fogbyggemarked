@@ -385,6 +385,16 @@ public class BillCalculator {
                     //Calls the generator and returns the BillLine
                     billLine = InclinedRoofGenerator.soffit(categoriesUsedInGenerator,order);
                     break;
+                case 31: //Vindskeder på rejsning
+                    //The material categories needed in the generator method
+                    categoryIdsUsedInGenerator = new int[]{31};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = InclinedRoofGenerator.roofLath(categoriesUsedInGenerator,order);
+                    break;
             }
             if(billLine != null){
                 billLinesFinal.addAll(billLine);
