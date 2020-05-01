@@ -87,16 +87,16 @@ public class InclinedRoofGenerator {
                     amountOfBoards++;
                     roofDepth -= material.getLength() / 10;
                 }
-              break;
+                break;
             }
         }
-      
-      //Returns the billLine, amountOfBoards * 2 since we need
-            billLine = new BillLine(material, amountOfBoards );
-            billLines.add(billLine);
 
-            return billLines;
-        }
+        //Returns the billLine, amountOfBoards * 2 since we need
+        billLine = new BillLine(material, amountOfBoards);
+        billLines.add(billLine);
+
+        return billLines;
+    }
 
     public static ArrayList<BillLine> boardsForGabled(ArrayList<Category> categoriesUsedInGenerator, Order order){
 
@@ -119,6 +119,9 @@ public class InclinedRoofGenerator {
 
             if(material.getLength() > height){
                 materialToUse = material;
+                break;
+            }
+        }
 
         //We then need to subtract the minimum coverage = which is 2 * 15 mm = 30 mm
         int twoBoardWidths = 2 * materialToUse.getWidth() - 30;
