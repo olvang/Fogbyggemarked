@@ -200,8 +200,46 @@ public class InclinedRoofGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> roofTileBinders(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> roofTileBinders(ArrayList<Category> categoriesUsedInGenerator, int roofTilesAmount, int rygstenAmount) {
+        ArrayList<Material> possibleMaterials = GeneratorUtilities.sortMaterialsByAmount(categoriesUsedInGenerator.get(0).getMaterials());
+
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        BillLine billLine;
+
+        Material material;
+        Material materialToUse = null;
+
+        int amountOfPackages = 0;
+
+        //we need two for each stone, so we * 2
+        int roofTileBindersNeeded = (roofTilesAmount + rygstenAmount) * 2;
+
+        //Then we need to check which material best fits
+        for (int i = possibleMaterials.size()-1; i > -1; i--) {
+            material = possibleMaterials.get(i);
+
+            //First we check if any of the materials has enough amounts
+            //we start with the smallest, if one has enough amounts we use that material
+            if(material.getAmount() > roofTileBindersNeeded){
+                materialToUse = material;
+                amountOfPackages = 1;
+                break;
+            }else if(i == 0){
+                //If it is the last material, we use it anyways and calculates how many we need
+                materialToUse = material;
+
+                while (roofTileBindersNeeded > 0) {
+                    amountOfPackages++;
+                    roofTileBindersNeeded -= materialToUse.getAmount();
+                }
+            }
+        }
+
+
+        billLine = new BillLine(materialToUse,amountOfPackages);
+        billLines.add(billLine);
+
+        return billLines;
     }
 
     public static ArrayList<BillLine> screwsForRoofLaths(ArrayList<Category> categoriesUsedInGenerator) {

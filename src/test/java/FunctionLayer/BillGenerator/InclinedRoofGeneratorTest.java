@@ -97,7 +97,7 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         assertEquals(expectedAmount, billLine.get(0).getAmount());
     }
 
-
+    @Test
     public void testTopRoofLath() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{33});
         Order order = new Order(new DepthComponent(780), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false);
@@ -107,6 +107,19 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         String expectedName = "38x73 mm. taglægte T1";
 
         assertEquals(expectedPrice, billLine.get(0).getAmount());
+        assertEquals(expectedName, billLine.get(0).getMaterial().getName());
+    }
+
+    @Test
+    public void testRoofTileBinders() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{38});
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.roofTileBinders(categoriesUsedInGenerator,300,21);
+
+        int expectedAmount= 2;
+        String expectedName = "B & C tagstens bindere & nakkekroge";
+
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
         assertEquals(expectedName, billLine.get(0).getMaterial().getName());
     }
 

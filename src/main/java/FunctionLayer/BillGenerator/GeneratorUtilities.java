@@ -37,6 +37,12 @@ public class GeneratorUtilities {
         return categoriesUsedInGenerator;
     }
 
+    public static ArrayList<Material> sortMaterialsByAmount(ArrayList<Material> categoriesUsedInGenerator){
+        //Sort the array by width
+        categoriesUsedInGenerator.sort(new amountSorter());
+        return categoriesUsedInGenerator;
+    }
+
     public static int searchForAmountInACategoryFromBillLines(int categoryID, ArrayList<BillLine> billLines){
         int amount = 0;
         //Goes trough each billLine to find billLines with the categoryID.
@@ -67,5 +73,14 @@ class widthSorter implements Comparator<Material>
     @Override
     public int compare(Material o1, Material o2) {
         return Integer.compare(o2.getWidth(),o1.getWidth());
+    }
+}
+
+class amountSorter implements Comparator<Material>
+{
+    //Compares two widths and returns a Integer used by .sort
+    @Override
+    public int compare(Material o1, Material o2) {
+        return Integer.compare(o2.getAmount(),o1.getAmount());
     }
 }
