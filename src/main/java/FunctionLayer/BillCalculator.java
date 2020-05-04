@@ -424,12 +424,15 @@ public class BillCalculator {
                     //Calls the generator and returns the BillLine
                     billLine = InclinedRoofGenerator.topRoofLath(categoriesUsedInGenerator);
                     break;
-                /*case 34:
-                        Add
-                        case
-                        34
-                        here
-                */
+                case 34:
+                    categoryIdsUsedInGenerator = new int[]{34};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = InclinedRoofGenerator.roofTiles(categoriesUsedInGenerator, order);
+                    break;
                 case 35: //Rygsten
                     //The material categories needed in the generator method
                     categoryIdsUsedInGenerator = new int[]{35};

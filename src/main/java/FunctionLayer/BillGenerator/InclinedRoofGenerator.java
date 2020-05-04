@@ -175,4 +175,27 @@ public class InclinedRoofGenerator {
     public static ArrayList<BillLine> screwsForRoofLaths(ArrayList<Category> categoriesUsedInGenerator) {
         return null;
     }
+
+    public static ArrayList<BillLine> roofTiles(ArrayList<Category> categoriesUsedInGenerator, Order order) {
+
+        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
+        Material material = materialsSortedByLength.get(0);
+        ArrayList<BillLine> billLines = new ArrayList<>();
+        BillLine billLine;
+
+        double depth = order.getDepth().getDepth() / 100.0;
+        double length = GeneratorUtilities.calculateRoofLength(order.getInclineComponent(),order.getWidth()) / 100;
+
+        double area = depth * length * 2;
+
+        //there is used 9 rooftiles pr. m^2
+        int amountOfRootTilesUsed = (int) area * 9;
+
+        billLine = new BillLine(material,amountOfRootTilesUsed);
+
+        billLines.add(billLine);
+
+        return billLines;
+
+    }
 }
