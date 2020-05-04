@@ -196,8 +196,12 @@ public class InclinedRoofGenerator {
 
     }
 
-    public static ArrayList<BillLine> rygstenBracket(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> rygstenBracket(ArrayList<Category> categoriesUsedInGenerator, int amountOfRygsten) {
+        Material materialToUse = categoriesUsedInGenerator.get(0).getMaterials().get(0);
+        BillLine line = new BillLine(materialToUse, amountOfRygsten);
+        ArrayList<BillLine> list = new ArrayList<>();
+        list.add(line);
+        return list;
     }
 
     public static ArrayList<BillLine> roofTileBinders(ArrayList<Category> categoriesUsedInGenerator) {
