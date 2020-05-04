@@ -496,12 +496,18 @@ public class BillCalculator {
                     break;
                 case 41: // 5,0 x 100 mm. skruer 100 stk.
                     categoryIdsUsedInGenerator = new int[]{41};
-
-                    //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    categoryIdsUsedInGenerator = new int[]{33};
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+                    ArrayList<BillLine> topRoofLath = InclinedRoofGenerator.topRoofLath(categoriesUsedInGenerator, order);
+
+                    categoryIdsUsedInGenerator = new int[]{32};
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+                    ArrayList<BillLine> roofLathOnSper = InclinedRoofGenerator.roofLathOnSper(categoriesUsedInGenerator, order);
+
                     //Calls the generator and returns the BillLine
-                    billLine = InclinedRoofGenerator.screwsForRoofLaths(categoriesUsedInGenerator);
+                    billLine = InclinedRoofGenerator.screwsForRoofLaths(categoriesUsedInGenerator, topRoofLath,roofLathOnSper);
                     break;
             }
             if(billLine != null){

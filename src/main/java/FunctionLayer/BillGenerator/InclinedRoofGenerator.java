@@ -246,8 +246,27 @@ public class InclinedRoofGenerator {
         return null;
     }
 
-    public static ArrayList<BillLine> screwsForRoofLaths(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> screwsForRoofLaths(ArrayList<Category> categoriesUsedInGenerator, ArrayList<BillLine> topRoofLath, ArrayList<BillLine> roofLathOnSper) {
+
+        Material materialToUse = categoriesUsedInGenerator.get(0).getMaterials().get(0);
+
+        double total = 0;
+
+        for (BillLine billline: topRoofLath) {
+            total = total + billline.getAmount() * (billline.getMaterial().getLength() / 10);
+        }
+
+        for (BillLine billline: roofLathOnSper) {
+            total = total + billline.getAmount() * (billline.getMaterial().getLength() / 10);
+        }
+
+        int packsOfScrews = (int) Math.ceil(total / 60 / materialToUse.getAmount());
+
+        ArrayList<BillLine> billLines = new ArrayList<>();
+
+        billLines.add(new BillLine(materialToUse,packsOfScrews));
+
+        return billLines;
     }
 
     public static ArrayList<BillLine> roofTiles(ArrayList<Category> categoriesUsedInGenerator, Order order) {
