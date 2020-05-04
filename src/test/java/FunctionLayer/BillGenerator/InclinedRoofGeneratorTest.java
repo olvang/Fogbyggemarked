@@ -98,6 +98,18 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
     }
 
 
+    public void testTopRoofLath() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{33});
+        Order order = new Order(new DepthComponent(780), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false);
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.topRoofLath(categoriesUsedInGenerator,order);
+
+        int expectedPrice = 2;
+        String expectedName = "38x73 mm. taglægte T1";
+
+        assertEquals(expectedPrice, billLine.get(0).getAmount());
+        assertEquals(expectedName, billLine.get(0).getMaterial().getName());
+    }
+
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{
         ArrayList<Category> categoriesAvailable = LogicFacade.getTheseCategories(categoryIdsUsedInGenerator);
 
