@@ -6,6 +6,7 @@ import Components.InclineComponent;
 import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
+import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 import org.junit.Test;
@@ -16,6 +17,20 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class InclinedRoofGeneratorTest extends TestDataSetup {
+
+    @Test
+    public void testRygtsen() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{35});
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.rygsten(categoriesUsedInGenerator,order);
+
+        String expectedName = "B & C Rygsten sort";
+        int expectedAmount = 22;
+
+        assertEquals(expectedName, billLine.get(0).getMaterial().getName());
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+
+    }
 
     @Test
     public void roofLathTest() throws Exception {

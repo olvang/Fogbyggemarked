@@ -137,4 +137,18 @@ public class InclinedRoofGenerator {
 
         return billLines;
     }
+
+    public static ArrayList<BillLine> rygsten(ArrayList<Category> categoriesUsedInGenerator, Order order) {
+        //Amount is calculated by taking depth in m * 3
+        ArrayList<BillLine> list = new ArrayList<>();
+
+        double depth = order.getDepth().getDepth();
+        depth = depth / 100; //since the depth is stored in cm
+        int amount = (int) Math.ceil(depth * 3.0);
+
+        BillLine line = new BillLine(categoriesUsedInGenerator.get(0).getMaterials().get(0), amount);
+        list.add(line);
+
+        return list;
+    }
 }
