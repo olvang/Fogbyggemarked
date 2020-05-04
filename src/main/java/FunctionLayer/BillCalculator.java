@@ -320,10 +320,10 @@ public class BillCalculator {
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
                     //Gets the length and amount of boards used for the shed.
-                    billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator,order.getHeight().getHeight(), order.getShedWidth().getWidth(),order.getShedDepth().getDepth());
+                    //billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator,order.getHeight().getHeight(), order.getShedWidth().getWidth(),order.getShedDepth().getDepth());
 
-                    int length = billLine.get(0).getMaterial().getLength();
-                    int amount = billLine.get(0).getAmount();
+                    //int length = billLine.get(0).getMaterial().getLength();
+                    //int amount = billLine.get(0).getAmount();
 
                     //Now we can continue the calculation of case 24:
 
@@ -334,7 +334,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.screwsForOuter(categoriesUsedInGenerator,length,amount);
+                    //billLine = ShedGenerator.screwsForOuter(categoriesUsedInGenerator,length,amount);
                     break;
                 case 25: //til montering af inderste beklædning
                     //The material categories needed in the generator method
@@ -473,13 +473,24 @@ public class BillCalculator {
                     billLine = InclinedRoofGenerator.rygstenBracket(categoriesUsedInGenerator, amountOfRygtsen);
                     break;
                 case 38: //Tagstens bindere & nakkekroge
-                    categoryIdsUsedInGenerator = new int[]{38};
+                    //We need the amounts calculated in category 34 and 35
+                    int roofTilesAmount = 0;
+                    int rygstenAmount = 0;
+                    try{
+                        roofTilesAmount = GeneratorUtilities.searchForAmountInACategoryFromBillLines(34,billLinesFinal);
+                        rygstenAmount = GeneratorUtilities.searchForAmountInACategoryFromBillLines(35,billLinesFinal);
+                    }catch (Exception e){
+                        //could not get the amounts, so the case cannot be calculated
+                        throw new GeneratorException("Kan ikke udregne Tagstens bindere & nakkekroge");
+                    }
 
+
+
+                    categoryIdsUsedInGenerator = new int[]{38};
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
-
                     //Calls the generator and returns the BillLine
-                    billLine = InclinedRoofGenerator.roofTileBinders(categoriesUsedInGenerator);
+                    billLine = InclinedRoofGenerator.roofTileBinders(categoriesUsedInGenerator,roofTilesAmount,rygstenAmount);
                     break;
                 case 39: //Skruer, samme som 20
                     categoryIdsUsedInGenerator = new int[]{39};

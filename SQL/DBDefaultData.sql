@@ -49,7 +49,7 @@ INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('B & C Dobbelt
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('B & C Rygsten sort',18);
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('B & C Toplægte holder',18);
 INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('B & C rygstensbeslag',18);
-INSERT INTO `FogByggemarked`.`materials` (`name`,`price`) VALUES ('B & C tagstens bindere & nakkekroge', 20);
+INSERT INTO `FogByggemarked`.`materials` (`name`,`price`,`amount`) VALUES ('B & C tagstens bindere & nakkekroge', 20,500);
 INSERT INTO `FogByggemarked`.`materials` (`amount`,`name`,`price`) VALUES ('100', '5,0 x 100 mm. skruer 100 stk.', 30);
 
 

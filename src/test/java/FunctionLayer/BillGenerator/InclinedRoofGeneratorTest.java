@@ -132,6 +132,18 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
     }
 
     @Test
+    public void testRoofTileBinders() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{38});
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.roofTileBinders(categoriesUsedInGenerator,300,21);
+
+        int expectedAmount= 2;
+        String expectedName = "B & C tagstens bindere & nakkekroge";
+
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+        assertEquals(expectedName, billLine.get(0).getMaterial().getName());
+    }
+
     public void testRygtsenBracket() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{37});
         int amount = 32;
