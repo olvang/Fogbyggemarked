@@ -493,13 +493,14 @@ public class BillCalculator {
                     billLine = InclinedRoofGenerator.roofTileBinders(categoriesUsedInGenerator,roofTilesAmount,rygstenAmount);
                     break;
                 case 39: //Skruer, samme som 20
-                    categoryIdsUsedInGenerator = new int[]{39};
+                    categoryIdsUsedInGenerator = new int[]{13,14,39};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
                     billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator, order, billLinesFinal);
+                    billLine.get(0).setAmount(billLine.get(0).getAmount() + 1); //A box more is needed for this one
                     break;
                 case 40: //Skruer, samme som 21
                     categoryIdsUsedInGenerator = new int[]{40};
