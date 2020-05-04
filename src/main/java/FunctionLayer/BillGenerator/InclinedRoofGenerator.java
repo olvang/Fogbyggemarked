@@ -181,8 +181,19 @@ public class InclinedRoofGenerator {
         return list;
     }
 
-    public static ArrayList<BillLine> topRoofLathHolder(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> topRoofLathHolder(ArrayList<Category> categoriesUsedInGenerator, Order order) {
+        //Amount is calculated by taking depth in m / 0.9
+        ArrayList<BillLine> list = new ArrayList<>();
+
+        double depth = order.getDepth().getDepth();
+        depth = depth / 100; //since the depth is stored in cm
+        int amount = (int) Math.ceil(depth / 0.9);
+
+        BillLine line = new BillLine(categoriesUsedInGenerator.get(0).getMaterials().get(0), amount);
+        list.add(line);
+
+        return list;
+
     }
 
     public static ArrayList<BillLine> rygstenBracket(ArrayList<Category> categoriesUsedInGenerator) {
