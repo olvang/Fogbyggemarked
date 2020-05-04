@@ -151,4 +151,28 @@ public class InclinedRoofGenerator {
 
         return list;
     }
+
+    public static ArrayList<BillLine> roofLathOnSper(ArrayList<Category> categoriesUsedInGenerator) {
+        return null;
+    }
+
+    public static ArrayList<BillLine> topRoofLath(ArrayList<Category> categoriesUsedInGenerator) {
+        return null;
+    }
+
+    public static ArrayList<BillLine> topRoofLathHolder(ArrayList<Category> categoriesUsedInGenerator) {
+        return null;
+    }
+
+    public static ArrayList<BillLine> rygstenBracket(ArrayList<Category> categoriesUsedInGenerator) {
+        return null;
+    }
+
+    public static ArrayList<BillLine> roofTileBinders(ArrayList<Category> categoriesUsedInGenerator) {
+        return null;
+    }
+
+    public static ArrayList<BillLine> screwsForRoofLaths(ArrayList<Category> categoriesUsedInGenerator) {
+        return null;
+    }
 }

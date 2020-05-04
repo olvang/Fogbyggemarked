@@ -40,10 +40,10 @@ public class BillCalculator {
                 categoriesNeeded = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28};
                 break;
             case 3: //Inclined roof, no shed
-                categoriesNeeded = new int[]{3};
+                categoriesNeeded = new int[]{29,2,10,11,8,14,30,31,32,33,34,35,36,37,38,18,19,39,40,41,22,23};
                 break;
             case 4: //Inclined roof, with shed
-                categoriesNeeded = new int[]{4};
+                categoriesNeeded = new int[]{29,2,10,11,8,9,6,7,14,30,12,31,5,32,33,34,35,36,37,38,18,19,26,27,28,39,40,41,22,23,24,25};
                 break;
         }
 
@@ -405,6 +405,31 @@ public class BillCalculator {
                 //Calls the generator and returns the BillLine
                 billLine = InclinedRoofGenerator.roofLath(categoriesUsedInGenerator,order);
                     break;
+
+                case 32: //Taglægter på spær
+                    categoryIdsUsedInGenerator = new int[]{32};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = InclinedRoofGenerator.roofLathOnSper(categoriesUsedInGenerator);
+                    break;
+                case 33: //Toplægte
+                    categoryIdsUsedInGenerator = new int[]{33};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = InclinedRoofGenerator.topRoofLath(categoriesUsedInGenerator);
+                    break;
+                /*case 34:
+                        Add
+                        case
+                        34
+                        here
+                */
                 case 35: //Rygsten
                     //The material categories needed in the generator method
                     categoryIdsUsedInGenerator = new int[]{35};
@@ -414,6 +439,64 @@ public class BillCalculator {
 
                     //Calls the generator and returns the BillLine
                     billLine = InclinedRoofGenerator.rygsten(categoriesUsedInGenerator,order);
+                    break;
+                case 36: //Toplægte holder
+                    categoryIdsUsedInGenerator = new int[]{36};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = InclinedRoofGenerator.topRoofLathHolder(categoriesUsedInGenerator);
+                    break;
+                case 37: //Rygstensbeslag
+                    categoryIdsUsedInGenerator = new int[]{37};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = InclinedRoofGenerator.rygstenBracket(categoriesUsedInGenerator);
+                    break;
+                case 38: //Tagstens bindere & nakkekroge
+                    categoryIdsUsedInGenerator = new int[]{38};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = InclinedRoofGenerator.roofTileBinders(categoriesUsedInGenerator);
+                    break;
+                case 39: //Skruer, samme som 20
+                    categoryIdsUsedInGenerator = new int[]{39};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator, order, billLinesFinal);
+                    break;
+                case 40: //Skruer, samme som 21
+                    categoryIdsUsedInGenerator = new int[]{40};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    int numberOfBeslag = 0;
+                    numberOfBeslag += GeneratorUtilities.searchForAmountInACategoryFromBillLines(18, billLinesFinal);
+                    numberOfBeslag += GeneratorUtilities.searchForAmountInACategoryFromBillLines(19, billLinesFinal);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = CarportGenerator.screwsForUniversalBeslagAndPerforatedBand(categoriesUsedInGenerator, order, numberOfBeslag);
+                    break;
+                case 41: // 5,0 x 100 mm. skruer 100 stk.
+                    categoryIdsUsedInGenerator = new int[]{41};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+
+                    //Calls the generator and returns the BillLine
+                    billLine = InclinedRoofGenerator.screwsForRoofLaths(categoriesUsedInGenerator);
                     break;
             }
             if(billLine != null){
