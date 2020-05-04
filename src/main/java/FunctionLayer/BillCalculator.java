@@ -312,17 +312,26 @@ public class BillCalculator {
                     billLine = CarportGenerator.skiverForRemOnPost(categoriesUsedInGenerator,amountOfBolts);
                     break;
                 case 24: //til montering af yderste beklædning
-                    //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{24};
+                    //This case needs the result of boardsForShed
+                    //Therefore we calculate that first:
 
+                    //The material categories needed in the generator method
+                    categoryIdsUsedInGenerator = new int[]{12};
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
-
                     //Gets the length and amount of boards used for the shed.
                     //billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator,order.getHeight().getHeight(), order.getShedWidth().getWidth(),order.getShedDepth().getDepth());
 
                     //int length = billLine.get(0).getMaterial().getLength();
                     //int amount = billLine.get(0).getAmount();
+
+                    //Now we can continue the calculation of case 24:
+
+                    //The material categories needed in the generator method
+                    categoryIdsUsedInGenerator = new int[]{24};
+
+                    //Gets a list with only the categories needed
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
                     //billLine = ShedGenerator.screwsForOuter(categoriesUsedInGenerator,length,amount);
@@ -413,7 +422,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = InclinedRoofGenerator.roofLathOnSper(categoriesUsedInGenerator);
+                    billLine = InclinedRoofGenerator.roofLathOnSper(categoriesUsedInGenerator, order);
                     break;
                 case 33: //Toplægte
                     categoryIdsUsedInGenerator = new int[]{33};
@@ -453,13 +462,15 @@ public class BillCalculator {
                     billLine = InclinedRoofGenerator.topRoofLathHolder(categoriesUsedInGenerator, order);
                     break;
                 case 37: //Rygstensbeslag
-                    categoryIdsUsedInGenerator = new int[]{37};
+                    categoryIdsUsedInGenerator = new int[]{35,37};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int amountOfRygtsen = GeneratorUtilities.searchForAmountInACategoryFromBillLines(35, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = InclinedRoofGenerator.rygstenBracket(categoriesUsedInGenerator);
+                    billLine = InclinedRoofGenerator.rygstenBracket(categoriesUsedInGenerator, amountOfRygtsen);
                     break;
                 case 38: //Tagstens bindere & nakkekroge
                     //We need the amounts calculated in category 34 and 35
