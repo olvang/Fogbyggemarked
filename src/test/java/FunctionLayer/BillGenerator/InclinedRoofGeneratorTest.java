@@ -97,7 +97,7 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         assertEquals(expectedAmount, billLine.get(0).getAmount());
     }
 
-
+    @Test
     public void testTopRoofLath() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{33});
         Order order = new Order(new DepthComponent(780), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false);
@@ -109,6 +109,20 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         assertEquals(expectedPrice, billLine.get(0).getAmount());
         assertEquals(expectedName, billLine.get(0).getMaterial().getName());
     }
+
+    @Test
+    public void testRygtsenBracket() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{37});
+        int amount = 32;
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.rygstenBracket(categoriesUsedInGenerator, amount);
+
+        String expectedName = "B & C rygstensbeslag";
+        int expectedAmount = amount;
+
+        assertEquals(expectedName, billLine.get(0).getMaterial().getName());
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+    }
+
 
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{
         ArrayList<Category> categoriesAvailable = LogicFacade.getTheseCategories(categoryIdsUsedInGenerator);
