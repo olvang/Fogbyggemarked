@@ -422,7 +422,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = InclinedRoofGenerator.topRoofLath(categoriesUsedInGenerator);
+                    billLine = InclinedRoofGenerator.topRoofLath(categoriesUsedInGenerator, order);
                     break;
                 case 34:
                     categoryIdsUsedInGenerator = new int[]{34};
@@ -450,16 +450,18 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = InclinedRoofGenerator.topRoofLathHolder(categoriesUsedInGenerator);
+                    billLine = InclinedRoofGenerator.topRoofLathHolder(categoriesUsedInGenerator, order);
                     break;
                 case 37: //Rygstensbeslag
-                    categoryIdsUsedInGenerator = new int[]{37};
+                    categoryIdsUsedInGenerator = new int[]{35,37};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    int amountOfRygtsen = GeneratorUtilities.searchForAmountInACategoryFromBillLines(35, billLinesFinal);
+
                     //Calls the generator and returns the BillLine
-                    billLine = InclinedRoofGenerator.rygstenBracket(categoriesUsedInGenerator);
+                    billLine = InclinedRoofGenerator.rygstenBracket(categoriesUsedInGenerator, amountOfRygtsen);
                     break;
                 case 38: //Tagstens bindere & nakkekroge
                     categoryIdsUsedInGenerator = new int[]{38};

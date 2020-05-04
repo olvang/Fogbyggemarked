@@ -83,6 +83,7 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         assertEquals(exspected,billLine.get(0).getAmount());
 
     }
+
     @Test
     public void testroofLathOnSper() throws Exception{
 
@@ -103,6 +104,47 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         assertEquals(exspectedLength1, billLine.get(1).getMaterial().getLength());
 
     }
+
+    @Test
+    public void testTopRoofLathHolder() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{36});
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.topRoofLathHolder(categoriesUsedInGenerator,order);
+
+        String expectedName = "B & C Toplægte holder";
+        int expectedAmount = 9;
+
+        assertEquals(expectedName, billLine.get(0).getMaterial().getName());
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+    }
+
+    @Test
+    public void testTopRoofLath() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{33});
+        Order order = new Order(new DepthComponent(780), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false);
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.topRoofLath(categoriesUsedInGenerator,order);
+
+        int expectedPrice = 2;
+        String expectedName = "38x73 mm. taglægte T1";
+
+        assertEquals(expectedPrice, billLine.get(0).getAmount());
+        assertEquals(expectedName, billLine.get(0).getMaterial().getName());
+    }
+
+    @Test
+    public void testRygtsenBracket() throws Exception {
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{37});
+        int amount = 32;
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.rygstenBracket(categoriesUsedInGenerator, amount);
+
+        String expectedName = "B & C rygstensbeslag";
+        int expectedAmount = amount;
+
+        assertEquals(expectedName, billLine.get(0).getMaterial().getName());
+        assertEquals(expectedAmount, billLine.get(0).getAmount());
+    }
+
+
     private ArrayList<Category> getCategoriesAvailable(int[] categoryIdsUsedInGenerator) throws Exception{
         ArrayList<Category> categoriesAvailable = LogicFacade.getTheseCategories(categoryIdsUsedInGenerator);
 

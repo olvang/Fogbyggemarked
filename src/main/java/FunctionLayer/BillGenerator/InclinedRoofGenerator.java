@@ -194,16 +194,52 @@ public class InclinedRoofGenerator {
         return billLines;
     }
 
-    public static ArrayList<BillLine> topRoofLath(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> topRoofLath(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
+        ArrayList<Material> possibleMaterials = categoriesUsedInGenerator.get(0).getMaterials();
+        int orderDepth = order.getDepth().getDepth();
+        Material materïalToUse = null;
+
+        int lowestAmount = Integer.MAX_VALUE;
+        for(Material mat : possibleMaterials) {
+            double length = mat.getLength() / 10.0; //divided by 10 because length is stored in mm
+            double result = orderDepth / length;
+            int amount = (int) Math.ceil(result);
+            if(amount < lowestAmount) {
+                lowestAmount = amount;
+                materïalToUse = mat;
+            }
+        }
+        if(materïalToUse == null) {
+            throw new GeneratorException("No material was selected in topRooFlath");
+        }
+        BillLine line = new BillLine(materïalToUse, lowestAmount);
+        ArrayList<BillLine> list = new ArrayList<>();
+        list.add(line);
+
+        return list;
     }
 
-    public static ArrayList<BillLine> topRoofLathHolder(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> topRoofLathHolder(ArrayList<Category> categoriesUsedInGenerator, Order order) {
+        //Amount is calculated by taking depth in m / 0.9
+        ArrayList<BillLine> list = new ArrayList<>();
+
+        double depth = order.getDepth().getDepth();
+        depth = depth / 100; //since the depth is stored in cm
+        int amount = (int) Math.ceil(depth / 0.9);
+
+        BillLine line = new BillLine(categoriesUsedInGenerator.get(0).getMaterials().get(0), amount);
+        list.add(line);
+
+        return list;
+
     }
 
-    public static ArrayList<BillLine> rygstenBracket(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
+    public static ArrayList<BillLine> rygstenBracket(ArrayList<Category> categoriesUsedInGenerator, int amountOfRygsten) {
+        Material materialToUse = categoriesUsedInGenerator.get(0).getMaterials().get(0);
+        BillLine line = new BillLine(materialToUse, amountOfRygsten);
+        ArrayList<BillLine> list = new ArrayList<>();
+        list.add(line);
+        return list;
     }
 
     public static ArrayList<BillLine> roofTileBinders(ArrayList<Category> categoriesUsedInGenerator) {
