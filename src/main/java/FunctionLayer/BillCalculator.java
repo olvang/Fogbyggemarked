@@ -450,7 +450,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = InclinedRoofGenerator.topRoofLathHolder(categoriesUsedInGenerator);
+                    billLine = InclinedRoofGenerator.topRoofLathHolder(categoriesUsedInGenerator, order);
                     break;
                 case 37: //Rygstensbeslag
                     categoryIdsUsedInGenerator = new int[]{37};
