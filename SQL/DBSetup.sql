@@ -9,7 +9,8 @@ CREATE TABLE `orders` (
   `carport_width` int not null,
   `carport_depth` int not null,
   `carport_height` int not null,
-  `carport_incline` int not null default 0 -- ,
+  `carport_incline` int not null default 0,
+  `order_date`  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP -- ,
   -- `roof_material_id` int not null, 
   -- `retail_price` int not null 
 );
