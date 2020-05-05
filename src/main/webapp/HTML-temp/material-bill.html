@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fog - Trælast og Byggecenter</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Datatables CSS -->
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/c97c9bd36e.js" crossorigin="anonymous"></script>
+
+
+    <style>
+        html,body{
+            height:100%;
+            padding-bottom: 60px;
+        }
+
+        .flex-container {
+            height: auto;
+            min-height: 56vh;
+            margin-bottom: 20px;
+        }
+
+        .context-dark, .bg-gray-dark, .bg-primary {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+            color: #ffffff;
+        }
+        .nav-list li {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .nav-list li a:hover:before {
+            margin-left: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        ul, ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
+<!-- Begin page content -->
+<main role="main" class="container h-100 " >
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-white" style="background-color: #0C2069;padding: 0px">
+            <img src="https://www.johannesfog.dk/globalassets/header/logo.png">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Carporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Byg Selv</a>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0" _lpchecked="1">
+                    <button class="btn btn-outline-success my-2 mr-2 my-sm-0" type="submit" style="color:white">Login</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit" style="color:white">Register</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Title header -->
+    <div class="text-center">
+        <h1 class="display-1">Ordre 1 stykliste</h1>
+    </div>
+    <div class="flex-container shadow my-5 py-5 px-5">
+        <div><a class="btn btn-primary btn-lg" href="#" role="button">Tilbage</a></div>
+        <div class="flex-item">
+            <table id="orders" class="table table-striped table-bordered" style="width:100%">
+                <thead class="text-center">
+                    <tr>
+                        <th>Materiale</th>
+                        <th>Længde</th>
+                        <th>Antal</th>
+                        <th>Enhed</th>
+                        <th>Beskrivelse</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                <tr>
+                    <td>25x200 mm. trykimp. Brædt</td>
+                    <td>360</td>
+                    <td>4</td>
+                    <td>Stk</td>
+                    <td>understernbrædder til for & bag ende</td>
+                </tr>
+                <tr>
+                    <td>25x200 mm. trykimp. Brædt</td>
+                    <td>540</td>
+                    <td>4</td>
+                    <td>Stk</td>
+                    <td>understernbrædder til siderne</td>
+                </tr>
+                <tr>
+                    <td>25x125mm. trykimp. Brædt</td>
+                    <td>360</td>
+                    <td>2</td>
+                    <td>Stk</td>
+                    <td>oversternbrædder til forenden</td>
+                </tr>
+                <tr>
+                    <td>25x125mm. trykimp. Brædt</td>
+                    <td>540</td>
+                    <td>4</td>
+                    <td>Stk</td>
+                    <td>oversternbrædder til siderne</td>
+                </tr>
+                <tr>
+                    <td>45x195 mm. spærtræ ubh.</td>
+                    <td>600</td>
+                    <td>2</td>
+                    <td>Stk</td>
+                    <td>Remme i sider, sadles ned i stolper</td>
+                </tr>
+                <tr>
+                    <td>45x195 mm. spærtræ ubh</td>
+                    <td>600</td>
+                    <td>15</td>
+                    <td>Stk</td>
+                    <td>Spær, monteres på rem</td>
+                </tr>
+                <tr>
+                    <td>97x97 mm. trykimp. Stolpe</td>
+                    <td>300</td>
+                    <td>11</td>
+                    <td>Stk</td>
+                    <td>Stolper nedgraves 90 cm. i jord</td>
+                </tr>
+                <tr>
+                    <td>19x100 mm. trykimp. Brædt</td>
+                    <td>540</td>
+                    <td>4</td>
+                    <td>Stk</td>
+                    <td>vandbrædt på stern i sider</td>
+                </tr>
+                <tr>
+                    <td>19x100 mm. trykimp. Brædt</td>
+                    <td>360</td>
+                    <td>2</td>
+                    <td>Stk</td>
+                    <td>vandbrædt på stern i forende</td>
+                </tr>
+                <tr>
+                    <td>Plastmo Ecolite blåtonet(600 x 109)</td>
+                    <td>600</td>
+                    <td>6</td>
+                    <td>Stk</td>
+                    <td>tagplader monteres på spær</td>
+                </tr>
+                <tr>
+                    <td>Plastmo Ecolite blåtonet(360 x 109)</td>
+                    <td>360</td>
+                    <td>6</td>
+                    <td>Stk</td>
+                    <td>tagplader monteres på spær</td>
+                </tr>
+                <tr>
+                    <td>plastmo bundskruer 200 stk.</td>
+                    <td></td>
+                    <td>3</td>
+                    <td>Pakke</td>
+                    <td>Skruer til tagplader</td>
+                </tr>
+                <tr>
+                    <td>hulbånd 1x20 mm. 10 mtr.</td>
+                    <td>1000</td>
+                    <td>2</td>
+                    <td>Rulle</td>
+                    <td>Til vindkryds på spær</td>
+                </tr>
+                <tr>
+                    <td>universal 190 mm højre</td>
+                    <td></td>
+                    <td>15</td>
+                    <td>Stk</td>
+                    <td>Til montering af spær på rem</td>
+                </tr>
+                <tr>
+                    <td>universal 190 mm venstre</td>
+                    <td></td>
+                    <td>15</td>
+                    <td>Stk</td>
+                    <td>Til montering af spær på rem</td>
+                </tr>
+                <tr>
+                    <td>4,5 x 60 mm. skruer 200 stk.</td>
+                    <td></td>
+                    <td>1</td>
+                    <td>Pakke</td>
+                    <td>Til montering af stern&vandbrædt</td>
+                </tr>
+                <tr>
+                    <td>4,0 x 50 mm. beslagskruer 250 stk.</td>
+                    <td></td>
+                    <td>3</td>
+                    <td>Pakke</td>
+                    <td>Til montering af universalbeslag + hulbånd</td>
+                </tr>
+                <tr>
+                    <td>bræddebolt 10 x 120 mm.</td>
+                    <td></td>
+                    <td>18</td>
+                    <td>Stk</td>
+                    <td>Til montering af rem på stolper</td>
+                </tr>
+                <tr>
+                    <td>firkantskiver 40x40x11mm</td>
+                    <td></td>
+                    <td>12</td>
+                    <td>Stk</td>
+                    <td>Til montering af rem på stolper</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+    <footer class="section footer-classic context-dark bg-image rounded navbar-dark text-white" style="background-color: #003D76">
+        <div class="container">
+            <div class="row row-30 pt-2">
+                <div class="col-md-4 col-xl-5">
+                    <div class="pr-xl-4"><a class="brand" href="index.html">
+                        <img class="brand-logo-light" src="images/agency/logo-inverse-140x37.png" alt="" width="140" height="37" srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
+                        <p>Johannes Fog består af et Bolig & Designhus og ni Trælast & Byggecenter-butikker fordelt i hele Nordsjælland</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Johannes Fog A/S</h5>
+                    <dl class="contact-list">
+                        <dt>Adresse</dt>
+                        <dd> Firskovvej 20 - 2800 Lyngby</dd>
+                    </dl>
+                    <dl class="contact-list">
+                        <dt>Telefon:</dt>
+                        <dd>45 87 10 01 </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-xl-3">
+                    <h5>Links</h5>
+                    <ul class="nav-list">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Projects</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+
+
+
+<!-- jQuery  JavaScript -->
+<script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Datatables JavaScript -->
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
+<script>
+    $('#orders').DataTable( {
+        responsive: false,
+        paging: false,
+        ordering:  false
+    } );</script>
+
+
+</body>
+
+</html>
