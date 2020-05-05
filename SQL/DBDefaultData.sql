@@ -53,15 +53,15 @@ INSERT INTO `FogByggemarked`.`materials` (`name`,`price`,`amount`) VALUES ('B & 
 INSERT INTO `FogByggemarked`.`materials` (`amount`,`name`,`price`) VALUES ('100', '5,0 x 100 mm. skruer 100 stk.', 30);
 
 
-INSERT INTO `FogByggemarked`.`orders` VALUES (1,300,300,300,0);
-INSERT INTO `FogByggemarked`.`orders` VALUES (2,400,400,400,0);
-INSERT INTO `FogByggemarked`.`orders` VALUES (3,500,500,500,0);
-INSERT INTO `FogByggemarked`.`orders` VALUES (4,600,600,600,0);
-INSERT INTO `FogByggemarked`.`orders` VALUES (5,300,300,300,21);
-INSERT INTO `FogByggemarked`.`orders` VALUES (6,400,400,400,22);
-INSERT INTO `FogByggemarked`.`orders` VALUES (7,500,500,500,23);
-INSERT INTO `FogByggemarked`.`orders` VALUES (8,600,600,600,25);
-INSERT INTO `FogByggemarked`.`orders` VALUES (9,200,200,200,0);
+INSERT INTO `FogByggemarked`.`orders` VALUES (1,300,300,300,0, '2020-05-05 12:30:56');
+INSERT INTO `FogByggemarked`.`orders` VALUES (2,400,400,400,0, '2020-07-06 12:30:56');
+INSERT INTO `FogByggemarked`.`orders` VALUES (3,500,500,500,0, '2020-10-07 12:30:56');
+INSERT INTO `FogByggemarked`.`orders` VALUES (4,600,600,600,0, '2020-11-08 12:30:56');
+INSERT INTO `FogByggemarked`.`orders` VALUES (5,300,300,300,21, '2020-02-09 12:30:56');
+INSERT INTO `FogByggemarked`.`orders` VALUES (6,400,400,400,22, '2020-12-10 12:30:56');
+INSERT INTO `FogByggemarked`.`orders` VALUES (7,500,500,500,23, '2020-01-11 12:30:56');
+INSERT INTO `FogByggemarked`.`orders` VALUES (8,600,600,600,25, '2020-03-12 12:30:56');
+INSERT INTO `FogByggemarked`.`orders` VALUES (9,200,200,200,0, '2020-02-13 12:30:56');
 INSERT INTO `FogByggemarked`.`sheds` VALUES (1,5,50,50);
 INSERT INTO `FogByggemarked`.`sheds` VALUES (2,6,60,60);
 INSERT INTO `FogByggemarked`.`sheds` VALUES (3,7,70,70);
