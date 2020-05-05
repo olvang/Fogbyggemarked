@@ -9,20 +9,24 @@ import java.util.ArrayList;
 
 public class Bill extends Command{
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response ) {
+    public String execute(HttpServletRequest request, HttpServletResponse response ) {
         //TODO update when Bill Page Exist
 
         //Used for printing to console while testing
         ArrayList<BillLine> billLines;
         try {
-            billLines = LogicFacade.getBillLines(1);
-            for(BillLine line: billLines){
+            int orderID = Integer.parseInt(request.getParameter("order_id"));
+            billLines = LogicFacade.getBillLines(orderID);
+            request.setAttribute("order_id", orderID);
+            request.setAttribute("bill", billLines);
+
+            /*for(BillLine line: billLines){
                 System.out.println(line.getMaterial().getName() + " Antal: " + line.getAmount() + " - Længde: " + line.getMaterial().getLength() + " CAT ID: " + line.getMaterial().getCategory());
-            }
+            }*/
         } catch (Exception e) {
-            e.printStackTrace();
+            return "request";
         }
 
-        return "request";
+        return "material-bill";
     }
 }

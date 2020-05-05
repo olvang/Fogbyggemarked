@@ -96,6 +96,7 @@
                     <li class="nav-item">
                         <form id="testForm" action="FrontController" method="POST">
                         <input type="hidden" name="target" value="bill">
+                        <input type="hidden" name="order_id" value="1">
                         <a class="nav-link" href="javascript:{}" onclick="document.getElementById('testForm').submit(); return false;">StykListe</a>
                         </form>
                     </li>
