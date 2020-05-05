@@ -104,7 +104,25 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         assertEquals(exspectedLength1, billLine.get(1).getMaterial().getLength());
 
     }
+    @Test
+    public void testscrewsForRoofLaths() throws Exception {
 
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+
+        ArrayList<Category> categoriesUsedInGeneratorTop = getCategoriesAvailable(new int[]{32});
+        ArrayList<BillLine> billLineTop = InclinedRoofGenerator.topRoofLathHolder(categoriesUsedInGeneratorTop,order);
+
+        ArrayList<Category> categoriesUsedInGeneratorroof = getCategoriesAvailable(new int[]{33});
+        ArrayList<BillLine> billLineroof = InclinedRoofGenerator.roofLathOnSper(categoriesUsedInGeneratorroof,order);
+
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{41});
+        ArrayList<BillLine> billLine = InclinedRoofGenerator.screwsForRoofLaths(categoriesUsedInGenerator,billLineTop,billLineroof);
+
+        int exspected = 8;
+
+        assertEquals(exspected,billLine.get(0).getAmount());
+
+    }
     @Test
     public void testTopRoofLathHolder() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{36});
