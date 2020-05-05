@@ -41,4 +41,8 @@ public class LogicFacade {
         BillCalculator billCalculator = new BillCalculator();
         return billCalculator.calculateBillFromOrder(getOrder(orderID));
     }
+
+    public static ArrayList<Order> getAllOrders() throws Exception {
+        return OrderMapper.getAllOrders();
+    }
 }
