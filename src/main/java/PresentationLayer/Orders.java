@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Orders extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response ) throws CommandException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         //Sets the session
         HttpSession session = request.getSession();
 
@@ -21,12 +21,12 @@ public class Orders extends Command {
         try {
             orders = LogicFacade.getAllOrders();
         } catch (Exception e) {
-            session.setAttribute( "error", "Kunne ikke hente ordrene fra databasen" );
+            request.setAttribute( "error", "Kunne ikke hente ordrene fra databasen" );
             return "orders";
         }
 
-        //Sets the order array on the session
-        session.setAttribute( "orders", orders );
+        //Sets the order array on the request
+        request.setAttribute( "orders", orders );
         return "orders";
     }
 
