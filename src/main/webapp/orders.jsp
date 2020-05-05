@@ -34,8 +34,10 @@
                     <td>${order.depth.depth}</td>
                     <td>${order.width.width}</td>
                     <td><span class="badge badge-pill badge-primary">Afventer Sælger</span></td>
-                    <td>01/01/2001</td>
-                    <td class="text-center"><a href="vieworder.jsp?o=${order.orderId}" style=" color: unset"><i class="fas fa-eye"></i></a></td>
+                    <td>${order.orderDate}</td>
+                    <td class="text-center">
+                        <a href="vieworder.jsp?o=${order.orderId}" style=" color: unset"><i class="fas fa-eye"></i></a>
+                    </td>
                 </tr>
                 </c:forEach>
 
@@ -71,7 +73,8 @@
 
 <script>
     $('#orders').DataTable( {
-        responsive: true
+        responsive: true,
+        "order": [[ 5, "desc" ]]
     } );</script>
 
 
