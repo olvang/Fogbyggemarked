@@ -28,6 +28,7 @@ public class FlatRoofGenerator {
      * @return ArrayList<BillLine>
      */
     public static ArrayList<BillLine> roofPanels(ArrayList<Category> categoriesUsedInGenerator, Order order) {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         int depth = order.getDepth().getDepth();
         int width = order.getWidth().getWidth();
         Category category = categoriesUsedInGenerator.get(0);
@@ -67,13 +68,14 @@ public class FlatRoofGenerator {
         //Then we convert the int array to actual BillLines, containing the amounts we need.
         for(int i = 0; i < amountUsedForEachMaterial.length; i++) {
             if(amountUsedForEachMaterial[i] > 0) {
-                listToBeReturned.add(new BillLine(listOfMaterials.get(i), amountUsedForEachMaterial[i]));
+                listToBeReturned.add(new BillLine(listOfMaterials.get(i), amountUsedForEachMaterial[i], categoryDescription));
             }
         }
         return listToBeReturned;
     }
 
     public static ArrayList<BillLine> screwsForRoofPanels(ArrayList<Category> categoriesUsedInGenerator,Order order) {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         //divided by 100 to convert to meter
         int orderWidth = order.getWidth().getWidth() / 100;
@@ -95,7 +97,7 @@ public class FlatRoofGenerator {
             amountOfScrewPacks++;
         }
 
-        BillLine billLine = new BillLine(screwPackMaterial,amountOfScrewPacks);
+        BillLine billLine = new BillLine(screwPackMaterial,amountOfScrewPacks, categoryDescription);
         billLines.add(billLine);
 
         return billLines;

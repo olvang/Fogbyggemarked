@@ -17,11 +17,12 @@ public class ShedGenerator {
     public static ArrayList<BillLine> zOnBackOfDoor(ArrayList<Category> categoriesUsedInGenerator) {
         //We only need one a material in the category
         //For now there is no calculation so we just return the first material in the category
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine = null;
 
         //Since there is no calculation for which skiver to select, we just use the first one available to us, and set the amount to 1
-        billLine = new BillLine(categoriesUsedInGenerator.get(0).getMaterialAtIndex(0),1);
+        billLine = new BillLine(categoriesUsedInGenerator.get(0).getMaterialAtIndex(0),1, categoryDescription);
 
         billLines.add(billLine);
 
@@ -29,6 +30,7 @@ public class ShedGenerator {
     }
 
     public static ArrayList<BillLine> losholterGabled(ArrayList<Category> categoriesUsedInGenerator, int widthOfShed) {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine;
         Material material  = null;
@@ -65,14 +67,14 @@ public class ShedGenerator {
         }
 
         //Returns the billLine
-        billLine = new BillLine(material,losholter);
+        billLine = new BillLine(material,losholter, categoryDescription);
         billLines.add(billLine);
 
         return billLines;
     }
 
     public static ArrayList<BillLine> RemInSidesShed(ArrayList<Category> categoriesUsedInGenerator, ShedDepthComponent sDepthCom) {
-
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine = null;
         ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
@@ -87,7 +89,7 @@ public class ShedGenerator {
             Material mat =  materialsSortedByLength.get(i);
 
             if((mat.getLength() / 10) / 2 > depth){
-                billLine = new BillLine(mat,1);
+                billLine = new BillLine(mat,1, categoryDescription);
                 billLines.add(billLine);
                 return  billLines;
             }
@@ -96,7 +98,7 @@ public class ShedGenerator {
         rest = depth % longestMaterialLength;
 
         if(amountUsed != 0){
-            billLine = new BillLine(materialsSortedByLength.get(0),amountUsed);
+            billLine = new BillLine(materialsSortedByLength.get(0),amountUsed, categoryDescription);
             billLines.add(billLine);
         }
 
@@ -109,11 +111,11 @@ public class ShedGenerator {
 
             if(rest - (mat.getLength() / 10) < 0){
                 amountUsed = amountUsed + 2;
-                billLine = new BillLine(mat,amountUsed);
+                billLine = new BillLine(mat,amountUsed, categoryDescription);
 
             } else if(i == 0){
                 //If it is the last material(largest) then use that
-                billLine = new BillLine(mat,amountUsed);
+                billLine = new BillLine(mat,amountUsed, categoryDescription);
             }
         }
         billLines.add(billLine);
@@ -122,6 +124,7 @@ public class ShedGenerator {
     }
 
     public static ArrayList<BillLine> losholterSides(ArrayList<Category> categoriesUsedInGenerator, int depthOfShed) {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine;
         Material material  = null;
@@ -157,13 +160,14 @@ public class ShedGenerator {
         }
 
         //Returns the billLine
-        billLine = new BillLine(material,losholter);
+        billLine = new BillLine(material,losholter, categoryDescription);
         billLines.add(billLine);
 
         return billLines;
     }
 
     public static ArrayList<BillLine> boardsForShed(ArrayList<Category> categoriesUsedInGenerator,int orderHeight, int orderShedWidth,int orderShedDepth) {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine;
         Material material;
@@ -270,7 +274,7 @@ public class ShedGenerator {
         //(Shed perimeter / twoBoardWidths) * 2 * amountOfBoardsPerColumn
         int amountOfBoards = (shedPerimeter / twoBoardWidths) * 2 * amountOfBoardsPerColumn;
 
-        billLine = new BillLine(materialToUse,amountOfBoards);
+        billLine = new BillLine(materialToUse,amountOfBoards, categoryDescription);
         billLines.add(billLine);
 
         return billLines;
@@ -279,9 +283,10 @@ public class ShedGenerator {
     public static ArrayList<BillLine> stalddorsgreb(ArrayList<Category> categoriesUsedInGenerator, int amountOfDoors) {
         //The amount of staldørsgreb to use is based on the amount of doors.
         //There aren't really any calculations to do here.
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> lineToReturn = new ArrayList<>();
         Material mat = categoriesUsedInGenerator.get(0).getMaterialAtIndex(0);
-        BillLine line = new BillLine(mat, amountOfDoors);
+        BillLine line = new BillLine(mat, amountOfDoors, categoryDescription);
         lineToReturn.add(line);
 
         return lineToReturn;
@@ -291,9 +296,10 @@ public class ShedGenerator {
         //The amount of staldørsgreb to use is based on the amount of doors.
         //That is 2 per door
         //There aren't really any calculations to do here.
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> lineToReturn = new ArrayList<>();
         Material mat = categoriesUsedInGenerator.get(0).getMaterialAtIndex(0);
-        BillLine line = new BillLine(mat, (amountOfDoors * 2) );
+        BillLine line = new BillLine(mat, (amountOfDoors * 2) , categoryDescription);
         lineToReturn.add(line);
 
         return lineToReturn;
@@ -301,9 +307,10 @@ public class ShedGenerator {
 
     public static ArrayList<BillLine> vinkelBeslag(ArrayList<Category> categoriesUsedInGenerator, int amountOfLosholter) {
         //The amount of vinkelbeslag is just the double of løsholter
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> lineToReturn = new ArrayList<>();
         Material mat = categoriesUsedInGenerator.get(0).getMaterialAtIndex(0);
-        BillLine line = new BillLine(mat, (amountOfLosholter * 2) );
+        BillLine line = new BillLine(mat, (amountOfLosholter * 2), categoryDescription );
         lineToReturn.add(line);
 
         return lineToReturn;
@@ -312,6 +319,7 @@ public class ShedGenerator {
     public static ArrayList<BillLine> screwsForOuter(ArrayList<Category> materialsUsedInGenerator, int length, int amount) {
         //Antal beklædning på skur 1 på 2 * længden af dem, divideret med 52.5
 
+        String categoryDescription = materialsUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;
         Material materialToUse;
@@ -324,7 +332,7 @@ public class ShedGenerator {
 
         int amountInBox = screws.get(0).getAmount();
         int total = (int) Math.ceil(1.0 * amountOfScrewsUsed / amountInBox);
-        billLine = new BillLine(materialToUse, total);
+        billLine = new BillLine(materialToUse, total, categoryDescription);
         billLines.add(billLine);
         return billLines;
 
@@ -333,6 +341,8 @@ public class ShedGenerator {
     public static ArrayList<BillLine> screwsForInner(ArrayList<Category> materialsUsedInGenerator, Order order) {
         //DESC: Antal af løsholter til skur-gavle * længden deraf
         // + Antal af løsholter til skur-sider * længden deraf, divideret med 7
+
+        String categoryDescription = materialsUsedInGenerator.get(2).getDescription();
 
         //Getting løsholter
         ArrayList<BillLine> losholter1 = losholterGabled(
@@ -371,7 +381,7 @@ public class ShedGenerator {
             materialToUse = screws.get(0);
             int amountInBox = screws.get(0).getAmount();
             int total = (int) Math.ceil(1.0 * amountOfScrews / amountInBox);
-            lineToReturn = new BillLine(materialToUse, total);
+            lineToReturn = new BillLine(materialToUse, total, categoryDescription);
             listToReturn.add(lineToReturn);
             return listToReturn;
         }
@@ -388,7 +398,7 @@ public class ShedGenerator {
             }
         }
 
-        lineToReturn = new BillLine(materialToUse, boxesNeeded);
+        lineToReturn = new BillLine(materialToUse, boxesNeeded, categoryDescription);
         listToReturn.add(lineToReturn);
 
         return listToReturn;
