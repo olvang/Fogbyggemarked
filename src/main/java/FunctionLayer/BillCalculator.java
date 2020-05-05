@@ -502,7 +502,8 @@ public class BillCalculator {
                     billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator, order, billLinesFinal);
                     billLine.get(0).setAmount(billLine.get(0).getAmount() + 1); //A box more is needed for this one
                     break;
-                case 40: //Skruer, samme som 21
+
+                case 40: //Screws, same as 21 + 1 one more
                     categoryIdsUsedInGenerator = new int[]{10,40};
 
                     //Gets a list with only the categories needed
@@ -512,17 +513,30 @@ public class BillCalculator {
                     numberOfBeslag += GeneratorUtilities.searchForAmountInACategoryFromBillLines(18, billLinesFinal);
                     numberOfBeslag += GeneratorUtilities.searchForAmountInACategoryFromBillLines(19, billLinesFinal);
 
-                    //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.screwsForUniversalBeslagAndPerforatedBand(categoriesUsedInGenerator, order, numberOfBeslag);
+
+                    if(numberOfBeslag == 0){
+                        //numberOfBeslag will equal 0 if category 18 and 19 has not be calculated
+                        throw new GeneratorException("Kan ikke beregne skruer til montering af universalbeslag + toplægte");
+                    }else{
+                        //Calls the generator and returns the BillLine
+                        billLine = CarportGenerator.screwsForUniversalBeslagAndPerforatedBand(categoriesUsedInGenerator, order, numberOfBeslag);
+                        billLine.get(0).setAmount(billLine.get(0).getAmount() + 1); //A box more is needed for this one
+                    }
                     break;
                 case 41: // 5,0 x 100 mm. skruer 100 stk.
                     categoryIdsUsedInGenerator = new int[]{41};
-
-                    //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
+                    categoryIdsUsedInGenerator = new int[]{33};
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+                    ArrayList<BillLine> topRoofLath = InclinedRoofGenerator.topRoofLath(categoriesUsedInGenerator, order);
+
+                    categoryIdsUsedInGenerator = new int[]{32};
+                    categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
+                    ArrayList<BillLine> roofLathOnSper = InclinedRoofGenerator.roofLathOnSper(categoriesUsedInGenerator, order);
+
                     //Calls the generator and returns the BillLine
-                    billLine = InclinedRoofGenerator.screwsForRoofLaths(categoriesUsedInGenerator);
+                    billLine = InclinedRoofGenerator.screwsForRoofLaths(categoriesUsedInGenerator, topRoofLath,roofLathOnSper);
                     break;
             }
             if(billLine != null){
