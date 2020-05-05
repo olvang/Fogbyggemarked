@@ -1,10 +1,10 @@
 package FunctionLayer;
 
 import Components.*;
-import FunctionLayer.Exceptions.ValidationFailedException;
 
 public class Order {
 
+    private int orderId;
     private DepthComponent depth;
     private HeightComponent height;
     private WidthComponent width;
@@ -32,6 +32,14 @@ public class Order {
         this.width = width;
         this.incline = incline;
         this.withShed = withShed;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public DepthComponent getDepth() {
