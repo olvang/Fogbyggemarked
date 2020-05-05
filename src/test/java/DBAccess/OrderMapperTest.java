@@ -11,6 +11,7 @@ import org.junit.Test;
 import testDataSetup.TestDataSetup;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -57,5 +58,22 @@ public class OrderMapperTest extends TestDataSetup {
         }
 
         assertEquals(carportHeight, order.getHeight().getHeight());
+    }
+
+    @Test
+    public void TestGetAllOrders(){
+        OrderMapper om = new OrderMapper();
+        ArrayList<Order> orders = null;
+        try {
+            orders = om.getAllOrders();
+        } catch (Exception e) {
+            fail("Could not get orders, exception: " + e);
+        }
+
+        assertEquals(1, orders.get(0).getOrderId());
+        assertEquals(3, orders.get(2).getOrderId());
+        assertEquals(5, orders.get(4).getOrderId());
+        assertEquals(9, orders.get(8).getOrderId());
+
     }
 }

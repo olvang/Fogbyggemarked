@@ -2,9 +2,9 @@ package DBAccess;
 
 import Components.*;
 import FunctionLayer.Order;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class OrderMapper {
     /*
@@ -96,6 +96,57 @@ public class OrderMapper {
         return ord;
 
     }
+
+    /*
+        Gets all orders. Check whether the order has
+        a shed on it or not.
+     */
+
+    public static ArrayList<Order> getAllOrders() throws Exception {
+        ArrayList<Order> orders = new ArrayList<>();
+        Order order;
+        try{
+            Connection con = Connector.connection();
+
+            String SQL = "SELECT * FROM ORDERS left join sheds on orders.order_id = sheds.order_id;";
+
+            PreparedStatement ps = con.prepareStatement(SQL);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int order_id = rs.getInt("order_id");
+                WidthComponent widthComponent = new WidthComponent(rs.getInt("carport_width"));
+                DepthComponent depthComponent = new DepthComponent(rs.getInt("carport_depth"));
+                HeightComponent heightComponent = new HeightComponent(rs.getInt("carport_height"));
+                InclineComponent carportIncline = new InclineComponent(rs.getInt("carport_incline"));
+
+
+                if(doesShedExists(order_id)) {
+
+                    ShedWidthComponent shedWidthComponent = new ShedWidthComponent(rs.getInt("shed_width"),widthComponent);
+                    ShedDepthComponent shedDepthComponent = new ShedDepthComponent(rs.getInt("shed_depth"),depthComponent);
+
+                    order = new Order(depthComponent,heightComponent,widthComponent,shedDepthComponent, shedWidthComponent,carportIncline,true);
+                }else{
+                    order = new Order(depthComponent,heightComponent,widthComponent,carportIncline,false);
+                }
+                order.setOrderId(order_id);
+                orders.add(order);
+            }
+
+
+        }catch (SQLException e){
+            throw new SQLException(e.getMessage() + " Could not find any orders in order mapper");
+        }catch (ClassNotFoundException e){
+            throw new ClassCastException(e.getMessage() + " Connection could not be created in order mapper");
+        }
+
+        return orders;
+
+    }
+
+
     /*
         Check whether or not a shed exists to the given ID.
         Primary job, being a helper class to the method - getOrder
