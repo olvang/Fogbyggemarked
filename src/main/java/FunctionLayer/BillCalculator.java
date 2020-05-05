@@ -263,7 +263,7 @@ public class BillCalculator {
                     break;
                 case 20: //Til montering af stern & vandbrædt
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{13,14,20};
+                    categoryIdsUsedInGenerator = new int[]{20,13,14};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);

@@ -292,6 +292,7 @@ public class InclinedRoofGenerator {
     public static ArrayList<BillLine> screwsForRoofLaths(ArrayList<Category> categoriesUsedInGenerator, ArrayList<BillLine> topRoofLath, ArrayList<BillLine> roofLathOnSper) {
 
         Material materialToUse = categoriesUsedInGenerator.get(0).getMaterials().get(0);
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
         double total = 0;
 
@@ -307,7 +308,7 @@ public class InclinedRoofGenerator {
 
         ArrayList<BillLine> billLines = new ArrayList<>();
 
-        billLines.add(new BillLine(materialToUse,packsOfScrews));
+        billLines.add(new BillLine(materialToUse,packsOfScrews,categoryDescription));
 
         return billLines;
     }

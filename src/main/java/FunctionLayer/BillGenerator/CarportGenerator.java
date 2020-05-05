@@ -377,7 +377,7 @@ public class CarportGenerator {
 
     public static ArrayList<BillLine> screwsForSternAndWaterBoard(ArrayList<Category> categoriesUsedInGenerator, Order order, ArrayList<BillLine> finishedList) {
         //Desc: Længden af vand brædder / 13,5
-        String categoryDescription = categoriesUsedInGenerator.get(1).getDescription();
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<Material> waterboards = new ArrayList();
         Category screws = categoriesUsedInGenerator.get(0);
         //<editor-fold desc="Gets the waterboards, one way or another" defaultstate="collapsed">
@@ -395,18 +395,21 @@ public class CarportGenerator {
         //If that is the case, we'll have to run the calculation ourselves.
         if(waterboards.size() == 0) {
             ArrayList<BillLine> frontBoards = FlatRoofGenerator.waterBoardOnSternFront(
-                    new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(0));}}, order
-            );
-            ArrayList<BillLine> sideBoards = FlatRoofGenerator.waterBoardOnSternSides(
-                    new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(1));}}, order.getDepth()
+                    new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(1));}}, order
             );
             for(BillLine line : frontBoards) {
                 line.getMaterial().setAmount(line.getAmount());
                 waterboards.add(line.getMaterial());
             }
-            for(BillLine line : sideBoards) {
-                line.getMaterial().setAmount(line.getAmount());
-                waterboards.add(line.getMaterial());
+            //This method is called from multiple places, and one of them only doesn't use this category
+            if(categoriesUsedInGenerator.size() > 2) {
+                ArrayList<BillLine> sideBoards = FlatRoofGenerator.waterBoardOnSternSides(
+                        new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(2));}}, order.getDepth()
+                );
+                for(BillLine line : sideBoards) {
+                    line.getMaterial().setAmount(line.getAmount());
+                    waterboards.add(line.getMaterial());
+                }
             }
         }
         //</editor-fold>
