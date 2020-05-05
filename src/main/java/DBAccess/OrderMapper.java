@@ -59,6 +59,8 @@ public class OrderMapper {
 
     public static Order getOrder(int ID) throws Exception {
         Order ord;
+        int order_id;
+        Date orderDate;
         try{
             Connection con = Connector.connection();
 
@@ -71,10 +73,13 @@ public class OrderMapper {
             ResultSet rs = ps.executeQuery();
             rs.next();
 
+            order_id = rs.getInt("order_id");
             WidthComponent widthComponent = new WidthComponent(rs.getInt("carport_width"));
             DepthComponent depthComponent = new DepthComponent(rs.getInt("carport_depth"));
             HeightComponent heightComponent = new HeightComponent(rs.getInt("carport_height"));
             InclineComponent carportIncline = new InclineComponent(rs.getInt("carport_incline"));
+            Timestamp ts = rs.getTimestamp("order_date");
+            orderDate = new Date(ts.getTime());
 
 
             if(doesShedExists(ID)) {
@@ -93,6 +98,8 @@ public class OrderMapper {
             throw new ClassCastException(e.getMessage() + " Connection could not be created in order mapper");
         }
 
+        ord.setOrderId(order_id);
+        ord.setOrderDate(orderDate);
         return ord;
 
     }
@@ -120,6 +127,8 @@ public class OrderMapper {
                 DepthComponent depthComponent = new DepthComponent(rs.getInt("carport_depth"));
                 HeightComponent heightComponent = new HeightComponent(rs.getInt("carport_height"));
                 InclineComponent carportIncline = new InclineComponent(rs.getInt("carport_incline"));
+                Timestamp ts = rs.getTimestamp("order_date");
+                Date orderDate = new Date(ts.getTime());
 
 
                 if(doesShedExists(order_id)) {
@@ -132,6 +141,7 @@ public class OrderMapper {
                     order = new Order(depthComponent,heightComponent,widthComponent,carportIncline,false);
                 }
                 order.setOrderId(order_id);
+                order.setOrderDate(orderDate);
                 orders.add(order);
             }
 
