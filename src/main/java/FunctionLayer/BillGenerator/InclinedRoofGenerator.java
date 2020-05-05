@@ -51,7 +51,7 @@ public class InclinedRoofGenerator {
 
 
         //Returns the billLine, amountOfSoffitPerEnd * 2 since we need
-        billLine = new BillLine(material, amountOfSoffitPerEnd * 2);
+        billLine = new BillLine(material, amountOfSoffitPerEnd * 2, categoriesUsedInGenerator.get(0).getDescription());
         billLines.add(billLine);
 
         return billLines;
@@ -92,7 +92,7 @@ public class InclinedRoofGenerator {
         }
 
         //Returns the billLine, amountOfBoards * 2 since we need
-        billLine = new BillLine(material, amountOfBoards);
+        billLine = new BillLine(material, amountOfBoards, categoriesUsedInGenerator.get(0).getDescription());
         billLines.add(billLine);
 
         return billLines;
@@ -132,7 +132,7 @@ public class InclinedRoofGenerator {
         //We need to the back aswell. Plus a error magin of .05
         int amountOfBoards = (int) Math.ceil(amountOfBoardsToUse * 2.05);
 
-        billLine = new BillLine(materialToUse,amountOfBoards );
+        billLine = new BillLine(materialToUse,amountOfBoards, categoriesUsedInGenerator.get(0).getDescription());
         billLines.add(billLine);
 
         return billLines;
@@ -146,7 +146,7 @@ public class InclinedRoofGenerator {
         depth = depth / 100; //since the depth is stored in cm
         int amount = (int) Math.ceil(depth * 3.0);
 
-        BillLine line = new BillLine(categoriesUsedInGenerator.get(0).getMaterials().get(0), amount);
+        BillLine line = new BillLine(categoriesUsedInGenerator.get(0).getMaterials().get(0), amount, categoriesUsedInGenerator.get(0).getDescription());
         list.add(line);
 
         return list;
@@ -156,6 +156,7 @@ public class InclinedRoofGenerator {
 
         ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
 
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         Material material = materialsSortedByLength.get(0);
         int longestMaterialLength = material.getLength() / 10;
         ArrayList<BillLine> billLines = new ArrayList<>();
@@ -169,14 +170,14 @@ public class InclinedRoofGenerator {
         double needToBeCoveredDepth = depth * 1.8;
 
         if(needToBeCoveredDepth < longestMaterialLength){
-            billLine = new BillLine(material,rows);
+            billLine = new BillLine(material,rows, categoryDescription);
             billLines.add(billLine);
             return billLines;
         }
 
         int amountUsed = (int) needToBeCoveredDepth / longestMaterialLength;
 
-        billLines.add(new BillLine(material,amountUsed * rows));
+        billLines.add(new BillLine(material,amountUsed * rows, categoryDescription));
 
         double rest = needToBeCoveredDepth % material.getLength();
 
@@ -184,10 +185,10 @@ public class InclinedRoofGenerator {
             material = materialsSortedByLength.get(i);
 
             if(material.getLength() / 100 > rest){
-                billLines.add(new BillLine(material,amountUsed * rows));
+                billLines.add(new BillLine(material,amountUsed * rows, categoryDescription));
                 return billLines;
             }else if(i == 0){
-                billLines.add(new BillLine(material,amountUsed * rows));
+                billLines.add(new BillLine(material,amountUsed * rows, categoryDescription));
                 return billLines;
             }
         }
@@ -198,6 +199,7 @@ public class InclinedRoofGenerator {
         ArrayList<Material> possibleMaterials = categoriesUsedInGenerator.get(0).getMaterials();
         int orderDepth = order.getDepth().getDepth();
         Material materïalToUse = null;
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
         int lowestAmount = Integer.MAX_VALUE;
         for(Material mat : possibleMaterials) {
@@ -212,7 +214,7 @@ public class InclinedRoofGenerator {
         if(materïalToUse == null) {
             throw new GeneratorException("No material was selected in topRooFlath");
         }
-        BillLine line = new BillLine(materïalToUse, lowestAmount);
+        BillLine line = new BillLine(materïalToUse, lowestAmount, categoryDescription);
         ArrayList<BillLine> list = new ArrayList<>();
         list.add(line);
 
@@ -222,12 +224,13 @@ public class InclinedRoofGenerator {
     public static ArrayList<BillLine> topRoofLathHolder(ArrayList<Category> categoriesUsedInGenerator, Order order) {
         //Amount is calculated by taking depth in m / 0.9
         ArrayList<BillLine> list = new ArrayList<>();
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
         double depth = order.getDepth().getDepth();
         depth = depth / 100; //since the depth is stored in cm
         int amount = (int) Math.ceil(depth / 0.9);
 
-        BillLine line = new BillLine(categoriesUsedInGenerator.get(0).getMaterials().get(0), amount);
+        BillLine line = new BillLine(categoriesUsedInGenerator.get(0).getMaterials().get(0), amount, categoryDescription);
         list.add(line);
 
         return list;
@@ -236,7 +239,8 @@ public class InclinedRoofGenerator {
 
     public static ArrayList<BillLine> rygstenBracket(ArrayList<Category> categoriesUsedInGenerator, int amountOfRygsten) {
         Material materialToUse = categoriesUsedInGenerator.get(0).getMaterials().get(0);
-        BillLine line = new BillLine(materialToUse, amountOfRygsten);
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
+        BillLine line = new BillLine(materialToUse, amountOfRygsten, categoryDescription);
         ArrayList<BillLine> list = new ArrayList<>();
         list.add(line);
         return list;
@@ -244,6 +248,7 @@ public class InclinedRoofGenerator {
 
     public static ArrayList<BillLine> roofTileBinders(ArrayList<Category> categoriesUsedInGenerator, int roofTilesAmount, int rygstenAmount) {
         ArrayList<Material> possibleMaterials = GeneratorUtilities.sortMaterialsByAmount(categoriesUsedInGenerator.get(0).getMaterials());
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine;
@@ -278,7 +283,7 @@ public class InclinedRoofGenerator {
         }
 
 
-        billLine = new BillLine(materialToUse,amountOfPackages);
+        billLine = new BillLine(materialToUse,amountOfPackages, categoryDescription);
         billLines.add(billLine);
 
         return billLines;
@@ -287,6 +292,7 @@ public class InclinedRoofGenerator {
     public static ArrayList<BillLine> screwsForRoofLaths(ArrayList<Category> categoriesUsedInGenerator, ArrayList<BillLine> topRoofLath, ArrayList<BillLine> roofLathOnSper) {
 
         Material materialToUse = categoriesUsedInGenerator.get(0).getMaterials().get(0);
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
         double total = 0;
 
@@ -302,13 +308,13 @@ public class InclinedRoofGenerator {
 
         ArrayList<BillLine> billLines = new ArrayList<>();
 
-        billLines.add(new BillLine(materialToUse,packsOfScrews));
+        billLines.add(new BillLine(materialToUse,packsOfScrews,categoryDescription));
 
         return billLines;
     }
 
     public static ArrayList<BillLine> roofTiles(ArrayList<Category> categoriesUsedInGenerator, Order order) {
-
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
         Material material = materialsSortedByLength.get(0);
         ArrayList<BillLine> billLines = new ArrayList<>();
@@ -322,7 +328,7 @@ public class InclinedRoofGenerator {
         //there is used 9 rooftiles pr. m^2
         int amountOfRootTilesUsed = (int) area * 9;
 
-        billLine = new BillLine(material,amountOfRootTilesUsed);
+        billLine = new BillLine(material,amountOfRootTilesUsed, categoryDescription);
 
         billLines.add(billLine);
 

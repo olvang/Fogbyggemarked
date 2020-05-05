@@ -180,7 +180,7 @@ public class CarportGeneratorTest extends TestDataSetup {
     @Test
 
     public void testScrewsForSternAndWaterboard() throws Exception {
-        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{13,14,20});
+        ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{20,13,14});
         Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(1000),
                 new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator, order, new ArrayList<BillLine>());

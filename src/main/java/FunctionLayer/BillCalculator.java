@@ -263,7 +263,7 @@ public class BillCalculator {
                     break;
                 case 20: //Til montering af stern & vandbrædt
                     //The material categories needed in the generator method
-                    categoryIdsUsedInGenerator = new int[]{13,14,20};
+                    categoryIdsUsedInGenerator = new int[]{20,13,14};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
@@ -320,10 +320,10 @@ public class BillCalculator {
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
                     //Gets the length and amount of boards used for the shed.
-                    //billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator,order.getHeight().getHeight(), order.getShedWidth().getWidth(),order.getShedDepth().getDepth());
+                    billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator,order.getHeight().getHeight(), order.getShedWidth().getWidth(),order.getShedDepth().getDepth());
 
-                    //int length = billLine.get(0).getMaterial().getLength();
-                    //int amount = billLine.get(0).getAmount();
+                    int length = billLine.get(0).getMaterial().getLength();
+                    int amount = billLine.get(0).getAmount();
 
                     //Now we can continue the calculation of case 24:
 
@@ -334,7 +334,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    //billLine = ShedGenerator.screwsForOuter(categoriesUsedInGenerator,length,amount);
+                    billLine = ShedGenerator.screwsForOuter(categoriesUsedInGenerator,length,amount);
                     break;
                 case 25: //til montering af inderste beklædning
                     //The material categories needed in the generator method
@@ -493,7 +493,7 @@ public class BillCalculator {
                     billLine = InclinedRoofGenerator.roofTileBinders(categoriesUsedInGenerator,roofTilesAmount,rygstenAmount);
                     break;
                 case 39: //Skruer, samme som 20
-                    categoryIdsUsedInGenerator = new int[]{13,14,39};
+                    categoryIdsUsedInGenerator = new int[]{39,14};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
@@ -502,8 +502,9 @@ public class BillCalculator {
                     billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator, order, billLinesFinal);
                     billLine.get(0).setAmount(billLine.get(0).getAmount() + 1); //A box more is needed for this one
                     break;
+
                 case 40: //Screws, same as 21 + 1 one more
-                    categoryIdsUsedInGenerator = new int[]{40};
+                    categoryIdsUsedInGenerator = new int[]{10,40};
 
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);

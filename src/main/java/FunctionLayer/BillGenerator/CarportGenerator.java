@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class CarportGenerator {
 
     public static ArrayList<BillLine> underSternsBredderFrontAndBack(ArrayList<Category> categoriesUsedInGenerator, WidthComponent carportWidth) throws GeneratorException {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine;
         Material material  = null;
@@ -57,7 +58,7 @@ public class CarportGenerator {
 
         //If boardAmount is more than 1 a calculation has been made, else something went wrong
         if(boardAmount >= 1){
-            billLine = new BillLine(material,boardAmount);
+            billLine = new BillLine(material,boardAmount, categoryDescription);
             billLines.add(billLine);
         }else{
             throw new GeneratorException("understernbrædder til for & bag ende kunne ikke beregnes");
@@ -66,7 +67,7 @@ public class CarportGenerator {
     }
 
     public static ArrayList<BillLine> sternsBredderSides(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom) {
-
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;
         ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
@@ -85,13 +86,13 @@ public class CarportGenerator {
         if(depth<longestMaterialLength){
             //Only two of the longest material is needed. Might need a for loop here to find the best material
             amountUsed = 2;
-            billLine = new BillLine(materialsSortedByLength.get(0),amountUsed);
+            billLine = new BillLine(materialsSortedByLength.get(0),amountUsed, categoryDescription);
             billLines.add(billLine);
             return billLines;
         }else{
             //Else we need to find how many times the longest material go into the depth.
             amountUsed = (depth / longestMaterialLength) * 2;
-            billLines.add(new BillLine(materialsSortedByLength.get(0),amountUsed));
+            billLines.add(new BillLine(materialsSortedByLength.get(0),amountUsed, categoryDescription));
             //And then find the rest
             rest = depth % longestMaterialLength;
         }
@@ -104,13 +105,13 @@ public class CarportGenerator {
             if(rest - (material.getLength() /10) < 0){
                 amountUsed = 2;
                 //TODO Change name of material
-                billLine = new BillLine(material,amountUsed);
+                billLine = new BillLine(material,amountUsed, categoryDescription);
                 billLines.add(billLine);
                 return billLines;
 
             } else if(i == 0){
                 //If it is the last material(largest) then use that
-                billLine = new BillLine(material,amountUsed);
+                billLine = new BillLine(material,amountUsed, categoryDescription);
                 billLines.add(billLine);
                 return billLines;
             }
@@ -119,6 +120,7 @@ public class CarportGenerator {
     }
 
     public static ArrayList<BillLine> overSternBredderFront(ArrayList<Category> categoriesUsedInGenerator, Order order) {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         int carportWidth = order.getWidth().getWidth();
         BillLine toBeReturned;
         Category cat = categoriesUsedInGenerator.get(0);
@@ -153,7 +155,7 @@ public class CarportGenerator {
                     }
                 }
             }
-            toBeReturned = new BillLine(materials.get(indexOfFewest), fewest);
+            toBeReturned = new BillLine(materials.get(indexOfFewest), fewest, categoryDescription);
         } else {
             int widthLeftover = carportWidth;
             int amountNeeded = 0;
@@ -161,18 +163,15 @@ public class CarportGenerator {
                 widthLeftover -= materials.get(0).getLength() /10;
                 amountNeeded++;
             }
-            toBeReturned = new BillLine(materials.get(0), amountNeeded);
+            toBeReturned = new BillLine(materials.get(0), amountNeeded, categoryDescription);
         }
 
         return new ArrayList<BillLine>() {{add(toBeReturned);}};
     }
-
-    public static ArrayList<BillLine> overSternBredderSides(ArrayList<Category> categoriesUsedInGenerator) {
-        return null;
-    }
     
 
     public static ArrayList<BillLine> RemInSidesCarport(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom, WidthComponent widthCom) {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine = null;
         ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
@@ -193,7 +192,7 @@ public class CarportGenerator {
         if(depth < longestMaterialLength){
             for (Material mat: materialsSortedByLength) {
                 if(mat.getLength() / 10 - depth > 0){
-                    billLine = new BillLine(mat,rows);
+                    billLine = new BillLine(mat,rows, categoryDescription);
                     billLines.add(billLine);
                     return billLines;
                 }
@@ -212,11 +211,11 @@ public class CarportGenerator {
             //The current lenght is long enough.
             if(rest - material.getLength() / 10 < 0){
                 amountUsed = amountUsed + rows;
-                billLine = new BillLine(material,amountUsed);
+                billLine = new BillLine(material,amountUsed, categoryDescription);
 
             } else if(i == 0){
                 //If it is the last material(largest) then use that
-                billLine = new BillLine(material,amountUsed);
+                billLine = new BillLine(material,amountUsed, categoryDescription);
             }
             billLines.add(billLine);
         }
@@ -224,6 +223,7 @@ public class CarportGenerator {
     }
 
     public static ArrayList<BillLine> sperOnRem(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         int carportDepth = order.getDepth().getDepth();
         int carportWidth = order.getWidth().getWidth();
         Category category = categoriesUsedInGenerator.get(0);
@@ -258,7 +258,7 @@ public class CarportGenerator {
 
         amount = (int) Math.ceil(carportDepth / 55.0);
         if(sperToUse != null) {
-            line = new BillLine(sperToUse, amount);
+            line = new BillLine(sperToUse, amount, categoryDescription);
         } else {
             throw new GeneratorException("Something went wrong while calculating the spærs.");
         }
@@ -267,6 +267,7 @@ public class CarportGenerator {
     }
 
     public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;
 
@@ -309,12 +310,12 @@ public class CarportGenerator {
 
             //If the the material height can fit within remaining carport heigth
             if(carportHeight / material.getLength() > 0){
-                billLine = new BillLine(material,total);
+                billLine = new BillLine(material,total, categoryDescription);
 
 
             } else if(i == 0){
                 //If it is the last material(largest) then use that
-                billLine = new BillLine(material,total);
+                billLine = new BillLine(material,total, categoryDescription);
             }
 
 
@@ -332,6 +333,7 @@ public class CarportGenerator {
         int width = order.getWidth().getWidth();
         int depth = order.getDepth().getDepth();
         int diagonal = (int) Math.ceil( Math.sqrt((width*width) + (depth*depth)) );
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
         Category category = categoriesUsedInGenerator.get(0);
         ArrayList<Material> list = category.getMaterials();
@@ -343,11 +345,11 @@ public class CarportGenerator {
         int amountToBeOrdered = (int) (Math.ceil(1.0 * diagonal / (materialToUse.getLength() / 10))) * 2;
 
 
-        return new ArrayList<BillLine>() {{add(new BillLine(materialToUse, amountToBeOrdered));}};
+        return new ArrayList<BillLine>() {{add(new BillLine(materialToUse, amountToBeOrdered, categoryDescription));}};
     }
 
     public static ArrayList<BillLine> UniversalBeslagRight(ArrayList<Category> categoriesUsedInGenerator, int sper, int remme) {
-
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;
 
@@ -355,19 +357,19 @@ public class CarportGenerator {
 
         int amountUsed = sper * ((remme/2)-1);
 
-        billLine = new BillLine(materialsSortedByLength.get(0),amountUsed);
+        billLine = new BillLine(materialsSortedByLength.get(0),amountUsed, categoryDescription);
         billLines.add(billLine);
 
         return billLines;
     }
     public static ArrayList<BillLine> UniversalBeslagLeft(ArrayList<Category> materialsUsedInGenerator, int sper) {
-
+        String categoryDescription = materialsUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;
 
         ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(materialsUsedInGenerator.get(0).getMaterials());
 
-        billLine = new BillLine(materialsSortedByLength.get(0),sper);
+        billLine = new BillLine(materialsSortedByLength.get(0),sper, categoryDescription);
         billLines.add(billLine);
 
         return billLines;
@@ -375,8 +377,9 @@ public class CarportGenerator {
 
     public static ArrayList<BillLine> screwsForSternAndWaterBoard(ArrayList<Category> categoriesUsedInGenerator, Order order, ArrayList<BillLine> finishedList) {
         //Desc: Længden af vand brædder / 13,5
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<Material> waterboards = new ArrayList();
-        Category screws = categoriesUsedInGenerator.get(2);
+        Category screws = categoriesUsedInGenerator.get(0);
         //<editor-fold desc="Gets the waterboards, one way or another" defaultstate="collapsed">
 
         //These screws are based on the length of the waterboards. We therefore need to check the results of
@@ -392,18 +395,21 @@ public class CarportGenerator {
         //If that is the case, we'll have to run the calculation ourselves.
         if(waterboards.size() == 0) {
             ArrayList<BillLine> frontBoards = FlatRoofGenerator.waterBoardOnSternFront(
-                    new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(0));}}, order
-            );
-            ArrayList<BillLine> sideBoards = FlatRoofGenerator.waterBoardOnSternSides(
-                    new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(1));}}, order.getDepth()
+                    new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(1));}}, order
             );
             for(BillLine line : frontBoards) {
                 line.getMaterial().setAmount(line.getAmount());
                 waterboards.add(line.getMaterial());
             }
-            for(BillLine line : sideBoards) {
-                line.getMaterial().setAmount(line.getAmount());
-                waterboards.add(line.getMaterial());
+            //This method is called from multiple places, and one of them only doesn't use this category
+            if(categoriesUsedInGenerator.size() > 2) {
+                ArrayList<BillLine> sideBoards = FlatRoofGenerator.waterBoardOnSternSides(
+                        new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(2));}}, order.getDepth()
+                );
+                for(BillLine line : sideBoards) {
+                    line.getMaterial().setAmount(line.getAmount());
+                    waterboards.add(line.getMaterial());
+                }
             }
         }
         //</editor-fold>
@@ -423,7 +429,7 @@ public class CarportGenerator {
             int total = (int) Math.ceil(1.0 * amountOfScrewsNeeded / amountInBox);
             return new ArrayList<BillLine>() {
                 {
-                    add(new BillLine(materialUsed, total));
+                    add(new BillLine(materialUsed, total, categoryDescription));
                 }
             };
         }
@@ -444,13 +450,14 @@ public class CarportGenerator {
         int finalBoxesNeeded = boxesNeeded;
         return new ArrayList<BillLine>() {
             {
-                add(new BillLine(finalFewest, finalBoxesNeeded));
+                add(new BillLine(finalFewest, finalBoxesNeeded, categoryDescription));
             }
         };
     }
 
     public static ArrayList<BillLine> screwsForUniversalBeslagAndPerforatedBand(ArrayList<Category> categoriesUsedInGenerator, Order order, int amountOfbeslag) throws GeneratorException {
         //DESC: 3 beslagskruer pr. beslagflade (3) (3*3).
+        String categoryDescription = categoriesUsedInGenerator.get(1).getDescription();
         // + 2 skruer i hvert spær som krydses af hulbåndet
         try {
             Category screws = categoriesUsedInGenerator.get(1);
@@ -491,7 +498,7 @@ public class CarportGenerator {
                 int total = (int) Math.ceil(1.0 * amountOfScrewsNeeded / amountInBox);
                 return new ArrayList<BillLine>() {
                     {
-                        add(new BillLine(materialUsed, total));
+                        add(new BillLine(materialUsed, total, categoryDescription));
                     }
                 };
             }
@@ -512,7 +519,7 @@ public class CarportGenerator {
             int finalBoxesNeeded = boxesNeeded;
             return new ArrayList<BillLine>() {
                 {
-                    add(new BillLine(finalFewest, finalBoxesNeeded));
+                    add(new BillLine(finalFewest, finalBoxesNeeded, categoryDescription));
                 }
             };
 
@@ -522,6 +529,7 @@ public class CarportGenerator {
     }
 
     public static ArrayList<BillLine> boltsForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator, int amountOfPosts, boolean withShed) {
+        String categoryDescription = CategoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine = null;
         //We need 2 bolts for each post
@@ -533,7 +541,7 @@ public class CarportGenerator {
         }
 
         //Since there is no calculation for which bolts to select, we just use the first one available to us
-        billLine = new BillLine(CategoriesUsedInGenerator.get(0).getMaterialAtIndex(0),boltAmount);
+        billLine = new BillLine(CategoriesUsedInGenerator.get(0).getMaterialAtIndex(0),boltAmount, categoryDescription);
 
         billLines.add(billLine);
 
@@ -542,6 +550,7 @@ public class CarportGenerator {
 
 
     public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator,int amountOfBolts) {
+        String categoryDescription = CategoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine = null;
 
@@ -550,7 +559,7 @@ public class CarportGenerator {
 
 
         //Since there is no calculation for which skiver to select, we just use the first one available to us
-        billLine = new BillLine(CategoriesUsedInGenerator.get(0).getMaterialAtIndex(0),skiveAmount);
+        billLine = new BillLine(CategoriesUsedInGenerator.get(0).getMaterialAtIndex(0),skiveAmount, categoryDescription);
 
         billLines.add(billLine);
 

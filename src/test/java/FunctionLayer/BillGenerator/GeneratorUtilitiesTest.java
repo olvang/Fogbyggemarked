@@ -164,10 +164,10 @@ public class GeneratorUtilitiesTest extends TestDataSetup {
             Material material2 = new Material(27, new MaterialLengthComponent(731), new MaterialHeightComponent(2672), new MaterialWidthComponent(2362), "Name2", 731, 1, 1);
             Material material3 = new Material(34, new MaterialLengthComponent(3229), new MaterialHeightComponent(2330), new MaterialWidthComponent(855), "Name3", 236, 2, 1);
             Material material4 = new Material(47, new MaterialLengthComponent(267), new MaterialHeightComponent(3461), new MaterialWidthComponent(243), "Name4", 346, 2, 1);
-            BillLine billLine1 = new BillLine(material1,1);
-            BillLine billLine2 = new BillLine(material2,2);
-            BillLine billLine3 = new BillLine(material3,3);
-            BillLine billLine4 = new BillLine(material4,4);
+            BillLine billLine1 = new BillLine(material1,1, "");
+            BillLine billLine2 = new BillLine(material2,2, "");
+            BillLine billLine3 = new BillLine(material3,3, "");
+            BillLine billLine4 = new BillLine(material4,4, "");
             billLines.add(billLine1);
             billLines.add(billLine2);
             billLines.add(billLine3);
