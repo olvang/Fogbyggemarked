@@ -18,6 +18,10 @@
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Datatables CSS -->
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
+
 
     <style>
         html,body{
@@ -94,6 +98,9 @@
                         <input type="hidden" name="target" value="bill">
                         <a class="nav-link" href="javascript:{}" onclick="document.getElementById('testForm').submit(); return false;">StykListe</a>
                         </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.jsp">Ordre</a>
                     </li>
                 </ul>
                 <form class="form-inline mt-2 mt-md-0" _lpchecked="1">
