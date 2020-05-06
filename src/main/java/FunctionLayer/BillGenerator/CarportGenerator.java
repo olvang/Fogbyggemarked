@@ -471,7 +471,7 @@ public class CarportGenerator {
             if(order.isWithShed() == true) {
                 //Makes an exact Deep Copy of the order, so we can make changes to it without affecting the actual order
                 orderWithoutShedDepth = new Order(
-                        new DepthComponent(order.getDepth().getDepth() - order.getShedDepth().getDepth()),
+                        new DepthComponent(order.getDepth().getDepth()),
                         new HeightComponent(order.getHeight().getHeight()),
                         new WidthComponent(order.getWidth().getWidth()), order.getInclineComponent(), false
                 );
