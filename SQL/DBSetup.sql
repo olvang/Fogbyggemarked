@@ -45,7 +45,8 @@ CREATE TABLE `materials` (
   `width` INT NULL DEFAULT 0,
   `amount` INT NOT NULL DEFAULT 1,
   `name` VARCHAR(55) NOT NULL,
-  `price` int not null
+  `price` int not null,
+  `unit` VARCHAR(55) NOT NULL
 );
 
 CREATE TABLE category (
