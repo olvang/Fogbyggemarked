@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 public class ViewOrder extends Command {
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         HttpSession session = request.getSession();
 
         Order order = null;

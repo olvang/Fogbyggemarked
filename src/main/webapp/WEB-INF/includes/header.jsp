@@ -93,15 +93,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="request.jsp">Byg Selv</a>
                     </li>
-                    <li class="nav-item">
+                    <%--<li class="nav-item">
                         <form id="testForm" action="FrontController" method="POST">
                         <input type="hidden" name="target" value="bill">
                         <input type="hidden" name="order_id" value="1">
                         <a class="nav-link" href="javascript:{}" onclick="document.getElementById('testForm').submit(); return false;">StykListe</a>
                         </form>
-                    </li>
+                    </li>--%>
                     <li class="nav-item">
-                        <a class="nav-link" href="orders.jsp">Ordre</a>
+                        <a class="nav-link" href="orders.jsp">Ordrer</a>
                     </li>
                 </ul>
                 <form class="form-inline mt-2 mt-md-0" _lpchecked="1">
