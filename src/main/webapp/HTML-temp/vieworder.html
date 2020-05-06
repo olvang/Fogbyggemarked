@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fog - Trælast og Byggecenter</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Datatables CSS -->
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/c97c9bd36e.js" crossorigin="anonymous"></script>
+
+
+    <style>
+        html,body{
+            height:100%;
+            padding-bottom: 60px;
+        }
+
+        .flex-container {
+            height: auto;
+            min-height: 56vh;
+            margin-bottom: 20px;
+        }
+
+        .context-dark, .bg-gray-dark, .bg-primary {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+            color: #ffffff;
+        }
+        .nav-list li {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .nav-list li a:hover:before {
+            margin-left: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        ul, ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .display-4 {
+            text-align: center;
+        }
+
+        /* Formatting the text for different screen sizes */
+        /* Large screens */
+        @media screen and (min-width: 992px) {
+            .entry-text {
+                white-space: nowrap;
+                margin-left: 10pt;
+                float:left;
+                font-size: 20pt;
+                font-weight: bold;
+                width: 35%;
+            }
+        }
+        .entry-conent {
+            white-space: nowrap;
+            font-size: 20pt;
+            float: snap;
+            width: 75%;
+        }
+        /* Medium screens */
+        @media screen and (min-width: 768px) and (max-width: 992px){
+            .entry-text {
+                float:left;
+                font-size: 20pt;
+                font-weight: bold;
+                width: 42%;
+            }
+        }
+        .entry-conent {
+            font-size: 20pt;
+            float: snap;
+            width: 58%;
+        }
+        /* Small screens */
+        @media screen and (min-width: 576px) and (max-width: 767px) {
+            .entry-text {
+                white-space: nowrap;
+                float:left;
+                font-size: 20pt;
+                font-weight: bold;
+                width: 40%;
+            }
+        }
+        .entry-conent {
+            white-space: nowrap;
+            font-size: 20pt;
+            float: snap;
+            width: 60%;
+        }
+        /* Very small screens */
+        @media screen and (max-width: 575px) {
+            .entry-text {
+                float:left;
+                font-size: 20pt;
+                font-weight: bold;
+                width: 50%;
+            }
+        }
+        .entry-conent {
+            font-size: 20pt;
+            float: snap;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
+<!-- Begin page content -->
+<main role="main" class="container h-100 " >
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-white" style="background-color: #0C2069;padding: 0px">
+            <img src="https://www.johannesfog.dk/globalassets/header/logo.png">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Carporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Byg Selv</a>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0" _lpchecked="1">
+                    <button class="btn btn-outline-success my-2 mr-2 my-sm-0" type="submit" style="color:white">Login</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit" style="color:white">Register</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Title header -->
+    <div class="text-center">
+        <h1 class="display-1">Ordre #</h1>
+    </div>
+    <div class="flex-container shadow my-5 py-5 px-5">
+        <div><a class="btn btn-primary btn-lg" href="#" role="button">Tilbage</a></div>
+        <div class="flex-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2 class="display-4">Carport</h2>
+                        <p class="entry-text">Dybde: </p>
+                        <p class="entry-conent">100 cm</p>
+
+                        <p class="entry-text">Bredde: </p>
+                        <p class="entry-conent">100 cm</p>
+
+                        <p class="entry-text">Højde: </p>
+                        <p class="entry-conent">100 cm</p>
+
+                        <h2 class="display-4">Skur</h2>
+
+                        <p class="entry-text">Dybde: </p>
+                        <p class="entry-conent">100 cm</p>
+
+                        <p class="entry-text">Bredde: </p>
+                        <p class="entry-conent">100 cm</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="display-4">Kunde</h2>
+
+                        <p class="entry-text">Navn: </p>
+                        <p class="entry-conent">John Doe</p>
+
+                        <p class="entry-text">Adresse: </p>
+                        <p class="entry-conent">KlodenRundt 4</p>
+
+                        <p class="entry-text">Email: </p>
+                        <p class="entry-conent">john@gmail.com</p>
+
+                        <p class="entry-text">Telefon: </p>
+                        <p class="entry-conent">12345678</p>
+
+                        <p class="entry-text">Postnr: </p>
+                        <p class="entry-conent">1234</p>
+
+                        <p class="entry-text">By: </p>
+                        <p class="entry-conent">Aabybro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <footer class="section footer-classic context-dark bg-image rounded navbar-dark text-white" style="background-color: #003D76">
+        <div class="container">
+            <div class="row row-30 pt-2">
+                <div class="col-md-4 col-xl-5">
+                    <div class="pr-xl-4"><a class="brand" href="index.html">
+                        <img class="brand-logo-light" src="images/agency/logo-inverse-140x37.png" alt="" width="140" height="37" srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
+                        <p>Johannes Fog består af et Bolig & Designhus og ni Trælast & Byggecenter-butikker fordelt i hele Nordsjælland</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Johannes Fog A/S</h5>
+                    <dl class="contact-list">
+                        <dt>Adresse</dt>
+                        <dd> Firskovvej 20 - 2800 Lyngby</dd>
+                    </dl>
+                    <dl class="contact-list">
+                        <dt>Telefon:</dt>
+                        <dd>45 87 10 01 </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-xl-3">
+                    <h5>Links</h5>
+                    <ul class="nav-list">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Projects</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+
+
+
+<!-- jQuery  JavaScript -->
+<script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Datatables JavaScript -->
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
+<script>
+    $('#orders').DataTable( {
+        responsive: false,
+        paging: false,
+        ordering:  false
+    } );
+</script>
+
+
+</body>
+
+</html>
