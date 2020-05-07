@@ -57,7 +57,7 @@ public class OrderMapperTest extends TestDataSetup {
             e.printStackTrace();
         }
 
-        assertEquals(carportHeight, order.getHeight().getHeight());
+        assertEquals(carportHeight, order.getHeight());
     }
 
     @Test

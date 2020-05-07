@@ -46,7 +46,7 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public DepthComponent getDepth() {
+    public DepthComponent getDepthComponent() {
         return depth;
     }
 
@@ -54,7 +54,7 @@ public class Order {
         this.depth = depth;
     }
 
-    public HeightComponent getHeight() {
+    public HeightComponent getHeightComponent() {
         return height;
     }
 
@@ -62,7 +62,7 @@ public class Order {
         this.height = height;
     }
 
-    public WidthComponent getWidth() {
+    public WidthComponent getWidthComponent() {
         return width;
     }
 
@@ -70,7 +70,27 @@ public class Order {
         this.width = width;
     }
 
-    public ShedDepthComponent getShedDepth() {
+    public int getDepth() {
+        return depth.getDepth();
+    }
+
+    public int getHeight() {
+        return height.getHeight();
+    }
+
+    public int getWidth() {
+        return width.getWidth();
+    }
+
+    public int getShedWidth() {
+        return shedWidth.getWidth();
+    }
+
+    public int getShedDepth() {
+        return shedDepth.getDepth();
+    }
+
+    public ShedDepthComponent getShedDepthComponent() {
         return shedDepth;
     }
 
@@ -78,7 +98,7 @@ public class Order {
         this.shedDepth = shedDepth;
     }
 
-    public ShedWidthComponent getShedWidth() {
+    public ShedWidthComponent getShedWidthComponent() {
         return shedWidth;
     }
 

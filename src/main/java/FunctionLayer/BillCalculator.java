@@ -72,7 +72,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.underSternsBredderFrontAndBack(categoriesUsedInGenerator,order.getWidth());
+                    billLine = CarportGenerator.underSternsBredderFrontAndBack(categoriesUsedInGenerator,order.getWidthComponent());
                     break;
                 case 2: //understernbrædder til siderne
                     //The material categories needed in the generator method
@@ -82,7 +82,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator,order.getDepth());
+                    billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator,order.getDepthComponent());
                     break;
                 case 3: //oversternbrædder til forenden
                     //The material categories needed in the generator method
@@ -102,7 +102,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator,order.getDepth());
+                    billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator,order.getDepthComponent());
                     break;
                 case 5: //til z på bagside af dør
                     //The material categories needed in the generator method
@@ -122,7 +122,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.losholterGabled(categoriesUsedInGenerator,order.getShedWidth().getWidth());
+                    billLine = ShedGenerator.losholterGabled(categoriesUsedInGenerator,order.getShedWidth());
                     break;
                 case 7: //løsholter til skur sider
                     //The material categories needed in the generator method
@@ -132,7 +132,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.losholterSides(categoriesUsedInGenerator,order.getShedDepth().getDepth());
+                    billLine = ShedGenerator.losholterSides(categoriesUsedInGenerator,order.getShedDepth());
                     break;
                 case 8: //Remme i sider, sadles ned i stolpe
                     //The material categories needed in the generator method
@@ -142,7 +142,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(), order.getWidth());
+                    billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepthComponent(), order.getWidthComponent());
                     break;
                 case 9: //Remme i sider, sadles ned i stolper (skur del, deles)
                     //The material categories needed in the generator method
@@ -152,7 +152,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator,order.getShedDepth());
+                    billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator,order.getShedDepthComponent());
                     break;
                 case 10: //Spær, monteres på rem
                     //The material categories needed in the generator method
@@ -182,7 +182,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator,order.getHeight().getHeight(), order.getShedWidth().getWidth(),order.getShedDepth().getDepth());
+                    billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator,order.getHeight(), order.getShedWidth(),order.getShedDepth());
                     break;
                 case 13: //vandbrædt på stern i sider
                     //The material categories needed in the generator method
@@ -192,7 +192,7 @@ public class BillCalculator {
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
 
                     //Calls the generator and returns the BillLine
-                    billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator,order.getDepth());
+                    billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator,order.getDepthComponent());
                     break;
                 case 14: //vandbrædt på stern i forende
                     //The material categories needed in the generator method
@@ -320,7 +320,7 @@ public class BillCalculator {
                     //Gets a list with only the categories needed
                     categoriesUsedInGenerator = getCategoriesUsedInGenerator(categoryIdsUsedInGenerator, categoriesAvailable);
                     //Gets the length and amount of boards used for the shed.
-                    billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator,order.getHeight().getHeight(), order.getShedWidth().getWidth(),order.getShedDepth().getDepth());
+                    billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator,order.getHeight(), order.getShedWidth(),order.getShedDepth());
 
                     int length = billLine.get(0).getMaterial().getLength();
                     int amount = billLine.get(0).getAmount();

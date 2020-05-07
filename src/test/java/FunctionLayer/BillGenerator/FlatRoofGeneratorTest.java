@@ -22,7 +22,7 @@ public class FlatRoofGeneratorTest extends TestDataSetup {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{13});
         Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600),
                 new InclineComponent(0) ,false);
-        ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator, order.getDepth());
+        ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator, order.getDepthComponent());
 
         String expected = "trykimp. Brædt";
         int expectedAmount1 = 2;

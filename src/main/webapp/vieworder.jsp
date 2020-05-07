@@ -28,21 +28,21 @@
                     <div class="col-lg-6">
                         <h2 class="display-4">Carport</h2>
                         <p class="entry-text">Dybde: </p>
-                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.depth.depth}" type="number"/> cm</p>
+                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.depth}" type="number"/> cm</p>
 
                         <p class="entry-text">Bredde: </p>
-                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.width.width}" type="number"/> cm</p>
+                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.width}" type="number"/> cm</p>
 
                         <p class="entry-text">Højde: </p>
-                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.height.height}" type="number"/> cm</p>
+                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.height}" type="number"/> cm</p>
 
                         <h2 class="display-4">Skur</h2>
 
                         <p class="entry-text">Dybde: </p>
-                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.shedDepth.depth}" type="number"/> cm</p>
+                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.shedDepth}" type="number"/> cm</p>
 
                         <p class="entry-text">Bredde: </p>
-                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.shedWidth.width}" type="number"/> cm</p>
+                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.shedWidth}" type="number"/> cm</p>
                     </div>
                     <div class="col-lg-6">
                         <h2 class="display-4">Kunde</h2>

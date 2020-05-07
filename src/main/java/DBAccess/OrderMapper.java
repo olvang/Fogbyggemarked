@@ -22,24 +22,24 @@ public class OrderMapper {
                          ") VALUES (?, ?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,order.getWidth().getWidth());
-            ps.setInt(2,order.getHeight().getHeight());
+            ps.setInt(1,order.getWidth());
+            ps.setInt(2,order.getHeight());
             ps.setInt(3,order.getIncline());
-            ps.setInt(4,order.getDepth().getDepth());
+            ps.setInt(4,order.getDepth());
 
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();
             ids.next();
             int id = ids.getInt(1);
 
-            if(order.getShedDepth() != null){
+            if(order.getShedDepthComponent() != null){
 
                 String nSQL = "INSERT INTO sheds (order_id,shed_width, shed_depth) VALUES (?,?,?)";
 
                 PreparedStatement nps = con.prepareStatement(nSQL, Statement.RETURN_GENERATED_KEYS);
                 nps.setInt(1,id);
-                nps.setInt(2,order.getShedWidth().getWidth());
-                nps.setInt(3,order.getDepth().getDepth());
+                nps.setInt(2,order.getShedWidth());
+                nps.setInt(3,order.getDepth());
 
                 nps.executeUpdate();
             }

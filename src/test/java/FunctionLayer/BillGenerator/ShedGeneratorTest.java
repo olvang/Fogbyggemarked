@@ -38,7 +38,7 @@ public class ShedGeneratorTest extends TestDataSetup {
                 new ShedDepthComponent("200","500"),
                 new ShedWidthComponent("200","500"),
                 new InclineComponent(0) ,false);
-        ArrayList<BillLine> billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator, order.getShedDepth());
+        ArrayList<BillLine> billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator, order.getShedDepthComponent());
 
         int exspectedAmount = 1;
         int exspectedLength = 4800;
@@ -66,7 +66,7 @@ public class ShedGeneratorTest extends TestDataSetup {
                 new ShedDepthComponent("500","550"),
                 new ShedWidthComponent("500","550"),
                 new InclineComponent(0) ,false);
-        ArrayList<BillLine> billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator, order.getShedDepth());
+        ArrayList<BillLine> billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator, order.getShedDepthComponent());
 
         int exspectedAmount = 2;
         int exspectedLength = 6000;
