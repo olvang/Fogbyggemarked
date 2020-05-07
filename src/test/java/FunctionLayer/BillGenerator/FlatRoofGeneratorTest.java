@@ -24,7 +24,7 @@ public class FlatRoofGeneratorTest extends TestDataSetup {
                 new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator, order.getDepth());
 
-        String expected = "19x100 mm. trykimp. Brædt";
+        String expected = "trykimp. Brædt";
         int expectedAmount1 = 2;
         int exspectedLength1 = 5400;
 
@@ -47,7 +47,7 @@ public class FlatRoofGeneratorTest extends TestDataSetup {
                 new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternFront(categoriesUsedInGenerator, order);
 
-        String expected = "19x100 mm. trykimp. Brædt";
+        String expected = "trykimp. Brædt";
         int expectedAmount1 = 2;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
@@ -61,7 +61,7 @@ public class FlatRoofGeneratorTest extends TestDataSetup {
                 new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = FlatRoofGenerator.roofPanels(categoriesUsedInGenerator, order);
 
-        String expected = "Plastmo Ecolite blåtonet(600 x 109)";
+        String expected = "Plastmo Ecolite blåtonet";
         int expectedAmountOf600 = 12;
         int expectedAmountOf360 = 6;
 

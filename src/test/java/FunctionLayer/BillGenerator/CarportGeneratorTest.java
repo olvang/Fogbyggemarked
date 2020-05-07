@@ -27,7 +27,7 @@ public class CarportGeneratorTest extends TestDataSetup {
         ArrayList<BillLine> billLine = CarportGenerator.overSternBredderFront(categoriesUsedInGenerator, order);
 
 
-        String expected = "25x125 mm. trykimp. Brædt";
+        String expected = "trykimp. Brædt";
         int expectedAmount = 2;
 
         assertEquals(expectedAmount, billLine.get(0).getAmount());
@@ -120,7 +120,7 @@ public class CarportGeneratorTest extends TestDataSetup {
                 new InclineComponent(0) ,false);
         ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
 
-        String expected = "25x125 mm. trykimp. Brædt";
+        String expected = "trykimp. Brædt";
         int expectedAmount1 = 2;
         int exspectLength1 = 5400;
 
@@ -138,7 +138,7 @@ public class CarportGeneratorTest extends TestDataSetup {
                 new InclineComponent(0) ,false);
         BillLine billLine = CarportGenerator.sperOnRem(categoriesUsedInGenerator, order).get(0);
 
-        String expected = "45x195 mm. spærtræ ubh.";
+        String expected = "spærtræ ubh.";
         int expectedAmount = 19;
 
         assertEquals(expectedAmount, billLine.getAmount());
@@ -214,7 +214,7 @@ public class CarportGeneratorTest extends TestDataSetup {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{23});
         int amountOfBolts = 28;
         int expected = 28;
-        String expectedName = "firkantskiver 40x40x11mm";
+        String expectedName = "firkantskiver";
 
         ArrayList<BillLine> billLineNoShed = CarportGenerator.skiverForRemOnPost(categoriesUsedInGenerator, amountOfBolts);
 

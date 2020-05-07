@@ -52,7 +52,7 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.soffit(categoriesUsedInGenerator,order);
 
-        String expected = "25x200 mm. trykimp. Brædt";
+        String expected = "trykimp. Brædt";
         int expectedAmount = 2;
 
         assertEquals(expected, billLine.get(0).getMaterial().getName() );
