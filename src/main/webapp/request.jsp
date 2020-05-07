@@ -33,7 +33,7 @@
                             <form action="FrontController" method="POST">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12" align="center">
-                                        <div class="pb-5">
+                                        <div class="pb-4">
                                             <h2><u>Carport</u></h2>
                                         </div>
                                         <div class="form-group">
@@ -92,7 +92,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12" align="center">
-                                        <div class="pb-2">
+                                        <div class="pb-3">
                                             <h2><u>Skur</u></h2>
                                         </div>
                                         <div class="form-group">
@@ -156,7 +156,8 @@
                                             <div>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input name="rooftype" id="flatroof" type="radio"
-                                                           required="required" class="custom-control-input" value="flat"
+                                                           required="required" class="custom-control-input"
+                                                           value="flat" onclick="checkInclineRadio()"
                                                            <c:if test="${requestScope.rooftype == 'flat'}">checked</c:if>>
                                                     <label for="flatroof" class="custom-control-label">Jeg vil have flat
                                                         tag</label>
@@ -164,10 +165,23 @@
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input name="rooftype" id="inclinedroof" type="radio"
                                                            required="required" class="custom-control-input"
-                                                           value="inclined"
+                                                           value="inclined" onclick="checkInclineRadio()"
                                                            <c:if test="${requestScope.rooftype == 'inclined'}">checked</c:if>>
                                                     <label for="inclinedroof" class="custom-control-label">Jeg vil have
                                                         skråt tag</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="my-4">
+                                                <label for="roofIncline">Tag vinkel</label>
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="w-75">
+                                                         <input name="roofIncline" type="range" min="20" max="25" value="20" step="1.0" class="custom-range" id="roofIncline"/>
+                                                    </div>
+                                                    <p><span class="font-weight-bold text-primary ml-2 valueSpan2" id="inclineDisplay"></span>°</p>
+                                                    <c:if test="${requestScope.inclineError != null}">
+                                                        <span class="text-danger">${requestScope.inclineError}</span>
+                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>
@@ -189,6 +203,14 @@
 </div>
 
 <script>
+    var slider = document.getElementById("roofIncline");
+    var output = document.getElementById("inclineDisplay");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+
     function checkRadioButton() {
         //If
         if (document.getElementById('shedornot_0').checked) {
@@ -201,11 +223,22 @@
             document.getElementById('sheddepth').value = "";
         }
     }
+    function checkInclineRadio() {
+        if(document.getElementById('flatroof').checked) {
+            document.getElementById('roofIncline').disabled = true;
+            output.innerHTML = 0;
+        } else {
+            document.getElementById('roofIncline').disabled = false;
+            output.innerHTML = slider.value;
+        }
+    }
 
     //On ready disable shed textboxes
     $(document).ready(function () {
         checkRadioButton();
+        checkInclineRadio();
     });
+
 
 </script>
 
