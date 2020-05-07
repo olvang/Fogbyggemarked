@@ -1,5 +1,6 @@
 package PresentationLayer;
 
+import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Exceptions.CommandException;
 import FunctionLayer.User;
@@ -18,7 +19,12 @@ public class Login extends Command {
     String execute( HttpServletRequest request, HttpServletResponse response ) throws CommandException {
         String email = request.getParameter( "email" );
         String password = request.getParameter( "password" );
-        User user = LogicFacade.login( email, password );
+        User user;
+        try {
+            user = LogicFacade.login( email, password );
+        } catch(DatabaseException e) {
+            return "index.jsp";
+        }
 
         HttpSession session = request.getSession();
 

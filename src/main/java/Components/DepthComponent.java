@@ -25,7 +25,7 @@ public class DepthComponent implements Component {
         }
         try {
             this.depth = Integer.parseInt(depth);
-        }catch (Exception ex) {
+        }catch (NumberFormatException ex) {
             throw new ValidationFailedException("Dybden skal være et tal.");
         }
         validate();
