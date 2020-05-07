@@ -30,7 +30,7 @@
                             <td>${bill.material.name}</td>
                             <td><fmt:formatNumber value="${bill.material.length / 10}" type="number"/></td>
                             <td>${bill.amount}</td>
-                            <td>Stk/Pakke</td>
+                            <td>${bill.material.unit}</td>
                             <td>${bill.description}</td>
                         </tr>
                     </c:forEach>

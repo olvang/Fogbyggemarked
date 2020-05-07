@@ -18,7 +18,7 @@ public class MaterialsMapper {
 
     public static ArrayList<Category> getAllCategories() throws ValidationFailedException, SQLException, ClassNotFoundException {
         ArrayList<Category> listOfCategories = new ArrayList();
-        String SQL = "SELECT `materials_id`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
+        String SQL = "SELECT `materials_id`, `unit`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
                 "`category`.`decription` FROM `materials` " +
                 "LEFT JOIN `material_to_category` ON `materials`.`materials_id` = `material_to_category`.`material_id` " +
                 "LEFT JOIN `category` on `material_to_category`.`category_id` = `category`.`category_id` " +
@@ -42,7 +42,7 @@ public class MaterialsMapper {
         ArrayList<Category> listOfMaterials = new ArrayList(); //To hold the materials
 
         StringBuilder queryBuilder = new StringBuilder
-                ("SELECT `materials_id`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
+                ("SELECT `materials_id`, `unit`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
                         "`category`.`decription` FROM `materials` " +
                         "LEFT JOIN `material_to_category` ON `materials`.`materials_id` = `material_to_category`.`material_id` " +
                         "LEFT JOIN `category` on `material_to_category`.`category_id` = `category`.`category_id` " +
@@ -84,17 +84,18 @@ public class MaterialsMapper {
             int price = rs.getInt("price");
             String name = rs.getString("name");
             String description = rs.getString("decription");
+            String unit = rs.getString("unit");
 
             if(previousId != categoryId) {
                 Material mat = new Material(
                         materialId, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
-                        new MaterialWidthComponent(width), name, price, categoryId,amount);
+                        new MaterialWidthComponent(width), name, price, categoryId,amount, unit);
                 listToFill.add(
                         new Category(categoryId, mat, description));
             }else {
                 Material mat = new Material(
                         materialId, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
-                        new MaterialWidthComponent(width), name, price, categoryId,amount);
+                        new MaterialWidthComponent(width), name, price, categoryId,amount, unit);
                 listToFill.get(listToFill.size() - 1).addMaterial(mat);
             }
             previousId = categoryId;
