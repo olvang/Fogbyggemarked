@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: Oliver
+  Date: 17/04/2020
+  Time: 16.35
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html lang="en"><head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -10,6 +17,10 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Datatables CSS -->
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
 
 
     <style>
@@ -75,11 +86,22 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="#">Carporte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Byg Selv</a>
+                        <a class="nav-link" href="request.jsp">Byg Selv</a>
+                    </li>
+                    <%--<li class="nav-item">
+                        <form id="testForm" action="FrontController" method="POST">
+                        <input type="hidden" name="target" value="bill">
+                        <input type="hidden" name="order_id" value="1">
+                        <a class="nav-link" href="javascript:{}" onclick="document.getElementById('testForm').submit(); return false;">StykListe</a>
+                        </form>
+                    </li>--%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.jsp">Ordrer</a>
                     </li>
                 </ul>
                 <form class="form-inline mt-2 mt-md-0" _lpchecked="1">
@@ -89,65 +111,3 @@
             </div>
         </nav>
     </header>
-        
-        
-        <!-- Title header -->
-        <div class="text-center">
-        <h1 class="display-1">Display 1</h1>
-        </div>
-        <div class="flex-container shadow my-5">
-    <div class="flex-item">
-        <div class="content">
-            <h1 class="display-1">Display 1</h1>
-            <h1 class="display-1">Display 1</h1>
-            <h1 class="display-1">Display 1</h1>
-            <h1 class="display-1">Display 1</h1>
-        </div>
-    </div>
-            
-</div>
-        
-        
-        <footer class="section footer-classic context-dark bg-image rounded navbar-dark text-white" style="background-color: #003D76">
-    <div class="container">
-        <div class="row row-30 pt-2">
-            <div class="col-md-4 col-xl-5">
-                <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light" src="images/agency/logo-inverse-140x37.png" alt="" width="140" height="37" srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
-                    <p>Johannes Fog består af et Bolig & Designhus og ni Trælast & Byggecenter-butikker fordelt i hele Nordsjælland</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h5>Johannes Fog A/S</h5>
-                <dl class="contact-list">
-                    <dt>Adresse</dt>
-                    <dd> Firskovvej 20 - 2800 Lyngby</dd>
-                </dl>
-                <dl class="contact-list">
-                    <dt>Telefon:</dt>
-                    <dd>45 87 10 01 </dd>
-                </dl>
-            </div>
-            <div class="col-md-4 col-xl-3">
-                <h5>Links</h5>
-                <ul class="nav-list">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Projects</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-</main>
-
-
-
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-
-
-</body>
-
-</html>

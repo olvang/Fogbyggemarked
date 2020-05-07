@@ -1,0 +1,100 @@
+html,body{
+    height:100%;
+    padding-bottom: 60px;
+}
+
+.flex-container {
+    height: auto;
+    min-height: 56vh;
+    margin-bottom: 20px;
+}
+
+.context-dark, .bg-gray-dark, .bg-primary {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+    color: #ffffff;
+}
+.nav-list li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.nav-list li a:hover:before {
+    margin-left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.display-4 {
+    text-align: center;
+}
+
+/* Formatting the text for different screen sizes */
+/* Large screens */
+@media screen and (min-width: 992px) {
+    .entry-text {
+        white-space: nowrap;
+        margin-left: 10pt;
+        float:left;
+        font-size: 20pt;
+        font-weight: bold;
+        width: 35%;
+    }
+}
+.entry-conent {
+    white-space: nowrap;
+    font-size: 20pt;
+    float: snap;
+    width: 75%;
+}
+/* Medium screens */
+@media screen and (min-width: 768px) and (max-width: 992px){
+    .entry-text {
+        float:left;
+        font-size: 20pt;
+        font-weight: bold;
+        width: 42%;
+    }
+}
+.entry-conent {
+    font-size: 20pt;
+    float: snap;
+    width: 58%;
+}
+/* Small screens */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .entry-text {
+        white-space: nowrap;
+        float:left;
+        font-size: 20pt;
+        font-weight: bold;
+        width: 40%;
+    }
+}
+.entry-conent {
+    white-space: nowrap;
+    font-size: 20pt;
+    float: snap;
+    width: 60%;
+}
+/* Very small screens */
+@media screen and (max-width: 575px) {
+    .entry-text {
+        float:left;
+        font-size: 20pt;
+        font-weight: bold;
+        width: 50%;
+    }
+}
+.entry-conent {
+    font-size: 20pt;
+    float: snap;
+    width: 50%;
+}
