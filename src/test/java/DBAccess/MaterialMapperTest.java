@@ -18,7 +18,7 @@ public class MaterialMapperTest extends TestDataSetup {
     @Test
     public void testGetAllMaterialsByContent() throws SQLException, ValidationFailedException, ClassNotFoundException {
         int indexToCheck = 5;
-        String expected = "45x95 mm. Reglar ub.";
+        String expected = "Reglar ub.";
         ArrayList<Category> test = MaterialsMapper.getAllCategories();
 
         assertEquals(expected, test.get(5).getMaterialAtIndex(0).getName());

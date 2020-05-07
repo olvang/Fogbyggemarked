@@ -19,7 +19,7 @@ public class ShedGeneratorTest extends TestDataSetup {
     public void TestzOnBackOfDoor() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{5});
         int expected = 1;
-        String expectedName = "38x73 mm. Lægte ubh.";
+        String expectedName = "Lægte ubh.";
 
         ArrayList<BillLine> billLineNoShed = ShedGenerator.zOnBackOfDoor(categoriesUsedInGenerator);
 
@@ -84,7 +84,7 @@ public class ShedGeneratorTest extends TestDataSetup {
         ArrayList<BillLine> billLine = ShedGenerator.losholterGabled(categoriesUsedInGenerator, orderWidth.getWidth());
 
 
-        String expected = "45x95 mm. Reglar ub.";
+        String expected = "Reglar ub.";
         int expectedAmount = 14;
 
         assertEquals(expectedAmount, billLine.get(0).getAmount());
@@ -101,7 +101,7 @@ public class ShedGeneratorTest extends TestDataSetup {
         ArrayList<BillLine> billLine = ShedGenerator.losholterSides(categoriesUsedInGenerator, orderShedDepth);
 
 
-        String expected = "45x95 mm. Reglar ub.";
+        String expected = "Reglar ub.";
         int expectedAmount = 6;
 
         assertEquals(expectedAmount, billLine.get(0).getAmount());
@@ -120,7 +120,7 @@ public class ShedGeneratorTest extends TestDataSetup {
         ArrayList<BillLine> billLine = ShedGenerator.boardsForShed(categoriesUsedInGenerator, orderHeight, orderShedWidth, orderShedDepth);
 
 
-        String expected = "19x100 mm. trykimp. Brædt";
+        String expected = "trykimp. Brædt";
         int expectedAmount = 190;
 
         assertEquals(expectedAmount, billLine.get(0).getAmount());
@@ -132,7 +132,7 @@ public class ShedGeneratorTest extends TestDataSetup {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{27});
         ArrayList<BillLine> lines = ShedGenerator.hingeForDoor(categoriesUsedInGenerator, 3);
 
-        String expectedName = "t hængsel 390 mm";
+        String expectedName = "t hængsel";
         int expectedAmount = 6;
         
         assertEquals(expectedAmount, lines.get(0).getAmount());
@@ -157,7 +157,7 @@ public class ShedGeneratorTest extends TestDataSetup {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{28});
         ArrayList<BillLine> lines = ShedGenerator.vinkelBeslag(categoriesUsedInGenerator, 3);
 
-        String expectedName = "vinkelbeslag 35";
+        String expectedName = "vinkelbeslag";
         int expectedAmount = 6;
 
 
@@ -182,7 +182,7 @@ public class ShedGeneratorTest extends TestDataSetup {
         //When each box contains 300 screws, that should be 3 boxes
 
         int expectedAmount = 3;
-        String expectedName = "4,5 x 50 mm. Skruer 300 stk.";
+        String expectedName = "Skruer 300 stk.";
 
         assertEquals(expectedAmount, lines.get(0).getAmount());
         assertEquals(expectedName, lines.get(0).getMaterial().getName());
