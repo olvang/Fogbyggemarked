@@ -34,7 +34,18 @@
                         <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.width}" type="number"/> cm</p>
 
                         <p class="entry-text">Højde: </p>
-                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.height}" type="number"/> cm</p>
+
+                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.height.height}" type="number"/> cm</p>
+
+                        <p class="entry-text">Tag: </p>
+                        <c:choose>
+                            <c:when test="${requestScope.order.incline == 0}">
+                                <p class="entry-conent">Fladt</p>
+                            </c:when>
+                            <c:otherwise>
+                                <p class="entry-conent">Rejst, <fmt:formatNumber value="${requestScope.order.incline}" type="number"/>°</p>
+                            </c:otherwise>
+                        </c:choose>
 
                         <c:choose>
                             <c:when test="${requestScope.order.withShed}">
