@@ -92,12 +92,16 @@ public class Request extends Command {
         //TODO update logic when user can choose materials
         try {
             if(roofTypeString.equals("inclined")){
-                incline = new InclineComponent(25);
+                int roofIncline = Integer.parseInt(request.getParameter("roofIncline"));
+                incline = new InclineComponent(roofIncline);
             }else {
                 incline = new InclineComponent(0);
             }
         }catch (ValidationFailedException e) {
             request.setAttribute("inclineError",e.getMessage());
+            errorsFound = true;
+        }catch (NumberFormatException e) {
+            request.setAttribute("inclineError", "Vinkel skal være et tal");
             errorsFound = true;
         }
 
