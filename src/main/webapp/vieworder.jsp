@@ -36,13 +36,16 @@
                         <p class="entry-text">Højde: </p>
                         <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.height}" type="number"/> cm</p>
 
-                        <h2 class="display-4">Skur</h2>
+                        <c:choose>
+                            <c:when test="${requestScope.order.withShed}">
+                                <h2 class="display-4">Skur</h2>
+                                <p class="entry-text">Dybde: </p>
+                                <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.shedDepth}" type="number"/> cm</p>
 
-                        <p class="entry-text">Dybde: </p>
-                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.shedDepth}" type="number"/> cm</p>
-
-                        <p class="entry-text">Bredde: </p>
-                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.shedWidth}" type="number"/> cm</p>
+                                <p class="entry-text">Bredde: </p>
+                                <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.shedWidth}" type="number"/> cm</p>
+                            </c:when>
+                        </c:choose>
                     </div>
                     <div class="col-lg-6">
                         <h2 class="display-4">Kunde</h2>
