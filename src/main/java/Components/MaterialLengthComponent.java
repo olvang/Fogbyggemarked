@@ -22,7 +22,7 @@ public class MaterialLengthComponent implements Component {
         }
         try {
             this.length = Integer.parseInt(length);
-        }catch ( Exception ex ) {
+        }catch ( NumberFormatException ex ) {
             throw new ValidationFailedException("Længde skal være et tal.");
         }
         validate();

@@ -27,7 +27,7 @@ public class ShedDepthComponent implements Component {
         }
         try {
             this.depth = Integer.parseInt(depth);
-        }catch (Exception ex) {
+        }catch (NumberFormatException ex) {
             throw new ValidationFailedException("Skur dybden skal være et tal.");
         }
         this.carportConnection = carportDepth;
@@ -42,7 +42,7 @@ public class ShedDepthComponent implements Component {
         try {
             this.depth = Integer.parseInt(depth);
             this.carportDepth = Integer.parseInt(cartportDepth);
-        }catch (Exception ex) {
+        }catch (NumberFormatException ex) {
             throw new ValidationFailedException("Skur dybden skal være et tal.");
         }
         validate();

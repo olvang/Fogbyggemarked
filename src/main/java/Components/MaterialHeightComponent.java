@@ -21,7 +21,7 @@ public class MaterialHeightComponent implements Component {
         }
         try {
             this.height = Integer.parseInt(height);
-        }catch ( Exception ex ) {
+        }catch ( NumberFormatException ex ) {
             throw new ValidationFailedException("Bredde skal være et tal.");
         }
         validate();

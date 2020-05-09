@@ -15,12 +15,13 @@ public class Material {
     private int costPrice;
     private int category;
     private int amount;
+    private String unit;
 
     //Used by BillCalculator
     //private HashMap<Integer, MaterialLengthComponent> materialLengths;
     //private HashMap<Integer, MaterialWidthComponent> materialWidths;
 
-    public Material(int materialID, MaterialLengthComponent length, MaterialHeightComponent height, MaterialWidthComponent width, String name, int costPrice, int category, int amount) {
+    public Material(int materialID, MaterialLengthComponent length, MaterialHeightComponent height, MaterialWidthComponent width, String name, int costPrice, int category, int amount, String unit) {
         this.materialID = materialID;
         this.height = height;
         this.width = width;
@@ -29,6 +30,7 @@ public class Material {
         this.costPrice = costPrice;
         this.category = category;
         this.amount = amount;
+        this.unit = unit;
     }
 
     //---------//
@@ -67,6 +69,10 @@ public class Material {
 
     public int getAmount() {
         return amount;
+    }
+
+    public String getUnit() {
+        return unit;
     }
 
     public void setAmount(int amount) {

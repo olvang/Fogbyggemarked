@@ -20,7 +20,7 @@ public class InclinedRoofGenerator {
         //We know A = incline, b = order Width / 2, and C = 90
         //Therefor we can calculate side c
         // c = b / cos(A)
-        double roofLength = GeneratorUtilities.calculateRoofLength(order.getInclineComponent(), order.getWidth());
+        double roofLength = GeneratorUtilities.calculateRoofLength(order.getInclineComponent(), order.getWidthComponent());
 
         //We know what the length of one side of the roof, on the front end, so to get both sides of the roof * 2
         roofLength *= 2;
@@ -63,7 +63,7 @@ public class InclinedRoofGenerator {
         BillLine billLine;
         Material material = null;
         //We * 2, since we then calculate both sides at the same time
-        int roofDepth = order.getDepth().getDepth() * 2;
+        int roofDepth = order.getDepth() * 2;
         int amountOfBoards = 0;
 
         //Sort the materials in the category
@@ -108,8 +108,8 @@ public class InclinedRoofGenerator {
         Material material;
         Material materialToUse  = null;
 
-        double height = GeneratorUtilities.calculateRoofHeight(order.getInclineComponent(),order.getWidth()) * 10;
-        double width = (order.getWidth().getWidth() / 2.0) * 10;
+        double height = GeneratorUtilities.calculateRoofHeight(order.getInclineComponent(),order.getWidthComponent()) * 10;
+        double width = (order.getWidth() / 2.0) * 10;
 
         //The area of the front facing Gabled
         double area = height * width;
@@ -142,7 +142,7 @@ public class InclinedRoofGenerator {
         //Amount is calculated by taking depth in m * 3
         ArrayList<BillLine> list = new ArrayList<>();
 
-        double depth = order.getDepth().getDepth();
+        double depth = order.getDepth();
         depth = depth / 100; //since the depth is stored in cm
         int amount = (int) Math.ceil(depth * 3.0);
 
@@ -163,9 +163,9 @@ public class InclinedRoofGenerator {
         BillLine billLine;
 
         //One rooftile needs one lath pr. 40 cm
-        int rows = (int) Math.ceil(order.getDepth().getDepth() / 40.0);
+        int rows = (int) Math.ceil(order.getDepth() / 40.0);
 
-        int depth = order.getDepth().getDepth();
+        int depth = order.getDepth();
 
         double needToBeCoveredDepth = depth * 1.8;
 
@@ -197,7 +197,7 @@ public class InclinedRoofGenerator {
 
     public static ArrayList<BillLine> topRoofLath(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
         ArrayList<Material> possibleMaterials = categoriesUsedInGenerator.get(0).getMaterials();
-        int orderDepth = order.getDepth().getDepth();
+        int orderDepth = order.getDepth();
         Material materïalToUse = null;
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
@@ -226,7 +226,7 @@ public class InclinedRoofGenerator {
         ArrayList<BillLine> list = new ArrayList<>();
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
-        double depth = order.getDepth().getDepth();
+        double depth = order.getDepth();
         depth = depth / 100; //since the depth is stored in cm
         int amount = (int) Math.ceil(depth / 0.9);
 
@@ -320,8 +320,8 @@ public class InclinedRoofGenerator {
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine;
 
-        double depth = order.getDepth().getDepth() / 100.0;
-        double length = GeneratorUtilities.calculateRoofLength(order.getInclineComponent(),order.getWidth()) / 100;
+        double depth = order.getDepth() / 100.0;
+        double length = GeneratorUtilities.calculateRoofLength(order.getInclineComponent(),order.getWidthComponent()) / 100;
 
         double area = depth * length * 2;
 

@@ -121,7 +121,7 @@ public class CarportGenerator {
 
     public static ArrayList<BillLine> overSternBredderFront(ArrayList<Category> categoriesUsedInGenerator, Order order) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
-        int carportWidth = order.getWidth().getWidth();
+        int carportWidth = order.getWidth();
         BillLine toBeReturned;
         Category cat = categoriesUsedInGenerator.get(0);
         ArrayList<Material> materials = cat.getMaterials();
@@ -224,8 +224,8 @@ public class CarportGenerator {
 
     public static ArrayList<BillLine> sperOnRem(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
-        int carportDepth = order.getDepth().getDepth();
-        int carportWidth = order.getWidth().getWidth();
+        int carportDepth = order.getDepth();
+        int carportWidth = order.getWidth();
         Category category = categoriesUsedInGenerator.get(0);
         ArrayList<Material> list = category.getMaterials();
 
@@ -274,15 +274,15 @@ public class CarportGenerator {
         int numberOfPostRows = 2;
         int numberOfPostPerRow = 2;
         int total = 0;
-        int carportWidth = order.getWidth().getWidth();
-        int carportDepth = order.getDepth().getDepth();
+        int carportWidth = order.getWidth();
+        int carportDepth = order.getDepth();
         //Subtract 90 cm, because that is how much the post needs to go down in the ground
-        int carportHeight = order.getHeight().getHeight() - 90;
+        int carportHeight = order.getHeight() - 90;
 
         //If order has shed, subtract they width of the shed
         //ShedGenerator calculates how many post are needed within the shed
         if(order.isWithShed()){
-            carportDepth -= order.getShedDepth().getDepth();
+            carportDepth -= order.getShedDepth();
         }
 
 
@@ -330,8 +330,8 @@ public class CarportGenerator {
     }
 
     public static ArrayList<BillLine> perforatedBand(ArrayList<Category> categoriesUsedInGenerator, Order order) {
-        int width = order.getWidth().getWidth();
-        int depth = order.getDepth().getDepth();
+        int width = order.getWidth();
+        int depth = order.getDepth();
         int diagonal = (int) Math.ceil( Math.sqrt((width*width) + (depth*depth)) );
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
@@ -404,7 +404,7 @@ public class CarportGenerator {
             //This method is called from multiple places, and one of them only doesn't use this category
             if(categoriesUsedInGenerator.size() > 2) {
                 ArrayList<BillLine> sideBoards = FlatRoofGenerator.waterBoardOnSternSides(
-                        new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(2));}}, order.getDepth()
+                        new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(2));}}, order.getDepthComponent()
                 );
                 for(BillLine line : sideBoards) {
                     line.getMaterial().setAmount(line.getAmount());
@@ -471,9 +471,9 @@ public class CarportGenerator {
             if(order.isWithShed() == true) {
                 //Makes an exact Deep Copy of the order, so we can make changes to it without affecting the actual order
                 orderWithoutShedDepth = new Order(
-                        new DepthComponent(order.getDepth().getDepth()),
-                        new HeightComponent(order.getHeight().getHeight()),
-                        new WidthComponent(order.getWidth().getWidth()), order.getInclineComponent(), false
+                        new DepthComponent(order.getDepth()),
+                        new HeightComponent(order.getHeight()),
+                        new WidthComponent(order.getWidth()), order.getInclineComponent(), false
                 );
             } else {
                 orderWithoutShedDepth = order;

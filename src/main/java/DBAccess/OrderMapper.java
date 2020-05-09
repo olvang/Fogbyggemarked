@@ -1,6 +1,8 @@
 package DBAccess;
 
 import Components.*;
+import FunctionLayer.Exceptions.DatabaseException;
+import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Order;
 
 import java.sql.*;
@@ -14,7 +16,7 @@ public class OrderMapper {
     Then it execute two diffrent sets of SQL statemenets depending on the
     information.,
      */
-    public static void createOrder(Order order) throws SQLException {
+    public static void createOrder(Order order) throws DatabaseException {
         try{
             Connection con = Connector.connection();
 
@@ -22,33 +24,32 @@ public class OrderMapper {
                          ") VALUES (?, ?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,order.getWidth().getWidth());
-            ps.setInt(2,order.getHeight().getHeight());
+            ps.setInt(1,order.getWidth());
+            ps.setInt(2,order.getHeight());
             ps.setInt(3,order.getIncline());
-            ps.setInt(4,order.getDepth().getDepth());
+            ps.setInt(4,order.getDepth());
 
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();
             ids.next();
             int id = ids.getInt(1);
 
-            if(order.getShedDepth() != null){
+            if(order.getShedDepthComponent() != null){
 
                 String nSQL = "INSERT INTO sheds (order_id,shed_width, shed_depth) VALUES (?,?,?)";
 
                 PreparedStatement nps = con.prepareStatement(nSQL, Statement.RETURN_GENERATED_KEYS);
                 nps.setInt(1,id);
-                nps.setInt(2,order.getShedWidth().getWidth());
-                nps.setInt(3,order.getDepth().getDepth());
+                nps.setInt(2,order.getShedWidth());
+                nps.setInt(3,order.getDepth());
 
                 nps.executeUpdate();
             }
 
-        }catch (SQLException e){
-            throw new SQLException( e.getMessage() + " Could not create order in order mapper");
-
+        }catch (SQLException e) {
+            throw new DatabaseException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
         }catch(ClassNotFoundException e){
-            throw new ClassCastException(e.getMessage() + " Connection could not be created in order mapper");
+            throw new DatabaseException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
         }
 
     }
@@ -57,7 +58,7 @@ public class OrderMapper {
         a shed on it or not.  
      */
 
-    public static Order getOrder(int ID) throws Exception {
+    public static Order getOrder(int ID) throws DatabaseException {
         Order ord;
         int order_id;
         Date orderDate;
@@ -92,10 +93,12 @@ public class OrderMapper {
                 ord = new Order(depthComponent,heightComponent,widthComponent,carportIncline,false);
             }
 
-        }catch (SQLException e){
-            throw new SQLException(e.getMessage() + " Could not find order in order mapper");
-        }catch (ClassNotFoundException e){
-            throw new ClassCastException(e.getMessage() + " Connection could not be created in order mapper");
+        } catch (SQLException e) {
+            throw new DatabaseException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new DatabaseException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
+        } catch (ValidationFailedException e) {
+            throw new DatabaseException("Et element i ordre databasen fejlede validering: " + e.getMessage());
         }
 
         ord.setOrderId(order_id);
@@ -109,7 +112,7 @@ public class OrderMapper {
         a shed on it or not.
      */
 
-    public static ArrayList<Order> getAllOrders() throws Exception {
+    public static ArrayList<Order> getAllOrders() throws DatabaseException {
         ArrayList<Order> orders = new ArrayList<>();
         Order order;
         try{
@@ -146,10 +149,12 @@ public class OrderMapper {
             }
 
 
-        }catch (SQLException e){
-            throw new SQLException(e.getMessage() + " Could not find any orders in order mapper");
-        }catch (ClassNotFoundException e){
-            throw new ClassCastException(e.getMessage() + " Connection could not be created in order mapper");
+        } catch (SQLException e) {
+            throw new DatabaseException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new DatabaseException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
+        } catch (ValidationFailedException e) {
+            throw new DatabaseException("Et element i ordre databasen fejlede validering: " + e.getMessage());
         }
 
         return orders;
@@ -161,9 +166,7 @@ public class OrderMapper {
         Check whether or not a shed exists to the given ID.
         Primary job, being a helper class to the method - getOrder
      */
-    private static boolean doesShedExists(int ID) throws Exception{
-
-        try{
+    private static boolean doesShedExists(int ID) throws SQLException, ClassNotFoundException{
             Connection con = Connector.connection();
 
             String SQL = "SELECT count(*) from sheds where order_id = ?";
@@ -180,11 +183,6 @@ public class OrderMapper {
             }
 
             return false;
-
-        }catch (SQLException e){
-            throw new SQLException(e.getMessage() + " Could not find order in order mapper");
-        }catch (ClassNotFoundException e){
-            throw new ClassCastException(e.getMessage() + " Connection could not be created in order mapper");
-        }
     }
+
 }

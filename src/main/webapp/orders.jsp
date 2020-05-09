@@ -32,8 +32,8 @@
                 <tr>
                     <td>${order.orderId}</td>
                     <td>Name Here</td>
-                    <td>${order.depth.depth}</td>
-                    <td>${order.width.width}</td>
+                    <td>${order.depth}</td>
+                    <td>${order.width}</td>
                     <td><span class="badge badge-pill badge-primary">Afventer Sælger</span></td>
                     <td>${order.orderDate}</td>
                     <td class="text-center">
