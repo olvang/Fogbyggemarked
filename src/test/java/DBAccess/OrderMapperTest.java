@@ -4,6 +4,7 @@ import Components.DepthComponent;
 import Components.HeightComponent;
 import Components.InclineComponent;
 import Components.WidthComponent;
+import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Order;
 import com.sun.org.apache.xpath.internal.operations.Or;
@@ -43,7 +44,7 @@ public class OrderMapperTest extends TestDataSetup {
             OrderMapper om = new OrderMapper();
             om.createOrder(ord);
 
-        } catch (SQLException throwables) {
+        } catch (DatabaseException throwables) {
             throwables.printStackTrace();
         }
     }

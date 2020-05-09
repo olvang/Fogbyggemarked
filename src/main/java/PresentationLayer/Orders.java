@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import FunctionLayer.Exceptions.CommandException;
+import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +21,8 @@ public class Orders extends Command {
         ArrayList<Order> orders = null;
         try {
             orders = LogicFacade.getAllOrders();
-        } catch (Exception e) {
-            request.setAttribute( "error", "Kunne ikke hente ordrene fra databasen" );
+        } catch (DatabaseException e) {
+            request.setAttribute( "error", e.getMessage() + ". Kunne ikke hente ordrene fra databasen" );
             return "orders";
         }
 

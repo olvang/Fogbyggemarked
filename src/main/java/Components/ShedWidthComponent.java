@@ -27,7 +27,7 @@ public class ShedWidthComponent implements Component {
         }
         try {
             this.width = Integer.parseInt(width);
-        }catch (Exception ex) {
+        }catch (NumberFormatException ex) {
             throw new ValidationFailedException("Skur bredden skal være et tal.");
         }
         this.carportConnection = carportWidth;
@@ -42,7 +42,7 @@ public class ShedWidthComponent implements Component {
         try {
             this.width = Integer.parseInt(width);
             this.carportWidth = Integer.parseInt(carportWidth);
-        }catch (Exception ex) {
+        }catch (NumberFormatException ex) {
             throw new ValidationFailedException("Skur bredden skal være et tal.");
         }
         validate();

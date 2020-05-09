@@ -2,6 +2,7 @@ package DBAccess;
 
 
 import FunctionLayer.Category;
+import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
 import org.junit.Test;
@@ -16,7 +17,7 @@ import static org.junit.Assert.assertFalse;
 public class MaterialMapperTest extends TestDataSetup {
 
     @Test
-    public void testGetAllMaterialsByContent() throws SQLException, ValidationFailedException, ClassNotFoundException {
+    public void testGetAllMaterialsByContent() throws DatabaseException {
         int indexToCheck = 5;
         String expected = "Reglar ub.";
         ArrayList<Category> test = MaterialsMapper.getAllCategories();
@@ -25,7 +26,7 @@ public class MaterialMapperTest extends TestDataSetup {
     }
 
     @Test
-    public void testGetTheseMaterialsBySize() throws SQLException, ValidationFailedException, ClassNotFoundException {
+    public void testGetTheseMaterialsBySize() throws DatabaseException {
         int[] ids = new int[] {14,1,17,3,24,5,15,13,8,28};
 
         ArrayList<Category> test = MaterialsMapper.getTheseCategories(ids);
@@ -37,7 +38,7 @@ public class MaterialMapperTest extends TestDataSetup {
     }
 
     @Test
-    public void testGetTheseMaterialsBySizeVariations() throws SQLException, ValidationFailedException, ClassNotFoundException {
+    public void testGetTheseMaterialsBySizeVariations() throws DatabaseException {
         int expectedLength1 = 6000;
         int expectedLength2 = 3600;
         int expectedWidth = 109;

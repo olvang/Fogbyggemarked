@@ -2,6 +2,7 @@ package FunctionLayer;
 
 import FunctionLayer.BillGenerator.*;
 import FunctionLayer.Exceptions.CommandException;
+import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BillCalculator {
-    public ArrayList<BillLine> calculateBillFromOrder(Order order) throws SQLException, ValidationFailedException, ClassNotFoundException, GeneratorException, CommandException {
+    public ArrayList<BillLine> calculateBillFromOrder(Order order) throws GeneratorException, DatabaseException {
         int[] categoriesNeeded = null;
         int orderType;
 
