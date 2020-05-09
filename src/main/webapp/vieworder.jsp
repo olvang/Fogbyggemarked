@@ -35,7 +35,7 @@
 
                         <p class="entry-text">Højde: </p>
 
-                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.height.height}" type="number"/> cm</p>
+                        <p class="entry-conent"><fmt:formatNumber value="${requestScope.order.height}" type="number"/> cm</p>
 
                         <p class="entry-text">Tag: </p>
                         <c:choose>
