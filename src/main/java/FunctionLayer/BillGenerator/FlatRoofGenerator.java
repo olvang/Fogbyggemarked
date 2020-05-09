@@ -29,8 +29,8 @@ public class FlatRoofGenerator {
      */
     public static ArrayList<BillLine> roofPanels(ArrayList<Category> categoriesUsedInGenerator, Order order) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
-        int depth = order.getDepth().getDepth();
-        int width = order.getWidth().getWidth();
+        int depth = order.getDepth();
+        int width = order.getWidth();
         Category category = categoriesUsedInGenerator.get(0);
         ArrayList<Material>  listOfMaterials = category.getMaterials();
 
@@ -78,8 +78,8 @@ public class FlatRoofGenerator {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         //divided by 100 to convert to meter
-        int orderWidth = order.getWidth().getWidth() / 100;
-        int orderDepth = order.getDepth().getDepth() / 100;
+        int orderWidth = order.getWidth() / 100;
+        int orderDepth = order.getDepth() / 100;
         int amountOfScrewPacks = 0;
         //As of now, we use the first screw pack in the category
         Material screwPackMaterial = categoriesUsedInGenerator.get(0).getMaterialAtIndex(0);

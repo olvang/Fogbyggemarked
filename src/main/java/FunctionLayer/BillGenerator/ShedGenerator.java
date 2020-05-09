@@ -346,10 +346,10 @@ public class ShedGenerator {
 
         //Getting løsholter
         ArrayList<BillLine> losholter1 = losholterGabled(
-                new ArrayList<Category>() {{add(materialsUsedInGenerator.get(0));}}, order.getShedWidth().getWidth()
+                new ArrayList<Category>() {{add(materialsUsedInGenerator.get(0));}}, order.getShedWidth()
         );
         ArrayList<BillLine> losholter2 = losholterSides(
-                new ArrayList<Category>() {{add(materialsUsedInGenerator.get(1));}}, order.getShedDepth().getDepth()
+                new ArrayList<Category>() {{add(materialsUsedInGenerator.get(1));}}, order.getShedDepth()
         );
 
         ArrayList<BillLine> listToReturn = new ArrayList<>();
