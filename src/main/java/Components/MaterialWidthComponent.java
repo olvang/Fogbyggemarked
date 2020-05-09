@@ -22,7 +22,7 @@ public class MaterialWidthComponent implements Component {
         }
         try {
             this.width = Integer.parseInt(width);
-        }catch ( Exception ex ) {
+        }catch ( NumberFormatException ex ) {
             throw new ValidationFailedException("Bredde skal være et tal.");
         }
         validate();

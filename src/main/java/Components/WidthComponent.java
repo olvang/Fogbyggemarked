@@ -25,7 +25,7 @@ public class WidthComponent implements Component {
         }
         try {
             this.width = Integer.parseInt(width);
-        }catch (Exception ex) {
+        }catch (NumberFormatException ex) {
             throw new ValidationFailedException("Bredden skal være et tal.");
         }
         validate();

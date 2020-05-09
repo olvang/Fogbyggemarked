@@ -4,6 +4,7 @@ import Components.MaterialHeightComponent;
 import Components.MaterialLengthComponent;
 import Components.MaterialWidthComponent;
 import FunctionLayer.Category;
+import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
 
@@ -16,9 +17,9 @@ import java.util.List;
 
 public class MaterialsMapper {
 
-    public static ArrayList<Category> getAllCategories() throws ValidationFailedException, SQLException, ClassNotFoundException {
+    public static ArrayList<Category> getAllCategories() throws DatabaseException {
         ArrayList<Category> listOfCategories = new ArrayList();
-        String SQL = "SELECT `materials_id`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
+        String SQL = "SELECT `materials_id`, `unit`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
                 "`category`.`decription` FROM `materials` " +
                 "LEFT JOIN `material_to_category` ON `materials`.`materials_id` = `material_to_category`.`material_id` " +
                 "LEFT JOIN `category` on `material_to_category`.`category_id` = `category`.`category_id` " +
@@ -28,21 +29,21 @@ public class MaterialsMapper {
             fillList(listOfCategories, rs);
 
         } catch (SQLException e) {
-            throw new SQLException("SQLError in MaterialMapper " + e.getMessage());
+            throw new DatabaseException("Der kunne ikke oprettes forbindelse til materiale databasen: " + e.getMessage());
         } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException("ClassNotFoundError in MaterialMapper " + e.getMessage());
+            throw new DatabaseException("Der skete en serverfejl. ClassNotFound in MaterialMapper: " + e.getMessage());
         } catch (ValidationFailedException e) {
-            throw new ValidationFailedException("Validation failed: " + e.getMessage());
+            throw new DatabaseException("Et element i materiale databasen fejlede validering: " + e.getMessage());
         }
         return listOfCategories;
     }
 
     
-    public static ArrayList<Category> getTheseCategories(int[] idsToGet ) throws SQLException, ValidationFailedException, ClassNotFoundException {
+    public static ArrayList<Category> getTheseCategories(int[] idsToGet ) throws DatabaseException {
         ArrayList<Category> listOfMaterials = new ArrayList(); //To hold the materials
 
         StringBuilder queryBuilder = new StringBuilder
-                ("SELECT `materials_id`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
+                ("SELECT `materials_id`, `unit`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
                         "`category`.`decription` FROM `materials` " +
                         "LEFT JOIN `material_to_category` ON `materials`.`materials_id` = `material_to_category`.`material_id` " +
                         "LEFT JOIN `category` on `material_to_category`.`category_id` = `category`.`category_id` " +
@@ -62,12 +63,12 @@ public class MaterialsMapper {
         try (Connection con = Connector.connection(); PreparedStatement ps = con.prepareStatement(SQL)) {
             ResultSet rs = ps.executeQuery();
             fillList(listOfMaterials, rs);
-        } catch (SQLException e) {
-            throw new SQLException("SQLError in MaterialMapper " + e.getMessage());
+        }  catch (SQLException e) {
+            throw new DatabaseException("Der kunne ikke oprettes forbindelse til materiale databasen: " + e.getMessage());
         } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException("ClassNotFoundError in MaterialMapper " + e.getMessage());
+            throw new DatabaseException("Der skete en serverfejl. ClassNotFound in MaterialMapper: " + e.getMessage());
         } catch (ValidationFailedException e) {
-            throw new ValidationFailedException("Validation failed: " + e.getMessage());
+            throw new DatabaseException("Et element i materiale databasen fejlede validering: " + e.getMessage());
         }
         return listOfMaterials;
     }
@@ -84,17 +85,18 @@ public class MaterialsMapper {
             int price = rs.getInt("price");
             String name = rs.getString("name");
             String description = rs.getString("decription");
+            String unit = rs.getString("unit");
 
             if(previousId != categoryId) {
                 Material mat = new Material(
                         materialId, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
-                        new MaterialWidthComponent(width), name, price, categoryId,amount);
+                        new MaterialWidthComponent(width), name, price, categoryId,amount, unit);
                 listToFill.add(
                         new Category(categoryId, mat, description));
             }else {
                 Material mat = new Material(
                         materialId, new MaterialLengthComponent(length), new MaterialHeightComponent(height),
-                        new MaterialWidthComponent(width), name, price, categoryId,amount);
+                        new MaterialWidthComponent(width), name, price, categoryId,amount, unit);
                 listToFill.get(listToFill.size() - 1).addMaterial(mat);
             }
             previousId = categoryId;

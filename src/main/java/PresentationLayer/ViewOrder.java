@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import FunctionLayer.Exceptions.CommandException;
+import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 
@@ -17,9 +18,9 @@ public class ViewOrder extends Command {
 
         try {
             order = LogicFacade.getOrder(Integer.parseInt(request.getParameter("o")));
-        } catch (Exception e) {
+        } catch (DatabaseException e) {
             //Returns to order overview, if Exception happens
-            request.setAttribute( "error", "Kunne ikke hente ordren fra databasen" );
+            request.setAttribute( "error", e.getMessage() + ". Kunne ikke hente ordren fra databasen." );
             return "orders";
         }
         request.setAttribute("order", order);

@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import Components.*;
+import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Exceptions.CommandException;
@@ -91,12 +92,16 @@ public class Request extends Command {
         //TODO update logic when user can choose materials
         try {
             if(roofTypeString.equals("inclined")){
-                incline = new InclineComponent(25);
+                int roofIncline = Integer.parseInt(request.getParameter("roofIncline"));
+                incline = new InclineComponent(roofIncline);
             }else {
                 incline = new InclineComponent(0);
             }
         }catch (ValidationFailedException e) {
             request.setAttribute("inclineError",e.getMessage());
+            errorsFound = true;
+        }catch (NumberFormatException e) {
+            request.setAttribute("inclineError", "Vinkel skal være et tal");
             errorsFound = true;
         }
 
@@ -122,10 +127,10 @@ public class Request extends Command {
             }
             try {
                 LogicFacade.createOrder(order);
-            } catch (SQLException e) {
+            } catch (DatabaseException e) {
                 //Set all input fields to their input if not empty
                 errorHandling(request,carportWidthString,carportDepthString,carportHeightString,shedornotString,shedWidthString,shedDepthString,roofTypeString);
-                request.setAttribute("error","Kunne ikke sende din bestilling afsted");
+                request.setAttribute("error","Kunne ikke sende din bestilling afsted. " + e.getMessage());
             }
 
             //No errors found - and order inserted in db

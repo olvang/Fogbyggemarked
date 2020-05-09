@@ -39,7 +39,7 @@ public class CarportGeneratorTest extends TestDataSetup {
                 new InclineComponent(0),false);
 
         ArrayList<Category> categoriesUsedInGeneratorRemme = getCategoriesAvailable(new int[]{8});
-        ArrayList<BillLine> billLineRemme = CarportGenerator.RemInSidesCarport(categoriesUsedInGeneratorRemme, order.getDepth(),order.getWidth());
+        ArrayList<BillLine> billLineRemme = CarportGenerator.RemInSidesCarport(categoriesUsedInGeneratorRemme, order.getDepthComponent(),order.getWidthComponent());
 
         ArrayList<Category> categoriesUsedInGeneratorSper = getCategoriesAvailable(new int[]{10});
         ArrayList<BillLine> billLineSper = CarportGenerator.sperOnRem(categoriesUsedInGeneratorSper, order);
@@ -64,7 +64,7 @@ public class CarportGeneratorTest extends TestDataSetup {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
         Order order = new Order(new DepthComponent(500), new HeightComponent(10), new WidthComponent(550),
                 new InclineComponent(0) ,false);
-        ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(),order.getWidth());
+        ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepthComponent(),order.getWidthComponent());
 
         int expectedAmount = 2;
         assertEquals(expectedAmount, billLine.get(0).getAmount());
@@ -76,7 +76,7 @@ public class CarportGeneratorTest extends TestDataSetup {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
         Order order = new Order(new DepthComponent(500), new HeightComponent(10), new WidthComponent(780),
                 new InclineComponent(0) ,false);
-        ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(),order.getWidth());
+        ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepthComponent(),order.getWidthComponent());
 
         int expectedAmount = 3;
         assertEquals(expectedAmount, billLine.get(0).getAmount());
@@ -88,7 +88,7 @@ public class CarportGeneratorTest extends TestDataSetup {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
         Order order = new Order(new DepthComponent(650), new HeightComponent(10), new WidthComponent(780),
                 new InclineComponent(0) ,false);
-        ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepth(),order.getWidth());
+        ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepthComponent(),order.getWidthComponent());
 
         int expectedAmount = 6;
         assertEquals(expectedAmount, billLine.get(0).getAmount());
@@ -100,7 +100,7 @@ public class CarportGeneratorTest extends TestDataSetup {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{2});
         Order order = new Order(new DepthComponent(1500), new HeightComponent(10), new WidthComponent(10),
                 new InclineComponent(0) ,false);
-        ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
+        ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepthComponent());
 
         String expected = "25x150 mm. trykimp. Bræt";
         int expectedAmount = 4;
@@ -118,7 +118,7 @@ public class CarportGeneratorTest extends TestDataSetup {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{4});
         Order order = new Order(new DepthComponent(780), new HeightComponent(10), new WidthComponent(10),
                 new InclineComponent(0) ,false);
-        ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepth());
+        ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepthComponent());
 
         String expected = "trykimp. Brædt";
         int expectedAmount1 = 2;
