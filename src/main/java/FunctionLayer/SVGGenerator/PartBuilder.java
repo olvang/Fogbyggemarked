@@ -8,7 +8,7 @@ public class PartBuilder {
     //TODO When writing these, don't forget to add the required positions and dimensions to the paramenters.
     // These will be passed on to here, from the DrawingGenerator.
 
-    public void drawOuterBox(SVG svg, int x, int y, int carportDepth, int carportWidth) {
+    public static void drawOuterBox(SVG svg, int x, int y, int carportDepth, int carportWidth) {
         svg.addRect(x,  y, carportWidth, carportDepth);
     }
 
@@ -32,7 +32,8 @@ public class PartBuilder {
         svg.addRect(upperCornerX, bottomStartingCorner, plankHeight, carportWidth);
     }
 
-    public void drawPillars(SVG svg) {
+    public static void drawPostsWithoutShed(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth) {
+
         throw new NotImplementedException();
     }
 
@@ -46,23 +47,23 @@ public class PartBuilder {
         }
     }
 
-    public void drawPerforatedBand(SVG svg) {
+    public static void drawPerforatedBand(SVG svg) {
         throw new NotImplementedException();
     }
 
-    public void drawDepthArrow(SVG svg) {
+    public static void drawDepthArrow(SVG svg) {
         throw new NotImplementedException();
     }
 
-    public void drawInnerWidthArrow(SVG svg) {
+    public static void drawInnerWidthArrow(SVG svg) {
         throw new NotImplementedException();
     }
 
-    public void drawOuterWidthArrow(SVG svg) {
+    public static void drawOuterWidthArrow(SVG svg) {
         throw new NotImplementedException();
     }
 
-    public void drawSperSpaceArrows(SVG svg) {
+    public static void drawSperSpaceArrows(SVG svg) {
         throw new NotImplementedException();
     }
 
