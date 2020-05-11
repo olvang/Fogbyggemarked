@@ -78,12 +78,7 @@ public class PartBuilder {
         int amountOfSper = CarportGenerator.getAmountOfSper(carportDepth);
         int spaceBetweenSper = carportDepth / amountOfSper;
 
-        int gap = 35;
-        if(carportWidth < 100) {
-            //The carport is so narrow that just subtracting 35 would create a massive gap
-            // instead we make the gap a third of the width, which is still massive, but better
-            gap = (int) Math.ceil(carportWidth / 3.0);
-        }
+        int gap = getGapToRem(carportWidth);
 
         //Y = Starts/Ends from the gap calculated above
         //X = Starts/Ends 1 Sper in
@@ -95,8 +90,9 @@ public class PartBuilder {
         throw new NotImplementedException();
     }
 
-    public static void drawDepthArrow(SVG svg) {
-        throw new NotImplementedException();
+    public static void drawDepthArrow(SVG svg,int cornerX, int cornerY, int carportDepth, int carportWidth) {
+        svg.addLineWithArrow(cornerX,(cornerY + carportWidth)+30,cornerX+carportDepth,(cornerY + carportWidth)+30);
+        svg.addText(carportDepth / 2,(cornerY + carportWidth)+45,0,carportWidth + " cm");
     }
 
     public static void drawInnerWidthArrow(SVG svg) {
