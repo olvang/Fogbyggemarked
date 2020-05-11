@@ -17,6 +17,7 @@ abstract class Command {
         commands.put( "bill", new Bill() );
         commands.put( "orders", new Orders() );
         commands.put( "order", new ViewOrder() );
+        commands.put("drawking", new Drawing() );
     }
 
     static Command from( HttpServletRequest request ) {
