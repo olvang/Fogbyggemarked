@@ -11,8 +11,24 @@ public class PartBuilder {
         svg.addRect(x,  y, carportWidth, carportDepth);
     }
 
-    public void drawRems(SVG svg) {
-        throw new NotImplementedException();
+    public static void drawRems(SVG svg, int upperCornerX, int upperCornerY, int carportDepth, int carportWidth) {
+        //There is a small gap between the top edge of the carport, and the rem (same on bottom).
+        //The gap is 35cm on either side.
+        int plankHeight = 5;
+        int upperStartingCorner;
+        int bottomStartingCorner;
+        int gap;
+        if(carportWidth < 100) {
+            //The carport is so narrow that just subtracting 35 would create a massive gap
+            // instead we make the gap a third of the width, which is still massive, but better
+            gap = (int) Math.ceil(carportWidth / 3.0);
+        } else {
+            gap = 35;
+        }
+        upperStartingCorner = upperCornerY + gap;
+        bottomStartingCorner = upperCornerY + ( carportWidth - gap);
+        svg.addRect(upperCornerX, upperStartingCorner, plankHeight, carportWidth);
+        svg.addRect(upperCornerX, bottomStartingCorner, plankHeight, carportWidth);
     }
 
     public void drawPillars(SVG svg) {
