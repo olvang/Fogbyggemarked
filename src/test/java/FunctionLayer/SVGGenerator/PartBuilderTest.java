@@ -34,6 +34,7 @@ public class PartBuilderTest {
         PartBuilder.drawSper(svg, 0,0, 800, 600);
         PartBuilder.drawPerforatedBandWithoutShed(svg, 0,0, 800, 600);
         PartBuilder.drawDepthArrow(svg, 0,0, 800, 600);
+        PartBuilder.drawInnerWidthArrow(svg, 0,0, 800, 600);
 
         writeToFile(svg.toString());
     }

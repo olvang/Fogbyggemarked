@@ -92,11 +92,12 @@ public class PartBuilder {
 
     public static void drawDepthArrow(SVG svg,int cornerX, int cornerY, int carportDepth, int carportWidth) {
         svg.addLineWithArrow(cornerX,(cornerY + carportWidth)+30,cornerX+carportDepth,(cornerY + carportWidth)+30);
-        svg.addText(carportDepth / 2,(cornerY + carportWidth)+45,0,carportWidth + " cm");
+        svg.addText(carportDepth / 2,(cornerY + carportWidth)+45,0,carportDepth + " cm");
     }
 
-    public static void drawInnerWidthArrow(SVG svg) {
-        throw new NotImplementedException();
+    public static void drawInnerWidthArrow(SVG svg,int cornerX, int cornerY, int carportDepth, int carportWidth) {
+        svg.addLineWithArrow(cornerX + carportDepth + 20,cornerY+35,cornerX + carportDepth + 20,(cornerY + carportWidth)-35);
+        svg.addText(cornerX + carportDepth + 35,(cornerY + carportWidth) / 2,90,carportWidth + " cm");
     }
 
     public static void drawOuterWidthArrow(SVG svg) {
