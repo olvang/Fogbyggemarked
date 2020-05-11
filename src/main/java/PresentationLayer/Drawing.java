@@ -24,11 +24,10 @@ public class Drawing extends Command{
 
         } catch (DatabaseException e) {
             return "request";
-
         } catch (DrawingFailedException e) {
             return "request";
         }
         request.setAttribute("svgdrawing", svg.toString());
-        return "Drawing";
+        return "drawing";
     }
 }
