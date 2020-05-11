@@ -21,6 +21,10 @@ public class SVG {
             "            <path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
             "        </marker>\n" +
             "    </defs>";
+    private final String lineWithArrow = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\n" +
+            "        marker-start: url(#beginArrow);\n" +
+            "        marker-end: url(#endArrow);\" />";
+
 
     public SVG(int width, int height, String viewbox, int x, int y) {
         this.width = width;
@@ -34,6 +38,9 @@ public class SVG {
 
     public void addRect(int x, int y, int height, int width){
         svg.append(String.format(rectTemplate, x, y, height, width));
+    }
+    public void addLineWithArrow(int x1, int y1, int x2, int y2){
+        svg.append(String.format(lineWithArrow,x1,y1,x2,y2));
     }
 
     public int getWidth() {
