@@ -47,15 +47,27 @@ public class PartBuilder {
                 postY = cornerY + (carportWidth - topGap);
             } else {
                 //All middle rows
-                
+                // subtract 2 because we've already placed top and bottom at this point
+                postY = cornerY + (((carportWidth - topGap * 2) / 2) / (amountOfRows - 2)) * (row - 1);
             }
 
+            int firstPosition = 0;
+            int lastPosition = 0;
             for(int post = 0; post < postsInEachRow; post++) {
-                if(leftGap + (post * CarportGenerator.getDistanceBetweenPosts()) < carportDepth) {
-                    postX = leftGap + (post * CarportGenerator.getDistanceBetweenPosts());
+                if(post == 0) {
+                    //place first post
+                    postX = cornerX + leftGap;
+                    firstPosition = postX;
+                } else if (post == 1) {
+                    //place last post
+                    postX = cornerX + carportDepth - leftGap;
+                    lastPosition = postX;
                 } else {
-                    //This should only be the final post
-                    postX = carportDepth;
+                    //Subtract 2 because we've already placed first and last
+                    //Don't tell anyone, but I'm honestly not sure why it suddenly works when subtracting only 1 lol
+                    // maybe it's because we're counting from 0? I honestly don't know anymore. 
+                    int distanceBetween = (lastPosition - firstPosition) / (postsInEachRow - 1);
+                    postX = firstPosition + (distanceBetween * (post - 1) );
                 }
                 svg.addRect(postX, postY, postSides, postSides);
             }
