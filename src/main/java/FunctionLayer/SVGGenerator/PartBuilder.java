@@ -1,5 +1,6 @@
 package FunctionLayer.SVGGenerator;
 
+import FunctionLayer.BillGenerator.CarportGenerator;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class PartBuilder {
@@ -35,8 +36,14 @@ public class PartBuilder {
         throw new NotImplementedException();
     }
 
-    public void drawSper(SVG svg) {
-        throw new NotImplementedException();
+    public static void drawSper(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth) {
+        int sperWidth = 4;
+        int amountOfSper = CarportGenerator.getAmountOfSper(carportDepth);
+        System.out.println(amountOfSper);
+        for(int i = 1; i <= amountOfSper; i++) {
+            int xPosition = i * 55 + cornerX;
+            svg.addRect(xPosition, cornerY, carportWidth, sperWidth);
+        }
     }
 
     public void drawPerforatedBand(SVG svg) {
