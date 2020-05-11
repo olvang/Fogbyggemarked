@@ -28,8 +28,8 @@ public class PartBuilder {
         }
         upperStartingCorner = upperCornerY + gap;
         bottomStartingCorner = upperCornerY + ( carportWidth - gap);
-        svg.addRect(upperCornerX, upperStartingCorner, plankHeight, carportWidth);
-        svg.addRect(upperCornerX, bottomStartingCorner, plankHeight, carportWidth);
+        svg.addRect(upperCornerX, upperStartingCorner, plankHeight, carportDepth);
+        svg.addRect(upperCornerX, bottomStartingCorner, plankHeight, carportDepth);
     }
 
     public static void drawPostsWithoutShed(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth) {
@@ -40,9 +40,9 @@ public class PartBuilder {
     public static void drawSper(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth) {
         int sperWidth = 4;
         int amountOfSper = CarportGenerator.getAmountOfSper(carportDepth);
-        System.out.println(amountOfSper);
-        for(int i = 1; i <= amountOfSper; i++) {
-            int xPosition = i * 55 + cornerX;
+        int spaceBetweenSper = carportDepth / amountOfSper;
+        for(int i = 0; i <= amountOfSper; i++) {
+            int xPosition = i * spaceBetweenSper + cornerX;
             svg.addRect(xPosition, cornerY, carportWidth, sperWidth);
         }
     }
