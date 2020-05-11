@@ -26,10 +26,11 @@ public class PartBuilderTest {
     //This method will just print the result. Preview it in the test.svg file.
     //Uncomment @Test before running, don't forget to comment it again.
 
-    //@Test
+    @Test
     public void testMethod() {
-        SVG svg = new SVG(1000, 1000, "0,0,1000,1000", 0,0);
-        PartBuilder.drawRems(svg, 0,0, 800, 600);
+        SVG svg = new SVG(2000, 2000, "0,0,2000,2000", 0,0);
+        PartBuilder.drawOuterBox(svg, 0,0,1600,1200);
+        PartBuilder.drawPostsWithoutShed(svg, 0,0, 1600, 1200);
 
         writeToFile(svg.toString());
     }
