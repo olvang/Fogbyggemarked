@@ -28,13 +28,14 @@ public class PartBuilderTest {
 
     @Test
     public void testMethod() {
-        SVG svg = new SVG(1000, 800, "0,0,1000,800", 0,0);
-        PartBuilder.drawPostsWithoutShed(svg, 0,0, 800, 600);
-        PartBuilder.drawRems(svg, 0,0, 800, 600);
-        PartBuilder.drawSper(svg, 0,0, 800, 600);
-        PartBuilder.drawPerforatedBandWithoutShed(svg, 0,0, 800, 600);
-        PartBuilder.drawDepthArrow(svg, 0,0, 800, 600);
-        PartBuilder.drawInnerWidthArrow(svg, 0,0, 800, 600);
+        SVG svg = new SVG(1200, 800, "0,0,1000,800", 0,0);
+        PartBuilder.drawRems(svg, 100,100, 800, 600);
+        PartBuilder.drawSper(svg, 100,100, 800, 600);
+        PartBuilder.drawPerforatedBandWithoutShed(svg, 100,100, 800, 600);
+        PartBuilder.drawDepthArrow(svg, 100,100, 800, 600);
+        PartBuilder.drawInnerWidthArrow(svg, 100,100, 800, 600);
+        PartBuilder.drawOuterWidthArrow(svg, 100,100, 800, 600);
+        PartBuilder.drawPostsWithoutShed(svg, 100,100, 800, 600);
 
         writeToFile(svg.toString());
     }
