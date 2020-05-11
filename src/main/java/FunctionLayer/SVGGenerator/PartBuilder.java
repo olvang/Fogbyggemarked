@@ -117,8 +117,28 @@ public class PartBuilder {
         svg.addLine(cornerX + carportDepth + 30,(cornerY + carportWidth),cornerX + carportDepth + 70,(cornerY + carportWidth),false);
     }
 
-    public static void drawSperSpaceArrows(SVG svg) {
-        throw new NotImplementedException();
+    public static void drawSperSpaceArrows(SVG svg,int cornerX, int cornerY, int carportDepth, int carportWidth) {
+        int sperWidth = 4;
+        int amountOfSper = CarportGenerator.getAmountOfSper(carportDepth);
+        int spaceBetweenSper = carportDepth / amountOfSper;
+        for(int i = 0; i < amountOfSper; i++) {
+            int xPosition = i * spaceBetweenSper + cornerX;
+
+            //Arrows
+            svg.addLineWithArrow(xPosition, cornerY -40, xPosition+spaceBetweenSper+sperWidth, cornerY -40);
+
+            //text
+            svg.addText(xPosition + (spaceBetweenSper / 2), cornerY -50,0, String.valueOf((double)spaceBetweenSper / 10));
+
+            //The small lines
+            svg.addLine(xPosition+sperWidth/2,cornerY -50,xPosition+sperWidth/2,cornerY -20,false);
+
+            if(i == amountOfSper -1){
+                xPosition = 15 * spaceBetweenSper + cornerX;
+                //Add the last line
+                svg.addLine(xPosition+sperWidth/2,cornerY -50,xPosition+sperWidth/2,cornerY -20,false);
+            }
+        }
     }
 
     private static int getGapToRem(int carportWidth) {
