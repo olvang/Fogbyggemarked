@@ -1,7 +1,7 @@
 package PresentationLayer;
 
 import FunctionLayer.Exceptions.CommandException;
-import FunctionLayer.SVG;
+import FunctionLayer.SVGGenerator.SVG;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
