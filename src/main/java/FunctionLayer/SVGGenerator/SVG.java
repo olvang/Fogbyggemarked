@@ -54,6 +54,9 @@ public class SVG {
     public void addText(int x, int y, int rotate, String text){
         svg.append(String.format(text,x,y,rotate,text));
     }
+    public void addInnerDrawing(String innerDrawing){
+        svg.append(innerDrawing);
+    }
 
     public int getWidth() {
         return width;
