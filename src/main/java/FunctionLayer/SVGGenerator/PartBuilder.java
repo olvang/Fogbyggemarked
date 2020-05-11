@@ -47,7 +47,25 @@ public class PartBuilder {
         }
     }
 
-    public static void drawPerforatedBand(SVG svg) {
+    public static void drawPerforatedBandWithoutShed(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth) {
+        //We need the space between each sper, as that is where it starts / ends
+        int amountOfSper = CarportGenerator.getAmountOfSper(carportDepth);
+        int spaceBetweenSper = carportDepth / amountOfSper;
+
+        int gap = 35;
+        if(carportWidth < 100) {
+            //The carport is so narrow that just subtracting 35 would create a massive gap
+            // instead we make the gap a third of the width, which is still massive, but better
+            gap = (int) Math.ceil(carportWidth / 3.0);
+        }
+
+        //Y = Starts/Ends from the gap calculated above
+        //X = Starts/Ends 1 Sper in
+        svg.addLine(cornerX+spaceBetweenSper,cornerY + gap,carportDepth-spaceBetweenSper,carportWidth-gap,true);
+        svg.addLine(cornerX+spaceBetweenSper,(cornerY + carportWidth)-gap,carportDepth-spaceBetweenSper,gap,true);
+    }
+
+    public static void drawPerforatedBandWithShed(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth,int shedDepth, int shedWidth) {
         throw new NotImplementedException();
     }
 
