@@ -266,12 +266,6 @@ public class CarportGenerator {
         return new ArrayList<BillLine>() {{add(line);}};
     }
 
-    public static int getAmountOfSper(int carportDepth) {
-        int amount;
-        amount = (int) Math.ceil(carportDepth / 55.0);
-        return amount;
-    }
-
     public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
@@ -325,28 +319,6 @@ public class CarportGenerator {
         return billLines;
     }
 
-    public static int getAmountOfPostRows(int carportWidth) {
-        int numberOfPostRows = 2;
-        //For each 600 cm, add another post row
-        if(carportWidth > 600){
-            numberOfPostRows += carportWidth / 600;
-        }
-        return numberOfPostRows;
-    }
-
-    public static int getAmountOfPosts(int carportDepth, int numberOfRows) {
-        //Starting with 2 posts, front and back
-        int numberOfPostPerRow = 2;
-
-        //Subtracts 100 cm from the front, 30 cm from the back = 130 cm
-        carportDepth -= 130;
-
-        //For each 310 cm, add another post on that row
-        numberOfPostPerRow += carportDepth / 310;
-
-        int total = numberOfPostPerRow * numberOfRows;
-        return total;
-    }
 
     public static ArrayList<BillLine> perforatedBand(ArrayList<Category> categoriesUsedInGenerator, Order order) {
         int width = order.getWidth();
@@ -586,6 +558,41 @@ public class CarportGenerator {
     }
 
 
+    //----------------------//
+    // Getting Information //
+    //---------------------//
 
+    public static int getAmountOfSper(int carportDepth) {
+        int amount;
+        amount = (int) Math.ceil(carportDepth / 55.0);
+        return amount;
+    }
+
+    public static int getAmountOfPostRows(int carportWidth) {
+        int numberOfPostRows = 2;
+        //For each 600 cm, add another post row
+        if(carportWidth > 600){
+            numberOfPostRows += carportWidth / 600;
+        }
+        return numberOfPostRows;
+    }
+
+    public static int getAmountOfPosts(int carportDepth, int numberOfRows) {
+        //Starting with 2 posts, front and back
+        int numberOfPostPerRow = 2;
+
+        //Subtracts 100 cm from the front, 30 cm from the back = 130 cm
+        carportDepth -= 130;
+
+        //For each 310 cm, add another post on that row
+        numberOfPostPerRow += carportDepth / getDistanceBetweenPosts();
+
+        int total = numberOfPostPerRow * numberOfRows;
+        return total;
+    }
+
+    public static int getDistanceBetweenPosts() {
+        return 310;
+    }
 
 }

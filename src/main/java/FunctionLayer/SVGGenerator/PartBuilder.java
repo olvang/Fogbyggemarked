@@ -18,14 +18,8 @@ public class PartBuilder {
         int plankHeight = 5;
         int upperStartingCorner;
         int bottomStartingCorner;
-        int gap;
-        if(carportWidth < 100) {
-            //The carport is so narrow that just subtracting 35 would create a massive gap
-            // instead we make the gap a third of the width, which is still massive, but better
-            gap = (int) Math.ceil(carportWidth / 3.0);
-        } else {
-            gap = 35;
-        }
+        int gap = getGapToRem(carportWidth);
+
         upperStartingCorner = upperCornerY + gap;
         bottomStartingCorner = upperCornerY + ( carportWidth - gap);
         svg.addRect(upperCornerX, upperStartingCorner, plankHeight, carportDepth);
@@ -33,8 +27,40 @@ public class PartBuilder {
     }
 
     public static void drawPostsWithoutShed(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth) {
+        int postSides = 6;
+        int amountOfRows = CarportGenerator.getAmountOfPostRows(carportWidth);
+        int amountOfPosts = CarportGenerator.getAmountOfPosts(carportDepth,amountOfRows);
+        int postsInEachRow = amountOfPosts / amountOfRows;
 
-        throw new NotImplementedException();
+        int topGap = getGapToRem(carportWidth);
+        int leftGap = 100; //Decided upon beforehand. Same as in CarportGenerator.
+
+        int postX = cornerX + leftGap;
+        int postY = 0;
+
+        for(int row = 0; row < amountOfRows; row++) {
+            if(row == 0) {
+                //Topmost row
+                postY = cornerY + topGap;
+            }else if (row == 1) {
+                //Bottom row
+                postY = cornerY + (carportWidth - topGap);
+            } else {
+                //All middle rows
+                
+            }
+
+            for(int post = 0; post < postsInEachRow; post++) {
+                if(leftGap + (post * CarportGenerator.getDistanceBetweenPosts()) < carportDepth) {
+                    postX = leftGap + (post * CarportGenerator.getDistanceBetweenPosts());
+                } else {
+                    //This should only be the final post
+                    postX = carportDepth;
+                }
+                svg.addRect(postX, postY, postSides, postSides);
+            }
+        }
+
     }
 
     public static void drawSper(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth) {
@@ -67,5 +93,16 @@ public class PartBuilder {
         throw new NotImplementedException();
     }
 
+    private static int getGapToRem(int carportWidth) {
+        int gap;
+        if(carportWidth < 100) {
+            //The carport is so narrow that just subtracting 35 would create a massive gap
+            // instead we make the gap a third of the width, which is still massive, but better
+            gap = (int) Math.ceil(carportWidth / 3.0);
+        } else {
+            gap = 35;
+        }
+        return gap;
+    }
 
 }
