@@ -24,7 +24,8 @@ public class SVG {
     private final String lineWithArrow = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\n" +
             "        marker-start: url(#beginArrow);\n" +
             "        marker-end: url(#endArrow);\" />";
-
+    private final String dottedLine = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
+    private final String line = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\" />";
 
     public SVG(int width, int height, String viewbox, int x, int y) {
         this.width = width;
@@ -41,6 +42,13 @@ public class SVG {
     }
     public void addLineWithArrow(int x1, int y1, int x2, int y2){
         svg.append(String.format(lineWithArrow,x1,y1,x2,y2));
+    }
+    public void addLine(int x1, int y1, int x2, int y2, boolean dotted){
+        if(dotted){
+            svg.append(String.format(dottedLine,x1,y1,x2,y2));
+        }else{
+            svg.append(String.format(line,x1,y1,x2,y2));
+        }
     }
 
     public int getWidth() {
