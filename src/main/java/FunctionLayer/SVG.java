@@ -13,6 +13,14 @@ public class SVG {
 
     private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"%s\" width=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
     private final String rectTemplate = "<rect x=\"%d\" y=\"%d\" height=\"%d\" width=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String arrowTemplate = "<defs>\n" +
+            "        <marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+            "            <path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+            "        </marker>\n" +
+            "        <marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+            "            <path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+            "        </marker>\n" +
+            "    </defs>";
 
     public SVG(int width, int height, String viewbox, int x, int y) {
         this.width = width;
@@ -21,6 +29,7 @@ public class SVG {
         this.x = x;
         this.y = y;
         svg.append(String.format(headerTemplate, height, width, viewbox));
+        svg.append(arrowTemplate);
     }
 
     public void addRect(int x, int y, int height, int width){
