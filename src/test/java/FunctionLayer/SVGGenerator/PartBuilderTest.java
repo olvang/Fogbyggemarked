@@ -28,9 +28,12 @@ public class PartBuilderTest {
 
     @Test
     public void testMethod() {
-        SVG svg = new SVG(2000, 2000, "0,0,2000,2000", 0,0);
-        PartBuilder.drawOuterBox(svg, 0,0,1600,1200);
-        PartBuilder.drawPostsWithoutShed(svg, 0,0, 1600, 1200);
+        SVG svg = new SVG(1000, 800, "0,0,1000,800", 0,0);
+        PartBuilder.drawPostsWithoutShed(svg, 0,0, 800, 600);
+        PartBuilder.drawRems(svg, 0,0, 800, 600);
+        PartBuilder.drawSper(svg, 0,0, 800, 600);
+        PartBuilder.drawPerforatedBandWithoutShed(svg, 0,0, 800, 600);
+        PartBuilder.drawDepthArrow(svg, 0,0, 800, 600);
 
         writeToFile(svg.toString());
     }

@@ -26,7 +26,7 @@ public class SVG {
             "        marker-end: url(#endArrow);\" />";
     private final String dottedLine = "\n<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
     private final String line = "\n<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\" />";
-    private final String text = "\n<text style=\"text-anchor: middle\" transform=\"translate(\"%d\",\"%d\") rotate(\"%d\")\">\"%s\"</text>";
+    private final String text = "\n<text style=\"text-anchor: middle\" font-size=\"16\" transform=\"translate(%d,%d) rotate(%d)\">%s</text>";
 
     public SVG(int width, int height, String viewbox, int x, int y) {
         this.width = width;
@@ -52,8 +52,9 @@ public class SVG {
         }
     }
     public void addText(int x, int y, int rotate, String text){
-        svg.append(String.format(text,x,y,rotate,text));
+        svg.append(String.format(this.text,x,y,rotate,text));
     }
+
     public void addInnerDrawing(String innerDrawing){
         svg.append(innerDrawing);
     }
