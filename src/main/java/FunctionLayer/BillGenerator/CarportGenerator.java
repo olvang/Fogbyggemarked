@@ -256,7 +256,7 @@ public class CarportGenerator {
             }
         }
 
-        amount = (int) Math.ceil(carportDepth / 55.0);
+        amount = getAmountOfSper(carportDepth);
         if(sperToUse != null) {
             line = new BillLine(sperToUse, amount, categoryDescription);
         } else {
@@ -264,6 +264,12 @@ public class CarportGenerator {
         }
 
         return new ArrayList<BillLine>() {{add(line);}};
+    }
+
+    public static int getAmountOfSper(int carportDepth) {
+        int amount;
+        amount = (int) Math.ceil(carportDepth / 55.0);
+        return amount;
     }
 
     public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
