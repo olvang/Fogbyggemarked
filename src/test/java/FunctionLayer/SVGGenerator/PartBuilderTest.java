@@ -29,6 +29,7 @@ public class PartBuilderTest {
     @Test
     public void testMethod() {
         SVG svg = new SVG(1200, 800, "0,0,1000,800", 0,0);
+        PartBuilder.drawOuterBox(svg, 100,100, 800, 600);
         PartBuilder.drawRems(svg, 100,100, 800, 600);
         PartBuilder.drawSper(svg, 100,100, 800, 600);
         PartBuilder.drawPerforatedBandWithoutShed(svg, 100,100, 800, 600);
@@ -36,6 +37,7 @@ public class PartBuilderTest {
         PartBuilder.drawInnerWidthArrow(svg, 100,100, 800, 600);
         PartBuilder.drawOuterWidthArrow(svg, 100,100, 800, 600);
         PartBuilder.drawPostsWithoutShed(svg, 100,100, 800, 600);
+        PartBuilder.drawSperSpaceArrows(svg, 100,100, 800, 600);
 
         writeToFile(svg.toString());
     }
