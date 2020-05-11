@@ -88,7 +88,7 @@
                         <div><a style="float:right;" class="btn btn-info btn-lg" href="FrontController?target=bill&order_id=${requestScope.order.orderId}" role="button">Stykliste</a></div>
                     </div>
                     <div class="col-lg-6">
-                        <div><a style="float:left;" class="btn btn-secondary btn-lg" href="index.jsp" role="button">Tegning</a></div>
+                        <div><a style="float:left;" class="btn btn-secondary btn-lg" href="FrontController?target=Drawing&order_id=${requestScope.order.orderId}" role="button">Tegning</a></div>
                     </div>
                 </div>
             </div>
