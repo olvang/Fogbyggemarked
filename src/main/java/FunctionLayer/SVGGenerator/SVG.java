@@ -1,4 +1,4 @@
-package FunctionLayer;
+package FunctionLayer.SVGGenerator;
 
 import com.sun.javafx.binding.StringFormatter;
 
