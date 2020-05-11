@@ -11,9 +11,9 @@ public class SVG {
     private int y;
     private StringBuilder svg = new StringBuilder();
 
-    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"%s\" width=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
-    private final String rectTemplate = "<rect x=\"%d\" y=\"%d\" height=\"%d\" width=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
-    private final String arrowTemplate = "<defs>\n" +
+    private final String headerTemplate = "\n<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"%s\" width=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
+    private final String rectTemplate = "\n<rect x=\"%d\" y=\"%d\" height=\"%d\" width=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String arrowTemplate = "\n<defs>\n" +
             "        <marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
             "            <path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
             "        </marker>\n" +
@@ -21,12 +21,12 @@ public class SVG {
             "            <path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
             "        </marker>\n" +
             "    </defs>";
-    private final String lineWithArrow = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\n" +
+    private final String lineWithArrow = "\n<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\n" +
             "        marker-start: url(#beginArrow);\n" +
             "        marker-end: url(#endArrow);\" />";
-    private final String dottedLine = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
-    private final String line = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\" />";
-    private final String text = "<text style=\"text-anchor: middle\" transform=\"translate(\"%d\",\"%d\") rotate(\"%d\")\">\"%s\"</text>";
+    private final String dottedLine = "\n<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
+    private final String line = "\n<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\" />";
+    private final String text = "\n<text style=\"text-anchor: middle\" transform=\"translate(\"%d\",\"%d\") rotate(\"%d\")\">\"%s\"</text>";
 
     public SVG(int width, int height, String viewbox, int x, int y) {
         this.width = width;
