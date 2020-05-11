@@ -277,7 +277,7 @@ public class CarportGenerator {
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;
 
-        int numberOfPostRows = 2;
+        int numberOfPostRows;
         int numberOfPostPerRow = 2;
         int total = 0;
         int carportWidth = order.getWidth();
@@ -291,19 +291,9 @@ public class CarportGenerator {
             carportDepth -= order.getShedDepth();
         }
 
+        numberOfPostRows = getAmountOfPostRows(carportWidth);
 
-        //For each 600 cm, add another post row
-        if(carportWidth > 600){
-            numberOfPostRows += carportWidth / 600;
-        }
-
-        //Subtracts 100 cm from the front, 30 cm from the back = 130 cm
-        carportDepth -= 130;
-
-        //For each 310 cm, add another post on that row
-        numberOfPostPerRow += carportDepth / 310;
-
-        total = numberOfPostPerRow * numberOfPostRows;
+        total = getAmountOfPosts(carportDepth, numberOfPostRows);
 
         //Sorts the materials(posts) by their length, DESC
         ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
@@ -333,6 +323,29 @@ public class CarportGenerator {
                 throw new GeneratorException("Kunne ikke udregne stoplerne");
         }
         return billLines;
+    }
+
+    public static int getAmountOfPostRows(int carportWidth) {
+        int numberOfPostRows = 2;
+        //For each 600 cm, add another post row
+        if(carportWidth > 600){
+            numberOfPostRows += carportWidth / 600;
+        }
+        return numberOfPostRows;
+    }
+
+    public static int getAmountOfPosts(int carportDepth, int numberOfRows) {
+        //Starting with 2 posts, front and back
+        int numberOfPostPerRow = 2;
+
+        //Subtracts 100 cm from the front, 30 cm from the back = 130 cm
+        carportDepth -= 130;
+
+        //For each 310 cm, add another post on that row
+        numberOfPostPerRow += carportDepth / 310;
+
+        int total = numberOfPostPerRow * numberOfRows;
+        return total;
     }
 
     public static ArrayList<BillLine> perforatedBand(ArrayList<Category> categoriesUsedInGenerator, Order order) {
