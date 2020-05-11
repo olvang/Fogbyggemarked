@@ -7,8 +7,8 @@ public class PartBuilder {
     //TODO When writing these, don't forget to add the required positions and dimensions to the paramenters.
     // These will be passed on to here, from the DrawingGenerator.
 
-    public void drawOuterBox(SVG svg) {
-        throw new NotImplementedException();
+    public void drawOuterBox(SVG svg, int x, int y, int carportDepth, int carportWidth) {
+        svg.addRect(x,  y, carportWidth, carportDepth);
     }
 
     public void drawRems(SVG svg) {
