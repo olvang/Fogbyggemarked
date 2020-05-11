@@ -10,6 +10,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Remove follow line to stop redirect -->
+        <meta http-equiv="refresh" content="0; url=request.jsp" />
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Welcome page</title>
     </head>
