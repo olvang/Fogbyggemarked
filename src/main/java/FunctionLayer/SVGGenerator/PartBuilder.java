@@ -82,8 +82,8 @@ public class PartBuilder {
 
         //Y = Starts/Ends from the gap calculated above
         //X = Starts/Ends 1 Sper in
-        svg.addLine(cornerX+spaceBetweenSper,cornerY + gap,carportDepth-spaceBetweenSper,carportWidth-gap,true);
-        svg.addLine(cornerX+spaceBetweenSper,(cornerY + carportWidth)-gap,carportDepth-spaceBetweenSper,gap,true);
+        svg.addLine(cornerX+spaceBetweenSper,cornerY + gap,+cornerX+carportDepth-spaceBetweenSper,cornerY+carportWidth-gap,true);
+        svg.addLine(cornerX+spaceBetweenSper,(cornerY + carportWidth)-gap,cornerX+carportDepth-spaceBetweenSper,cornerY+gap,true);
     }
 
     public static void drawPerforatedBandWithShed(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth,int shedDepth, int shedWidth) {
@@ -92,16 +92,29 @@ public class PartBuilder {
 
     public static void drawDepthArrow(SVG svg,int cornerX, int cornerY, int carportDepth, int carportWidth) {
         svg.addLineWithArrow(cornerX,(cornerY + carportWidth)+30,cornerX+carportDepth,(cornerY + carportWidth)+30);
-        svg.addText(carportDepth / 2,(cornerY + carportWidth)+45,0,carportDepth + " cm");
+        svg.addText(carportDepth / 2 + cornerX,(cornerY + carportWidth)+45,0,carportDepth + " cm");
     }
 
     public static void drawInnerWidthArrow(SVG svg,int cornerX, int cornerY, int carportDepth, int carportWidth) {
-        svg.addLineWithArrow(cornerX + carportDepth + 20,cornerY+35,cornerX + carportDepth + 20,(cornerY + carportWidth)-35);
-        svg.addText(cornerX + carportDepth + 35,(cornerY + carportWidth) / 2,90,carportWidth + " cm");
+        svg.addLineWithArrow(cornerX + carportDepth + 30,cornerY+35,cornerX + carportDepth + 30,(cornerY + carportWidth)-30);
+        svg.addText(cornerX + carportDepth + 35,carportWidth / 2 + cornerY,90,(carportWidth - 70) + " cm");
+
+
+        //The small lines in each end
+        svg.addLine(cornerX + carportDepth + 10,cornerY+35,cornerX + carportDepth + 40,cornerY+35,false);
+        svg.addLine(cornerX + carportDepth + 10,(cornerY + carportWidth)-30,cornerX + carportDepth + 40,(cornerY + carportWidth)-30,false);
     }
 
-    public static void drawOuterWidthArrow(SVG svg) {
-        throw new NotImplementedException();
+    public static void drawOuterWidthArrow(SVG svg,int cornerX, int cornerY, int carportDepth, int carportWidth) {
+        //Arrows
+        svg.addLineWithArrow(cornerX + carportDepth + 60,cornerY,cornerX + carportDepth + 60,(cornerY + carportWidth));
+
+        //text
+        svg.addText(cornerX + carportDepth + 75,carportWidth / 2 + cornerY,90,carportWidth + " cm");
+
+        //The small lines in each end
+        svg.addLine(cornerX + carportDepth + 30,cornerY,cornerX + carportDepth + 70,cornerY,false);
+        svg.addLine(cornerX + carportDepth + 30,(cornerY + carportWidth),cornerX + carportDepth + 70,(cornerY + carportWidth),false);
     }
 
     public static void drawSperSpaceArrows(SVG svg) {
