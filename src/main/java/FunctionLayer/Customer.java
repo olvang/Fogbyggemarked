@@ -1,15 +1,17 @@
 package FunctionLayer;
 
+import Components.*;
+
 public class Customer {
 
     private NameComponent nameComponent;
-    private AdresseComponent adresseComponent;
-    private EmailCompononent emailCompononent;
+    private AddressComponent adresseComponent;
+    private EmailComponent emailCompononent;
     private PhoneComponent phoneComponent;
-    private ZipcodeComponent zipcodeComponent;
+    private ZipCodeComponent zipcodeComponent;
 
-    public Customer(NameComponent nameCom, AdresseComponent adresseCom, EmailCompononent emailCom, PhoneComponent phoneCom,
-                    ZipcodeComponent zipCom){
+    public Customer(NameComponent nameCom, AddressComponent adresseCom, EmailComponent emailCom, PhoneComponent phoneCom,
+                    ZipCodeComponent zipCom){
 
         this.nameComponent = nameCom;
         this.adresseComponent = adresseCom;
@@ -19,19 +21,39 @@ public class Customer {
 
     }
 
-    public AdresseComponent getAdresseComponent() {
+    public NameComponent getNameComponent() {
+        return nameComponent;
+    }
+
+    public String getName(){
+        return nameComponent.getName();
+    }
+
+    public void setNameComponent(NameComponent nameComponent) {
+        this.nameComponent = nameComponent;
+    }
+
+    public AddressComponent getAdresseComponent() {
         return adresseComponent;
     }
 
-    public void setAdresseComponent(AdresseComponent adresseComponent) {
+    public String getAdresse(){
+        return adresseComponent.getAddress();
+    }
+
+    public void setAdresseComponent(AddressComponent adresseComponent) {
         this.adresseComponent = adresseComponent;
     }
 
-    public EmailCompononent getEmailCompononent() {
+    public EmailComponent getEmailCompononent() {
         return emailCompononent;
     }
 
-    public void setEmailCompononent(EmailCompononent emailCompononent) {
+    public String getEmail(){
+        return emailCompononent.getEmail();
+    }
+
+    public void setEmailCompononent(EmailComponent emailCompononent) {
         this.emailCompononent = emailCompononent;
     }
 
@@ -39,29 +61,29 @@ public class Customer {
         return phoneComponent;
     }
 
+    public String getPhone(){
+        return phoneComponent.getPhone();
+    }
+
     public void setPhoneComponent(PhoneComponent phoneComponent) {
         this.phoneComponent = phoneComponent;
     }
 
-    public ZipcodeComponent getZipcodeComponent() {
+    public ZipCodeComponent getZipcodeComponent() {
         return zipcodeComponent;
     }
 
-    public void setZipcodeComponent(ZipcodeComponent zipcodeComponent) {
+    public String getZipcode(){
+        return zipcodeComponent.getZip();
+    }
+
+    public void ZipCodeComponent(ZipCodeComponent zipcodeComponent) {
         this.zipcodeComponent = zipcodeComponent;
-    }
-
-    public NameComponent getNameComponent() {
-        return nameComponent;
-    }
-
-    public void setNameComponent(NameComponent nameComponent) {
-        this.nameComponent = nameComponent;
     }
 
     @Override
     public String toString() {
-        return nameComponent.getName + " " + adresseComponent.getAdresse + " " + emailCompononent.getEmail + " "
-                + phoneComponent.getPhone + " " + zipcodeComponent.getZipcode;
+        return nameComponent.getName() + " " + adresseComponent.getAddress() + " " + emailCompononent.getEmail() + " "
+                + phoneComponent.getPhone() + " " + zipcodeComponent.getZip();
     }
 }
