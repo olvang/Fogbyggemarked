@@ -1,9 +1,7 @@
 package DBAccess;
 
-import Components.DepthComponent;
-import Components.HeightComponent;
-import Components.InclineComponent;
-import Components.WidthComponent;
+import Components.*;
+import FunctionLayer.Customer;
 import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Order;
@@ -24,18 +22,20 @@ public class OrderMapperTest extends TestDataSetup {
     InclineComponent incline;
     Order ord;
     Order order;
+    Customer customer;
     {
         try {
             depth = new DepthComponent("200");
             height = new HeightComponent("200");
             width = new WidthComponent("200");
             incline = new InclineComponent(0);
+            customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
 
         } catch (ValidationFailedException e) {
             e.printStackTrace();
         }
 
-        ord = new Order(depth,height,width, incline, false);
+        ord = new Order(depth,height,width, incline, false,customer);
     }
 
     @Test

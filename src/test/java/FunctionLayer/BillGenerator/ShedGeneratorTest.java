@@ -2,11 +2,8 @@ package FunctionLayer.BillGenerator;
 
 import Components.*;
 import Components.WidthComponent;
-import FunctionLayer.BillLine;
-import FunctionLayer.Category;
+import FunctionLayer.*;
 import FunctionLayer.Exceptions.ValidationFailedException;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.Order;
 import org.junit.Test;
 import testDataSetup.TestDataSetup;
 
@@ -30,14 +27,14 @@ public class ShedGeneratorTest extends TestDataSetup {
     }
     @Test
     public void testRemInSidesShedShort() throws Exception {
-
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{9});
         Order order = new Order(new DepthComponent(500),
                 new HeightComponent(10),
                 new WidthComponent(550),
                 new ShedDepthComponent("200","500"),
                 new ShedWidthComponent("200","500"),
-                new InclineComponent(0) ,false);
+                new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator, order.getShedDepthComponent());
 
         int exspectedAmount = 1;
@@ -58,14 +55,14 @@ public class ShedGeneratorTest extends TestDataSetup {
 
     @Test
     public void testRemInSidesShedLong() throws Exception {
-
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{9});
         Order order = new Order(new DepthComponent(500),
                 new HeightComponent(10),
                 new WidthComponent(550),
                 new ShedDepthComponent("500","550"),
                 new ShedWidthComponent("500","550"),
-                new InclineComponent(0) ,false);
+                new InclineComponent(0) ,false, customer);
         ArrayList<BillLine> billLine = ShedGenerator.RemInSidesShed(categoriesUsedInGenerator, order.getShedDepthComponent());
 
         int exspectedAmount = 2;
@@ -167,10 +164,11 @@ public class ShedGeneratorTest extends TestDataSetup {
 
     @Test
     public void testScrewsForInner() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{6, 7, 25});
         Order order = new Order(new DepthComponent(700), new HeightComponent(200), new WidthComponent(700),
                 new ShedDepthComponent(225, new DepthComponent(600)),
-                new ShedWidthComponent(600, new WidthComponent(700)), new InclineComponent(0), true);
+                new ShedWidthComponent(600, new WidthComponent(700)), new InclineComponent(0), true,customer);
         ArrayList<BillLine> lines = ShedGenerator.screwsForInner(categoriesUsedInGenerator, order);
 
         //LøsholterForGable should contain 14
