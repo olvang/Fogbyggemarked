@@ -1,6 +1,7 @@
 package DBAccess;
 
 import Components.*;
+import FunctionLayer.Customer;
 import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Order;
@@ -79,6 +80,15 @@ public class OrderMapper {
             DepthComponent depthComponent = new DepthComponent(rs.getInt("carport_depth"));
             HeightComponent heightComponent = new HeightComponent(rs.getInt("carport_height"));
             InclineComponent carportIncline = new InclineComponent(rs.getInt("carport_incline"));
+
+            NameComponent name = new NameComponent(rs.getString("customer_name"));
+            AddressComponent adress = new AddressComponent(rs.getString("customer_adresse"));
+            EmailComponent email = new EmailComponent(rs.getString("customer_email"));
+            PhoneComponent phonenumber = new PhoneComponent(rs.getString("customer_phonenumber"));
+            ZipCodeComponent zipCode = new ZipCodeComponent(rs.getString("customer_zipcode"));
+
+            Customer customer = new Customer(name,adress,email,phonenumber,zipCode);
+
             Timestamp ts = rs.getTimestamp("order_date");
             orderDate = new Date(ts.getTime());
 
@@ -88,9 +98,9 @@ public class OrderMapper {
                 ShedWidthComponent shedWidthComponent = new ShedWidthComponent(rs.getInt("shed_width"),widthComponent);
                 ShedDepthComponent shedDepthComponent = new ShedDepthComponent(rs.getInt("shed_depth"),depthComponent);
 
-                ord = new Order(depthComponent,heightComponent,widthComponent,shedDepthComponent, shedWidthComponent,carportIncline,true);
+                ord = new Order(depthComponent,heightComponent,widthComponent,shedDepthComponent, shedWidthComponent,carportIncline,true,customer);
             }else{
-                ord = new Order(depthComponent,heightComponent,widthComponent,carportIncline,false);
+                ord = new Order(depthComponent,heightComponent,widthComponent,carportIncline,false,customer);
             }
 
         } catch (SQLException e) {
@@ -130,6 +140,16 @@ public class OrderMapper {
                 DepthComponent depthComponent = new DepthComponent(rs.getInt("carport_depth"));
                 HeightComponent heightComponent = new HeightComponent(rs.getInt("carport_height"));
                 InclineComponent carportIncline = new InclineComponent(rs.getInt("carport_incline"));
+
+                NameComponent name = new NameComponent(rs.getString("customer_name"));
+                AddressComponent adress = new AddressComponent(rs.getString("customer_adresse"));
+                EmailComponent email = new EmailComponent(rs.getString("customer_email"));
+                PhoneComponent phonenumber = new PhoneComponent(rs.getString("customer_phonenumber"));
+                ZipCodeComponent zipCode = new ZipCodeComponent(rs.getString("customer_zipcode"));
+
+                Customer customer = new Customer(name,adress,email,phonenumber,zipCode);
+
+
                 Timestamp ts = rs.getTimestamp("order_date");
                 Date orderDate = new Date(ts.getTime());
 
@@ -139,9 +159,9 @@ public class OrderMapper {
                     ShedWidthComponent shedWidthComponent = new ShedWidthComponent(rs.getInt("shed_width"),widthComponent);
                     ShedDepthComponent shedDepthComponent = new ShedDepthComponent(rs.getInt("shed_depth"),depthComponent);
 
-                    order = new Order(depthComponent,heightComponent,widthComponent,shedDepthComponent, shedWidthComponent,carportIncline,true);
+                    order = new Order(depthComponent,heightComponent,widthComponent,shedDepthComponent, shedWidthComponent,carportIncline,true,customer);
                 }else{
-                    order = new Order(depthComponent,heightComponent,widthComponent,carportIncline,false);
+                    order = new Order(depthComponent,heightComponent,widthComponent,carportIncline,false,customer);
                 }
                 order.setOrderId(order_id);
                 order.setOrderDate(orderDate);

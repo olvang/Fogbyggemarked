@@ -137,4 +137,8 @@ public class Order {
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
+
+    public Customer getCustomer(){
+        return customer;
+    }
 }
