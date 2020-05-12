@@ -1,14 +1,8 @@
 package FunctionLayer.BillGenerator;
 
-import Components.DepthComponent;
-import Components.HeightComponent;
-import Components.InclineComponent;
-import Components.WidthComponent;
-import FunctionLayer.BillLine;
-import FunctionLayer.Category;
+import Components.*;
+import FunctionLayer.*;
 import FunctionLayer.Exceptions.ValidationFailedException;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.Order;
 import org.junit.Test;
 import testDataSetup.TestDataSetup;
 
@@ -20,8 +14,9 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void testRygtsen() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{35});
-        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false,customer);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.rygsten(categoriesUsedInGenerator,order);
 
         String expectedName = "B & C Rygsten sort";
@@ -34,8 +29,9 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void roofLathTest() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{31});
-        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false,customer);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.roofLath(categoriesUsedInGenerator,order);
 
         String expected = "25x50 mm. trykimp. Bræt";
@@ -48,8 +44,9 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void soffitTest() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{29});
-        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false,customer);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.soffit(categoriesUsedInGenerator,order);
 
         String expected = "trykimp. Brædt";
@@ -61,9 +58,9 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
     }
     @Test
     public void testboardsForGabled() throws Exception {
-
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{30});
-        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false,customer);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.boardsForGabled(categoriesUsedInGenerator,order);
 
         int exspected = 44;
@@ -73,9 +70,9 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
     }
     @Test
     public void testroofTiles() throws Exception {
-
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{34});
-        Order order = new Order(new DepthComponent(360), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false);
+        Order order = new Order(new DepthComponent(360), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false,customer);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.roofTiles(categoriesUsedInGenerator,order);
 
         int exspected = 243;
@@ -86,9 +83,9 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void testroofLathOnSper() throws Exception{
-
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{32});
-        Order order = new Order(new DepthComponent(360), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false);
+        Order order = new Order(new DepthComponent(360), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false,customer);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.roofLathOnSper(categoriesUsedInGenerator,order);
 
         int exspected = 9;
@@ -106,8 +103,8 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
     }
     @Test
     public void testscrewsForRoofLaths() throws Exception {
-
-        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false,customer);
 
         ArrayList<Category> categoriesUsedInGeneratorTop = getCategoriesAvailable(new int[]{32});
         ArrayList<BillLine> billLineTop = InclinedRoofGenerator.topRoofLathHolder(categoriesUsedInGeneratorTop,order);
@@ -125,8 +122,9 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
     }
     @Test
     public void testTopRoofLathHolder() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{36});
-        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false,customer);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.topRoofLathHolder(categoriesUsedInGenerator,order);
 
         String expectedName = "B & C Toplægte holder";
@@ -138,8 +136,9 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void testTopRoofLath() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{33});
-        Order order = new Order(new DepthComponent(780), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false);
+        Order order = new Order(new DepthComponent(780), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false,customer);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.topRoofLath(categoriesUsedInGenerator,order);
 
         int expectedPrice = 2;
@@ -151,8 +150,9 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void testRoofTileBinders() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{38});
-        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false);
+        Order order = new Order(new DepthComponent(730), new HeightComponent(210), new WidthComponent(360), new InclineComponent(25) ,false,customer);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.roofTileBinders(categoriesUsedInGenerator,300,21);
 
         int expectedAmount= 2;
