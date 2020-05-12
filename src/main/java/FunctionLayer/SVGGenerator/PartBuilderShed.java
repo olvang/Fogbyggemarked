@@ -11,21 +11,23 @@ public class PartBuilderShed {
         int upperStartingCorner;
         int bottomStartingCorner;
         int gap = PartBuilderCarport.getGapToRem(carportWidth);
+        //Right gap found on the original drawing from fog
+        int rightGap = 30;
 
         //Vertical
-        svg.addRect(x + carportDepth-shedDepth, y + gap , plank, shedDepth);
-        svg.addRect(x + carportDepth-shedDepth, y + shedWidth - gap , plank, shedDepth);
+        svg.addRect(x + carportDepth-shedDepth-rightGap, y + gap , plank, shedDepth);
+        svg.addRect(x + carportDepth-shedDepth-rightGap, y + shedWidth - gap , plank, shedDepth);
 
         //Horizontal
-        svg.addRect(x + carportDepth-shedDepth, y + gap , shedWidth - gap * 2, plank);
-        svg.addRect(x + carportDepth-plank, y + gap , shedWidth - gap * 2, plank);
+        svg.addRect(x + carportDepth-shedDepth-rightGap, y + gap , shedWidth - gap * 2, plank);
+        svg.addRect(x + carportDepth-plank-rightGap, y + gap , shedWidth - gap * 2, plank);
 
         //ShedLines
-        svg.addShedLine(x + carportDepth-shedDepth, y + gap , x + carportDepth, y + gap);
-        svg.addShedLine(x + carportDepth-shedDepth, y + shedWidth - gap + plank, x + carportDepth, y + shedWidth - gap + plank);
+        svg.addShedLine(x + carportDepth-shedDepth-rightGap, y + gap , x + carportDepth-rightGap, y + gap);
+        svg.addShedLine(x + carportDepth-shedDepth-rightGap, y + shedWidth - gap + plank, x + carportDepth-rightGap, y + shedWidth - gap + plank);
 
         //Horizontal
-        svg.addShedLine(x + carportDepth-shedDepth, y + gap , x + carportDepth-shedDepth, y+shedWidth-gap + plank);
-        svg.addShedLine(x + carportDepth, y + gap , x + carportDepth, y+shedWidth-gap + plank);
+        svg.addShedLine(x + carportDepth-shedDepth-rightGap, y + gap , x + carportDepth-shedDepth-rightGap, y+shedWidth-gap + plank);
+        svg.addShedLine(x + carportDepth-rightGap, y + gap , x + carportDepth-rightGap, y+shedWidth-gap + plank);
     }
 }
