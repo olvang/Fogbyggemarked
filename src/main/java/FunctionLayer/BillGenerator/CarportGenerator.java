@@ -465,7 +465,7 @@ public class CarportGenerator {
                         new DepthComponent(order.getDepth()),
                         new HeightComponent(order.getHeight()),
                         new WidthComponent(order.getWidth()), order.getInclineComponent(), false
-                );
+                ,order.getCustomer());
             } else {
                 orderWithoutShedDepth = order;
             }
