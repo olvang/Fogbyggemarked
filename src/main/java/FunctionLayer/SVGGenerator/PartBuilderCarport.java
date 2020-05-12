@@ -48,7 +48,7 @@ public class PartBuilderCarport {
             } else {
                 //All middle rows
                 // subtract 2 because we've already placed top and bottom at this point
-                postY = cornerY + (((carportWidth - topGap * 2) / 2) / (amountOfRows - 2)) * (row - 1);
+                postY = cornerY + (((carportWidth - topGap * 2)) / (amountOfRows - 1)) * (row - 1);
             }
 
             int firstPosition = 0;
