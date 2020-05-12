@@ -33,6 +33,7 @@ public class EmailComponent implements Component {
         if(email == null || email == "") {
             throw new ValidationFailedException("Email må ikke være tom.");
         }
+        email = email.toLowerCase();
         String match = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
                 + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:"
                 + "[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b"
