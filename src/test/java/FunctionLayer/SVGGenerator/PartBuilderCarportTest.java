@@ -28,6 +28,7 @@ public class PartBuilderCarportTest {
         PartBuilderCarport.drawOuterWidthArrow(svg, 100,100, 800, 600);
         PartBuilderCarport.drawPostsWithoutShed(svg, 100,100, 800, 600);
         PartBuilderCarport.drawSperSpaceArrows(svg, 100,100, 800, 600);
+        PartBuilderShed.drawShed(svg, 100,100, 800, 600,500,200);
 
         writeToFile(svg.toString());
     }

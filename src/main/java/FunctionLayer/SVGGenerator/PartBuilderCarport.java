@@ -153,7 +153,7 @@ public class PartBuilderCarport {
         }
     }
 
-    private static int getGapToRem(int carportWidth) {
+    public static int getGapToRem(int carportWidth) {
         int gap;
         if(carportWidth < 100) {
             //The carport is so narrow that just subtracting 35 would create a massive gap
