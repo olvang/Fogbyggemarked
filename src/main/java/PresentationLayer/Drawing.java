@@ -16,9 +16,9 @@ public class Drawing extends Command{
     String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
         SVG svg;
-
+        int orderID;
         try {
-            int orderID = Integer.parseInt(request.getParameter("order_id"));
+            orderID = Integer.parseInt(request.getParameter("order_id"));
             Order order = LogicFacade.getOrder(orderID);
             svg = DrawingGenerator.createCarportDrawing(order);
 
@@ -28,6 +28,7 @@ public class Drawing extends Command{
             return "request";
         }
         request.setAttribute("svgdrawing", svg.toString());
+        request.setAttribute("order_id", orderID);
         return "drawing";
     }
 }
