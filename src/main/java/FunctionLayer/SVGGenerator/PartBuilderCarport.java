@@ -140,7 +140,7 @@ public class PartBuilderCarport {
             svg.addLineWithArrow(xPosition, cornerY -40, xPosition+spaceBetweenSper+sperWidth, cornerY -40);
 
             //text
-            svg.addText(xPosition + (spaceBetweenSper / 2), cornerY -50,0, String.valueOf((double)spaceBetweenSper / 10));
+            svg.addText(xPosition + (spaceBetweenSper / 2), cornerY -50,0, String.valueOf((double)spaceBetweenSper));
 
             //The small lines
             svg.addLine(xPosition+sperWidth/2,cornerY -50,xPosition+sperWidth/2,cornerY -20,false);
