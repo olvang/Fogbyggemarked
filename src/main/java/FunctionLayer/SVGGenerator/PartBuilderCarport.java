@@ -3,7 +3,7 @@ package FunctionLayer.SVGGenerator;
 import FunctionLayer.BillGenerator.CarportGenerator;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class PartBuilder {
+public class PartBuilderCarport {
 
     //TODO When writing these, don't forget to add the required positions and dimensions to the paramenters.
     // These will be passed on to here, from the DrawingGenerator.
