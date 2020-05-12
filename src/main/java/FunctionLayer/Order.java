@@ -15,9 +15,10 @@ public class Order {
     private InclineComponent incline;
     private boolean withShed;
     private Date orderDate;
+    private Customer customer;
 
     public Order(DepthComponent depth, HeightComponent height, WidthComponent width , ShedDepthComponent shedDepth,
-                 ShedWidthComponent shedWidth, InclineComponent incline, boolean withShed) {
+                 ShedWidthComponent shedWidth, InclineComponent incline, boolean withShed, Customer customer) {
 
         this.depth = depth;
         this.height = height;
@@ -26,15 +27,18 @@ public class Order {
         this.shedWidth = shedWidth;
         this.incline = incline;
         this.withShed = withShed;
+        this.customer = customer;
     }
 
-    public Order(DepthComponent depth, HeightComponent height, WidthComponent width, InclineComponent incline, boolean withShed) {
+    public Order(DepthComponent depth, HeightComponent height, WidthComponent width, InclineComponent incline, boolean withShed,
+                 Customer customer) {
 
         this.depth = depth;
         this.height = height;
         this.width = width;
         this.incline = incline;
         this.withShed = withShed;
+        this.customer = customer;
     }
 
 
