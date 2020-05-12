@@ -146,7 +146,7 @@ public class PartBuilderCarport {
             svg.addLine(xPosition+sperWidth/2,cornerY -50,xPosition+sperWidth/2,cornerY -20,false);
 
             if(i == amountOfSper -1){
-                xPosition = 15 * spaceBetweenSper + cornerX;
+                xPosition = amountOfSper * spaceBetweenSper + cornerX;
                 //Add the last line
                 svg.addLine(xPosition+sperWidth/2,cornerY -50,xPosition+sperWidth/2,cornerY -20,false);
             }
