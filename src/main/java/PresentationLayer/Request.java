@@ -24,7 +24,7 @@ public class Request extends Command {
         ShedWidthComponent shedWidth = null;
         InclineComponent incline = null;
         Customer customer = null;
-
+        
         //Used for error handling
         String shedWidthString = "";
         String shedDepthString = "";
@@ -133,6 +133,7 @@ public class Request extends Command {
                 //Set all input fields to their input if not empty
                 errorHandling(request,carportWidthString,carportDepthString,carportHeightString,shedornotString,shedWidthString,shedDepthString,roofTypeString);
                 request.setAttribute("error","Kunne ikke sende din bestilling afsted. " + e.getMessage());
+                return "request";
             }
 
             //No errors found - and order inserted in db
