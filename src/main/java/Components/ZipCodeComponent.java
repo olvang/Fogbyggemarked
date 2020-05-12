@@ -32,7 +32,7 @@ public class ZipCodeComponent implements Component {
         if(zip == null || zip == "") {
             throw new ValidationFailedException("Postnummer må ikke være tom.");
         }
-        String match = "([0-9][0-9][0-9][0-9])";
+        String match = "([1-9][0-9][0-9][0-9])";
         if(Pattern.matches(match, zip)) {
             return true;
         }
