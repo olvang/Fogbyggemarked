@@ -53,15 +53,15 @@ INSERT INTO `FogByggemarked`.`materials` (`name`,`price`,`amount`,`unit`) VALUES
 INSERT INTO `FogByggemarked`.`materials` (`amount`,`name`,`price`,`unit`) VALUES ('100', '5,0 x 100 mm. skruer 100 stk.', 30,'Pakke');
 
 
-INSERT INTO `FogByggemarked`.`orders` VALUES (1,300,300,300,0, '2020-05-05 12:30:56');
-INSERT INTO `FogByggemarked`.`orders` VALUES (2,400,400,400,0, '2020-07-06 12:30:56');
-INSERT INTO `FogByggemarked`.`orders` VALUES (3,500,500,500,0, '2020-10-07 12:30:56');
-INSERT INTO `FogByggemarked`.`orders` VALUES (4,600,600,600,0, '2020-11-08 12:30:56');
-INSERT INTO `FogByggemarked`.`orders` VALUES (5,300,300,300,21, '2020-02-09 12:30:56');
-INSERT INTO `FogByggemarked`.`orders` VALUES (6,400,400,400,22, '2020-12-10 12:30:56');
-INSERT INTO `FogByggemarked`.`orders` VALUES (7,500,500,500,23, '2020-01-11 12:30:56');
-INSERT INTO `FogByggemarked`.`orders` VALUES (8,600,600,600,25, '2020-03-12 12:30:56');
-INSERT INTO `FogByggemarked`.`orders` VALUES (9,200,200,200,0, '2020-02-13 12:30:56');
+INSERT INTO `FogByggemarked`.`orders` VALUES (1,300,300,300,0, '2020-05-05 12:30:56','John','Vej vej', 'John@Email.com',12345678,2345);
+INSERT INTO `FogByggemarked`.`orders` VALUES (2,400,400,400,0, '2019-07-06 12:30:56','Jon','Vej 1', 'Jon@Email.com',66666666,4567);
+INSERT INTO `FogByggemarked`.`orders` VALUES (3,500,500,500,0, '2019-10-07 12:30:56','Per','Vej 2', 'Per@Email.com',77777777,6421);
+INSERT INTO `FogByggemarked`.`orders` VALUES (4,600,600,600,0, '2019-11-08 12:30:56','Nils','Vej 3', 'Nils@Email.com',99999999,0975);
+INSERT INTO `FogByggemarked`.`orders` VALUES (5,300,300,300,21, '2019-02-09 12:30:56','Ole','Vej 4', 'Ole@Email.com',11223344,5467);
+INSERT INTO `FogByggemarked`.`orders` VALUES (6,400,400,400,22, '2019-12-10 12:30:56','Admin','Vej 5', 'Admin@Email.com',22334455,4576);
+INSERT INTO `FogByggemarked`.`orders` VALUES (7,500,500,500,23, '2019-01-11 12:30:56','Bas','Vej 6', 'Bas@Email.com',33445566,4357);
+INSERT INTO `FogByggemarked`.`orders` VALUES (8,600,600,600,25, '2019-03-12 12:30:56','Mikkel','Vej vej 1', 'Mikkel@Email.com',44556677,5678);
+INSERT INTO `FogByggemarked`.`orders` VALUES (9,200,200,200,0, '2019-02-13 12:30:56','Cecillie','Vej vej 2', 'Cecillie@Email.com',55667788,1235);
 INSERT INTO `FogByggemarked`.`sheds` VALUES (1,5,50,50);
 INSERT INTO `FogByggemarked`.`sheds` VALUES (2,6,60,60);
 INSERT INTO `FogByggemarked`.`sheds` VALUES (3,7,70,70);
