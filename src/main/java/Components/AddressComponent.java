@@ -32,7 +32,7 @@ public class AddressComponent implements Component {
         if(address == null || address == "") {
             throw new ValidationFailedException("Adresse må ikke være tom.");
         }
-        String match = "^(.+) (\\d{1,3}[a-z]?) (\\d{1,2}|st|kl)? ?(\\d{1,2}|tv|mf|th)?.*(\\d{4})$";
+        String match = "^([a-zA-ZæøåÆØÅ]+) (\\d{1,3}|[a-zA-ZæøåÆØÅ]?),? ?([0-9a-zA-ZæøåÆØÅ .]+)?$";
         if(Pattern.matches(match, address)) {
             return true;
         }
