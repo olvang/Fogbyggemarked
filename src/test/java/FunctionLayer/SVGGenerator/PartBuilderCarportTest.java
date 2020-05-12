@@ -1,26 +1,16 @@
 package FunctionLayer.SVGGenerator;
 
-import Components.DepthComponent;
-import Components.HeightComponent;
-import Components.InclineComponent;
-import Components.WidthComponent;
-import FunctionLayer.BillLine;
-import FunctionLayer.Category;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.Order;
 import org.junit.Test;
-import testDataSetup.TestDataSetup;
 
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class PartBuilderTest {
+public class PartBuilderCarportTest {
 
     //Use this file for testing out partBuilder methods
     //This method will just print the result. Preview it in the test.svg file.
@@ -29,15 +19,15 @@ public class PartBuilderTest {
     @Test
     public void testMethod() {
         SVG svg = new SVG(1200, 800, "0,0,1000,800", 0,0);
-        PartBuilder.drawOuterBox(svg, 100,100, 800, 600);
-        PartBuilder.drawRems(svg, 100,100, 800, 600);
-        PartBuilder.drawSper(svg, 100,100, 800, 600);
-        PartBuilder.drawPerforatedBandWithoutShed(svg, 100,100, 800, 600);
-        PartBuilder.drawDepthArrow(svg, 100,100, 800, 600);
-        PartBuilder.drawInnerWidthArrow(svg, 100,100, 800, 600);
-        PartBuilder.drawOuterWidthArrow(svg, 100,100, 800, 600);
-        PartBuilder.drawPostsWithoutShed(svg, 100,100, 800, 600);
-        PartBuilder.drawSperSpaceArrows(svg, 100,100, 800, 600);
+        PartBuilderCarport.drawOuterBox(svg, 100,100, 800, 600);
+        PartBuilderCarport.drawRems(svg, 100,100, 800, 600);
+        PartBuilderCarport.drawSper(svg, 100,100, 800, 600);
+        PartBuilderCarport.drawPerforatedBandWithoutShed(svg, 100,100, 800, 600);
+        PartBuilderCarport.drawDepthArrow(svg, 100,100, 800, 600);
+        PartBuilderCarport.drawInnerWidthArrow(svg, 100,100, 800, 600);
+        PartBuilderCarport.drawOuterWidthArrow(svg, 100,100, 800, 600);
+        PartBuilderCarport.drawPostsWithoutShed(svg, 100,100, 800, 600);
+        PartBuilderCarport.drawSperSpaceArrows(svg, 100,100, 800, 600);
 
         writeToFile(svg.toString());
     }

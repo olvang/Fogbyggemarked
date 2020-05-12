@@ -1,6 +1,5 @@
 package FunctionLayer.SVGGenerator;
 
-import Components.*;
 import FunctionLayer.Exceptions.DrawingFailedException;
 import FunctionLayer.Order;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -38,15 +37,15 @@ public class DrawingGenerator {
         SVG svg = createSVGObject(depth,width);
         int startingX = 100;
         int startingY = 100;
-        PartBuilder.drawOuterBox(svg, startingX,startingY, depth, width);
-        PartBuilder.drawRems(svg, startingX,startingY, depth, width);
-        PartBuilder.drawSper(svg, startingX,startingY, depth, width);
-        PartBuilder.drawPerforatedBandWithoutShed(svg, startingX,startingY, depth, width);
-        PartBuilder.drawDepthArrow(svg, startingX,startingY, depth, width);
-        PartBuilder.drawInnerWidthArrow(svg, startingX,startingY, depth, width);
-        PartBuilder.drawOuterWidthArrow(svg, startingX,startingY, depth, width);
-        PartBuilder.drawPostsWithoutShed(svg, startingX,startingY, depth, width);
-        PartBuilder.drawSperSpaceArrows(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawOuterBox(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawRems(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawSper(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawPerforatedBandWithoutShed(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawDepthArrow(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawInnerWidthArrow(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawOuterWidthArrow(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawPostsWithoutShed(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawSperSpaceArrows(svg, startingX,startingY, depth, width);
         return svg;
     }
 
