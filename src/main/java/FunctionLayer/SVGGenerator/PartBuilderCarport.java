@@ -98,10 +98,6 @@ public class PartBuilderCarport {
         svg.addLine(cornerX+spaceBetweenSper,(cornerY + carportWidth)-gap,cornerX+carportDepth-spaceBetweenSper,cornerY+gap,true);
     }
 
-    public static void drawPerforatedBandWithShed(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth,int shedDepth, int shedWidth) {
-        throw new NotImplementedException();
-    }
-
     public static void drawDepthArrow(SVG svg,int cornerX, int cornerY, int carportDepth, int carportWidth) {
         svg.addLineWithArrow(cornerX,(cornerY + carportWidth)+30,cornerX+carportDepth,(cornerY + carportWidth)+30);
         svg.addText(carportDepth / 2 + cornerX,(cornerY + carportWidth)+45,0,carportDepth + " cm");
