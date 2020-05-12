@@ -41,16 +41,31 @@ public class DrawingGenerator {
         PartBuilderCarport.drawRems(svg, startingX,startingY, depth, width);
         PartBuilderCarport.drawSper(svg, startingX,startingY, depth, width);
         PartBuilderCarport.drawPerforatedBandWithoutShed(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawPostsWithoutShed(svg, startingX,startingY, depth, width);
+
         PartBuilderCarport.drawDepthArrow(svg, startingX,startingY, depth, width);
         PartBuilderCarport.drawInnerWidthArrow(svg, startingX,startingY, depth, width);
         PartBuilderCarport.drawOuterWidthArrow(svg, startingX,startingY, depth, width);
-        PartBuilderCarport.drawPostsWithoutShed(svg, startingX,startingY, depth, width);
         PartBuilderCarport.drawSperSpaceArrows(svg, startingX,startingY, depth, width);
         return svg;
     }
 
     private static SVG createWithShedFlatRoofDrawing(int depth, int width, int shedDepth, int shedWidth) {
-        throw new NotImplementedException();
+        SVG svg = createSVGObject(depth,width);
+        int startingX = 100;
+        int startingY = 100;
+        PartBuilderCarport.drawOuterBox(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawRems(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawSper(svg, startingX,startingY, depth, width);
+        PartBuilderShed.drawShed(svg, startingX, startingY, depth,width,shedDepth,shedWidth);
+        //PartBuilderShed.drawPostWithShed(svg, startingX, startingY, depth, width, shedDepth, shedWidth);
+        PartBuilderShed.drawPerforatedBandWithShed(svg, startingX, startingY, depth, width, shedDepth, shedWidth);
+
+        PartBuilderCarport.drawDepthArrow(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawInnerWidthArrow(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawOuterWidthArrow(svg, startingX,startingY, depth, width);
+        PartBuilderCarport.drawSperSpaceArrows(svg, startingX,startingY, depth, width);
+        return svg;
     }
 
     private static SVG createNoShedRaisedRoofDrawing(int depth, int width, int incline) {

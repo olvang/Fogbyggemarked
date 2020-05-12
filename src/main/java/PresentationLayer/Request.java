@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import Components.*;
+import FunctionLayer.Customer;
 import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.LogicFacade;
@@ -22,6 +23,7 @@ public class Request extends Command {
         ShedDepthComponent shedDepth = null;
         ShedWidthComponent shedWidth = null;
         InclineComponent incline = null;
+        Customer customer = null;
 
         //Used for error handling
         String shedWidthString = "";
@@ -120,10 +122,10 @@ public class Request extends Command {
             //if they selected a Shed
             if(shedornotString.equals("true")){
                 order = new Order(carportDepth, carportHeight, carportWidth, shedDepth,
-                        shedWidth, incline, true);
+                        shedWidth, incline, true, customer);
             }else{
                 //if no shed Shed has been selected
-                order = new Order(carportDepth, carportHeight, carportWidth,incline, false);
+                order = new Order(carportDepth, carportHeight, carportWidth,incline, false, customer);
             }
             try {
                 LogicFacade.createOrder(order);
