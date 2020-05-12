@@ -33,7 +33,7 @@ public class PhoneComponent implements Component {
         if(phone == null || phone == "") {
             throw new ValidationFailedException("Telefon nummer må ikke være tom.");
         }
-        String match = "([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
+        String match = "([1-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])";
         if(Pattern.matches(match, phone)) {
             return true;
         }

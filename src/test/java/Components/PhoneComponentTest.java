@@ -27,6 +27,12 @@ public class PhoneComponentTest {
     }
 
     @Test (expected = ValidationFailedException.class)
+    public void testFailStartWith0() throws ValidationFailedException {
+        String phone = "01234567";
+        PhoneComponent phoneComponent = new PhoneComponent(phone);
+    }
+
+    @Test (expected = ValidationFailedException.class)
     public void testTooLong() throws ValidationFailedException {
         String phone = "123456789";
         PhoneComponent phoneComponent = new PhoneComponent(phone);
