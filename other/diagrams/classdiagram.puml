@@ -1,5 +1,38 @@
 @startuml
 
+package "webapp" #EEEEEE {
+    class "drawing.jsp" as drawing
+    class "index.jsp" as index
+    class "material-bill.jsp" as materialbill
+    class "orders.jsp" as orders
+    class "request.jsp" as request
+    class "vieworder.jsp" as vieworder
+    package "WEB-INF" #DDDDDD {
+        package "includes" #CCCCCC {
+            class "footer.jsp" as footer
+            class "header.jsp" as header
+        }
+    }
+
+    index --> request
+/'    request -- header
+    request -- footer
+    orders -- header
+    orders -- footer
+    vieworder -- header
+    vieworder -- footer
+    materialbill -- header
+    materialbill -- footer
+    drawing -- header
+    drawing -- footer'/
+
+    header -> orders
+    orders --> vieworder
+    vieworder --> materialbill
+    vieworder --> drawing
+}
+
+
 package "PresentationLayer" #EEEEEE {
     interface Command {
         public String execute(request, response)
@@ -302,5 +335,22 @@ Request --> LogicFacade
 
 /'ViewOrder Command'/
 ViewOrder --> LogicFacade
+
+
+/'FrontController Option 1'/
+/'request --> FrontController
+orders --> FrontController
+vieworder --> FrontController
+materialbill --> FrontController
+drawing --> FrontController'/
+
+/'FrontController Option 2'/
+request --> Request
+orders --> Orders
+vieworder --> ViewOrder
+materialbill --> Bill
+drawing --> Drawing
+
+
 
 @enduml
