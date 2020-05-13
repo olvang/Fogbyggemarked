@@ -21,10 +21,21 @@ public class SaveEditOrder extends Command {
         ShedDepthComponent shedDepth = null;
         ShedWidthComponent shedWidth = null;
         InclineComponent incline = null;
+        int orderId = 0;
+        Order oldOrder = null;
 
         //Used for error handling
         String shedWidthString = "";
         String shedDepthString = "";
+
+        String orderIdString = request.getParameter("orderid");
+        try {
+            orderId = Integer.parseInt(orderIdString);
+            oldOrder = LogicFacade.getOrder(orderId);
+        } catch(ClassCastException | DatabaseException ex) {
+            request.setAttribute("error", "Serverfejl i ordre id");
+            errorsFound = true;
+        }
 
         //Carport
         //Width
@@ -33,6 +44,7 @@ public class SaveEditOrder extends Command {
             carportWidth = new WidthComponent(carportWidthString);
         } catch (ValidationFailedException e) {
             request.setAttribute("carportWidthError",e.getMessage());
+            carportWidth = oldOrder.getWidthComponent();
             errorsFound = true;
         }
 
@@ -42,6 +54,7 @@ public class SaveEditOrder extends Command {
             carportDepth = new DepthComponent(carportDepthString);
         } catch (ValidationFailedException e) {
             request.setAttribute("carportDepthError",e.getMessage());
+            carportDepth = oldOrder.getDepthComponent();
             errorsFound = true;
         }
 
@@ -51,6 +64,7 @@ public class SaveEditOrder extends Command {
             carportHeight = new HeightComponent(carportHeightString);
         } catch (ValidationFailedException e) {
             request.setAttribute("carportHeightError",e.getMessage());
+            carportHeight = oldOrder.getHeightComponent();
             errorsFound = true;
         }
 
@@ -67,6 +81,7 @@ public class SaveEditOrder extends Command {
                 }
             } catch (ValidationFailedException e) {
                 request.setAttribute("shedWidthError",e.getMessage());
+                shedWidth = oldOrder.getShedWidthComponent();
                 errorsFound = true;
             }
 
@@ -80,6 +95,7 @@ public class SaveEditOrder extends Command {
                 }
             } catch (ValidationFailedException e) {
                 request.setAttribute("shedDepthError",e.getMessage());
+                shedDepth = oldOrder.getShedDepthComponent();
                 errorsFound = true;
             }
         }
@@ -97,22 +113,52 @@ public class SaveEditOrder extends Command {
             }
         }catch (ValidationFailedException e) {
             request.setAttribute("inclineError",e.getMessage());
+            incline = oldOrder.getInclineComponent();
             errorsFound = true;
         }catch (NumberFormatException e) {
             request.setAttribute("inclineError", "Vinkel skal være et tal");
+            incline = oldOrder.getInclineComponent();
             errorsFound = true;
         }
 
         if(!errorsFound) {
-            
+            Order order;
+            Customer customer = null;
 
+            if(shedornotString.equals("true")) {
+                order = new Order(carportDepth, carportHeight, carportWidth, shedDepth,
+                        shedWidth, incline, true, customer);
+            } else {
+                order = new Order(carportDepth, carportHeight, carportWidth, incline, false, customer);
+            }
+            try {
+                LogicFacade.updateOrder(orderId, order);
+                Order finished = LogicFacade.getOrder(orderId);
+                request.setAttribute("order", finished);
+            } catch (DatabaseException ex) {
+                request.setAttribute("error","Kunne ikke opdatere bestilling afsted. " + ex.getMessage());
+                return "request";
+            }
+
+
+        }else {
+            errorHandling(request, carportWidthString, carportDepthString, carportHeightString, shedornotString, shedWidthString, shedDepthString, roofTypeString, roofTypeString);
+            Order order;
+            if(shedornotString.equals("true")) {
+                order = new Order(carportDepth, carportHeight, carportWidth, shedDepth,
+                        shedWidth, incline, true, oldOrder.getCustomer());
+            } else {
+                order = new Order(carportDepth, carportHeight, carportWidth, incline, false, oldOrder.getCustomer());
+            }
+            order.setOrderId(orderId);
+            request.setAttribute("order", order);
+            request.setAttribute("editing", true);
         }
 
-
-        return "orders";
+        return "vieworder";
     }
 
-    private void errorHandling(HttpServletRequest request, String carportWidthString, String carportDepthString, String carportHeightString, String shedornotString, String shedWidthString, String shedDepthString, String roofTypeString, String inclineString ) {
+    private void errorHandling(HttpServletRequest request, String carportWidthString, String carportDepthString, String carportHeightString, String shedornotString, String shedWidthString, String shedDepthString, String roofTypeString, String inclineString) {
         //Carport
         request.setAttribute("carportWidth",carportWidthString);
         request.setAttribute("carportDepth",carportDepthString);
