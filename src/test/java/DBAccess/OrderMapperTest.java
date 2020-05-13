@@ -1,6 +1,7 @@
 package DBAccess;
 
 import Components.*;
+import FunctionLayer.BillLine;
 import FunctionLayer.Customer;
 import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
@@ -37,7 +38,29 @@ public class OrderMapperTest extends TestDataSetup {
 
         ord = new Order(depth,height,width, incline, false,customer);
     }
+    @Test
+    public void updateOrderTest() throws SQLException, DatabaseException {
 
+        Order order1 = OrderMapper.getOrder(1);
+
+        int exspected1 = 300;
+
+        assertEquals(exspected1, order1.getHeight());
+
+        OrderMapper.updateOrder(1,ord);
+
+        Order order = OrderMapper.getOrder(1);
+
+        int exspectedDepth = 200;
+        int exspectedHeight = 200;
+        int exspectedWidth = 200;
+        int exspectedIncline = 0;
+
+        assertEquals(exspectedDepth,order.getDepth());
+        assertEquals(exspectedHeight,order.getHeight());
+        assertEquals(exspectedWidth, order.getWidth());
+        assertEquals(exspectedIncline, order.getIncline());
+    }
     @Test
     public void createOrderWithoutShed() {
         try {
