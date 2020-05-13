@@ -191,6 +191,85 @@
                                     <input type="hidden" name="target" value="request">
                                     <button name="submit" type="submit" class="btn btn-primary btn-lg">Send</button>
                                 </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12" align="center">
+                                        <div class="pb-4">
+                                            <h2>Kontakt information</h2>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">Navn</label>
+
+                                                <input type="text" id="name" name="name"
+                                                       placeholder="navn"
+                                                       class="form-control-lg"
+                                                       required="required"
+                                                       value="<c:if test="${requestScope.name != null}">${requestScope.name}</c:if>">
+
+                                            <c:if test="${requestScope.nameError != null}">
+                                                <span class="text-danger">${requestScope.nameError}</span>
+                                            </c:if>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="address">adresse</label>
+
+                                            <input type="text" id="address" name="address"
+                                                   placeholder="adresse"
+                                                   class="form-control-lg"
+                                                   required="required"
+                                                   value="<c:if test="${requestScope.address != null}">${requestScope.address}</c:if>">
+
+                                            <c:if test="${requestScope.addressError != null}">
+                                                <span class="text-danger">${requestScope.addressError}</span>
+                                            </c:if>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">email</label>
+
+                                            <input type="text" id="email" name="email"
+                                                   placeholder="email"
+                                                   class="form-control-lg"
+                                                   required="required"
+                                                   value="<c:if test="${requestScope.email != null}">${requestScope.email}</c:if>">
+
+                                            <c:if test="${requestScope.emailError != null}">
+                                                <span class="text-danger">${requestScope.emailError}</span>
+                                            </c:if>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="phone">Telefon nummer</label>
+
+                                            <input type="text" id="phone" name="phone"
+                                                   placeholder="telefon nummer"
+                                                   class="form-control-lg"
+                                                   required="required"
+                                                   value="<c:if test="${requestScope.phone != null}">${requestScope.phone}</c:if>">
+
+                                            <c:if test="${requestScope.phoneError != null}">
+                                                <span class="text-danger">${requestScope.phoneError}</span>
+                                            </c:if>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="zipcode">Postnummer</label>
+
+                                            <input type="text" id="zipcode" name="zipcode"
+                                                   placeholder="postnummer og by"
+                                                   class="form-control-lg"
+                                                   required="required"
+                                                   value="<c:if test="${requestScope.zipcode != null}">${requestScope.zipcode}</c:if>">
+
+                                            <c:if test="${requestScope.zipcodeError != null}">
+                                                <span class="text-danger">${requestScope.zipcodeError}</span>
+                                            </c:if>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </form>
                         </c:otherwise>
                     </c:choose>
