@@ -141,4 +141,21 @@ public class Order {
     public Customer getCustomer(){
         return customer;
     }
+
+    public String getCustomerName(){
+        return customer.getName();
+    }
+    public String getCustomerAddress(){
+        return customer.getAdresse();
+    }
+    public String getCustomerPhone(){
+        return customer.getPhone();
+    }
+    public String getCustomerEmail(){
+        return customer.getEmail();
+    }
+    public String getCustomerZipcode(){
+        return customer.getZipcode();
+    }
+
 }
