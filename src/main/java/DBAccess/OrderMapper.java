@@ -62,10 +62,48 @@ public class OrderMapper {
 
     }
     /*
-        Gets an order on a given ID. Check whether the order has
-        a shed on it or not.  
+    Gets an order ID and a order an updates the order ID
+    with the given order
      */
 
+    public static void updateOrder(int orderID, Order order) throws SQLException {
+        try {
+            Connection con = Connector.connection();
+
+            String SQL = "UPDATE orders " +
+                    "SET carport_width = ?, carport_depth = ?, carport_height = ?, carport_incline = ? " +
+                    "where order_id = ?";
+
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1,order.getWidth());
+            ps.setInt(2,order.getDepth());
+            ps.setInt(3,order.getHeight());
+            ps.setInt(4,order.getIncline());
+            ps.setInt(5,orderID);
+
+            ps.executeUpdate();
+
+            if(order.isWithShed()){
+                String nSQL = "UPDATE sheds SET shed_width = ?, shed_depth = ?) WHERE order_id = ?";
+
+                PreparedStatement nps = con.prepareStatement(nSQL, Statement.RETURN_GENERATED_KEYS);
+
+                nps.setInt(1,order.getShedWidth());
+                nps.setInt(2,order.getDepth());
+                nps.setInt(3,orderID);
+
+                nps.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            throw new SQLException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new ClassCastException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
+        }
+    }
+    /*
+    Gets an ID an return the order assoiated for that ID
+     */
     public static Order getOrder(int ID) throws DatabaseException {
         Order ord;
         int order_id;
