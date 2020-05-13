@@ -18,18 +18,19 @@ public class PartBuilderCarportTest {
 
     @Test
     public void testMethod() {
-        SVG svg = new SVG(1200, 800, "0,0,1000,800", 0,0);
-        PartBuilderCarport.drawOuterBox(svg, 100,100, 800, 600);
-        PartBuilderCarport.drawRems(svg, 100,100, 800, 600);
-        PartBuilderCarport.drawSper(svg, 100,100, 800, 600);
-        //PartBuilderCarport.drawPerforatedBandWithoutShed(svg, 100,100, 800, 600);
-        PartBuilderCarport.drawDepthArrow(svg, 100,100, 800, 600);
-        PartBuilderCarport.drawInnerWidthArrow(svg, 100,100, 800, 600);
-        PartBuilderCarport.drawOuterWidthArrow(svg, 100,100, 800, 600);
-        PartBuilderCarport.drawPostsWithoutShed(svg, 100,100, 800, 600);
-        PartBuilderCarport.drawSperSpaceArrows(svg, 100,100, 800, 600);
-        PartBuilderShed.drawShed(svg, 100,100, 800, 600,500,300);
-        PartBuilderShed.drawPerforatedBandWithShed(svg, 100, 100, 800, 600, 500, 300);
+        SVG svg = new SVG(1800, 1200, "0,0,1800,1800", 0,0);
+        PartBuilderCarport.drawOuterBox(svg, 100,100, 900, 1400);
+        PartBuilderCarport.drawRems(svg, 100,100, 900, 1400);
+        PartBuilderCarport.drawSper(svg, 100,100, 900, 1400);
+        //PartBuilderCarport.drawPerforatedBandWithoutShed(svg, 100,100, 900, 1400);
+        PartBuilderCarport.drawDepthArrow(svg, 100,100, 900, 1400);
+        PartBuilderCarport.drawInnerWidthArrow(svg, 100,100, 900, 1400);
+        PartBuilderCarport.drawOuterWidthArrow(svg, 100,100, 900, 1400);
+        PartBuilderCarport.drawSperSpaceArrows(svg, 100,100, 900, 1400);
+        PartBuilderShed.drawShed(svg, 100,100, 900, 1400,450,1200);
+        PartBuilderShed.drawPostsWithShed(svg, 100,100, 900, 1400,450, 1200);
+        PartBuilderShed.drawPerforatedBandWithShed(svg, 100, 100, 900, 1400, 450, 1200);
+
 
         writeToFile(svg.toString());
     }

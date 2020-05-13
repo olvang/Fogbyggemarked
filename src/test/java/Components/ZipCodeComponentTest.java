@@ -27,6 +27,12 @@ public class ZipCodeComponentTest {
     }
 
     @Test (expected = ValidationFailedException.class)
+    public void testFailStartingWith0() throws ValidationFailedException {
+        String zip = "0123";
+        ZipCodeComponent zipCodeComponent = new ZipCodeComponent(zip);
+    }
+
+    @Test (expected = ValidationFailedException.class)
     public void testTooLong() throws ValidationFailedException {
         String zip = "12345";
         ZipCodeComponent zipCodeComponent = new ZipCodeComponent(zip);

@@ -58,7 +58,7 @@ public class DrawingGenerator {
         PartBuilderCarport.drawRems(svg, startingX,startingY, depth, width);
         PartBuilderCarport.drawSper(svg, startingX,startingY, depth, width);
         PartBuilderShed.drawShed(svg, startingX, startingY, depth,width,shedDepth,shedWidth);
-        //PartBuilderShed.drawPostWithShed(svg, startingX, startingY, depth, width, shedDepth, shedWidth);
+        PartBuilderShed.drawPostsWithShed(svg, startingX, startingY, depth, width, shedDepth, shedWidth);
         PartBuilderShed.drawPerforatedBandWithShed(svg, startingX, startingY, depth, width, shedDepth, shedWidth);
 
         PartBuilderCarport.drawDepthArrow(svg, startingX,startingY, depth, width);

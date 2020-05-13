@@ -1,0 +1,22 @@
+@startuml
+
+Actor User as user
+boundary "request.jsp" as request
+participant "Request" as req
+participant LogicFacade
+participant OrderMapper
+database "Database" as database
+
+user -> request : user clicks "send"
+request -> req : [for each input] validate()
+req -> request : if fail: show error message
+req -> LogicFacade : createOrder()
+LogicFacade -> OrderMapper : createOrder()
+OrderMapper -> database : creates order
+database -> OrderMapper : confirm success
+OrderMapper -> LogicFacade : return
+LogicFacade -> req : return
+req -> request : display success message
+request -> user
+
+@enduml

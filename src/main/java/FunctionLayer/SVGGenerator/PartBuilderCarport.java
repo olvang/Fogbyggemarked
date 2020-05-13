@@ -98,10 +98,6 @@ public class PartBuilderCarport {
         svg.addLine(cornerX+spaceBetweenSper,(cornerY + carportWidth)-gap,cornerX+carportDepth-spaceBetweenSper,cornerY+gap,true);
     }
 
-    public static void drawPerforatedBandWithShed(SVG svg, int cornerX, int cornerY, int carportDepth, int carportWidth,int shedDepth, int shedWidth) {
-        throw new NotImplementedException();
-    }
-
     public static void drawDepthArrow(SVG svg,int cornerX, int cornerY, int carportDepth, int carportWidth) {
         svg.addLineWithArrow(cornerX,(cornerY + carportWidth)+30,cornerX+carportDepth,(cornerY + carportWidth)+30);
         svg.addText(carportDepth / 2 + cornerX,(cornerY + carportWidth)+45,0,carportDepth + " cm");
@@ -140,13 +136,13 @@ public class PartBuilderCarport {
             svg.addLineWithArrow(xPosition, cornerY -40, xPosition+spaceBetweenSper+sperWidth, cornerY -40);
 
             //text
-            svg.addText(xPosition + (spaceBetweenSper / 2), cornerY -50,0, String.valueOf((double)spaceBetweenSper / 10));
+            svg.addText(xPosition + (spaceBetweenSper / 2), cornerY -50,0, String.valueOf((double)spaceBetweenSper));
 
             //The small lines
             svg.addLine(xPosition+sperWidth/2,cornerY -50,xPosition+sperWidth/2,cornerY -20,false);
 
             if(i == amountOfSper -1){
-                xPosition = 15 * spaceBetweenSper + cornerX;
+                xPosition = amountOfSper * spaceBetweenSper + cornerX;
                 //Add the last line
                 svg.addLine(xPosition+sperWidth/2,cornerY -50,xPosition+sperWidth/2,cornerY -20,false);
             }
