@@ -21,14 +21,21 @@ public class OrderMapper {
         try{
             Connection con = Connector.connection();
 
-            String SQL = "INSERT INTO orders (carport_width, carport_height, carport_incline, carport_depth" +
-                         ") VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO orders (carport_width, carport_height, carport_incline, carport_depth, " +
+                    "customer_name, customer_adresse, customer_email, customer_phonenumber, customer_zipcode) " +
+                    "VALUES (?, ?, ?, ?,?, ?, ?, ?,?)";
 
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,order.getWidth());
             ps.setInt(2,order.getHeight());
             ps.setInt(3,order.getIncline());
             ps.setInt(4,order.getDepth());
+
+            ps.setString(5,order.getCustomerName());
+            ps.setString(6,order.getCustomerAddress());
+            ps.setString(7,order.getCustomerEmail());
+            ps.setString(8,order.getCustomerPhone());
+            ps.setString(9,order.getCustomerZipcode());
 
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();
