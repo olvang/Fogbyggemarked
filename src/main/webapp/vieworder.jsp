@@ -118,7 +118,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12" align="center">
                                         <div class="pb-4">
-                                            <h2><u>Carport</u></h2>
+                                            <h2 class="display-4">Carport</h2>
                                         </div>
                                         <div class="form-group">
                                             <label for="carportwidth">Bredde</label>
@@ -180,7 +180,7 @@
                                             <c:when test="${requestScope.order.withShed == true}">
                                                 <input type="hidden" name="shedornot" value="true">
                                                 <div class="pb-3">
-                                                    <h2><u>Skur</u></h2>
+                                                    <h2 class="display-4">Skur</h2>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="shedwidth">Bredde</label>
@@ -223,7 +223,7 @@
                                                 <input type="hidden" name="shedornot" value="false">
                                             </c:otherwise>
                                         </c:choose>
-                                        <h2><u>Tag</u></h2>
+                                        <h2 class="display-4">Tag</h2>
                                         <div class="form-group">
                                             <div>
                                                 <div class="custom-control custom-radio custom-control-inline">
