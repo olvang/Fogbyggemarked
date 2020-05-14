@@ -36,6 +36,13 @@ ul, ol {
     text-align: center;
 }
 
+.vieworderbuttonleft {
+    float:left;
+}
+.vieworderbuttonright {
+    float:right;
+}
+
 /* Formatting the text for different screen sizes */
 /* Large screens */
 @media screen and (min-width: 992px) {

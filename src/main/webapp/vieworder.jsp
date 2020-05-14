@@ -23,26 +23,35 @@
     <div class="flex-container shadow my-5 py-5 px-5">
         <div class="container">
             <div class="row">
-                <div class="col-sm-1 mr-5">
-                    <div><a class="btn btn-primary btn-lg" href="orders.jsp" role="button">Tilbage</a></div>
-                </div>
+
                 <c:choose>
                     <c:when test="${requestScope.editing==true}">
-                        <div class="col-sm-1 mr-4">
+                        <div class="col-2 mr-5 mr-md-1">
+                            <div><a class="btn btn-primary btn-lg" href="orders.jsp" role="button">Tilbage</a></div>
+                        </div>
+                        <div class="col-2 mr-5 mr-md-1 ml-4 ml-sm-1">
                             <button type="submit" class="btn btn-outline-success btn-lg" form="editForm">Gem</button>
                         </div>
-                        <div class="col-sm-1 mr-4">
+                        <div class="col-2 ml-0 p-0">
                             <div><a class="btn btn-outline-danger btn-lg" href="vieworder.jsp?o=${requestScope.order.orderId}" role="button">Annuller</a></div>
                         </div>
+                        <div class="col-2"> </div>
+                        <div class="col-2"> </div>
+                        <div class="col-2"> </div>
                     </c:when>
                     <c:otherwise>
-                        <div class="col-sm-1 mr-4">
+                        <div class="col-3 mr-5 mr-sm-1">
+                            <div><a class="btn btn-primary btn-lg" href="orders.jsp" role="button">Tilbage</a></div>
+                        </div>
+                        <div class="col-3 ml-5 ml-sm-1">
                             <form action="FrontController" method="POST">
                                 <button type="submit" class="btn btn-outline-secondary btn-lg">Rediger</button>
                                 <input type="hidden" name="target" value="beginEditOrder">
                                 <input type="hidden" name="order" value="${requestScope.order.orderId}">
                             </form>
                         </div>
+                        <div class="col-3"> </div>
+                        <div class="col-3"> </div>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -54,7 +63,7 @@
                 <c:when test="${requestScope.editing != true}">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-12">
                             <h2 class="display-4">Carport</h2>
                             <p class="entry-text">Bredde: </p>
                             <p class="entry-content"><fmt:formatNumber value="${requestScope.order.width}" type="number"/> cm</p>
@@ -87,26 +96,26 @@
                                 </c:when>
                             </c:choose>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-12">
                             <h2 class="display-4">Kunde</h2>
 
                             <p class="entry-text">Navn: </p>
-                            <p class="entry-content">John Doe</p>
+                            <p class="entry-content">${requestScope.order.customer.name}</p>
 
                             <p class="entry-text">Adresse: </p>
-                            <p class="entry-content">KlodenRundt 4</p>
+                            <p class="entry-content">${requestScope.order.customer.adresse}</p>
 
                             <p class="entry-text">Email: </p>
-                            <p class="entry-content">john@gmail.com</p>
+                            <p class="entry-content">${requestScope.order.customer.email}</p>
 
                             <p class="entry-text">Telefon: </p>
-                            <p class="entry-content">12345678</p>
+                            <p class="entry-content">${requestScope.order.customer.phone}</p>
 
                             <p class="entry-text">Postnr: </p>
-                            <p class="entry-content">1234</p>
+                            <p class="entry-content">${requestScope.order.customer.zipcode}</p>
 
-                            <p class="entry-text">By: </p>
-                            <p class="entry-content">Aabybro</p>
+<%--                            <p class="entry-text">By: </p>
+                            <p class="entry-content">Aabybro</p>--%>
                         </div>
                     </div>
                 </div>
@@ -116,7 +125,7 @@
                         <div class="col-xl-11 col-lg-10 col-md-10 col-sm-10 mx-auto text-center form p-4 pt-5">
                             <form action="FrontController" method="POST" id="editForm">
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-12" align="center">
+                                    <div class="col-lg-6 col-md-12" align="center">
                                         <div class="pb-4">
                                             <h2 class="display-4">Carport</h2>
                                         </div>
@@ -175,7 +184,7 @@
                                             </c:if>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-12" align="center">
+                                    <div class="col-lg-6 col-md-12" align="center">
                                         <c:choose>
                                             <c:when test="${requestScope.order.withShed == true}">
                                                 <input type="hidden" name="shedornot" value="true">
@@ -268,13 +277,13 @@
             </c:choose>
 
 
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div><a style="float:right;" class="btn btn-info btn-lg" href="FrontController?target=bill&order_id=${requestScope.order.orderId}" role="button">Stykliste</a></div>
+                    <div class="col-6">
+                        <div><a class="btn btn-info btn-lg vieworderbuttonright" href="FrontController?target=bill&order_id=${requestScope.order.orderId}" role="button">Stykliste</a></div>
                     </div>
-                    <div class="col-lg-6">
-                        <div><a style="float:left;" class="btn btn-secondary btn-lg" href="FrontController?target=drawing&order_id=${requestScope.order.orderId}" role="button">Tegning</a></div>
+                    <div class="col-6">
+                        <div><a class="btn btn-secondary btn-lg vieworderbuttonleft" href="FrontController?target=drawing&order_id=${requestScope.order.orderId}" role="button">Tegning</a></div>
                     </div>
                 </div>
             </div>
