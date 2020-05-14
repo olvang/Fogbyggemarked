@@ -66,7 +66,7 @@ public class OrderMapper {
     with the given order
      */
 
-    public static void updateOrder(int orderID, Order order) throws SQLException {
+    public static void updateOrder(int orderID, Order order) throws DatabaseException {
         try {
             Connection con = Connector.connection();
 
@@ -84,7 +84,7 @@ public class OrderMapper {
             ps.executeUpdate();
 
             if(order.isWithShed()){
-                String nSQL = "UPDATE sheds SET shed_width = ?, shed_depth = ?) WHERE order_id = ?";
+                String nSQL = "UPDATE sheds SET shed_width = ?, shed_depth = ? WHERE order_id = ?";
 
                 PreparedStatement nps = con.prepareStatement(nSQL, Statement.RETURN_GENERATED_KEYS);
 
@@ -96,9 +96,9 @@ public class OrderMapper {
             }
 
         } catch (SQLException e) {
-            throw new SQLException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
+            throw new DatabaseException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
         } catch (ClassNotFoundException e) {
-            throw new ClassCastException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
+            throw new DatabaseException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
         }
     }
     /*

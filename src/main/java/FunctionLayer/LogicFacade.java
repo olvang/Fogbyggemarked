@@ -35,6 +35,10 @@ public class LogicFacade {
         return OrderMapper.getOrder(orderID);
     }
 
+    public static void updateOrder(int orderID, Order order) throws DatabaseException {
+        OrderMapper.updateOrder(orderID, order);
+    }
+
     public static ArrayList<Category> getTheseCategories(int[] categoriesNeeded) throws DatabaseException {
         return MaterialsMapper.getTheseCategories(categoriesNeeded);
     }
