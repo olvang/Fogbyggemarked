@@ -32,7 +32,7 @@
                         <c:otherwise>
                             <form action="FrontController" method="POST">
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-12" align="center">
+                                    <div class="col-lg-6 col-md-12" align="center">
                                         <div class="pb-4">
                                             <h2><u>Carport</u></h2>
                                         </div>
@@ -91,7 +91,7 @@
                                             </c:if>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-12" align="center">
+                                    <div class="col-lg-6 col-md-12" align="center">
                                         <div class="pb-3">
                                             <h2><u>Skur</u></h2>
                                         </div>
