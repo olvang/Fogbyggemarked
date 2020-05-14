@@ -187,25 +187,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group pt-5">
-                                    <input type="hidden" name="target" value="request">
-                                    <button name="submit" type="submit" class="btn btn-primary btn-lg">Send</button>
-                                </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-12" align="center">
+                                    <div class="col-md-12 col-sm-12" align="center">
                                         <div class="pb-4">
                                             <h2>Kontakt information</h2>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="name">Navn</label>
-
+                                            <div class="input-group w-75">
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <span class="fas fa-ruler-vertical"> Navn</span>
+                                                </span>
+                                                </div>
                                                 <input type="text" id="name" name="name"
                                                        placeholder="navn"
-                                                       class="form-control-lg"
+                                                       class="form-control"
                                                        required="required"
                                                        value="<c:if test="${requestScope.name != null}">${requestScope.name}</c:if>">
+                                            </div>
 
                                             <c:if test="${requestScope.nameError != null}">
                                                 <span class="text-danger">${requestScope.nameError}</span>
@@ -213,13 +214,18 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="address">adresse</label>
-
-                                            <input type="text" id="address" name="address"
-                                                   placeholder="adresse"
-                                                   class="form-control-lg"
-                                                   required="required"
-                                                   value="<c:if test="${requestScope.address != null}">${requestScope.address}</c:if>">
+                                            <div class="input-group w-75">
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <span class="fas fa-ruler-vertical"> Adresse</span>
+                                                </span>
+                                                </div>
+                                                <input type="text" id="address" name="address"
+                                                       placeholder="adresse"
+                                                       class="form-control"
+                                                       required="required"
+                                                       value="<c:if test="${requestScope.address != null}">${requestScope.address}</c:if>">
+                                            </div>
 
                                             <c:if test="${requestScope.addressError != null}">
                                                 <span class="text-danger">${requestScope.addressError}</span>
@@ -227,13 +233,18 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="email">email</label>
-
-                                            <input type="text" id="email" name="email"
-                                                   placeholder="email"
-                                                   class="form-control-lg"
-                                                   required="required"
-                                                   value="<c:if test="${requestScope.email != null}">${requestScope.email}</c:if>">
+                                            <div class="input-group w-75">
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <span class="fas fa-ruler-vertical"> Email</span>
+                                                </span>
+                                                </div>
+                                                <input type="text" id="email" name="email"
+                                                       placeholder="email"
+                                                       class="form-control"
+                                                       required="required"
+                                                       value="<c:if test="${requestScope.email != null}">${requestScope.email}</c:if>">
+                                            </div>
 
                                             <c:if test="${requestScope.emailError != null}">
                                                 <span class="text-danger">${requestScope.emailError}</span>
@@ -241,13 +252,20 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="phone">Telefon nummer</label>
 
-                                            <input type="text" id="phone" name="phone"
-                                                   placeholder="telefon nummer"
-                                                   class="form-control-lg"
-                                                   required="required"
-                                                   value="<c:if test="${requestScope.phone != null}">${requestScope.phone}</c:if>">
+                                            <div class="input-group w-75">
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <span class="fas fa-ruler-vertical"> Telefon</span>
+                                                </span>
+                                                </div>
+                                                <input type="text" id="phone" name="phone"
+                                                       placeholder="telefon nummer"
+                                                       class="form-control"
+                                                       required="required"
+                                                       value="<c:if test="${requestScope.phone != null}">${requestScope.phone}</c:if>">
+                                            </div>
+
 
                                             <c:if test="${requestScope.phoneError != null}">
                                                 <span class="text-danger">${requestScope.phoneError}</span>
@@ -255,13 +273,18 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="zipcode">Postnummer</label>
-
-                                            <input type="text" id="zipcode" name="zipcode"
-                                                   placeholder="postnummer og by"
-                                                   class="form-control-lg"
-                                                   required="required"
-                                                   value="<c:if test="${requestScope.zipcode != null}">${requestScope.zipcode}</c:if>">
+                                            <div class="input-group w-75">
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <span class="fas fa-ruler-vertical"> Postnummer</span>
+                                                </span>
+                                                </div>
+                                                <input type="text" id="zipcode" name="zipcode"
+                                                       placeholder="postnummer og by"
+                                                       class="form-control"
+                                                       required="required"
+                                                       value="<c:if test="${requestScope.zipcode != null}">${requestScope.zipcode}</c:if>">
+                                            </div>
 
                                             <c:if test="${requestScope.zipcodeError != null}">
                                                 <span class="text-danger">${requestScope.zipcodeError}</span>
@@ -269,6 +292,10 @@
                                         </div>
 
                                     </div>
+                                </div>
+                                <div class="form-group pt-5">
+                                    <input type="hidden" name="target" value="request">
+                                    <button name="submit" type="submit" class="btn btn-primary btn-lg">Send</button>
                                 </div>
                             </form>
                         </c:otherwise>
