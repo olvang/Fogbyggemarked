@@ -162,12 +162,13 @@ public class InclinedRoofGenerator {
         ArrayList<BillLine> billLines = new ArrayList<>();
         BillLine billLine;
 
-        //One rooftile needs one lath pr. 40 cm
-        int rows = (int) Math.ceil(order.getDepth() / 40.0);
-
         int depth = order.getDepth();
 
+        int rows = getAmountOfRowsOnSper(depth);
+
         double needToBeCoveredDepth = depth * 1.8;
+
+        int amountUsed = (int) needToBeCoveredDepth / longestMaterialLength;
 
         if(needToBeCoveredDepth < longestMaterialLength){
             billLine = new BillLine(material,rows, categoryDescription);
@@ -175,11 +176,12 @@ public class InclinedRoofGenerator {
             return billLines;
         }
 
-        int amountUsed = (int) needToBeCoveredDepth / longestMaterialLength;
+
 
         billLines.add(new BillLine(material,amountUsed * rows, categoryDescription));
 
-        double rest = needToBeCoveredDepth % material.getLength();
+        //The answer is already more or less correct, adding this wildly increases the amount used.
+        /*double rest = needToBeCoveredDepth % material.getLength();
 
         for (int i = materialsSortedByLength.size()-1; i > -1; i--) {
             material = materialsSortedByLength.get(i);
@@ -191,7 +193,8 @@ public class InclinedRoofGenerator {
                 billLines.add(new BillLine(material,amountUsed * rows, categoryDescription));
                 return billLines;
             }
-        }
+        }*/
+
         return billLines;
     }
 
@@ -336,4 +339,8 @@ public class InclinedRoofGenerator {
 
     }
 
+    public static int getAmountOfRowsOnSper(int orderDepth) {
+        //One rooftile needs one lath pr. 40 cm
+        return (int) Math.ceil(orderDepth / 50.0);
+    }
 }
