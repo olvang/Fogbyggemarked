@@ -18,18 +18,33 @@ public class PartBuilderCarportTest {
 
     @Test
     public void testMethod() {
-        SVG svg = new SVG(1800, 1200, "0,0,1800,1800", 0,0);
-        PartBuilderCarport.drawOuterBox(svg, 100,100, 900, 1400);
-        PartBuilderCarport.drawRems(svg, 100,100, 900, 1400);
-        PartBuilderCarport.drawSper(svg, 100,100, 900, 1400);
-        //PartBuilderCarport.drawPerforatedBandWithoutShed(svg, 100,100, 900, 1400);
-        PartBuilderCarport.drawDepthArrow(svg, 100,100, 900, 1400);
-        PartBuilderCarport.drawInnerWidthArrow(svg, 100,100, 900, 1400);
-        PartBuilderCarport.drawOuterWidthArrow(svg, 100,100, 900, 1400);
-        PartBuilderCarport.drawSperSpaceArrows(svg, 100,100, 900, 1400);
-        PartBuilderShed.drawShed(svg, 100,100, 900, 1400,450,1200);
-        PartBuilderShed.drawPostsWithShed(svg, 100,100, 900, 1400,450, 1200);
-        PartBuilderShed.drawPerforatedBandWithShed(svg, 100, 100, 900, 1400, 450, 1200);
+        int fulldepth = 500;
+        int fullwidth = 400;
+        int depth = fulldepth - 40;
+        int width = fullwidth - 40;
+        int x = 100;
+        int y = 100;
+        int xmoved = x + 20;
+        int ymoved = y + 20;
+
+        int shedDepth = 200;
+        int shedWidth = 400;
+
+        SVG svg = new SVG(700, 700, "0,0,700,700", 0,0);
+        PartBuilderCarport.drawOuterBox(svg, x,y, fulldepth, fullwidth);
+        PartBuilderShed.drawShed(svg, xmoved, y -15, fulldepth,fullwidth + 15,shedDepth,shedWidth);
+
+        PartBuilderCarport.drawRems(svg, xmoved,y - 15, depth, fullwidth + 15);
+        PartBuilderCarport.drawSper(svg, xmoved,y, depth, fullwidth);
+        PartBuilderInclinedRoof.drawLaths(svg, x,y, fulldepth, fullwidth);
+        PartBuilderInclinedRoof.drawSterns(svg, x,y, fulldepth, fullwidth);
+
+        PartBuilderShed.drawPostsWithShed(svg, xmoved,y - 15, fulldepth, fullwidth + 15, shedDepth, shedWidth);
+
+        PartBuilderCarport.drawDepthArrow(svg, x,y, fulldepth, fullwidth);
+        PartBuilderInclinedRoof.drawInclineInnerWidthArrow(svg, x,y, fulldepth, fullwidth);
+        PartBuilderCarport.drawOuterWidthArrow(svg, x,y, fulldepth, fullwidth);
+        PartBuilderCarport.drawSperSpaceArrows(svg, xmoved,ymoved, depth, width);
 
 
         writeToFile(svg.toString());
