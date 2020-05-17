@@ -111,7 +111,7 @@ public class OrderMapper {
         try{
             Connection con = Connector.connection();
 
-            String SQL = "SELECT * FROM ORDERS left join sheds on orders.order_id = sheds.order_id  where orders.order_id = ?;";
+            String SQL = "SELECT * FROM orders left join sheds on orders.order_id = sheds.order_id  where orders.order_id = ?;";
 
             PreparedStatement ps = con.prepareStatement(SQL);
 
@@ -173,7 +173,7 @@ public class OrderMapper {
         try{
             Connection con = Connector.connection();
 
-            String SQL = "SELECT * FROM ORDERS left join sheds on orders.order_id = sheds.order_id;";
+            String SQL = "SELECT * FROM orders left join sheds on orders.order_id = sheds.order_id;";
 
             PreparedStatement ps = con.prepareStatement(SQL);
 
