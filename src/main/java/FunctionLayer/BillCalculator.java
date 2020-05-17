@@ -1,15 +1,25 @@
 package FunctionLayer;
 
 import FunctionLayer.BillGenerator.*;
-import FunctionLayer.Exceptions.CommandException;
 import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.GeneratorException;
-import FunctionLayer.Exceptions.ValidationFailedException;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Used to put together an arraylist of BillLines by using the BillGenerator
+ */
 public class BillCalculator {
+
+    /**
+     * <p>Calculates and returns a ArrayList of BillLines from a order </p>
+     * Checks the OrderType
+     * Holds the category id's needed for each order type
+     * Uses a switch for each category id, which is connected to the corresponding BillGenerator Method
+     * When a category has been calculated, it adds the returned BillLine to the array, which is returned at the end
+     * @param order The order object to calculate from
+     * @returns ArrayList<BillLine> ArrayList of all BillLines calculated from the order
+     */
     public ArrayList<BillLine> calculateBillFromOrder(Order order) throws GeneratorException, DatabaseException {
         int[] categoriesNeeded = null;
         int orderType;
@@ -551,6 +561,12 @@ public class BillCalculator {
         return billLinesFinal;
     }
 
+    /**
+     * <p>Finds and returns categories from categories Available in a order</p>
+     * @param categoryIdsUsedInGenerator An arraylist of category id's. <br>These are the ones that will be searched for
+     * @param categoriesAvailable An arraylist of categories available in a order. <br>These are the ones that will be searched in
+     * @returns ArrayList<Category> ArrayList of all Categories where the category id's where found
+     */
     private ArrayList<Category> getCategoriesUsedInGenerator(int[] categoryIdsUsedInGenerator, ArrayList<Category> categoriesAvailable) {
         ArrayList<Category> categoriesUsedInGenerator = new ArrayList<>();
 

@@ -5,16 +5,16 @@ import Components.HeightComponent;
 import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
-import FunctionLayer.Exceptions.CommandException;
 import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
-import PresentationLayer.Bill;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * Used to Generate / Calculate the BillLines associated with a carport
+ */
 public class CarportGenerator {
 
     public static ArrayList<BillLine> underSternsBredderFrontAndBack(ArrayList<Category> categoriesUsedInGenerator, WidthComponent carportWidth) throws GeneratorException {

@@ -2,6 +2,9 @@ package FunctionLayer;
 
 import Components.*;
 
+/**
+ * Represents a Customer
+ */
 public class Customer {
 
     private NameComponent nameComponent;
@@ -10,6 +13,14 @@ public class Customer {
     private PhoneComponent phoneComponent;
     private ZipCodeComponent zipcodeComponent;
 
+    /**
+     * <p>Constructor for a Customer </p>
+     * @param nameCom The customer name as a component
+     * @param adresseCom The customer address as a component
+     * @param emailCom The customer Email as a component
+     * @param phoneCom The customer Phone as a component
+     * @param zipCom The customer Zip code as a component
+     */
     public Customer(NameComponent nameCom, AddressComponent adresseCom, EmailComponent emailCom, PhoneComponent phoneCom,
                     ZipCodeComponent zipCom){
 

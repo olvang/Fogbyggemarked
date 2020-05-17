@@ -5,10 +5,12 @@ import FunctionLayer.BillLine;
 import FunctionLayer.Category;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
-import PresentationLayer.Bill;
 
 import java.util.ArrayList;
 
+/**
+ * Used to Generate / Calculate the BillLines associated with a flatroof
+ */
 public class FlatRoofGenerator {
     public static ArrayList<BillLine> waterBoardOnSternSides(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depth) {
         //Calculated same way as Stern for the sides
@@ -20,13 +22,6 @@ public class FlatRoofGenerator {
         return CarportGenerator.overSternBredderFront(categoriesUsedInGenerator,order);
     }
 
-    /**
-     * Takes the width and the depth of the carport in the order and calculates the amount of roof panels needed
-     * to fill the roof area of the carport, using as few panels as possible
-     * @param categoriesUsedInGenerator
-     * @param order
-     * @return ArrayList<BillLine>
-     */
     public static ArrayList<BillLine> roofPanels(ArrayList<Category> categoriesUsedInGenerator, Order order) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         int depth = order.getDepth();

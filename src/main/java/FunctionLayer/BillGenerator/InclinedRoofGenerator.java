@@ -8,6 +8,9 @@ import FunctionLayer.Order;
 
 import java.util.ArrayList;
 
+/**
+ * Used to Generate / Calculate the BillLines associated with a inclined roof
+ */
 public class InclinedRoofGenerator {
 
     public static ArrayList<BillLine> soffit(ArrayList<Category> categoriesUsedInGenerator, Order order) {

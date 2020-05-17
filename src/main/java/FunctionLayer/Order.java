@@ -4,6 +4,9 @@ import Components.*;
 
 import java.util.Date;
 
+/**
+ * Represents a order
+ */
 public class Order {
 
     private int orderId;
@@ -17,6 +20,18 @@ public class Order {
     private Date orderDate;
     private Customer customer;
 
+
+    /**
+     * <p>Constructor for an order with shed </p>
+     * @param depth The depth of the carport in cm
+     * @param height The depth of the carport in cm
+     * @param width The width of the carport in cm
+     * @param shedDepth The depth of the shed in cm
+     * @param shedWidth The width of the shed in cm
+     * @param incline How much incline the roof has. (0 = flat roof)
+     * @param withShed Whether or not the order has a shed
+     * @param customer The customer connected with the order
+     */
     public Order(DepthComponent depth, HeightComponent height, WidthComponent width , ShedDepthComponent shedDepth,
                  ShedWidthComponent shedWidth, InclineComponent incline, boolean withShed, Customer customer) {
 
@@ -30,6 +45,15 @@ public class Order {
         this.customer = customer;
     }
 
+    /**
+     * <p>Constructor for an order without a shed </p>
+     * @param depth The depth of the carport in cm
+     * @param height The depth of the carport in cm
+     * @param width The width of the carport in cm
+     * @param incline How much incline the roof has. (0 = flat roof)
+     * @param withShed Whether or not the order has a shed
+     * @param customer The customer connected with the order
+     */
     public Order(DepthComponent depth, HeightComponent height, WidthComponent width, InclineComponent incline, boolean withShed,
                  Customer customer) {
 
