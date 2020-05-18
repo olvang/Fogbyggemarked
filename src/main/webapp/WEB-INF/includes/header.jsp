@@ -110,10 +110,10 @@
                         <a class="nav-link" href="orders.jsp">Ordrer</a>
                     </li>
                 </ul>
-                <form class="nav-item form-inline mt-2 mt-md-0" _lpchecked="1">
+                <%--<form class="nav-item form-inline mt-2 mt-md-0" _lpchecked="1">
                     <button class="btn btn-outline-success my-2 mr-2 my-sm-0" type="submit" style="color:white">Login</button>
                     <button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit" style="color:white">Register</button>
-                </form>
+                </form>--%>
             </div>
         </nav>
     </header>

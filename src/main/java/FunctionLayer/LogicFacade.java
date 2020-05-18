@@ -2,13 +2,9 @@ package FunctionLayer;
 
 import DBAccess.MaterialsMapper;
 import DBAccess.OrderMapper;
-import DBAccess.UserMapper;
-import FunctionLayer.Exceptions.CommandException;
 import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.GeneratorException;
-import FunctionLayer.Exceptions.ValidationFailedException;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -16,16 +12,6 @@ import java.util.ArrayList;
  * @author kasper
  */
 public class LogicFacade {
-
-    public static User login( String email, String password ) throws DatabaseException {
-        return UserMapper.login( email, password );
-    } 
-
-    public static User createUser( String email, String password ) throws DatabaseException {
-        User user = new User(email, password, "customer");
-        UserMapper.createUser( user );
-        return user;
-    }
 
     public static void createOrder( Order order) throws DatabaseException {
         OrderMapper.createOrder(order);
