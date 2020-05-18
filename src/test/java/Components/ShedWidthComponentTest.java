@@ -10,18 +10,18 @@ import static org.junit.Assert.assertFalse;
 public class ShedWidthComponentTest  {
     @Test
     public void testSuccess() throws ValidationFailedException {
-        int expected = 51;
-        WidthComponent carportComponent = new WidthComponent(100);
-        ShedWidthComponent component = new ShedWidthComponent(51, carportComponent);
+        int expected = 510;
+        WidthComponent carportComponent = new WidthComponent(600);
+        ShedWidthComponent component = new ShedWidthComponent(510, carportComponent);
 
         assertEquals(component.getWidth(), expected);
     }
 
     @Test
     public void testSetValue() throws ValidationFailedException {
-        int expected = 10;
-        WidthComponent carportComponent = new WidthComponent(100);
-        ShedWidthComponent component = new ShedWidthComponent(51, carportComponent);
+        int expected = 300;
+        WidthComponent carportComponent = new WidthComponent(400);
+        ShedWidthComponent component = new ShedWidthComponent(200, carportComponent);
 
         component.setWidth(expected);
 
@@ -30,49 +30,49 @@ public class ShedWidthComponentTest  {
 
     @Test
     public void testSuccessString() throws ValidationFailedException {
-        int expected = 51;
-        WidthComponent carportComponent = new WidthComponent(100);
-        ShedWidthComponent component = new ShedWidthComponent("51", carportComponent);
+        int expected = 510;
+        WidthComponent carportComponent = new WidthComponent(600);
+        ShedWidthComponent component = new ShedWidthComponent("510", carportComponent);
 
         assertEquals(component.getWidth(), expected);
     }
 
     @Test (expected = ValidationFailedException.class)
     public void testStringFail () throws ValidationFailedException {
-        WidthComponent carportComponent = new WidthComponent(100);
+        WidthComponent carportComponent = new WidthComponent(210);
         ShedWidthComponent component = new ShedWidthComponent("hej", carportComponent);
     }
 
     @Test (expected = ValidationFailedException.class)
     public void testZero() throws ValidationFailedException {
-        WidthComponent carportComponent = new WidthComponent(100);
+        WidthComponent carportComponent = new WidthComponent(210);
         ShedWidthComponent component = new ShedWidthComponent(0, carportComponent);
     }
 
     @Test (expected = ValidationFailedException.class)
     public void testBelowZero() throws ValidationFailedException {
-        WidthComponent carportComponent = new WidthComponent(100);
+        WidthComponent carportComponent = new WidthComponent(210);
         ShedWidthComponent component = new ShedWidthComponent(-1, carportComponent);
     }
 
     @Test
     public void testBoundaryValueOne() throws ValidationFailedException {
-        int expected = 1;
-        WidthComponent carportComponent = new WidthComponent(100);
-        ShedWidthComponent component = new ShedWidthComponent(1, carportComponent);
+        int expected = 100;
+        WidthComponent carportComponent = new WidthComponent(210);
+        ShedWidthComponent component = new ShedWidthComponent(100, carportComponent);
 
         assertEquals(component.getWidth(), expected);
     }
 
     @Test (expected = ValidationFailedException.class)
     public void testMassiveValue() throws ValidationFailedException {
-        WidthComponent carportComponent = new WidthComponent(100);
+        WidthComponent carportComponent = new WidthComponent(210);
         ShedWidthComponent component = new ShedWidthComponent(2000000, carportComponent);
     }
 
     @Test (expected = ValidationFailedException.class)
     public void testShedLargerThanCarport() throws ValidationFailedException {
-        WidthComponent carportComponent = new WidthComponent(10);
+        WidthComponent carportComponent = new WidthComponent(210);
         ShedWidthComponent component = new ShedWidthComponent(51, carportComponent);
     }
 
@@ -81,7 +81,7 @@ public class ShedWidthComponentTest  {
         String expected = "Dette felt skal udfyldes.";
         String actual = "No exception was thrown";
         try {
-            WidthComponent carportComp = new WidthComponent(1);
+            WidthComponent carportComp = new WidthComponent(210);
             ShedWidthComponent component = new ShedWidthComponent("", carportComp);
         }catch (ValidationFailedException ex) {
             actual = ex.getMessage();
@@ -92,49 +92,49 @@ public class ShedWidthComponentTest  {
     //Equals tests
     @Test
     public void testEqualsInt() throws ValidationFailedException {
-        WidthComponent carportComponent = new WidthComponent(100);
+        WidthComponent carportComponent = new WidthComponent(210);
 
-        ShedWidthComponent component1 = new ShedWidthComponent(10, carportComponent);
+        ShedWidthComponent component1 = new ShedWidthComponent(110, carportComponent);
 
-        assertTrue(component1.equals(10));
+        assertTrue(component1.equals(110));
     }
 
     @Test
     public void testEqualsObject() throws ValidationFailedException {
-        WidthComponent carportComponent = new WidthComponent(100);
+        WidthComponent carportComponent = new WidthComponent(210);
 
-        ShedWidthComponent component1 = new ShedWidthComponent(10, carportComponent);
-        ShedWidthComponent component2= new ShedWidthComponent(10, carportComponent);
+        ShedWidthComponent component1 = new ShedWidthComponent(110, carportComponent);
+        ShedWidthComponent component2= new ShedWidthComponent(110, carportComponent);
 
         assertTrue(component1.equals(component2));
     }
 
     @Test
     public void testEqualsObjectFail() throws ValidationFailedException {
-        WidthComponent carportComponent = new WidthComponent(100);
+        WidthComponent carportComponent = new WidthComponent(210);
 
-        ShedWidthComponent component1 = new ShedWidthComponent(10, carportComponent);
-        ShedWidthComponent component2= new ShedWidthComponent(11, carportComponent);
+        ShedWidthComponent component1 = new ShedWidthComponent(110, carportComponent);
+        ShedWidthComponent component2= new ShedWidthComponent(111, carportComponent);
 
         assertFalse(component1.equals(component2));
     }
 
     @Test
     public void testEqualsIntFail() throws ValidationFailedException {
-        WidthComponent carportComponent = new WidthComponent(100);
+        WidthComponent carportComponent = new WidthComponent(210);
 
-        ShedWidthComponent component1 = new ShedWidthComponent(10, carportComponent);
+        ShedWidthComponent component1 = new ShedWidthComponent(110, carportComponent);
 
-        assertFalse(component1.equals(11));
+        assertFalse(component1.equals(111));
     }
 
     @Test
     public void testEqualsWrongObjectType() throws ValidationFailedException {
-        WidthComponent carportComponent = new WidthComponent(100);
+        WidthComponent carportComponent = new WidthComponent(210);
 
-        ShedWidthComponent component1 = new ShedWidthComponent(10, carportComponent);
+        ShedWidthComponent component1 = new ShedWidthComponent(110, carportComponent);
 
-        assertFalse(component1.equals(new WidthComponent(10)));
+        assertFalse(component1.equals(new WidthComponent(210)));
     }
 
 }

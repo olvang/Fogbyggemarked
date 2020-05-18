@@ -176,6 +176,7 @@ public class OrderMapper {
      */
 
     public static ArrayList<Order> getAllOrders() throws DatabaseException {
+
         ArrayList<Order> orders = new ArrayList<>();
         Order order;
         try{
@@ -223,10 +224,13 @@ public class OrderMapper {
 
 
         } catch (SQLException e) {
+            Log.severe("Order mapper: Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
             throw new DatabaseException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
         } catch (ClassNotFoundException e) {
+            Log.severe("Order mapper: Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
             throw new DatabaseException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
         } catch (ValidationFailedException e) {
+            Log.warning("Order mapper: Et element i ordre databasen fejlede validering: " + e.getMessage());
             throw new DatabaseException("Et element i ordre databasen fejlede validering: " + e.getMessage());
         }
 

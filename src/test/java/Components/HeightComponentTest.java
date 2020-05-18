@@ -11,16 +11,16 @@ public class HeightComponentTest{
 
     @Test
     public void testSuccess() throws ValidationFailedException {
-        int expected = 51;
-        HeightComponent component = new HeightComponent(51);
+        int expected = 510;
+        HeightComponent component = new HeightComponent(510);
 
         assertEquals(component.getHeight(), expected);
     }
 
     @Test
     public void testSetValue() throws ValidationFailedException {
-        int expected = 10;
-        HeightComponent component = new HeightComponent(51);
+        int expected = 300;
+        HeightComponent component = new HeightComponent(510);
 
         component.setHeight(expected);
 
@@ -29,8 +29,8 @@ public class HeightComponentTest{
 
     @Test
     public void testSuccessString() throws ValidationFailedException {
-        int expected = 51;
-        HeightComponent component = new HeightComponent("51");
+        int expected = 510;
+        HeightComponent component = new HeightComponent("510");
 
         assertEquals(component.getHeight(), expected);
     }
@@ -52,8 +52,8 @@ public class HeightComponentTest{
 
     @Test
     public void testBoundaryValueOne() throws ValidationFailedException {
-        int expected = 1;
-        HeightComponent component = new HeightComponent(1);
+        int expected = 200;
+        HeightComponent component = new HeightComponent(200);
 
         assertEquals(component.getHeight(), expected);
     }
@@ -78,37 +78,37 @@ public class HeightComponentTest{
     //Equals tests
     @Test
     public void testEqualsInt() throws ValidationFailedException {
-        HeightComponent component1 = new HeightComponent(10);
+        HeightComponent component1 = new HeightComponent(300);
 
-        assertTrue(component1.equals(10));
+        assertTrue(component1.equals(300));
     }
 
     @Test
     public void testEqualsObject() throws ValidationFailedException {
-        HeightComponent component1 = new HeightComponent(10);
-        HeightComponent component2= new HeightComponent(10);
+        HeightComponent component1 = new HeightComponent(300);
+        HeightComponent component2= new HeightComponent(300);
 
         assertTrue(component1.equals(component2));
     }
 
     @Test
     public void testEqualsObjectFail() throws ValidationFailedException {
-        HeightComponent component1 = new HeightComponent(10);
-        HeightComponent component2= new HeightComponent(11);
+        HeightComponent component1 = new HeightComponent(300);
+        HeightComponent component2= new HeightComponent(301);
 
         assertFalse(component1.equals(component2));
     }
 
     @Test
     public void testEqualsIntFail() throws ValidationFailedException {
-        HeightComponent component1 = new HeightComponent(10);
+        HeightComponent component1 = new HeightComponent(300);
 
-        assertFalse(component1.equals(11));
+        assertFalse(component1.equals(301));
     }
 
     @Test
     public void testEqualsWrongObjectType() throws ValidationFailedException {
-        HeightComponent component1 = new HeightComponent(10);
+        HeightComponent component1 = new HeightComponent(300);
 
         assertFalse(component1.equals(new String()));
     }

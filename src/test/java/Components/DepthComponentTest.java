@@ -11,16 +11,16 @@ public class DepthComponentTest{
 
     @Test
     public void testSuccess() throws ValidationFailedException {
-        int expected = 51;
-        DepthComponent component = new DepthComponent(51);
+        int expected = 510;
+        DepthComponent component = new DepthComponent(510);
 
         assertEquals(component.getDepth(), expected);
     }
 
     @Test
     public void testSetValue() throws ValidationFailedException {
-        int expected = 10;
-        DepthComponent component = new DepthComponent(51);
+        int expected = 210;
+        DepthComponent component = new DepthComponent(510);
 
         component.setDepth(expected);
 
@@ -29,8 +29,8 @@ public class DepthComponentTest{
 
     @Test
     public void testSuccessString() throws ValidationFailedException {
-        int expected = 51;
-        DepthComponent component = new DepthComponent("51");
+        int expected = 510;
+        DepthComponent component = new DepthComponent("510");
 
         assertEquals(component.getDepth(), expected);
     }
@@ -52,8 +52,8 @@ public class DepthComponentTest{
 
     @Test
     public void testBoundaryValueOne() throws ValidationFailedException {
-        int expected = 1;
-        DepthComponent component = new DepthComponent(1);
+        int expected = 200;
+        DepthComponent component = new DepthComponent(200);
 
         assertEquals(component.getDepth(), expected);
     }
@@ -78,39 +78,39 @@ public class DepthComponentTest{
     //Equals tests
     @Test
     public void testEqualsInt() throws ValidationFailedException {
-        DepthComponent component1 = new DepthComponent(10);
+        DepthComponent component1 = new DepthComponent(300);
 
-        assertTrue(component1.equals(10));
+        assertTrue(component1.equals(300));
     }
 
     @Test
     public void testEqualsObject() throws ValidationFailedException {
-        DepthComponent component1 = new DepthComponent(10);
-        DepthComponent component2= new DepthComponent(10);
+        DepthComponent component1 = new DepthComponent(300);
+        DepthComponent component2= new DepthComponent(300);
 
         assertTrue(component1.equals(component2));
     }
 
     @Test
     public void testEqualsObjectFail() throws ValidationFailedException {
-        DepthComponent component1 = new DepthComponent(10);
-        DepthComponent component2= new DepthComponent(11);
+        DepthComponent component1 = new DepthComponent(300);
+        DepthComponent component2= new DepthComponent(301);
 
         assertFalse(component1.equals(component2));
     }
 
     @Test
     public void testEqualsIntFail() throws ValidationFailedException {
-        DepthComponent component1 = new DepthComponent(10);
+        DepthComponent component1 = new DepthComponent(300);
 
-        assertFalse(component1.equals(11));
+        assertFalse(component1.equals(311));
     }
 
     @Test
     public void testEqualsWrongObjectType() throws ValidationFailedException {
-        DepthComponent component1 = new DepthComponent(10);
+        DepthComponent component1 = new DepthComponent(310);
 
-        assertFalse(component1.equals(new WidthComponent(10)));
+        assertFalse(component1.equals(new WidthComponent(310)));
     }
 
 }
