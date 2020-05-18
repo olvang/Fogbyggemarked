@@ -187,7 +187,7 @@ public class Request extends Command {
             }
 
             //No errors found - and order inserted in db
-            request.setAttribute("success","Tak for din bestilling"+ order.getCustomerName() + "<br>Du vil blive kontaktet af en af vores dygtige sælgere hurtigst muligt.");
+            request.setAttribute("success","Tak for din bestilling, "+ order.getCustomerName() + "<br>Du vil blive kontaktet af en af vores dygtige sælgere hurtigst muligt.");
         }else{
             //Errors found
             errorHandling(request,carportWidthString,carportDepthString,carportHeightString,shedornotString,shedWidthString,shedDepthString,roofTypeString, nameString, addressString, emailString, phoneString, zipString);
