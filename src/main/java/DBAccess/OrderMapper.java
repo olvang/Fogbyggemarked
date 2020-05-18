@@ -50,7 +50,7 @@ public class OrderMapper {
                 PreparedStatement nps = con.prepareStatement(nSQL, Statement.RETURN_GENERATED_KEYS);
                 nps.setInt(1,id);
                 nps.setInt(2,order.getShedWidth());
-                nps.setInt(3,order.getDepth());
+                nps.setInt(3,order.getShedDepth());
 
                 nps.executeUpdate();
             }
