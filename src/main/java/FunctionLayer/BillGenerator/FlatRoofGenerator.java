@@ -27,7 +27,7 @@ public class FlatRoofGenerator {
     }
 
     /**
-     *<p>Calculates amount of waterboards on sides</p>
+     *<p>Calculates amount of waterboards on stern in front</p>
      *Uses oversternbredderFront from carport generator
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
@@ -38,6 +38,14 @@ public class FlatRoofGenerator {
         //Calculated same way as Stern for the front
         return CarportGenerator.overSternBredderFront(categoriesUsedInGenerator,order);
     }
+
+    /**
+     *<p>Calculates amount of roofpanels used</p>
+     *
+     * @param order the order object to calculate on
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     */
 
     public static ArrayList<BillLine> roofPanels(ArrayList<Category> categoriesUsedInGenerator, Order order) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
@@ -85,6 +93,14 @@ public class FlatRoofGenerator {
         }
         return listToBeReturned;
     }
+
+    /**
+     *<p>Calculates amnount of screw for roof panels</p>
+     *DESC: 12 screws pr. square meter
+     * @param order the order object to calculate on
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     */
 
     public static ArrayList<BillLine> screwsForRoofPanels(ArrayList<Category> categoriesUsedInGenerator,Order order) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
