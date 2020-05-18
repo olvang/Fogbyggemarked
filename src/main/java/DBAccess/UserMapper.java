@@ -9,11 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- The purpose of UserMapper is to...
-
- @author kasper
- */
 public class UserMapper {
 
     public static void createUser( User user ) throws DatabaseException {

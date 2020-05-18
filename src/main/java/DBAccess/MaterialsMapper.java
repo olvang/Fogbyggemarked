@@ -17,6 +17,10 @@ import java.util.List;
 
 public class MaterialsMapper {
 
+    /**
+     * <p>Gets all categories in the database</p>
+     * @return ArrayList<Category> Arraylist of Category objects
+     */
     public static ArrayList<Category> getAllCategories() throws DatabaseException {
         ArrayList<Category> listOfCategories = new ArrayList();
         String SQL = "SELECT `materials_id`, `unit`, `length`, `height`, `width`, `amount`, `name`, `category`.`category_id`, `price`, " +
@@ -38,7 +42,12 @@ public class MaterialsMapper {
         return listOfCategories;
     }
 
-    
+
+    /**
+     * <p>Gets all categories in the database from a list of id's</p>
+     * @param idsToGet A int array with the category id's to pull from the database
+     * @return ArrayList<Category> Arraylist of Category objects
+     */
     public static ArrayList<Category> getTheseCategories(int[] idsToGet ) throws DatabaseException {
         ArrayList<Category> listOfMaterials = new ArrayList(); //To hold the materials
 
@@ -73,6 +82,11 @@ public class MaterialsMapper {
         return listOfMaterials;
     }
 
+    /**
+     * <p>Used to fill the arraylist of categories with the data pulled from the database </p>
+     * @param listToFill The Arraylist of categories to fill with data
+     * @param rs The resultset object with data from the database
+     */
     private static void fillList(ArrayList<Category> listToFill, ResultSet rs) throws SQLException, ValidationFailedException {
         int previousId = -1;
         while(rs.next() ) {

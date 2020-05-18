@@ -4,10 +4,18 @@ import FunctionLayer.Exceptions.ValidationFailedException;
 
 import java.util.regex.Pattern;
 
+/**
+ * <p>Component used to validate a Email string</p>
+ */
 public class EmailComponent implements Component {
 
     String email;
 
+    /**
+     * Constructor for the component
+     * Calls the validate function
+     * @param email The Email string to validate
+     */
     public EmailComponent(String email) throws ValidationFailedException {
         this.email = email;
         validate();
@@ -28,6 +36,11 @@ public class EmailComponent implements Component {
         }
     }
 
+    /**
+     * Validates the Email string
+     * @return True if the Email string validates according to the rules
+     * @exception ValidationFailedException Thrown if the Email string trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         if(email == null || email == "") {
