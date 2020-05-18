@@ -4,9 +4,17 @@ import FunctionLayer.Exceptions.ValidationFailedException;
 
 import java.util.regex.Pattern;
 
+/**
+ * <p>Component used to validate a Zip code int</p>
+ */
 public class ZipCodeComponent implements Component {
     String zip;
 
+    /**
+     * Constructor for the component
+     * Calls the validate function
+     * @param zip Zip code string to validate
+     */
     public ZipCodeComponent(String zip) throws ValidationFailedException {
         this.zip = zip;
         validate();
@@ -27,6 +35,11 @@ public class ZipCodeComponent implements Component {
         }
     }
 
+    /**
+     * Validates the Zip code
+     * @return True if the Zip code validates according to the rules
+     * @exception ValidationFailedException Thrown if the Zip code trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         if(zip == null || zip == "") {

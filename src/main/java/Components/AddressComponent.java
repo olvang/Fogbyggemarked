@@ -3,10 +3,17 @@ package Components;
 import FunctionLayer.Exceptions.ValidationFailedException;
 
 import java.util.regex.Pattern;
-
+/**
+ * <p>Component used to validate a address string</p>
+ */
 public class AddressComponent implements Component {
     String address;
 
+    /**
+     * Constructor for the component
+     * Calls the validate function
+     * @param address The address string to validate
+     */
     public AddressComponent(String address) throws ValidationFailedException {
         this.address = address;
         validate();
@@ -15,6 +22,7 @@ public class AddressComponent implements Component {
     public String getAddress() {
         return address;
     }
+
 
     public void setAddress(String address) throws ValidationFailedException {
         String old = address;
@@ -27,6 +35,11 @@ public class AddressComponent implements Component {
         }
     }
 
+    /**
+     * Validates the address string
+     * @return True if the address string validates according to the rules
+     * @exception ValidationFailedException Thrown if the address string trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         if(address == null || address == "") {
