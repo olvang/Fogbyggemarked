@@ -7,18 +7,21 @@ import java.util.logging.*;
 
 public class Log {
 
-    private static final String FILENAME = "demo.log";
-    private static final String FILEPATH = "";
+    private static String FILENAME;
+    private static String FILEPATH;
 
     private static final Level THRESHOLD = Level.FINEST;
 
     //private static final String FILEPATH = "/var/log/tomcat8/";
-    private static final String PATH = FILEPATH + FILENAME;
+    private static String PATH;
 
     private Log() {
     }
 
     private static void log(Level lvl, String decription) throws Exception {
+        if(PATH == null) {
+            setPaths();
+        }
 
         Logger logger = Logger.getLogger(Log.class.getName());   // All operations on logger are thread safe
 
@@ -67,6 +70,19 @@ public class Log {
         }
     }
 
+    private static void setPaths() {
+        String deployed = System.getenv("DEPLOYED");
+
+        if ( deployed != null ) {
+            FILENAME = "fog.log";
+            FILEPATH = System.getenv("LOGPATH");
+            PATH = FILEPATH + FILENAME;
+        } else {
+             FILENAME = "demo.log";
+             FILEPATH = "";
+             PATH = FILEPATH + FILENAME;
+        }
+    }
 
 }
 
