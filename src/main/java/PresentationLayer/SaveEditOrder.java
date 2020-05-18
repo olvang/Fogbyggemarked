@@ -137,7 +137,7 @@ public class SaveEditOrder extends Command {
                 request.setAttribute("order", finished);
             } catch (DatabaseException ex) {
                 request.setAttribute("error","Kunne ikke opdatere bestilling afsted. " + ex.getMessage());
-                return "request";
+                return "index";
             }
 
 

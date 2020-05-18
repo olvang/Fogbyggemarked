@@ -27,7 +27,7 @@ public class Bill extends Command{
             }*/
         } catch (DatabaseException | GeneratorException e) {
             //TODO Create somewhere to send error message
-            return "request";
+            return "index";
         }
 
         return "material-bill";

@@ -97,7 +97,7 @@
                         <a class="nav-link" href="#">Carporte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="request.jsp">Byg Selv</a>
+                        <a class="nav-link" href="index.jsp">Byg Selv</a>
                     </li>
                     <%--<li class="nav-item">
                         <form id="testForm" action="FrontController" method="POST">
