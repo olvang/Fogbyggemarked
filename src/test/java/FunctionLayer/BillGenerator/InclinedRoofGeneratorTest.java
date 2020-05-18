@@ -88,17 +88,11 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         Order order = new Order(new DepthComponent(360), new HeightComponent(210), new WidthComponent(730), new InclineComponent(20) ,false,customer);
         ArrayList<BillLine> billLine = InclinedRoofGenerator.roofLathOnSper(categoriesUsedInGenerator,order);
 
-        int exspected = 9;
+        int exspected = 8;
         int exspectedLength = 5400;
-
-        int exspected1 = 9;
-        int exspectedLength1 = 5400;
 
         assertEquals(exspected,billLine.get(0).getAmount());
         assertEquals(exspectedLength, billLine.get(0).getMaterial().getLength());
-
-        assertEquals(exspected1,billLine.get(1).getAmount());
-        assertEquals(exspectedLength1, billLine.get(1).getMaterial().getLength());
 
     }
     @Test
@@ -115,7 +109,7 @@ public class InclinedRoofGeneratorTest extends TestDataSetup {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{41});
         ArrayList<BillLine> billLine = InclinedRoofGenerator.screwsForRoofLaths(categoriesUsedInGenerator,billLineTop,billLineroof);
 
-        int exspected = 8;
+        int exspected = 4;
 
         assertEquals(exspected,billLine.get(0).getAmount());
 

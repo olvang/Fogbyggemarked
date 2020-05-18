@@ -36,9 +36,9 @@ public class DepthComponent implements Component {
     //------------//
     @Override
     public boolean validate() throws ValidationFailedException {
-        //If depth is 0 or lower, a ValidationFailedException is thrown
-        if( depth < 1) {
-            throw new ValidationFailedException("Dybde må ikke være under 0.");
+        //If depth is below 200, a ValidationFailedException is thrown
+        if( depth < 200) {
+            throw new ValidationFailedException("Dybde må ikke være under 2m.");
         //If depth is above the depth limit, a ValidationFailedException is thrown
         } else if (depth > depthLimit) {
             throw new ValidationFailedException("Dybde må ikke være over " + (depthLimit / 100) + "m.");
