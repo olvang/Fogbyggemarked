@@ -15,8 +15,8 @@ public class ShedDepthComponent implements Component {
     private Integer carportDepth;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param depth Depth int to validate
      * @param carportDepth Carport depth to validate with
      */
@@ -27,9 +27,9 @@ public class ShedDepthComponent implements Component {
     }
 
     /**
-     * Constructor for the component
-     * Calls the validate function
-     * Convert Depth string to a int
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Convert Depth string to a int</p>
      * @param depth Depth string to validate
      * @param carportDepth Carport depth to validate with
      */
@@ -48,9 +48,9 @@ public class ShedDepthComponent implements Component {
     }
 
     /**
-     * Constructor for the component
-     * Convert Depth string and cartport Depth string to a int
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Convert Depth string and cartport Depth string to a int</p>
+     * <p>Calls the validate function</p>
      * @param depth Depth string to validate
      * @param carportDepth Carport depth string to validate with
      */
@@ -69,7 +69,7 @@ public class ShedDepthComponent implements Component {
     }
 
     /**
-     * Validates the Shed Depth
+     * <p>Validates the Shed Depth</p>
      * @return True if the Shed Depth validates according to the rules
      * @exception ValidationFailedException Thrown if the Shed Depth trying to be validated does not comply with the rules
      */
@@ -103,7 +103,7 @@ public class ShedDepthComponent implements Component {
     // Comparing //
     //-----------//
     /**
-     * Used to compare the component with a Integer
+     * <p>Used to compare the component with a Integer</p>
      * @return True if the Shed Depth is equal to the Integer its comparing to, else false
      */
     @Override

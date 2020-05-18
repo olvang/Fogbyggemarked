@@ -12,8 +12,8 @@ public class EmailComponent implements Component {
     String email;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param email The Email string to validate
      */
     public EmailComponent(String email) throws ValidationFailedException {
@@ -37,7 +37,7 @@ public class EmailComponent implements Component {
     }
 
     /**
-     * Validates the Email string
+     * <p>Validates the Email string</p>
      * @return True if the Email string validates according to the rules
      * @exception ValidationFailedException Thrown if the Email string trying to be validated does not comply with the rules
      */

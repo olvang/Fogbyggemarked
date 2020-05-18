@@ -14,8 +14,8 @@ public class HeightComponent implements Component{
     private int heightLimit = 1000;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param height The height int to validate
      */
     public HeightComponent(int height) throws ValidationFailedException {
@@ -24,9 +24,9 @@ public class HeightComponent implements Component{
     }
 
     /**
-     * Constructor for the component
-     * Calls the validate function
-     * Converts to int
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Converts to int</p>
      * @param height The height string to validate
      */
     public HeightComponent(String height) throws ValidationFailedException {
@@ -44,7 +44,7 @@ public class HeightComponent implements Component{
 
 
     /**
-     * Validates the Height
+     * <p>Validates the Height</p>
      * @return True if the height validates according to the rules
      * @exception ValidationFailedException Thrown if the height trying to be validated does not comply with the rules
      */
@@ -77,7 +77,7 @@ public class HeightComponent implements Component{
     //-----------//
 
     /**
-     * Used to compare the component with a Integer
+     * <p>Used to compare the component with a Integer</p>
      * @return True if the height is equal to the Integer its comparing to, else false
      */
     @Override

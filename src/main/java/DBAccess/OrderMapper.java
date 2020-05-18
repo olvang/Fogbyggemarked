@@ -15,9 +15,9 @@ import java.util.ArrayList;
 public class OrderMapper {
     /**
      * <p>Creates a new order</p>
-     * Create orders takes an order object and check whether there is a shed in that order
-     * by looking at shedDepth which would null if there is not.
-     * Then it execute two different sets of SQL statements depending on the information.
+     * <p>Create orders takes an order object and check whether there is a shed in that order</p>
+     * <p>by looking at shedDepth which would null if there is not.</p>
+     * <p>Then it execute two different sets of SQL statements depending on the information.</p>
      * @param order The order object with the information to be created in the db
      */
     public static void createOrder(Order order) throws DatabaseException {
@@ -168,7 +168,7 @@ public class OrderMapper {
     }
     /**
      * <p>Gets all orders from the database</p>
-     * Also checks if each order has a shed connected with it
+     * <p>Also checks if each order has a shed connected with it</p>
      * @return Arraylist of orders with all orders in the database
      */
     public static ArrayList<Order> getAllOrders() throws DatabaseException {

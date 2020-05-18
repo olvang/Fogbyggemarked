@@ -10,9 +10,9 @@ public class MaterialHeightComponent implements Component {
     private int height;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
-     * Convert the string to a int
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Convert the string to a int</p>
      * @param height Material Height string to validate
      */
     public MaterialHeightComponent(String height) throws ValidationFailedException {
@@ -28,8 +28,8 @@ public class MaterialHeightComponent implements Component {
     }
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param height Material Height int to validate
      */
     public MaterialHeightComponent(int height) throws ValidationFailedException {
@@ -38,7 +38,7 @@ public class MaterialHeightComponent implements Component {
     }
 
     /**
-     * Validates the Material Height
+     * <p>Validates the Material Height</p>
      * @return True if the Material Height validates according to the rules
      * @exception ValidationFailedException Thrown if the Material Height trying to be validated does not comply with the rules
      */
@@ -64,7 +64,7 @@ public class MaterialHeightComponent implements Component {
     // Comparing //
     //-----------//
     /**
-     * Used to compare the component with a Integer
+     * <p>Used to compare the component with a Integer</p>
      * @return True if the Material Height is equal to the Integer its comparing to, else false
      */
     @Override

@@ -15,7 +15,7 @@ public class FlatRoofGenerator {
 
     /**
      *<p>Calculates amount of waterboards on sides</p>
-     *Uses sternbredderSidees from carport generator
+     * <p>Uses sternbredderSidees from carport generator</p>
      * @param depth The depth of the carport
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -28,7 +28,7 @@ public class FlatRoofGenerator {
 
     /**
      *<p>Calculates amount of waterboards on stern in front</p>
-     *Uses oversternbredderFront from carport generator
+     * <p>Uses oversternbredderFront from carport generator</p>
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -96,7 +96,7 @@ public class FlatRoofGenerator {
 
     /**
      *<p>Calculates amnount of screw for roof panels</p>
-     *DESC: 12 screws pr. square meter
+     * <p>DESC: 12 screws pr. square meter</p>
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed

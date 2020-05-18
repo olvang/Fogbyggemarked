@@ -12,8 +12,8 @@ public class PhoneComponent implements Component {
     String phone;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param phone Phone string to validate
      */
     public PhoneComponent(String phone) throws ValidationFailedException {
@@ -37,7 +37,7 @@ public class PhoneComponent implements Component {
     }
 
     /**
-     * Validates the Phone
+     * <p>Validates the Phone</p>
      * @return True if the Phone string validates according to the rules
      * @exception ValidationFailedException Thrown if the Phone string trying to be validated does not comply with the rules
      */

@@ -11,8 +11,8 @@ public class CityComponent implements Component {
     String city;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component </p>
+     * <p>Calls the validate function</p>
      * @param city The city string to validate
      */
     public CityComponent(String city) throws ValidationFailedException {
@@ -36,7 +36,7 @@ public class CityComponent implements Component {
     }
 
     /**
-     * Validates the city string
+     * <p>Validates the city string</p>
      * @return True if the city string validates according to the rules
      * @exception ValidationFailedException Thrown if the city string trying to be validated does not comply with the rules
      */

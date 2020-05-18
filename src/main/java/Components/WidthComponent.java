@@ -14,8 +14,8 @@ public class WidthComponent implements Component {
     private int widthLimit = 2000;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param width width int to validate
      */
     public WidthComponent(int width) throws ValidationFailedException {
@@ -24,9 +24,9 @@ public class WidthComponent implements Component {
     }
 
     /**
-     * Constructor for the component
-     * Calls the validate function
-     * Convert Depth string to a int
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Convert Depth string to a int</p>
      * @param width Width string to validate
      */
     public WidthComponent(String width) throws ValidationFailedException {
@@ -43,7 +43,7 @@ public class WidthComponent implements Component {
     }
 
     /**
-     * Validates the Material Height
+     * <p>Validates the Material Height</p>
      * @return True if the Carport width validates according to the rules
      * @exception ValidationFailedException Thrown if the Carport Width trying to be validated does not comply with the rules
      */
@@ -72,7 +72,7 @@ public class WidthComponent implements Component {
     }
 
     /**
-     * Used to compare the component with a Integer
+     * <p>Used to compare the component with a Integer</p>
      * @return True if the Width is equal to the Integer its comparing to, else false
      */
     @Override

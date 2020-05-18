@@ -18,9 +18,9 @@ import java.util.ArrayList;
 public class CarportGenerator {
 
     /**
-     *<p>Calculates the amount of under sterns brædder used in front and back</p>
-     *Finds the best fitting board based on the length of the board.
-     *Starting with the smallest.
+     * <p>Calculates the amount of under sterns brædder used in front and back</p>
+     * <p>Finds the best fitting board based on the length of the board.</p>
+     * <p>Starting with the smallest.</p>
      * @param carportWidth The width of the carport
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -76,9 +76,9 @@ public class CarportGenerator {
     }
 
     /**
-     *<p>Calculates the amount of stern bærdder needed in the sides.</p>
-     *Find the amount of the biggest board that can be used. Then loops through all
-     * materials to find the board that best fits the rest.
+     * <p>Calculates the amount of stern bærdder needed in the sides.</p>
+     * <p>Find the amount of the biggest board that can be used. Then loops through all</p>
+     * <p>materials to find the board that best fits the rest.</p>
      * @param depthCom The depth of the carport
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -138,10 +138,10 @@ public class CarportGenerator {
     }
 
     /**
-     *<p>Calculates the amount of over sterns brædder used in the front</p>
-     *Finds the best fitting board based on the length of the board.
-     *Starting with the smallest. Then checking the rest, and finding
-     * the board that will need the least cutting
+     * <p>Calculates the amount of over sterns brædder used in the front</p>
+     * <p>Finds the best fitting board based on the length of the board.
+     * <p>Starting with the smallest. Then checking the rest, and finding
+     * the board that will need the least cutting</p>
      * @param order The order object to calculate from
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -199,9 +199,9 @@ public class CarportGenerator {
 
     /**
      *<p>Calculates the amount of rems used in the carport</p>
-     *Find how many rows based on the width. Then finds the amount
+     * <p>Find how many rows based on the width. Then finds the amount
      * of the largest fitting board that can be used. The rest is
-     * then calculated with the smallest first.
+     * then calculated with the smallest first.</p>
      * @param depthCom The depth of the carport
      * @param widthCom The width of the carport
      * @param categoriesUsedInGenerator the categories used in this generator
@@ -261,9 +261,9 @@ public class CarportGenerator {
     }
 
     /**
-     *<p>Calculates the amount of sper used in the carport</p>
-     *Looping through all the materials finding the best fitting one
-     * that is shorter than or equal to the depth of the carport
+     * <p>Calculates the amount of sper used in the carport</p>
+     * <p>Looping through all the materials finding the best fitting one
+     * that is shorter than or equal to the depth of the carport</p>
      * @param order The order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -315,8 +315,8 @@ public class CarportGenerator {
 
     /**
      *<p>Calculates the amount of posts used in the carport</p>
-     *Loops through materials to find the best fitting posts
-     * based on the height of the carport.
+     * <p>Loops through materials to find the best fitting posts
+     * based on the height of the carport.</p>
      * @param order The order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -377,8 +377,8 @@ public class CarportGenerator {
 
     /**
      *<p>Calculates how many perforated band used in carport</p>
-     *Find the length needed to be covered. Add bands to cover the
-     * diagonal.
+     * <p>Find the length needed to be covered. Add bands to cover the
+     * diagonal.</p>
      * @param order The order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -404,8 +404,8 @@ public class CarportGenerator {
     }
 
     /**
-     *<p>Calculates how many universal beslag of the right handside kind needed in carport</p>
-     *sper * (remme / 2) - 1
+     * <p>Calculates how many universal beslag of the right handside kind needed in carport
+     * sper * (remme / 2) - 1</p>
      * @param sper The amount of sper used
      * @param remme The amount of remme used
      * @param categoriesUsedInGenerator the categories used in this generator
@@ -428,8 +428,8 @@ public class CarportGenerator {
     }
 
     /**
-     *<p>Calculates how many universal beslag of the left handside kind needed in carport</p>
-     *Just needs an amount equals to the amount of sper
+     * <p>Calculates how many universal beslag of the left handside kind needed in carport</p>
+     * <p>Just needs an amount equals to the amount of sper</p>
      * @param sper The amount of sper used
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -449,10 +449,10 @@ public class CarportGenerator {
     }
 
     /**
-     *<p>Calculates the amount of boxes of screws need for stern of water boards</p>
-     *First need to make sure we have the amount of waterboards.
-     *Desc: Længden af vand brædder / 13,5
-     *Loop through all box sizes and find the best fitting one.
+     * <p>Calculates the amount of boxes of screws need for stern of water boards</p>
+     * <p>First need to make sure we have the amount of waterboards.</p>
+     * <p>Desc: Længden af vand brædder / 13,5</p>
+     * <p>Loop through all box sizes and find the best fitting one.</p>
      * @param finishedList The lists of waterboards from another method
      * @param order The order object to be calculated on
      * @param categoriesUsedInGenerator the categories used in this generator
@@ -540,10 +540,10 @@ public class CarportGenerator {
     }
 
     /**
-     *<p>Calculate the amount of screws used for universals beslag and Perforated band</p>
-     * DESC: 3 beslagskruer pr. beslagflade (3) (3*3).
-     * + 2 skruer i hvert spær som krydses af hulbåndet
-     * Then lopå through all box sizes to find the best fitting
+     * <p>Calculate the amount of screws used for universals beslag and Perforated band</p>
+     * <p>DESC: 3 beslagskruer pr. beslagflade (3) (3*3).
+     * + 2 skruer i hvert spær som krydses af hulbåndet</p>
+     * <p>Then lopå through all box sizes to find the best fitting</p>
      * @param amountOfbeslag The amount of sper beslags used
      * @param order The order object to be calculated on
      * @param categoriesUsedInGenerator the categories used in this generator
@@ -624,9 +624,9 @@ public class CarportGenerator {
     }
 
     /**
-     *<p>Calculate the amount of bolts for rems</p>
-     *DESC: 2 bolts need for each post
-     *DESC: isShed + 4
+     * <p>Calculate the amount of bolts for rems</p>
+     * <p>DESC: 2 bolts need for each post</p>
+     * <p>DESC: isShed + 4</p>
      * @param amountOfPosts The amount of posts in the carport
      * @param withShed is the order with or without shed
      * @param CategoriesUsedInGenerator the categories used in this generator
@@ -654,8 +654,8 @@ public class CarportGenerator {
     }
 
     /**
-     *<p>Calculate the amount of skiver used for rems</p>
-     *DESC: amount of skirver = amount of bolts
+     * <p>Calculate the amount of skiver used for rems</p>
+     * <p>DESC: amount of skirver = amount of bolts</p>
      * @param amountOfBolts The amount of posts in the carport
      * @return An Arraylist of BillLines with the materials needed
      */
@@ -683,8 +683,8 @@ public class CarportGenerator {
     //---------------------//
 
     /**
-     * Takes the carport depth and return how many sper is needed
-     * DESC: carport depth / 55
+     * <p>Takes the carport depth and return how many sper is needed</p>
+     * <p>DESC: carport depth / 55</p>
      * @param carportDepth The depth of the carport
      * @return int amount of sper
      */
@@ -696,8 +696,8 @@ public class CarportGenerator {
     }
 
     /**
-     * Takes the width of the carport and return the numbers
-     * of rows of posts needed to support the roof.
+     * <p>Takes the width of the carport and return the numbers</p>
+     * <p>of rows of posts needed to support the roof.</p>
      * @param carportWidth the width of the carport
      * @return int amount of posts rows
      */
@@ -712,8 +712,8 @@ public class CarportGenerator {
     }
 
     /**
-     * Takes the depth and numbers of rows and returns
-     * the amoount of posts needed
+     * <p>Takes the depth and numbers of rows and returns
+     * the amoount of posts needed</p>
      * @param carportDepth the depth of the carport
      * @param numberOfRows the amount of post rows in the carport
      * @return int amount of posts
@@ -734,7 +734,7 @@ public class CarportGenerator {
     }
 
     /**
-     * The distance between two posts
+     * <p>The distance between two posts</p>
      * @return int the distance between two posts
      */
 

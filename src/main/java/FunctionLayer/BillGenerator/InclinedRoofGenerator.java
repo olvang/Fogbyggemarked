@@ -70,7 +70,7 @@ public class InclinedRoofGenerator {
 
     /**
      *<p>Calculates amount roof latches needed</p>
-     *loop through each material to find the best suited
+     * <p>Loop through each material to find the best suited</p>
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -117,7 +117,7 @@ public class InclinedRoofGenerator {
     }
 
     /**
-     *<p>Calculates amount of board need for the gableds</p>
+     * <p>Calculates amount of board need for the gableds</p>
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -164,8 +164,8 @@ public class InclinedRoofGenerator {
     }
 
     /**
-     *<p>Calculates amount rygsten needed</p>
-     *DESC: 3 pr. m
+     * <p>Calculates amount rygsten needed</p>
+     * <p>DESC: 3 pr. m</p>
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -186,8 +186,8 @@ public class InclinedRoofGenerator {
     }
 
     /**
-     *<p>Calculates amount roof lacthes on sper</p>
-     *1.8 times the depth of carport is needed to be covered.
+     * <p>Calculates amount roof lacthes on sper</p>
+     * <p>1.8 times the depth of carport is needed to be covered.</p>
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -240,7 +240,7 @@ public class InclinedRoofGenerator {
     }
 
     /**
-     *<p>Calculates amount roof latches needed</p>
+     * <p>Calculates amount roof latches needed</p>
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -274,8 +274,8 @@ public class InclinedRoofGenerator {
     }
 
     /**
-     *<p>Calculates amount roof latch holder</p>
-     * DESC: depth / 0.9
+     * <p>Calculates amount roof latch holder</p>
+     * <p>DESC: depth / 0.9</p>
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -298,8 +298,8 @@ public class InclinedRoofGenerator {
     }
 
     /**
-     *<p>Calculates amount rygstens beslag</p>
-     * DESC: 1 beslag pr. rygsten
+     * <p>Calculates amount rygstens beslag</p>
+     * <p>DESC: 1 beslag pr. rygsten</p>
      * @param amountOfRygsten amount of rygsten
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
@@ -314,8 +314,8 @@ public class InclinedRoofGenerator {
     }
 
     /**
-     *<p>Calculates amount roof tile binders needed</p>
-     * DESC: 2 beslag pr. roof tile
+     * <p>Calculates amount roof tile binders needed</p>
+     * <p>DESC: 2 beslag pr. roof tile</p>
      * @param roofTilesAmount amount of rooftiles
      * @param rygstenAmount amount of rygsten
      * @param categoriesUsedInGenerator the categories used in this generator
@@ -366,8 +366,8 @@ public class InclinedRoofGenerator {
     }
 
     /**
-     *<p>Calculates amount of screws need for roof lathes</p>
-     * DESC: 1 screw pr. 60 cm
+     * <p>Calculates amount of screws need for roof lathes</p>
+     * <p>DESC: 1 screw pr. 60 cm</p>
      * @param roofLathOnSper Lathes placed on sper
      * @param topRoofLath Lathes plaed on / in  the roof
      * @param categoriesUsedInGenerator the categories used in this generator
@@ -399,8 +399,8 @@ public class InclinedRoofGenerator {
     }
 
     /**
-     *<p>Calculates amount rooftiles needed</p>
-     * DESC: 9 rooftiles pr. m^2 (square meter)
+     * <p>Calculates amount rooftiles needed</p>
+     * <p>DESC: 9 rooftiles pr. m^2 (square meter)</p>
      * @param order the order object need to be calculated on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed

@@ -11,9 +11,9 @@ public class MaterialLengthComponent implements Component {
     private int length;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
-     * Convert the string to a int
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Convert the string to a int</p>
      * @param length Material length string to validate
      */
     public MaterialLengthComponent(String length) throws ValidationFailedException {
@@ -29,8 +29,8 @@ public class MaterialLengthComponent implements Component {
     }
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param length Material length int to validate
      */
     public MaterialLengthComponent(int length) throws ValidationFailedException {
@@ -39,7 +39,7 @@ public class MaterialLengthComponent implements Component {
     }
 
     /**
-     * Validates the Material length
+     * <p>Validates the Material length</p>
      * @return True if the Material length validates according to the rules
      * @exception ValidationFailedException Thrown if the Material length trying to be validated does not comply with the rules
      */
@@ -63,7 +63,7 @@ public class MaterialLengthComponent implements Component {
     }
 
     /**
-     * Used to compare the component with a Integer
+     * <p>Used to compare the component with a Integer</p>
      * @return True if the Material length is equal to the Integer its comparing to, else false
      */
     @Override

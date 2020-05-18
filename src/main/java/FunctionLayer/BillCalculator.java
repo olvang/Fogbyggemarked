@@ -13,10 +13,10 @@ public class BillCalculator {
 
     /**
      * <p>Calculates and returns a ArrayList of BillLines from a order </p>
-     * Checks the OrderType
-     * Holds the category id's needed for each order type
-     * Uses a switch for each category id, which is connected to the corresponding BillGenerator Method
-     * When a category has been calculated, it adds the returned BillLine to the array, which is returned at the end
+     * <p>Checks the OrderType</p>
+     * <p>Holds the category id's needed for each order type</p>
+     * <p>Uses a switch for each category id, which is connected to the corresponding BillGenerator Method</p>
+     * <p>When a category has been calculated, it adds the returned BillLine to the array, which is returned at the end</p>
      * @param order The order object to calculate from
      * @return An ArrayList of all BillLines calculated from the order
      */

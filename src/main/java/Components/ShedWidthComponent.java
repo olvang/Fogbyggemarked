@@ -14,8 +14,8 @@ public class ShedWidthComponent implements Component {
     private Integer carportWidth;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param width Width int to validate
      * @param carportWidth Carport width to validate with
      */
@@ -26,9 +26,9 @@ public class ShedWidthComponent implements Component {
     }
 
     /**
-     * Constructor for the component
-     * Calls the validate function
-     * Convert width string to a int
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Convert width string to a int</p>
      * @param width Width string to validate
      * @param carportWidth Carport Width to validate with
      */
@@ -47,9 +47,9 @@ public class ShedWidthComponent implements Component {
     }
 
     /**
-     * Constructor for the component
-     * Convert Width string and cartport Width string to a int
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Convert Width string and cartport Width string to a int</p>
+     * <p>Calls the validate function</p>
      * @param width Width string to validate
      * @param carportWidth Carport width string to validate with
      */
@@ -68,7 +68,7 @@ public class ShedWidthComponent implements Component {
     }
 
     /**
-     * Validates the Shed Width
+     * <p>Validates the Shed Width</p>
      * @return True if the Shed Width validates according to the rules
      * @exception ValidationFailedException Thrown if the Shed Width trying to be validated does not comply with the rules
      */
@@ -99,7 +99,7 @@ public class ShedWidthComponent implements Component {
     }
 
     /**
-     * Used to compare the component with a Integer
+     * <p>Used to compare the component with a Integer</p>
      * @return True if the Shed Width is equal to the Integer its comparing to, else false
      */
     @Override

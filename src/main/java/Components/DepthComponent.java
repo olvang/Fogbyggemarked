@@ -14,8 +14,8 @@ public class DepthComponent implements Component {
     private int depthLimit = 2000;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param depth The depth to validate
      */
     public DepthComponent(int depth) throws ValidationFailedException {
@@ -24,8 +24,8 @@ public class DepthComponent implements Component {
     }
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param depth The depth to validate
      */
     public DepthComponent(String depth) throws ValidationFailedException {
@@ -42,7 +42,7 @@ public class DepthComponent implements Component {
     }
 
     /**
-     * Validates the Depth
+     * <p>Validates the Depth</p>
      * @return True if the Depth validates according to the rules
      * @exception ValidationFailedException Thrown if the Depth trying to be validated does not comply with the rules
      */
@@ -75,7 +75,7 @@ public class DepthComponent implements Component {
     //-----------//
 
     /**
-     * Used to compare the component with a Integer
+     * <p>Used to compare the component with a Integer</p>
      * @return True if the component depth is equal to the Integer its comparing to, else false
      */
     @Override

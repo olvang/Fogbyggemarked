@@ -20,7 +20,7 @@ public class Connector {
     }
 
     /**
-     * Creates a database connection if it does not exists or the connection is closed
+     * <p>Creates a database connection if it does not exists or the connection is closed</p>
      * @return Connection object
      */
     public static Connection connection() throws ClassNotFoundException, SQLException {
@@ -33,9 +33,9 @@ public class Connector {
     }
 
     /**
-     * Used to setup the DB Credentials.
-     * If it's deployed it uses the environment variables
-     * If not, it uses the hardcoded test database
+     * <p>Used to setup the DB Credentials.</p>
+     * <p>If it's deployed it uses the environment variables></p>
+     * <p>If not, it uses the hardcoded test database</p>
      */
     public static void setDBCredentials() {
         String deployed = System.getenv("DEPLOYED");

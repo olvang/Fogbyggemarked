@@ -12,9 +12,9 @@ public class MaterialWidthComponent implements Component {
     private int width;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
-     * Converts the string to a int
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Converts the string to a int</p>
      * @param width Material Width string to validate
      */
     public MaterialWidthComponent(String width) throws ValidationFailedException {
@@ -30,8 +30,8 @@ public class MaterialWidthComponent implements Component {
     }
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param width Material Width int to validate
      */
     public MaterialWidthComponent(int width) throws ValidationFailedException {
@@ -40,7 +40,7 @@ public class MaterialWidthComponent implements Component {
     }
 
     /**
-     * Validates the Material Width
+     * <p>Validates the Material Width</p>
      * @return True if the Material Width validates according to the rules
      * @exception ValidationFailedException Thrown if the Material Width trying to be validated does not comply with the rules
      */
@@ -64,7 +64,7 @@ public class MaterialWidthComponent implements Component {
     }
 
     /**
-     * Used to compare the component with a Integer
+     * <p>Used to compare the component with a Integer</p>
      * @return True if the Material Width is equal to the Integer its comparing to, else false
      */
     @Override

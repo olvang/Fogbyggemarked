@@ -75,7 +75,7 @@ public class GeneratorUtilities {
 
     /**
      * <p>Finds the amount's on a BillLine with a specific category id</p>
-     * Used by categories, that needs to get the amount from other calculated categories
+     * <p>Used by categories, that needs to get the amount from other calculated categories</p>
      * @param categoryID The category ID to search for
      * @param  billLines The Arraylist of BillLines to search within
      * @return The amount calculated, if none is found returns 0

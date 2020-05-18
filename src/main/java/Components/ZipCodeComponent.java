@@ -11,8 +11,8 @@ public class ZipCodeComponent implements Component {
     String zip;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param zip Zip code string to validate
      */
     public ZipCodeComponent(String zip) throws ValidationFailedException {
@@ -36,7 +36,7 @@ public class ZipCodeComponent implements Component {
     }
 
     /**
-     * Validates the Zip code
+     * <p>Validates the Zip code</p>
      * @return True if the Zip code validates according to the rules
      * @exception ValidationFailedException Thrown if the Zip code trying to be validated does not comply with the rules
      */

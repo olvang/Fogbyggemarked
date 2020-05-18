@@ -9,8 +9,8 @@ public class InclineComponent implements Component {
     int incline;
 
     /**
-     * Constructor for the component
-     * Calls the validate function
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
      * @param incline The incline int to validate
      */
     public InclineComponent(int incline) throws ValidationFailedException {
@@ -19,7 +19,7 @@ public class InclineComponent implements Component {
     }
 
     /**
-     * Validates the incline int
+     * <p>Validates the incline int</p>
      * @return True if the incline int validates according to the rules
      * @exception ValidationFailedException Thrown if the incline int trying to be validated does not comply with the rules
      */
