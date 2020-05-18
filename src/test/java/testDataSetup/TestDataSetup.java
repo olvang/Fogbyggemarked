@@ -17,7 +17,7 @@ import org.junit.Before;
  */
 public class TestDataSetup {
 
-    private ArrayList<String> DBSetUp = scanFromFile("DBDefaultData.sql");
+    private ArrayList<String> DBSetUp = scanFromFile("DBTestData.sql");
 
     public TestDataSetup() {
     }
