@@ -5,7 +5,7 @@ package "webapp" #EEEEEE {
     class "index.jsp" as index
     class "material-bill.jsp" as materialbill
     class "orders.jsp" as orders
-    class "request.jsp" as request
+    class "index.jsp" as request
     class "vieworder.jsp" as vieworder
     package "WEB-INF" #DDDDDD {
         package "includes" #CCCCCC {
