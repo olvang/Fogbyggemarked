@@ -22,7 +22,7 @@ public class LogicFacade {
     /**
      * <p>Creates a User through the UserMapper</p>
      * @param email The user Email
-     * @param email The user Password
+     * @param password The user Password
      * @return User Returs a user object
      */
     public static User createUser( String email, String password ) throws DatabaseException {
@@ -60,7 +60,7 @@ public class LogicFacade {
     /**
      * <p>Gets an arraylist of category objects from the db</p>
      * @param categoriesNeeded Array of category Id's to be received from the db
-     * @return ArrayList<Category> an arraylist of category objects
+     * @return an arraylist of category objects
      */
     public static ArrayList<Category> getTheseCategories(int[] categoriesNeeded) throws DatabaseException {
         return MaterialsMapper.getTheseCategories(categoriesNeeded);
@@ -69,7 +69,7 @@ public class LogicFacade {
     /**
      * <p>Gets an arraylist of BillLine's through the BillCalculator </p>
      * @param orderID The OrderID to be calculated
-     * @return ArrayList<BillLine> an Arraylist of BillLine's
+     * @return an Arraylist of BillLine's
      */
     public static ArrayList<BillLine> getBillLines(int orderID) throws GeneratorException, DatabaseException {
         BillCalculator billCalculator = new BillCalculator();
@@ -78,7 +78,7 @@ public class LogicFacade {
 
     /**
      * <p>Gets an arraylist of all the Order's in the db through the OrderMapper </p>
-     * @return ArrayList<BillLine> an Arraylist of BillLine's
+     * @return an Arraylist of orders's
      */
     public static ArrayList<Order> getAllOrders() throws DatabaseException {
         return OrderMapper.getAllOrders();

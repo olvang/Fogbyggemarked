@@ -15,7 +15,7 @@ public class GeneratorUtilities {
      * <p>Calculates and returns the length of the roof </p>
      * @param incline The incline of the roof
      * @param carportWidth the width of the carport
-     * @returns A double with the calculated roof length
+     * @return A double with the calculated roof length
      */
     public static double calculateRoofLength(InclineComponent incline, WidthComponent carportWidth) {
         //Divide by 2 because the input is the entire width of the roof, and we only need to calculate one side
@@ -31,7 +31,7 @@ public class GeneratorUtilities {
      * <p>Calculates and returns the height of the roof </p>
      * @param incline The incline of the roof
      * @param carportWidth the width of the carport
-     * @returns A double with the calculated roof height
+     * @return A double with the calculated roof height
      */
     public static double calculateRoofHeight(InclineComponent incline, WidthComponent carportWidth) {
         //Divide by 2 because the input is the entire width of the roof, and we only need to calculate one side
@@ -43,7 +43,7 @@ public class GeneratorUtilities {
     /**
      * <p>Sorts arraylist of materials by their lengths</p>
      * @param materialsUsedInGenerator The arraylist of categories to be sorted
-     * @returns Arraylist of materials sorted by the material length
+     * @return Arraylist of materials sorted by the material length
      */
     public static ArrayList<Material> sortMaterialsByLength(ArrayList<Material> materialsUsedInGenerator){
         //Sort the array by length
@@ -54,7 +54,7 @@ public class GeneratorUtilities {
     /**
      * <p>Sorts arraylist of materials by their widths</p>
      * @param materialsUsedInGenerator The arraylist of categories to be sorted
-     * @returns Arraylist of materials sorted by the material widths
+     * @return Arraylist of materials sorted by the material widths
      */
     public static ArrayList<Material> sortMaterialsByWidth(ArrayList<Material> materialsUsedInGenerator){
         //Sort the array by width
@@ -65,7 +65,7 @@ public class GeneratorUtilities {
     /**
      * <p>Sorts arraylist of materials by the amount on each material</p>
      * @param materialsUsedInGenerator The arraylist of categories to be sorted
-     * @returns Arraylist of materials sorted by the material amount
+     * @return Arraylist of materials sorted by the material amount
      */
     public static ArrayList<Material> sortMaterialsByAmount(ArrayList<Material> materialsUsedInGenerator){
         //Sort the array by width
@@ -78,7 +78,7 @@ public class GeneratorUtilities {
      * Used by categories, that needs to get the amount from other calculated categories
      * @param categoryID The category ID to search for
      * @param  billLines The Arraylist of BillLines to search within
-     * @returns The amount calculated, if none is found returns 0
+     * @return The amount calculated, if none is found returns 0
      */
     public static int searchForAmountInACategoryFromBillLines(int categoryID, ArrayList<BillLine> billLines){
         int amount = 0;

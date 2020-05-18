@@ -106,7 +106,7 @@ public class OrderMapper {
     }
     /**
      * <p>Gets a single order from database based on the ID</p>
-     * @param id The Order ID to be updated
+     * @param ID The Order ID to be updated
      * @return Order The Order object pulled from the database,
      */
     public static Order getOrder(int ID) throws DatabaseException {
@@ -169,7 +169,7 @@ public class OrderMapper {
     /**
      * <p>Gets all orders from the database</p>
      * Also checks if each order has a shed connected with it
-     * @return ArrayList<Order> Arraylist of orders with all orders in the database
+     * @return Arraylist of orders with all orders in the database
      */
     public static ArrayList<Order> getAllOrders() throws DatabaseException {
         ArrayList<Order> orders = new ArrayList<>();

@@ -18,7 +18,7 @@ public class FlatRoofGenerator {
      *Uses sternbredderSidees from carport generator
      * @param depth The depth of the carport
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> waterBoardOnSternSides(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depth) {
@@ -31,7 +31,7 @@ public class FlatRoofGenerator {
      *Uses oversternbredderFront from carport generator
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> waterBoardOnSternFront(ArrayList<Category> categoriesUsedInGenerator, Order order) {
@@ -44,7 +44,7 @@ public class FlatRoofGenerator {
      *
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> roofPanels(ArrayList<Category> categoriesUsedInGenerator, Order order) {
@@ -99,7 +99,7 @@ public class FlatRoofGenerator {
      *DESC: 12 screws pr. square meter
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> screwsForRoofPanels(ArrayList<Category> categoriesUsedInGenerator,Order order) {

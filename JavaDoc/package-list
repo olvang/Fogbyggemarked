@@ -1,0 +1,8 @@
+Components
+DBAccess
+FunctionLayer
+FunctionLayer.BillGenerator
+FunctionLayer.Exceptions
+FunctionLayer.SVGGenerator
+PresentationLayer
+testDataSetup

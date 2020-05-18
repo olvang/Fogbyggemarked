@@ -18,7 +18,7 @@ public class BillCalculator {
      * Uses a switch for each category id, which is connected to the corresponding BillGenerator Method
      * When a category has been calculated, it adds the returned BillLine to the array, which is returned at the end
      * @param order The order object to calculate from
-     * @returns ArrayList<BillLine> ArrayList of all BillLines calculated from the order
+     * @return An ArrayList of all BillLines calculated from the order
      */
     public ArrayList<BillLine> calculateBillFromOrder(Order order) throws GeneratorException, DatabaseException {
         int[] categoriesNeeded = null;
@@ -565,7 +565,7 @@ public class BillCalculator {
      * <p>Finds and returns categories from categories Available in a order</p>
      * @param categoryIdsUsedInGenerator An arraylist of category id's. <br>These are the ones that will be searched for
      * @param categoriesAvailable An arraylist of categories available in a order. <br>These are the ones that will be searched in
-     * @returns ArrayList<Category> ArrayList of all Categories where the category id's where found
+     * @return ArrayList<Category> ArrayList of all Categories where the category id's where found
      */
     private ArrayList<Category> getCategoriesUsedInGenerator(int[] categoryIdsUsedInGenerator, ArrayList<Category> categoriesAvailable) {
         ArrayList<Category> categoriesUsedInGenerator = new ArrayList<>();

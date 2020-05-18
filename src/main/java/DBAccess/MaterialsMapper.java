@@ -19,7 +19,7 @@ public class MaterialsMapper {
 
     /**
      * <p>Gets all categories in the database</p>
-     * @return ArrayList<Category> Arraylist of Category objects
+     * @return Arraylist of Category objects
      */
     public static ArrayList<Category> getAllCategories() throws DatabaseException {
         ArrayList<Category> listOfCategories = new ArrayList();
@@ -46,7 +46,7 @@ public class MaterialsMapper {
     /**
      * <p>Gets all categories in the database from a list of id's</p>
      * @param idsToGet A int array with the category id's to pull from the database
-     * @return ArrayList<Category> Arraylist of Category objects
+     * @return Arraylist of Category objects
      */
     public static ArrayList<Category> getTheseCategories(int[] idsToGet ) throws DatabaseException {
         ArrayList<Category> listOfMaterials = new ArrayList(); //To hold the materials

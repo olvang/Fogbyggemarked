@@ -13,7 +13,7 @@ import org.junit.Before;
 
 /**
  *
- * @author <Frederik Keis Dinsen>
+ * Used to setup the database for testing
  */
 public class TestDataSetup {
 

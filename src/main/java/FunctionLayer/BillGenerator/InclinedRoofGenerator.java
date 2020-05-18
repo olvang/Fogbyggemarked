@@ -18,7 +18,7 @@ public class InclinedRoofGenerator {
      *
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> soffit(ArrayList<Category> categoriesUsedInGenerator, Order order) {
@@ -73,7 +73,7 @@ public class InclinedRoofGenerator {
      *loop through each material to find the best suited
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> roofLath(ArrayList<Category> categoriesUsedInGenerator, Order order) {
@@ -120,7 +120,7 @@ public class InclinedRoofGenerator {
      *<p>Calculates amount of board need for the gableds</p>
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> boardsForGabled(ArrayList<Category> categoriesUsedInGenerator, Order order){
@@ -168,7 +168,7 @@ public class InclinedRoofGenerator {
      *DESC: 3 pr. m
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> rygsten(ArrayList<Category> categoriesUsedInGenerator, Order order) {
@@ -190,7 +190,7 @@ public class InclinedRoofGenerator {
      *1.8 times the depth of carport is needed to be covered.
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> roofLathOnSper(ArrayList<Category> categoriesUsedInGenerator, Order order) {
@@ -243,7 +243,7 @@ public class InclinedRoofGenerator {
      *<p>Calculates amount roof latches needed</p>
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> topRoofLath(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
@@ -278,7 +278,7 @@ public class InclinedRoofGenerator {
      * DESC: depth / 0.9
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> topRoofLathHolder(ArrayList<Category> categoriesUsedInGenerator, Order order) {
@@ -302,7 +302,7 @@ public class InclinedRoofGenerator {
      * DESC: 1 beslag pr. rygsten
      * @param amountOfRygsten amount of rygsten
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
     public static ArrayList<BillLine> rygstenBracket(ArrayList<Category> categoriesUsedInGenerator, int amountOfRygsten) {
         Material materialToUse = categoriesUsedInGenerator.get(0).getMaterials().get(0);
@@ -319,7 +319,7 @@ public class InclinedRoofGenerator {
      * @param roofTilesAmount amount of rooftiles
      * @param rygstenAmount amount of rygsten
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> roofTileBinders(ArrayList<Category> categoriesUsedInGenerator, int roofTilesAmount, int rygstenAmount) {
@@ -371,7 +371,7 @@ public class InclinedRoofGenerator {
      * @param roofLathOnSper Lathes placed on sper
      * @param topRoofLath Lathes plaed on / in  the roof
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> screwsForRoofLaths(ArrayList<Category> categoriesUsedInGenerator, ArrayList<BillLine> topRoofLath, ArrayList<BillLine> roofLathOnSper) {
@@ -403,7 +403,7 @@ public class InclinedRoofGenerator {
      * DESC: 9 rooftiles pr. m^2 (square meter)
      * @param order the order object need to be calculated on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> roofTiles(ArrayList<Category> categoriesUsedInGenerator, Order order) {

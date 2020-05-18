@@ -23,7 +23,7 @@ public class CarportGenerator {
      *Starting with the smallest.
      * @param carportWidth The width of the carport
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> underSternsBredderFrontAndBack(ArrayList<Category> categoriesUsedInGenerator, WidthComponent carportWidth) throws GeneratorException {
@@ -81,7 +81,7 @@ public class CarportGenerator {
      * materials to find the board that best fits the rest.
      * @param depthCom The depth of the carport
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> sternsBredderSides(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom) {
@@ -144,7 +144,7 @@ public class CarportGenerator {
      * the board that will need the least cutting
      * @param order The order object to calculate from
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> overSternBredderFront(ArrayList<Category> categoriesUsedInGenerator, Order order) {
@@ -205,7 +205,7 @@ public class CarportGenerator {
      * @param depthCom The depth of the carport
      * @param widthCom The width of the carport
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> RemInSidesCarport(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom, WidthComponent widthCom) {
@@ -266,7 +266,7 @@ public class CarportGenerator {
      * that is shorter than or equal to the depth of the carport
      * @param order The order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> sperOnRem(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
@@ -319,7 +319,7 @@ public class CarportGenerator {
      * based on the height of the carport.
      * @param order The order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
@@ -381,7 +381,7 @@ public class CarportGenerator {
      * diagonal.
      * @param order The order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> perforatedBand(ArrayList<Category> categoriesUsedInGenerator, Order order) {
@@ -409,7 +409,7 @@ public class CarportGenerator {
      * @param sper The amount of sper used
      * @param remme The amount of remme used
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> UniversalBeslagRight(ArrayList<Category> categoriesUsedInGenerator, int sper, int remme) {
@@ -432,7 +432,7 @@ public class CarportGenerator {
      *Just needs an amount equals to the amount of sper
      * @param sper The amount of sper used
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> UniversalBeslagLeft(ArrayList<Category> categoriesUsedInGenerator, int sper) {
@@ -456,7 +456,7 @@ public class CarportGenerator {
      * @param finishedList The lists of waterboards from another method
      * @param order The order object to be calculated on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> screwsForSternAndWaterBoard(ArrayList<Category> categoriesUsedInGenerator, Order order, ArrayList<BillLine> finishedList) {
@@ -547,7 +547,7 @@ public class CarportGenerator {
      * @param amountOfbeslag The amount of sper beslags used
      * @param order The order object to be calculated on
      * @param categoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> screwsForUniversalBeslagAndPerforatedBand(ArrayList<Category> categoriesUsedInGenerator, Order order, int amountOfbeslag) throws GeneratorException {
@@ -630,7 +630,7 @@ public class CarportGenerator {
      * @param amountOfPosts The amount of posts in the carport
      * @param withShed is the order with or without shed
      * @param CategoriesUsedInGenerator the categories used in this generator
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> boltsForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator, int amountOfPosts, boolean withShed) {
@@ -657,7 +657,7 @@ public class CarportGenerator {
      *<p>Calculate the amount of skiver used for rems</p>
      *DESC: amount of skirver = amount of bolts
      * @param amountOfBolts The amount of posts in the carport
-     * @return ArrayList<BilLine> An Arraylist of BillLines with the materials needed
+     * @return An Arraylist of BillLines with the materials needed
      */
 
     public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator,int amountOfBolts) {
