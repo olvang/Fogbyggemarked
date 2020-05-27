@@ -48,4 +48,34 @@ public class CityComponentTest {
         String city = null;
         CityComponent cityComponent = new CityComponent(city);
     }
+
+    @Test
+    public void testSetSuccess() throws ValidationFailedException {
+        String city1 = "Københavnby";
+        String city2 = "Københavnby";
+        CityComponent component = new CityComponent(city1);
+        try {
+            component.setCity(city2);
+            assertEquals(city2, component.getCity());
+        } catch (ValidationFailedException e) {
+            fail("Setting failed");
+        }
+    }
+
+    @Test
+    public void testSetFail() throws ValidationFailedException {
+        String city1 = "Københavnby";
+        String city2 = "";
+        CityComponent component = null;
+        try {
+            component = new CityComponent(city1);
+        } catch (ValidationFailedException e) {
+            fail("First validation failed");
+        }
+        try {
+            component.setCity(city2);
+        }catch (ValidationFailedException e) {
+            assertEquals(city1, component.getCity());
+        }
+    }
 }

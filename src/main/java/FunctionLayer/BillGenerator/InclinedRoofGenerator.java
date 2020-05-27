@@ -201,7 +201,7 @@ public class InclinedRoofGenerator {
     public static ArrayList<BillLine> topRoofLath(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
         ArrayList<Material> possibleMaterials = categoriesUsedInGenerator.get(0).getMaterials();
         int orderDepth = order.getDepth();
-        Material materïalToUse = null;
+        Material materialToUse = null;
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
         int lowestAmount = Integer.MAX_VALUE;
@@ -211,13 +211,13 @@ public class InclinedRoofGenerator {
             int amount = (int) Math.ceil(result);
             if(amount < lowestAmount) {
                 lowestAmount = amount;
-                materïalToUse = mat;
+                materialToUse = mat;
             }
         }
-        if(materïalToUse == null) {
+        if(materialToUse == null) {
             throw new GeneratorException("No material was selected in topRooFlath");
         }
-        BillLine line = new BillLine(materïalToUse, lowestAmount, categoryDescription);
+        BillLine line = new BillLine(materialToUse, lowestAmount, categoryDescription);
         ArrayList<BillLine> list = new ArrayList<>();
         list.add(line);
 

@@ -60,4 +60,34 @@ public class EmailComponentTest {
         String email = null;
         EmailComponent emailComponent = new EmailComponent(email);
     }
+
+    @Test
+    public void testSetSuccess() throws ValidationFailedException {
+        String var1 = "hej@hej.hej";
+        String var2 = "nej@nej.nej";
+        EmailComponent component = new EmailComponent(var1);
+        try {
+            component.setEmail(var2);
+            assertEquals(var2, component.getEmail());
+        } catch (ValidationFailedException e) {
+            fail("Setting failed");
+        }
+    }
+
+    @Test
+    public void testSetFail() throws ValidationFailedException {
+        String var1 = "hej@hej.hej";
+        String var2 = "";
+        EmailComponent component = null;
+        try {
+            component = new EmailComponent(var1);
+        } catch (ValidationFailedException e) {
+            fail("First validation failed");
+        }
+        try {
+            component.setEmail(var2);
+        }catch (ValidationFailedException e) {
+            assertEquals(var1, component.getEmail());
+        }
+    }
 }

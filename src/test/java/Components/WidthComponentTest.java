@@ -113,4 +113,34 @@ public class WidthComponentTest{
         assertFalse(component1.equals(new String()));
     }
 
+
+    @Test
+    public void testSetSuccess() throws ValidationFailedException {
+        int var1 = 400;
+        int var2 = 200;
+        WidthComponent component = new WidthComponent(var1);
+        try {
+            component.setWidth(var2);
+            assertEquals(var2, component.getWidth());
+        } catch (ValidationFailedException e) {
+            fail("Setting failed");
+        }
+    }
+
+    @Test
+    public void testSetFail() throws ValidationFailedException {
+        int var1 = 400;
+        int var2 = 10;
+        WidthComponent component = null;
+        try {
+            component = new WidthComponent(var1);
+        } catch (ValidationFailedException e) {
+            fail("First validation failed");
+        }
+        try {
+            component.setWidth(var2);
+        }catch (ValidationFailedException e) {
+            assertEquals(var1, component.getWidth());
+        }
+    }
 }

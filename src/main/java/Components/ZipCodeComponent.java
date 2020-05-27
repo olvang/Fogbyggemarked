@@ -17,7 +17,7 @@ public class ZipCodeComponent implements Component {
     }
 
     public void setZip(String zip) throws ValidationFailedException {
-        String old = zip;
+        String old = this.zip;
         this.zip = zip;
         try {
             validate();

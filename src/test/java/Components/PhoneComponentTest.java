@@ -55,4 +55,35 @@ public class PhoneComponentTest {
         String phone = null;
         PhoneComponent phoneComponent = new PhoneComponent(phone);
     }
+
+    @Test
+    public void testSetSuccess() throws ValidationFailedException {
+        String var1 = "32145676";
+        String var2 = "98765432";
+        PhoneComponent component = new PhoneComponent(var1);
+        try {
+            component.setPhone(var2);
+            assertEquals(var2, component.getPhone());
+        } catch (ValidationFailedException e) {
+            fail("Setting failed");
+        }
+    }
+
+    @Test
+    public void testSetFail() throws ValidationFailedException {
+        String var1 = "12345678";
+        String var2 = "";
+        PhoneComponent component = null;
+        try {
+            component = new PhoneComponent(var1);
+        } catch (ValidationFailedException e) {
+            fail("First validation failed");
+        }
+        try {
+            component.setPhone(var2);
+        }catch (ValidationFailedException e) {
+            assertEquals(var1, component.getPhone());
+        }
+    }
+
 }

@@ -54,8 +54,14 @@ public class DepthComponent implements Component {
     }
 
     public void setDepth(int depth) throws ValidationFailedException {
+        int old = this.depth;
         this.depth = depth;
-        validate();
+        try {
+            validate();
+        } catch (ValidationFailedException e) {
+            this.depth = old;
+            throw new ValidationFailedException(e.getMessage());
+        }
     }
 
     //-----------//

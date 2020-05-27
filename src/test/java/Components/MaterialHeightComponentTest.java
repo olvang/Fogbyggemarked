@@ -108,4 +108,34 @@ public class MaterialHeightComponentTest{
 
         assertFalse(component1.equals(new MaterialWidthComponent(10)));
     }
+
+    @Test
+    public void testSetSuccess() throws ValidationFailedException {
+        int var1 = 10;
+        int var2 = 20;
+        MaterialHeightComponent component = new MaterialHeightComponent(var1);
+        try {
+            component.setHeight(var2);
+            assertEquals(var2, component.getHeight());
+        } catch (ValidationFailedException e) {
+            fail("Setting failed");
+        }
+    }
+
+    @Test
+    public void testSetFail() throws ValidationFailedException {
+        int var1 = 10;
+        int var2 = -10;
+        MaterialHeightComponent component = null;
+        try {
+            component = new MaterialHeightComponent(var1);
+        } catch (ValidationFailedException e) {
+            fail("First validation failed");
+        }
+        try {
+            component.setHeight(var2);
+        }catch (ValidationFailedException e) {
+            assertEquals(var1, component.getHeight());
+        }
+    }
 }

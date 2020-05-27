@@ -18,7 +18,7 @@ public class NameComponent implements Component {
     }
 
     public void setName(String name) throws ValidationFailedException {
-        String old = name;
+        String old = this.name;
         this.name = name;
         try {
             validate();

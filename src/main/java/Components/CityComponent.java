@@ -17,7 +17,7 @@ public class CityComponent implements Component {
     }
 
     public void setCity(String city) throws ValidationFailedException {
-        String old = city;
+        String old = this.city;
         this.city = city;
         try {
             validate();

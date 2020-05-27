@@ -113,4 +113,34 @@ public class DepthComponentTest{
         assertFalse(component1.equals(new WidthComponent(310)));
     }
 
+    @Test
+    public void testSetSuccess() throws ValidationFailedException {
+        int var1 = 400;
+        int var2 = 200;
+        DepthComponent component = new DepthComponent(var1);
+        try {
+            component.setDepth(var2);
+            assertEquals(var2, component.getDepth());
+        } catch (ValidationFailedException e) {
+            fail("Setting failed");
+        }
+    }
+
+    @Test
+    public void testSetFail() throws ValidationFailedException {
+        int var1 = 400;
+        int var2 = 10;
+        DepthComponent component = null;
+        try {
+            component = new DepthComponent(var1);
+        } catch (ValidationFailedException e) {
+            fail("First validation failed");
+        }
+        try {
+            component.setDepth(var2);
+        }catch (ValidationFailedException e) {
+            assertEquals(var1, component.getDepth());
+        }
+    }
+
 }

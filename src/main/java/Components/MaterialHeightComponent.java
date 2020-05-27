@@ -49,8 +49,14 @@ public class MaterialHeightComponent implements Component {
         return height;
     }
     public void setHeight(int height) throws ValidationFailedException {
+        int old = this.height;
         this.height = height;
-        validate();
+        try {
+            validate();
+        } catch (ValidationFailedException e) {
+            this.height = old;
+            throw new ValidationFailedException(e.getMessage());
+        }
     }
 
     //-----------//

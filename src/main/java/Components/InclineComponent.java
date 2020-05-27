@@ -24,7 +24,7 @@ public class InclineComponent implements Component {
     }
 
     public void setIncline(int incline) throws ValidationFailedException {
-        int inclineTemp = incline;
+        int inclineTemp = this.incline;
         this.incline = incline;
         try {
             validate();

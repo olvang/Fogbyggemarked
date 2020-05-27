@@ -54,8 +54,14 @@ public class WidthComponent implements Component {
     }
 
     public void setWidth(int width) throws ValidationFailedException {
+        int old = this.width;
         this.width = width;
-        validate();
+        try {
+            validate();
+        } catch (ValidationFailedException e) {
+            this.width = old;
+            throw new ValidationFailedException(e.getMessage());
+        }
     }
 
     //-----------//

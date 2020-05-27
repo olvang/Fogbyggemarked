@@ -18,7 +18,7 @@ public class EmailComponent implements Component {
     }
 
     public void setEmail(String email) throws ValidationFailedException {
-        String old = email;
+        String old = this.email;
         this.email = email;
         try {
             validate();

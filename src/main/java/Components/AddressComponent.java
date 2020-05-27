@@ -18,7 +18,7 @@ public class AddressComponent implements Component {
     }
 
     public void setAddress(String address) throws ValidationFailedException {
-        String old = address;
+        String old = this.address;
         this.address = address;
         try {
             validate();

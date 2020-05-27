@@ -51,8 +51,14 @@ public class MaterialLengthComponent implements Component {
         return length;
     }
     public void setLength(int length) throws ValidationFailedException {
+        int old = this.length;
         this.length = length;
-        validate();
+        try {
+            validate();
+        } catch (ValidationFailedException e) {
+            this.length = old;
+            throw new ValidationFailedException(e.getMessage());
+        }
     }
 
     //-----------//

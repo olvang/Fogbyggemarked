@@ -18,7 +18,7 @@ public class PhoneComponent implements Component {
     }
 
     public void setPhone(String phone) throws ValidationFailedException {
-        String old = phone;
+        String old = this.phone;
         this.phone = phone;
         try {
             validate();
