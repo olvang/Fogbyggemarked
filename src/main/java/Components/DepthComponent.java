@@ -5,19 +5,31 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Objects;
 
+/**
+ * <p>Component used to validate a city string</p>
+ */
 public class DepthComponent implements Component {
     private int depth;
 
     private int depthLimit = 2000;
 
-    //-------------//
-    // Constructor //
-    //-------------//
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param depth The depth to validate
+     * @throws ValidationFailedException An exception for when Validation fails
+     */
     public DepthComponent(int depth) throws ValidationFailedException {
         this.depth = depth;
         validate();
     }
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param depth The depth to validate
+     * @throws ValidationFailedException An exception for when Validation fails
+     */
     public DepthComponent(String depth) throws ValidationFailedException {
         if(depth.equals("")) {
             //Don't forget to update test if this error message is changed.
@@ -25,20 +37,22 @@ public class DepthComponent implements Component {
         }
         try {
             this.depth = Integer.parseInt(depth);
-        }catch (Exception ex) {
+        }catch (NumberFormatException ex) {
             throw new ValidationFailedException("Dybden skal være et tal.");
         }
         validate();
     }
 
-    //-------------//
-    // Validation //
-    //------------//
+    /**
+     * <p>Validates the Depth</p>
+     * @return True if the Depth validates according to the rules
+     * @exception ValidationFailedException Thrown if the Depth trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
-        //If depth is 0 or lower, a ValidationFailedException is thrown
-        if( depth < 1) {
-            throw new ValidationFailedException("Dybde må ikke være under 0.");
+        //If depth is below 200, a ValidationFailedException is thrown
+        if( depth < 200) {
+            throw new ValidationFailedException("Dybde må ikke være under 2m.");
         //If depth is above the depth limit, a ValidationFailedException is thrown
         } else if (depth > depthLimit) {
             throw new ValidationFailedException("Dybde må ikke være over " + (depthLimit / 100) + "m.");
@@ -54,14 +68,24 @@ public class DepthComponent implements Component {
     }
 
     public void setDepth(int depth) throws ValidationFailedException {
+        int old = this.depth;
         this.depth = depth;
-        validate();
+        try {
+            validate();
+        } catch (ValidationFailedException e) {
+            this.depth = old;
+            throw new ValidationFailedException(e.getMessage());
+        }
     }
 
     //-----------//
     // Comparing //
     //-----------//
 
+    /**
+     * <p>Used to compare the component with a Integer</p>
+     * @return True if the component depth is equal to the Integer its comparing to, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,10 +98,5 @@ public class DepthComponent implements Component {
         if( getClass() != o.getClass() ) return false;
         DepthComponent component = (DepthComponent) o;
         return depth == component.depth;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(depth);
     }
 }

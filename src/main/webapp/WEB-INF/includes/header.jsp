@@ -7,6 +7,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html lang="en"><head>
+    <link rel="shortcut icon" href="favicon.ico" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -63,6 +64,11 @@
             color: #ffffff;
         }
 
+        @media screen and (max-width: 768px) {
+            .nav-item {
+                padding-left: 10pt;
+            }
+        }
 
     </style>
 
@@ -76,22 +82,15 @@
 <main role="main" class="container h-100 " >
     <header>
         <!-- Fixed navbar -->
-        <nav class="navbar navbar-expand-md navbar-white" style="background-color: #0C2069;padding: 0px">
-            <img src="https://www.johannesfog.dk/globalassets/header/logo.png">
+        <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #0C2069;padding: 0px">
+            <a href="index.jsp"><img src="https://www.johannesfog.dk/globalassets/header/logo.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Carporte</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="request.jsp">Byg Selv</a>
+                        <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <%--<li class="nav-item">
                         <form id="testForm" action="FrontController" method="POST">
@@ -104,10 +103,10 @@
                         <a class="nav-link" href="orders.jsp">Ordrer</a>
                     </li>
                 </ul>
-                <form class="form-inline mt-2 mt-md-0" _lpchecked="1">
+                <%--<form class="nav-item form-inline mt-2 mt-md-0" _lpchecked="1">
                     <button class="btn btn-outline-success my-2 mr-2 my-sm-0" type="submit" style="color:white">Login</button>
                     <button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit" style="color:white">Register</button>
-                </form>
+                </form>--%>
             </div>
         </nav>
     </header>

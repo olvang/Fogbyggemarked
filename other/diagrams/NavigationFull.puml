@@ -1,0 +1,30 @@
+@startuml
+
+Title Fog Carport Designer
+State "index.jsp" as index
+State "orders.jsp" as orders
+State "vieworder.jsp" as vieworder
+State "material-bill.jsp" as bill
+State "drawing.jsp" as drawing
+
+[*] -> index
+index --> orders : Clicks Order in header (Orders.java)
+orders --> vieworder : Clicks view order icon on an order (ViewOrder.java)
+vieworder --> bill : Clicks Stykliste (Bill.java)
+vieworder --> drawing : Clicks Tegning (Drawing.java)
+
+
+vieworder --> vieworder : Clicks rediger (BeginEditOrder.java)
+vieworder --> vieworder : clicks save (SaveEditOrder.java)
+
+vieworder --> orders
+bill ---> vieworder : tilbage
+drawing ---> vieworder : tilbage
+
+index -> index : Clicks Send (Request.java)
+orders -> index
+vieworder --> index
+bill --> index
+drawing --> index
+
+@enduml

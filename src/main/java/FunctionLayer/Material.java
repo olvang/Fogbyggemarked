@@ -5,7 +5,9 @@ import Components.MaterialLengthComponent;
 import Components.MaterialHeightComponent;
 import Components.MaterialWidthComponent;
 
-
+/**
+ * Represents a material
+ */
 public class Material {
     private int materialID;
     private MaterialHeightComponent height;
@@ -15,12 +17,22 @@ public class Material {
     private int costPrice;
     private int category;
     private int amount;
+    private String unit;
 
-    //Used by BillCalculator
-    //private HashMap<Integer, MaterialLengthComponent> materialLengths;
-    //private HashMap<Integer, MaterialWidthComponent> materialWidths;
 
-    public Material(int materialID, MaterialLengthComponent length, MaterialHeightComponent height, MaterialWidthComponent width, String name, int costPrice, int category, int amount) {
+    /**
+     * <p>Constructor for a material </p>
+     * @param materialID The Material ID
+     * @param length The Material length in cm
+     * @param height The Material height in cm
+     * @param width The Material width in cm
+     * @param name The Material name
+     * @param costPrice The the price that it costs without a profit being added
+     * @param category The category ID number
+     * @param amount How many amounts per material (Usually 1)
+     * @param unit The unit of the material (Stk, pakke, rulle)
+     */
+    public Material(int materialID, MaterialLengthComponent length, MaterialHeightComponent height, MaterialWidthComponent width, String name, int costPrice, int category, int amount, String unit) {
         this.materialID = materialID;
         this.height = height;
         this.width = width;
@@ -29,6 +41,7 @@ public class Material {
         this.costPrice = costPrice;
         this.category = category;
         this.amount = amount;
+        this.unit = unit;
     }
 
     //---------//
@@ -67,6 +80,10 @@ public class Material {
 
     public int getAmount() {
         return amount;
+    }
+
+    public String getUnit() {
+        return unit;
     }
 
     public void setAmount(int amount) {

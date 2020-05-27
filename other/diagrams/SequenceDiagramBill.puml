@@ -1,0 +1,39 @@
+@startuml
+
+Actor User as user
+boundary "index.jsp" as request
+boundary "orders.jsp" as orders
+boundary "vieworder.jsp" as vieworder
+participant "Orders" as Orders
+participant "ViewOrder" as ViewOrder
+participant LogicFacade
+participant OrderMapper
+database "Database" as database
+
+user -> request : user clicks "Orders"
+request -> orders : link
+orders -> Orders : execute()
+Orders -> LogicFacade : getAllOrders()
+LogicFacade -> OrderMapper : getAllOrders()
+OrderMapper -> database : PreparedStatement
+database -> OrderMapper : ResultSet
+OrderMapper -> OrderMapper : Convert ResultSet to Orders
+OrderMapper -> LogicFacade : return
+LogicFacade -> Orders : return
+Orders -> orders : display orders
+orders -> user
+
+user -> orders : user clicks view order
+orders -> vieworder : link
+vieworder -> ViewOrder : execute()
+ViewOrder -> LogicFacade : getOrder()
+LogicFacade -> OrderMapper : getOrder()
+OrderMapper -> database : PreparedStatement
+database -> OrderMapper : ResultSet
+OrderMapper -> OrderMapper : Convert ResultSet to Order
+OrderMapper -> LogicFacade : return
+LogicFacade -> ViewOrder : return
+ViewOrder -> vieworder : display order information
+
+
+@enduml

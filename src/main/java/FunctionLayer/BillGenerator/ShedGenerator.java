@@ -3,16 +3,17 @@ package FunctionLayer.BillGenerator;
 import Components.ShedDepthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
-
 import FunctionLayer.Exceptions.GeneratorException;
-
 import FunctionLayer.Material;
-import javafx.scene.layout.BorderWidths;
 import FunctionLayer.Order;
-import PresentationLayer.Bill;
 
 import java.util.ArrayList;
 
+import static FunctionLayer.BillGenerator.CarportGenerator.getDistanceBetweenPosts;
+
+/**
+ * Used to Generate / Calculate the BillLines associated with a shed
+ */
 public class ShedGenerator {
     public static ArrayList<BillLine> zOnBackOfDoor(ArrayList<Category> categoriesUsedInGenerator) {
         //We only need one a material in the category
@@ -346,10 +347,10 @@ public class ShedGenerator {
 
         //Getting løsholter
         ArrayList<BillLine> losholter1 = losholterGabled(
-                new ArrayList<Category>() {{add(materialsUsedInGenerator.get(0));}}, order.getShedWidth().getWidth()
+                new ArrayList<Category>() {{add(materialsUsedInGenerator.get(0));}}, order.getShedWidth()
         );
         ArrayList<BillLine> losholter2 = losholterSides(
-                new ArrayList<Category>() {{add(materialsUsedInGenerator.get(1));}}, order.getShedDepth().getDepth()
+                new ArrayList<Category>() {{add(materialsUsedInGenerator.get(1));}}, order.getShedDepth()
         );
 
         ArrayList<BillLine> listToReturn = new ArrayList<>();
@@ -403,4 +404,25 @@ public class ShedGenerator {
 
         return listToReturn;
     }
+
+    //----------------------//
+    // Getting Information //
+    //---------------------//
+
+    public static int getAmountOfPostsWithShed(int carportDepth,int shedDepth, int numberOfRows) {
+        //Starting with 4 posts, front and back of shed, front of carport and the shed middle post
+        int numberOfPostPerRow = 4;
+
+        //Subtracts 100 cm from the front, 30 cm from the back = 130 cm
+        carportDepth -= 130;
+        //Subtracts the shedDepth, so we only are left with the distance that does not have any post set yet
+        carportDepth -= shedDepth;
+
+        //For each 310 cm, add another post on that row
+        numberOfPostPerRow += carportDepth / getDistanceBetweenPosts();
+
+        int total = numberOfPostPerRow * numberOfRows;
+        return total;
+    }
+
 }

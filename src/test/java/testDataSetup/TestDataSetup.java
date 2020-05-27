@@ -13,11 +13,11 @@ import org.junit.Before;
 
 /**
  *
- * @author <Frederik Keis Dinsen>
+ * Used to setup the database for testing
  */
 public class TestDataSetup {
 
-    private ArrayList<String> DBSetUp = scanFromFile("DBDefaultData.sql");
+    private ArrayList<String> DBSetUp = scanFromFile("DBTestData.sql");
 
     public TestDataSetup() {
     }

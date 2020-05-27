@@ -1,0 +1,44 @@
+@startuml
+
+Actor User as user
+boundary "vieworder.jsp" as vieworder
+boundary "Drawing.jsp" as drawing
+participant "Drawing" as Drawing
+participant "DrawingGenerator" as drawgen
+participant "PartBuilderCarport" as partbuildcarp
+participant "PartBuilderShed" as partbuildshed
+participant "SVG" as svg
+participant LogicFacade
+participant OrderMapper
+database "Database" as database
+
+user -> vieworder : user clicks "tegning"
+vieworder -> Drawing : execute()
+Drawing -> LogicFacade : getOrder()
+LogicFacade -> OrderMapper : getOrder()
+OrderMapper -> database : preparedStatement
+database -> OrderMapper : resultSet
+OrderMapper -> LogicFacade : return
+LogicFacade -> Drawing : return Order
+Drawing -> drawgen : createCarportDrawing()
+
+drawgen -> drawgen : figure out type of carport
+drawgen -> drawgen : createWithShedFlagRoofDrawing()
+
+note right of drawgen
+repeat following
+end note
+drawgen -> partbuildcarp : drawOuterBox()
+partbuildcarp -> svg : addRect()
+drawgen -> partbuildshed : drawShed()
+partbuildshed -> svg : addRect()
+note right of drawgen
+repeat previous for
+each part needed
+end note
+
+drawgen -> Drawing : return SVG
+Drawing -> drawing
+drawing -> user : display drawing
+
+@enduml

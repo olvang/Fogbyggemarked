@@ -5,12 +5,16 @@ SET SQL_MODE =  'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION';
 
 CREATE TABLE `orders` (
   `order_id` int PRIMARY KEY AUTO_INCREMENT,
-  -- `customer_id` int NOT NULL,
   `carport_width` int not null,
   `carport_depth` int not null,
   `carport_height` int not null,
   `carport_incline` int not null default 0,
-  `order_date`  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP -- ,
+  `order_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `customer_name` varchar(255) not null,
+  `customer_adresse` varchar(255) not null,
+  `customer_email` varchar(255) not null,
+  `customer_phonenumber` varchar(8) not null,
+  `customer_zipcode` varchar(4) not null
   -- `roof_material_id` int not null, 
   -- `retail_price` int not null 
 );

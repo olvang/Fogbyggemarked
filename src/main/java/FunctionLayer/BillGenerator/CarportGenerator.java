@@ -5,17 +5,27 @@ import Components.HeightComponent;
 import Components.WidthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
-import FunctionLayer.Exceptions.CommandException;
 import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
-import PresentationLayer.Bill;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * Used to Generate / Calculate the BillLines associated with a carport
+ */
 public class CarportGenerator {
+
+    /**
+     * <p>Calculates the amount of under sterns brædder used in front and back</p>
+     * <p>Finds the best fitting board based on the length of the board.</p>
+     * <p>Starting with the smallest.</p>
+     * @param carportWidth The width of the carport
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     * @throws GeneratorException An exception for when a generator fails
+     */
 
     public static ArrayList<BillLine> underSternsBredderFrontAndBack(ArrayList<Category> categoriesUsedInGenerator, WidthComponent carportWidth) throws GeneratorException {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
@@ -65,6 +75,15 @@ public class CarportGenerator {
         }
         return billLines;
     }
+
+    /**
+     * <p>Calculates the amount of stern bærdder needed in the sides.</p>
+     * <p>Find the amount of the biggest board that can be used. Then loops through all</p>
+     * <p>materials to find the board that best fits the rest.</p>
+     * @param depthCom The depth of the carport
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
 
     public static ArrayList<BillLine> sternsBredderSides(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
@@ -119,9 +138,19 @@ public class CarportGenerator {
         return billLines;
     }
 
+    /**
+     * <p>Calculates the amount of over sterns brædder used in the front</p>
+     * <p>Finds the best fitting board based on the length of the board.
+     * <p>Starting with the smallest. Then checking the rest, and finding
+     * the board that will need the least cutting</p>
+     * @param order The order object to calculate from
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
+
     public static ArrayList<BillLine> overSternBredderFront(ArrayList<Category> categoriesUsedInGenerator, Order order) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
-        int carportWidth = order.getWidth().getWidth();
+        int carportWidth = order.getWidth();
         BillLine toBeReturned;
         Category cat = categoriesUsedInGenerator.get(0);
         ArrayList<Material> materials = cat.getMaterials();
@@ -168,7 +197,17 @@ public class CarportGenerator {
 
         return new ArrayList<BillLine>() {{add(toBeReturned);}};
     }
-    
+
+    /**
+     *<p>Calculates the amount of rems used in the carport</p>
+     * <p>Find how many rows based on the width. Then finds the amount
+     * of the largest fitting board that can be used. The rest is
+     * then calculated with the smallest first.</p>
+     * @param depthCom The depth of the carport
+     * @param widthCom The width of the carport
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
 
     public static ArrayList<BillLine> RemInSidesCarport(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depthCom, WidthComponent widthCom) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
@@ -222,10 +261,20 @@ public class CarportGenerator {
         return billLines;
     }
 
+    /**
+     * <p>Calculates the amount of sper used in the carport</p>
+     * <p>Looping through all the materials finding the best fitting one
+     * that is shorter than or equal to the depth of the carport</p>
+     * @param order The order object to calculate on
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     * @throws GeneratorException An exception for when a generator fails
+     */
+
     public static ArrayList<BillLine> sperOnRem(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
-        int carportDepth = order.getDepth().getDepth();
-        int carportWidth = order.getWidth().getWidth();
+        int carportDepth = order.getDepth();
+        int carportWidth = order.getWidth();
         Category category = categoriesUsedInGenerator.get(0);
         ArrayList<Material> list = category.getMaterials();
 
@@ -256,7 +305,7 @@ public class CarportGenerator {
             }
         }
 
-        amount = (int) Math.ceil(carportDepth / 55.0);
+        amount = getAmountOfSper(carportDepth);
         if(sperToUse != null) {
             line = new BillLine(sperToUse, amount, categoryDescription);
         } else {
@@ -266,38 +315,38 @@ public class CarportGenerator {
         return new ArrayList<BillLine>() {{add(line);}};
     }
 
+    /**
+     *<p>Calculates the amount of posts used in the carport</p>
+     * <p>Loops through materials to find the best fitting posts
+     * based on the height of the carport.</p>
+     * @param order The order object to calculate on
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     * @throws GeneratorException An exception for when a generator fails
+     */
+
     public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;
 
-        int numberOfPostRows = 2;
+        int numberOfPostRows;
         int numberOfPostPerRow = 2;
         int total = 0;
-        int carportWidth = order.getWidth().getWidth();
-        int carportDepth = order.getDepth().getDepth();
+        int carportWidth = order.getWidth();
+        int carportDepth = order.getDepth();
         //Subtract 90 cm, because that is how much the post needs to go down in the ground
-        int carportHeight = order.getHeight().getHeight() - 90;
+        int carportHeight = order.getHeight() - 90;
 
         //If order has shed, subtract they width of the shed
         //ShedGenerator calculates how many post are needed within the shed
         if(order.isWithShed()){
-            carportDepth -= order.getShedDepth().getDepth();
+            carportDepth -= order.getShedDepth();
         }
 
+        numberOfPostRows = getAmountOfPostRows(carportWidth);
 
-        //For each 600 cm, add another post row
-        if(carportWidth > 600){
-            numberOfPostRows += carportWidth / 600;
-        }
-
-        //Subtracts 100 cm from the front, 30 cm from the back = 130 cm
-        carportDepth -= 130;
-
-        //For each 310 cm, add another post on that row
-        numberOfPostPerRow += carportDepth / 310;
-
-        total = numberOfPostPerRow * numberOfPostRows;
+        total = getAmountOfPosts(carportDepth, numberOfPostRows);
 
         //Sorts the materials(posts) by their length, DESC
         ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
@@ -329,9 +378,18 @@ public class CarportGenerator {
         return billLines;
     }
 
+    /**
+     *<p>Calculates how many perforated band used in carport</p>
+     * <p>Find the length needed to be covered. Add bands to cover the
+     * diagonal.</p>
+     * @param order The order object to calculate on
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
+
     public static ArrayList<BillLine> perforatedBand(ArrayList<Category> categoriesUsedInGenerator, Order order) {
-        int width = order.getWidth().getWidth();
-        int depth = order.getDepth().getDepth();
+        int width = order.getWidth();
+        int depth = order.getDepth();
         int diagonal = (int) Math.ceil( Math.sqrt((width*width) + (depth*depth)) );
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
 
@@ -348,6 +406,15 @@ public class CarportGenerator {
         return new ArrayList<BillLine>() {{add(new BillLine(materialToUse, amountToBeOrdered, categoryDescription));}};
     }
 
+    /**
+     * <p>Calculates how many universal beslag of the right handside kind needed in carport
+     * sper * (remme / 2) - 1</p>
+     * @param sper The amount of sper used
+     * @param remme The amount of remme used
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
+
     public static ArrayList<BillLine> UniversalBeslagRight(ArrayList<Category> categoriesUsedInGenerator, int sper, int remme) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
@@ -362,18 +429,38 @@ public class CarportGenerator {
 
         return billLines;
     }
-    public static ArrayList<BillLine> UniversalBeslagLeft(ArrayList<Category> materialsUsedInGenerator, int sper) {
-        String categoryDescription = materialsUsedInGenerator.get(0).getDescription();
+
+    /**
+     * <p>Calculates how many universal beslag of the left handside kind needed in carport</p>
+     * <p>Just needs an amount equals to the amount of sper</p>
+     * @param sper The amount of sper used
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
+
+    public static ArrayList<BillLine> UniversalBeslagLeft(ArrayList<Category> categoriesUsedInGenerator, int sper) {
+        String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<BillLine>();
         BillLine billLine = null;
 
-        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(materialsUsedInGenerator.get(0).getMaterials());
+        ArrayList<Material> materialsSortedByLength = GeneratorUtilities.sortMaterialsByLength(categoriesUsedInGenerator.get(0).getMaterials());
 
         billLine = new BillLine(materialsSortedByLength.get(0),sper, categoryDescription);
         billLines.add(billLine);
 
         return billLines;
     }
+
+    /**
+     * <p>Calculates the amount of boxes of screws need for stern of water boards</p>
+     * <p>First need to make sure we have the amount of waterboards.</p>
+     * <p>Desc: Længden af vand brædder / 13,5</p>
+     * <p>Loop through all box sizes and find the best fitting one.</p>
+     * @param finishedList The lists of waterboards from another method
+     * @param order The order object to be calculated on
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
 
     public static ArrayList<BillLine> screwsForSternAndWaterBoard(ArrayList<Category> categoriesUsedInGenerator, Order order, ArrayList<BillLine> finishedList) {
         //Desc: Længden af vand brædder / 13,5
@@ -404,7 +491,7 @@ public class CarportGenerator {
             //This method is called from multiple places, and one of them only doesn't use this category
             if(categoriesUsedInGenerator.size() > 2) {
                 ArrayList<BillLine> sideBoards = FlatRoofGenerator.waterBoardOnSternSides(
-                        new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(2));}}, order.getDepth()
+                        new ArrayList<Category>() {{add(categoriesUsedInGenerator.get(2));}}, order.getDepthComponent()
                 );
                 for(BillLine line : sideBoards) {
                     line.getMaterial().setAmount(line.getAmount());
@@ -455,6 +542,18 @@ public class CarportGenerator {
         };
     }
 
+    /**
+     * <p>Calculate the amount of screws used for universals beslag and Perforated band</p>
+     * <p>DESC: 3 beslagskruer pr. beslagflade (3) (3*3).
+     * + 2 skruer i hvert spær som krydses af hulbåndet</p>
+     * <p>Then lopå through all box sizes to find the best fitting</p>
+     * @param amountOfbeslag The amount of sper beslags used
+     * @param order The order object to be calculated on
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     * @throws GeneratorException An exception for when a generator fails
+     */
+
     public static ArrayList<BillLine> screwsForUniversalBeslagAndPerforatedBand(ArrayList<Category> categoriesUsedInGenerator, Order order, int amountOfbeslag) throws GeneratorException {
         //DESC: 3 beslagskruer pr. beslagflade (3) (3*3).
         String categoryDescription = categoriesUsedInGenerator.get(1).getDescription();
@@ -471,10 +570,10 @@ public class CarportGenerator {
             if(order.isWithShed() == true) {
                 //Makes an exact Deep Copy of the order, so we can make changes to it without affecting the actual order
                 orderWithoutShedDepth = new Order(
-                        new DepthComponent(order.getDepth().getDepth()),
-                        new HeightComponent(order.getHeight().getHeight()),
-                        new WidthComponent(order.getWidth().getWidth()), order.getInclineComponent(), false
-                );
+                        new DepthComponent(order.getDepth()),
+                        new HeightComponent(order.getHeight()),
+                        new WidthComponent(order.getWidth()), order.getInclineComponent(), false
+                ,order.getCustomer());
             } else {
                 orderWithoutShedDepth = order;
             }
@@ -528,6 +627,16 @@ public class CarportGenerator {
         }
     }
 
+    /**
+     * <p>Calculate the amount of bolts for rems</p>
+     * <p>DESC: 2 bolts need for each post</p>
+     * <p>DESC: isShed + 4</p>
+     * @param amountOfPosts The amount of posts in the carport
+     * @param withShed is the order with or without shed
+     * @param CategoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
+
     public static ArrayList<BillLine> boltsForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator, int amountOfPosts, boolean withShed) {
         String categoryDescription = CategoriesUsedInGenerator.get(0).getDescription();
         ArrayList<BillLine> billLines = new ArrayList<>();
@@ -548,6 +657,13 @@ public class CarportGenerator {
         return billLines;
     }
 
+    /**
+     * <p>Calculate the amount of skiver used for rems</p>
+     * <p>DESC: amount of skirver = amount of bolts</p>
+     * @param amountOfBolts The amount of posts in the carport
+     * @param CategoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
 
     public static ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category> CategoriesUsedInGenerator,int amountOfBolts) {
         String categoryDescription = CategoriesUsedInGenerator.get(0).getDescription();
@@ -567,6 +683,68 @@ public class CarportGenerator {
     }
 
 
+    //----------------------//
+    // Getting Information //
+    //---------------------//
 
+    /**
+     * <p>Takes the carport depth and return how many sper is needed</p>
+     * <p>DESC: carport depth / 55</p>
+     * @param carportDepth The depth of the carport
+     * @return int amount of sper
+     */
+
+    public static int getAmountOfSper(int carportDepth) {
+        int amount;
+        amount = (int) Math.ceil(carportDepth / 55.0);
+        return amount;
+    }
+
+    /**
+     * <p>Takes the width of the carport and return the numbers</p>
+     * <p>of rows of posts needed to support the roof.</p>
+     * @param carportWidth the width of the carport
+     * @return int amount of posts rows
+     */
+
+    public static int getAmountOfPostRows(int carportWidth) {
+        int numberOfPostRows = 2;
+        //For each 600 cm, add another post row
+        if(carportWidth > 600){
+            numberOfPostRows += carportWidth / 600;
+        }
+        return numberOfPostRows;
+    }
+
+    /**
+     * <p>Takes the depth and numbers of rows and returns
+     * the amoount of posts needed</p>
+     * @param carportDepth the depth of the carport
+     * @param numberOfRows the amount of post rows in the carport
+     * @return int amount of posts
+     */
+
+    public static int getAmountOfPosts(int carportDepth, int numberOfRows) {
+        //Starting with 2 posts, front and back
+        int numberOfPostPerRow = 2;
+
+        //Subtracts 100 cm from the front, 30 cm from the back = 130 cm
+        carportDepth -= 130;
+
+        //For each 310 cm, add another post on that row
+        numberOfPostPerRow += carportDepth / getDistanceBetweenPosts();
+
+        int total = numberOfPostPerRow * numberOfRows;
+        return total;
+    }
+
+    /**
+     * <p>The distance between two posts</p>
+     * @return int the distance between two posts
+     */
+
+    public static int getDistanceBetweenPosts() {
+        return 310;
+    }
 
 }

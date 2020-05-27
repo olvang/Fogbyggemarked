@@ -1,13 +1,7 @@
 package FunctionLayer.BillGenerator;
 
-import Components.DepthComponent;
-import Components.HeightComponent;
-import Components.InclineComponent;
-import Components.WidthComponent;
-import FunctionLayer.BillLine;
-import FunctionLayer.Category;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.Order;
+import Components.*;
+import FunctionLayer.*;
 import org.junit.Test;
 import testDataSetup.TestDataSetup;
 
@@ -19,10 +13,11 @@ public class FlatRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void testwaterBoardOnSternSides() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{13});
         Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600),
-                new InclineComponent(0) ,false);
-        ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator, order.getDepth());
+                new InclineComponent(0) ,false,customer);
+        ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternSides(categoriesUsedInGenerator, order.getDepthComponent());
 
         String expected = "trykimp. Brædt";
         int expectedAmount1 = 2;
@@ -42,9 +37,10 @@ public class FlatRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void testwaterBoardOnSternFront() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{14});
         Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600),
-                new InclineComponent(0) ,false);
+                new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = FlatRoofGenerator.waterBoardOnSternFront(categoriesUsedInGenerator, order);
 
         String expected = "trykimp. Brædt";
@@ -56,9 +52,10 @@ public class FlatRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void testRoofPanels() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{15});
         Order order = new Order(new DepthComponent(1234), new HeightComponent(220), new WidthComponent(600),
-                new InclineComponent(0) ,false);
+                new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = FlatRoofGenerator.roofPanels(categoriesUsedInGenerator, order);
 
         String expected = "Plastmo Ecolite blåtonet";
@@ -72,9 +69,10 @@ public class FlatRoofGeneratorTest extends TestDataSetup {
 
     @Test
     public void testScrewsForRoofPanels() throws Exception {
+        Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{16});
         Order order = new Order(new DepthComponent(780), new HeightComponent(220), new WidthComponent(600),
-                new InclineComponent(0) ,false);
+                new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = FlatRoofGenerator.screwsForRoofPanels(categoriesUsedInGenerator, order);
 
         String expected = "plastmo bundskruer 200 stk.";

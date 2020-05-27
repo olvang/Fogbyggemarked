@@ -5,37 +5,46 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Objects;
 /**
- * @author fdinsen
- * @version 1.0
- * @since 1.0
+ * <p>Component used to validate a Material Length int</p>
  */
-
 public class MaterialLengthComponent implements Component {
     private int length;
 
-    //-------------//
-    // Constructor //
-    //-------------//
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Convert the string to a int</p>
+     * @param length Material length string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
+     */
     public MaterialLengthComponent(String length) throws ValidationFailedException {
         if(length.equals("")) {
             throw new ValidationFailedException("Dette felt skal udfyldes.");
         }
         try {
             this.length = Integer.parseInt(length);
-        }catch ( Exception ex ) {
+        }catch ( NumberFormatException ex ) {
             throw new ValidationFailedException("Længde skal være et tal.");
         }
         validate();
     }
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param length Material length int to validate
+     * @throws ValidationFailedException An exception for when Validation fails
+     */
     public MaterialLengthComponent(int length) throws ValidationFailedException {
         this.length = length;
         validate();
     }
 
-    //-------------//
-    // Validation //
-    //------------//
+    /**
+     * <p>Validates the Material length</p>
+     * @return True if the Material length validates according to the rules
+     * @exception ValidationFailedException Thrown if the Material length trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         if(length < 0) {
@@ -51,13 +60,20 @@ public class MaterialLengthComponent implements Component {
         return length;
     }
     public void setLength(int length) throws ValidationFailedException {
+        int old = this.length;
         this.length = length;
-        validate();
+        try {
+            validate();
+        } catch (ValidationFailedException e) {
+            this.length = old;
+            throw new ValidationFailedException(e.getMessage());
+        }
     }
 
-    //-----------//
-    // Comparing //
-    //-----------//
+    /**
+     * <p>Used to compare the component with a Integer</p>
+     * @return True if the Material length is equal to the Integer its comparing to, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

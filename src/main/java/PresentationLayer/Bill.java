@@ -1,6 +1,8 @@
 package PresentationLayer;
 
 import FunctionLayer.BillLine;
+import FunctionLayer.Exceptions.DatabaseException;
+import FunctionLayer.Exceptions.GeneratorException;
 import FunctionLayer.LogicFacade;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +25,9 @@ public class Bill extends Command{
             /*for(BillLine line: billLines){
                 System.out.println(line.getMaterial().getName() + " Antal: " + line.getAmount() + " - Længde: " + line.getMaterial().getLength() + " CAT ID: " + line.getMaterial().getCategory());
             }*/
-        } catch (Exception e) {
-            return "request";
+        } catch (DatabaseException | GeneratorException e) {
+            //TODO Create somewhere to send error message
+            return "index";
         }
 
         return "material-bill";

@@ -1,0 +1,356 @@
+@startuml
+
+package "webapp" #EEEEEE {
+    class "drawing.jsp" as drawing
+    class "index.jsp" as index
+    class "material-bill.jsp" as materialbill
+    class "orders.jsp" as orders
+    class "index.jsp" as request
+    class "vieworder.jsp" as vieworder
+    package "WEB-INF" #DDDDDD {
+        package "includes" #CCCCCC {
+            class "footer.jsp" as footer
+            class "header.jsp" as header
+        }
+    }
+
+    index --> request
+/'    request -- header
+    request -- footer
+    orders -- header
+    orders -- footer
+    vieworder -- header
+    vieworder -- footer
+    materialbill -- header
+    materialbill -- footer
+    drawing -- header
+    drawing -- footer'/
+
+    header -> orders
+    orders --> vieworder
+    vieworder --> materialbill
+    vieworder --> drawing
+}
+
+
+package "PresentationLayer" #EEEEEE {
+    interface Command {
+        public String execute(request, response)
+    }
+    class FrontController {
+        protected void processRequest(request, response)
+    }
+    class Bill
+    class Drawing
+    class Orders
+    class Request
+    class ViewOrder
+    class UnknownCommand
+
+    Command <|- Bill
+    Command <|-- Drawing
+    Command <|-- Orders
+    Command <|-- Request
+    Command <|-- ViewOrder
+    Command <|-- UnknownCommand
+    FrontController -> Command
+}
+
+package "FunctionLayer" #EEEEEE {
+    class BillCalculator {
+        ArrayList<BillLine> calculateBillFromOrder(Order)
+        ArrayList<Category> getCategoriesUsedInGenerator(int[], ArrayList<Category>)
+    }
+    class BillLine {
+        {field} Material material
+        {field} int amount
+        {field} String description;
+    }
+    class Category {
+        {field} int categoryId
+        {field} ArrayList<Material> materials
+        {field} String description
+    }
+    class Customer {
+        {field} NameComponent nameComponent
+        {field} AddressComponent adresseComponent
+        {field} EmailComponent emailCompononent
+        {field} PhoneComponent phoneComponent
+        {field} ZipCodeComponent zipcodeComponent
+    }
+    class LogicFacade {
+        void createOrder(Order)
+        Order getOrder(int)
+        ArrayList<Category> getTheseCategories(int[])
+        ArrayList<BillLine> getBillLines(int)
+        ArrayList<Order> getAllOrders()
+    }
+    class Material {
+        {field} int materialID
+        {field} MaterialHeightComponent height
+        {field} MaterialWidthComponent width
+        {field} MaterialLengthComponent length
+        {field} String name
+        {field} int costPrice
+        {field} int category
+        {field} int amount
+        {field} String unit
+    }
+    class Order {
+        {field} int orderId
+        {field} DepthComponent depth
+        {field} HeightComponent height
+        {field} WidthComponent width
+        {field} ShedDepthComponent shedDepth
+        {field} ShedWidthComponent shedWidth
+        {field} InclineComponent incline
+        {field} boolean withShed
+        {field} Date orderDate
+        {field} Customer customer
+    }
+    class User
+
+    package "BillGenerator" #DDDDDD {
+        class CarportGenerator {
+            ArrayList<BillLine> underSternsBredderFrontAndBack(ArrayList<Category>, WidthComponent)
+            ArrayList<BillLine> sternsBredderSides(ArrayList<Category>, DepthComponent)
+            ArrayList<BillLine> overSternBredderFront(ArrayList<Category>, Order)
+            ArrayList<BillLine> RemInSidesCarport(ArrayList<Category>, DepthComponent, WidthComponent)
+            ArrayList<BillLine> sperOnRem(ArrayList<Category>, Order)
+            ArrayList<BillLine> posts(ArrayList<Category>, Order)
+            ArrayList<BillLine> perforatedBand(ArrayList<Category>, Order)
+            ArrayList<BillLine> UniversalBeslagRight(ArrayList<Category>, int, int)
+            ArrayList<BillLine> UniversalBeslagLeft(ArrayList<Category>, int)
+            ArrayList<BillLine> screwsForSternAndWaterBoard(ArrayList<Category>, Order, ArrayList<BillLine>)
+            ArrayList<BillLine> screwsForUniversalBeslagAndPerforatedBand(ArrayList<Category>, Order, int)
+            ArrayList<BillLine> boltsForRemOnPost(ArrayList<Category>, int, boolean)
+            ArrayList<BillLine> skiverForRemOnPost(ArrayList<Category>, int)
+            int getAmountOfSper(int)
+            int getAmountOfPostRows(int)
+            int getAmountOfPosts(int, int)
+            int getDistanceBetweenPosts()
+        }
+        class FlatRoofGenerator {
+            ArrayList<BillLine> waterBoardOnSternSides(ArrayList<Category>, DepthComponent)
+            ArrayList<BillLine> waterBoardOnSternFront(ArrayList<Category>, Order)
+            ArrayList<BillLine> roofPanels(ArrayList<Category>, Order)
+            ArrayList<BillLine> screwsForRoofPanels(ArrayList<Category>, Order)
+        }
+        class GeneratorUtilities {
+            double calculateRoofLength(InclineComponent, WidthComponent)
+            double calculateRoofHeight(InclineComponent, WidthComponent)
+            ArrayList<Material> sortMaterialsByLength(ArrayList<Material>)
+            ArrayList<Material> sortMaterialsByWidth(ArrayList<Material>)
+            ArrayList<Material> sortMaterialsByAmount(ArrayList<Material>)
+            int searchForAmountInACategoryFromBillLines(int, ArrayList<BillLine>)
+        }
+        class InclinedRoofGenerator {
+            ArrayList<BillLine> soffit(ArrayList<Category>, Order)
+            ArrayList<BillLine> roofLath(ArrayList<Category>, Order)
+            ArrayList<BillLine> boardsForGabled(ArrayList<Category>, Order)
+            ArrayList<BillLine> rygsten(ArrayList<Category>, Order)
+            ArrayList<BillLine> roofLathOnSper(ArrayList<Category>, Order)
+            ArrayList<BillLine> topRoofLath(ArrayList<Category>, Order)
+            ArrayList<BillLine> topRoofLathHolder(ArrayList<Category>, Order)
+            ArrayList<BillLine> rygstenBracket(ArrayList<Category>, int)
+            ArrayList<BillLine> roofTileBinders(ArrayList<Category>, int, int)
+            ArrayList<BillLine> screwsForRoofLaths(ArrayList<Category>, ArrayList<BillLine>, ArrayList<BillLine>)
+            ArrayList<BillLine> roofTiles(ArrayList<Category>, Order)
+        }
+        class ShedGenerator {
+            ArrayList<BillLine> zOnBackOfDoor(ArrayList<Category>)
+            ArrayList<BillLine> losholterGabled(ArrayList<Category>, int)
+            ArrayList<BillLine> RemInSidesShed(ArrayList<Category>, ShedDepthComponent)
+            ArrayList<BillLine> losholterSides(ArrayList<Category>, int)
+            ArrayList<BillLine> boardsForShed(ArrayList<Category>, int, int, int)
+            ArrayList<BillLine> stalddorsgreb(ArrayList<Category>, int)
+            ArrayList<BillLine> hingeForDoor(ArrayList<Category>, int)
+            ArrayList<BillLine> vinkelBeslag(ArrayList<Category>, int)
+            ArrayList<BillLine> screwsForOuter(ArrayList<Category>, int, int)
+            ArrayList<BillLine> screwsForInner(ArrayList<Category>, Order)
+            int getAmountOfPostsWithShed(int, int, int)
+        }
+    }
+
+    package "Exceptions" #DDDDDD {
+        class CommandException
+        class DatabaseException
+        class DrawingFailedException
+        class GeneratorException
+        class ValidationFailedException
+    }
+
+   package "SVGGenerator" #DDDDDD {
+        class DrawingGenerator {
+            SVG createCarportDrawing(Order)
+            SVG createNoShedFlatRoofDrawing(int, int)
+            SVG createWithShedFlatRoofDrawing(int, int, int, int)
+            SVG createNoShedRaisedRoofDrawing(int, int, int)
+            SVG createWithShedRaisedRoofDrawing(int, int, int, int, int)
+            SVG createSVGObject(int, int)
+        }
+        class PartBuilderCarport {
+            void drawOuterBox(SVG, int, int, int, int)
+            void drawRems(SVG, int, int, int, int)
+            void drawPostsWithoutShed(SVG, int, int, int, int)
+            void drawSper(SVG, int, int, int, int)
+            void drawPerforatedBandWithoutShed(SVG, int, int, int, int)
+            void drawDepthArrow(SVG svg, int, int,  int, int)
+            void drawInnerWidthArrow(SVG svg, int, int,  int, int)
+            void drawOuterWidthArrow(SVG svg, int, int,  int, int)
+            void drawSperSpaceArrows(SVG svg, int, int,  int, int)
+            int getGapToRem(int)
+        }
+        class PartBuilderInclinedRoof {
+
+        }
+        class PartBuilderShed {
+            void drawShed(SVG, int, int, int, int, int, int)
+            void drawPerforatedBandWithShed(SVG, int, int, int, int, int, int)
+            void drawPostsWithShed(SVG, int, int, int, int, int, int)
+            boolean isPostsWithinShed(int, int, int, int, int, int)
+        }
+        class SVG {
+            {field} int width
+            {field} int height
+            {field} String viewbox
+            {field} int x
+            {field} int y
+            {field} StringBuilder svg
+            {field} String headerTemplate
+            {field} String rectTemplate
+            {field} String arrowTemplate
+            {field} String lineWithArrow
+            {field} String dottedLine
+            {field} String shedLine
+            {field} String line
+            {field} String text
+            void addRect(int, int, int, int)
+            void addLineWithArrow(int, int, int, int)
+            void addLine(int, int, int, int, boolean)
+            void addShedLine(int, int, int, int)
+            void addText(int, int, int, String)
+            void addInnerDrawing(String)
+        }
+   }
+}
+
+package "DBAccess" #EEEEEE {
+    class Connector {
+        {field} String URL
+        {field} String USERNAME
+        {field} String PASSWORD
+        {field} Connection singleton
+        void setConnection(Connection)
+        Connection connection()
+        void setDBCredentials()
+    }
+    class MaterialsMapper {
+        ArrayList<Category> getAllCategories()
+        ArrayList<Category> getTheseCategories(int[])
+        void fillList(ArrayList<Category>, ResultSet)
+    }
+    class OrderMapper {
+        void createOrder(Order)
+        Order getOrder(int)
+        ArrayList<Order> getAllOrders()
+        boolean doesShedExist(int)
+    }
+
+    OrderMapper --> Connector
+    MaterialsMapper --> Connector
+}
+
+package "Components" #EEEEEE {
+    interface Component {
+        public boolean validate()
+    }
+    class AddressComponent
+    class CityComponent
+    class DepthComponent
+    class EmailComponent
+    class HeightComponent
+    class InclineComponent
+    class MaterialHeightComponent
+    class MaterialLengthComponent
+    class MaterialWidthComponent
+    class NameComponent
+    class PhoneComponent
+    class ShedDepthComponent
+    class ShedWidthComponent
+    class WidthComponent
+    class ZipCodeComponent
+
+    Component <|-- AddressComponent
+    Component <|-- CityComponent
+    Component <|-- DepthComponent
+    Component <|-- EmailComponent
+    Component <|-- HeightComponent
+    Component <|-- InclineComponent
+    Component <|-- MaterialHeightComponent
+    Component <|-- MaterialLengthComponent
+    Component <|-- MaterialWidthComponent
+    Component <|-- NameComponent
+    Component <|- PhoneComponent
+    Component <|- ShedDepthComponent
+    Component <|- ShedWidthComponent
+    Component <|- WidthComponent
+    Component <|- ZipCodeComponent
+}
+
+/'Logic Facade'/
+LogicFacade -> BillCalculator
+LogicFacade --> MaterialsMapper
+LogicFacade --> OrderMapper
+
+/'Bill Command'/
+Bill -> LogicFacade
+BillCalculator --> CarportGenerator
+BillCalculator --> FlatRoofGenerator
+BillCalculator --> InclinedRoofGenerator
+BillCalculator --> ShedGenerator
+BillCalculator --> GeneratorUtilities
+CarportGenerator --> GeneratorUtilities
+FlatRoofGenerator --> GeneratorUtilities
+InclinedRoofGenerator --> GeneratorUtilities
+ShedGenerator --> GeneratorUtilities
+
+/'Drawing Command'/
+Drawing --> LogicFacade
+Drawing --> DrawingGenerator
+DrawingGenerator --> PartBuilderCarport
+DrawingGenerator --> PartBuilderInclinedRoof
+DrawingGenerator --> PartBuilderShed
+DrawingGenerator --> SVG
+PartBuilderCarport --> SVG
+PartBuilderInclinedRoof --> SVG
+PartBuilderShed --> SVG
+
+
+/'Orders Command'/
+Orders --> LogicFacade
+
+/'Request Command'/
+Request --> LogicFacade
+
+/'ViewOrder Command'/
+ViewOrder --> LogicFacade
+
+
+/'FrontController Option 1'/
+/'request --> FrontController
+orders --> FrontController
+vieworder --> FrontController
+materialbill --> FrontController
+drawing --> FrontController'/
+
+/'FrontController Option 2'/
+request --> Request
+orders --> Orders
+vieworder --> ViewOrder
+materialbill --> Bill
+drawing --> Drawing
+
+
+
+@enduml
