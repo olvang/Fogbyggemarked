@@ -4,6 +4,7 @@ import Components.*;
 import FunctionLayer.Customer;
 import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
+import FunctionLayer.Log;
 import FunctionLayer.Order;
 
 import java.sql.*;
@@ -52,14 +53,16 @@ public class OrderMapper {
                 PreparedStatement nps = con.prepareStatement(nSQL, Statement.RETURN_GENERATED_KEYS);
                 nps.setInt(1,id);
                 nps.setInt(2,order.getShedWidth());
-                nps.setInt(3,order.getDepth());
+                nps.setInt(3,order.getShedDepth());
 
                 nps.executeUpdate();
             }
 
         }catch (SQLException e) {
+            Log.severe("Order mapper: Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
             throw new DatabaseException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
         }catch(ClassNotFoundException e){
+            Log.severe("Order mapper: Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
             throw new DatabaseException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
         }
 
@@ -98,9 +101,11 @@ public class OrderMapper {
                 nps.executeUpdate();
             }
 
-        } catch (SQLException e) {
+        }catch (SQLException e) {
+            Log.severe("Order mapper: Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
             throw new DatabaseException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
-        } catch (ClassNotFoundException e) {
+        }catch(ClassNotFoundException e){
+            Log.severe("Order mapper: Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
             throw new DatabaseException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
         }
     }
@@ -116,7 +121,7 @@ public class OrderMapper {
         try{
             Connection con = Connector.connection();
 
-            String SQL = "SELECT * FROM ORDERS left join sheds on orders.order_id = sheds.order_id  where orders.order_id = ?;";
+            String SQL = "SELECT * FROM orders left join sheds on orders.order_id = sheds.order_id  where orders.order_id = ?;";
 
             PreparedStatement ps = con.prepareStatement(SQL);
 
@@ -153,11 +158,14 @@ public class OrderMapper {
                 ord = new Order(depthComponent,heightComponent,widthComponent,carportIncline,false,customer);
             }
 
-        } catch (SQLException e) {
+        }catch (SQLException e) {
+            Log.severe("Order mapper: Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
             throw new DatabaseException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
-        } catch (ClassNotFoundException e) {
+        }catch(ClassNotFoundException e){
+            Log.severe("Order mapper: Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
             throw new DatabaseException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
         } catch (ValidationFailedException e) {
+            Log.warning("Order mapper: Et element i ordre databasen fejlede validering: " + e.getMessage());
             throw new DatabaseException("Et element i ordre databasen fejlede validering: " + e.getMessage());
         }
 
@@ -172,12 +180,13 @@ public class OrderMapper {
      * @return Arraylist of orders with all orders in the database
      */
     public static ArrayList<Order> getAllOrders() throws DatabaseException {
+
         ArrayList<Order> orders = new ArrayList<>();
         Order order;
         try{
             Connection con = Connector.connection();
 
-            String SQL = "SELECT * FROM ORDERS left join sheds on orders.order_id = sheds.order_id;";
+            String SQL = "SELECT * FROM orders left join sheds on orders.order_id = sheds.order_id;";
 
             PreparedStatement ps = con.prepareStatement(SQL);
 
@@ -219,10 +228,13 @@ public class OrderMapper {
 
 
         } catch (SQLException e) {
+            Log.severe("Order mapper: Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
             throw new DatabaseException("Der kunne ikke oprettes forbindelse til ordre databasen: " + e.getMessage());
         } catch (ClassNotFoundException e) {
+            Log.severe("Order mapper: Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
             throw new DatabaseException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
         } catch (ValidationFailedException e) {
+            Log.warning("Order mapper: Et element i ordre databasen fejlede validering: " + e.getMessage());
             throw new DatabaseException("Et element i ordre databasen fejlede validering: " + e.getMessage());
         }
 

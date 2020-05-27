@@ -2,39 +2,16 @@ package FunctionLayer;
 
 import DBAccess.MaterialsMapper;
 import DBAccess.OrderMapper;
-import DBAccess.UserMapper;
-import FunctionLayer.Exceptions.CommandException;
 import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.GeneratorException;
-import FunctionLayer.Exceptions.ValidationFailedException;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
  * The purpose of LogicFacade is to connect the function layer with the other layers of the application
  */
 public class LogicFacade {
-
-    public static User login( String email, String password ) throws DatabaseException {
-        return UserMapper.login( email, password );
-    }
-    /**
-     * <p>Creates a User through the UserMapper</p>
-     * @param email The user Email
-     * @param password The user Password
-     * @return User Returs a user object
-     */
-    public static User createUser( String email, String password ) throws DatabaseException {
-        User user = new User(email, password, "customer");
-        UserMapper.createUser( user );
-        return user;
-    }
-
-    /**
-     * <p>Creates a Order through the OrderMapper </p>
-     * @param order The order object to be created
-     */
+    
     public static void createOrder( Order order) throws DatabaseException {
         OrderMapper.createOrder(order);
     }

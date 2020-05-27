@@ -74,9 +74,9 @@ public class ShedWidthComponent implements Component {
      */
     @Override
     public boolean validate() throws ValidationFailedException {
-        //If width is 0 or lower, a ValidationFailedException is thrown
-        if (width < 1) {
-            throw new ValidationFailedException("Skur bredde må ikke være under 0.");
+        //If width is below 100, a ValidationFailedException is thrown
+        if (width < 100) {
+            throw new ValidationFailedException("Skur bredde må ikke være under 1m.");
         //If width is larger than the carport it is connected to, a ValidationFailedException is thrown
         } else if (carportWidth != null && width > carportWidth){
             throw new ValidationFailedException("Skur dybde må ikke være større end carporten");

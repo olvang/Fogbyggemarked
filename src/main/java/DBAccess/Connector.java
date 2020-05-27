@@ -42,7 +42,7 @@ public class Connector {
 
         if ( deployed != null ) {
             // Prod: hent variabler fra setenv.sh
-            URL = System.getenv("JDBC_CONNECTION_STRING");
+            URL = System.getenv("JDBC_CONNECTION_STRING_FOG");
             USERNAME = System.getenv( "JDBC_USER");
             PASSWORD = System.getenv("JDBC_PASSWORD");
         } else {

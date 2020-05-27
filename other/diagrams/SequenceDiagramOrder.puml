@@ -1,7 +1,7 @@
 @startuml
 
 Actor User as user
-boundary "request.jsp" as request
+boundary "index.jsp" as request
 participant "Request" as req
 participant LogicFacade
 participant OrderMapper

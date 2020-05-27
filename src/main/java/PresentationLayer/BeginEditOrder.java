@@ -33,7 +33,7 @@ public class BeginEditOrder extends Command {
             }
         } catch (Exception ex) {
             request.setAttribute("error", ex.getMessage() + ", Kunne ikke åbne ordre til redigering.");
-            return "request";
+            return "index";
         }
 
 

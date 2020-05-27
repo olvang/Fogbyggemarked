@@ -30,7 +30,7 @@ public class ShedGeneratorTest extends TestDataSetup {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{9});
         Order order = new Order(new DepthComponent(500),
-                new HeightComponent(10),
+                new HeightComponent(200),
                 new WidthComponent(550),
                 new ShedDepthComponent("200","500"),
                 new ShedWidthComponent("200","500"),
@@ -58,7 +58,7 @@ public class ShedGeneratorTest extends TestDataSetup {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{9});
         Order order = new Order(new DepthComponent(500),
-                new HeightComponent(10),
+                new HeightComponent(200),
                 new WidthComponent(550),
                 new ShedDepthComponent("500","550"),
                 new ShedWidthComponent("500","550"),

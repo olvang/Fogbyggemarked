@@ -98,7 +98,7 @@ public class DrawingGenerator {
 
     private static SVG createWithShedRaisedRoofDrawing(int fulldepth, int fullwidth, int shedDepth, int shedWidth, int incline) {
         //Shed looks messed up, needs to be reworked somehow
-        /*SVG svg = createSVGObject(fulldepth,fullwidth);
+        SVG svg = createSVGObject(fulldepth,fullwidth);
         int startingX = 100;
         int startingY = 100;
 
@@ -111,21 +111,20 @@ public class DrawingGenerator {
         int differenceForRems = 15; //The rems are 5 wide, so they should be drawn a bit further up
 
         PartBuilderCarport.drawOuterBox(svg, startingX,startingY, fulldepth, fullwidth);
-        PartBuilderShed.drawShed(svg, xmoved, startingY -differenceForRems, fulldepth,fullwidth + differenceForRems,shedDepth,shedWidth);
+        PartBuilderShed.drawShed(svg, startingX, startingY -differenceForRems, fulldepth,fullwidth + differenceForRems,shedDepth,shedWidth);
 
         PartBuilderInclinedRoof.drawRemsInclined(svg, xmoved,startingY - differenceForRems, depth, fullwidth + differenceForRems);
         PartBuilderCarport.drawSper(svg, xmoved,startingY, depth, fullwidth);
         PartBuilderInclinedRoof.drawLaths(svg, startingX,startingY, fulldepth, fullwidth);
         PartBuilderInclinedRoof.drawSterns(svg, startingX,startingY, fulldepth, fullwidth);
 
-        PartBuilderShed.drawPostsWithShed(svg, xmoved,ymoved - differenceForRems, fulldepth, fullwidth + differenceForRems, shedDepth, shedWidth);
+        PartBuilderShed.drawPostsWithShed(svg, startingX,startingY - differenceForRems, fulldepth, fullwidth + differenceForRems, shedDepth, shedWidth);
 
         PartBuilderCarport.drawDepthArrow(svg, startingX,startingY, fulldepth, fullwidth);
         PartBuilderInclinedRoof.drawInclineInnerWidthArrow(svg, startingX,startingY, fulldepth, fullwidth);
         PartBuilderCarport.drawOuterWidthArrow(svg, startingX,startingY, fulldepth, fullwidth);
         PartBuilderCarport.drawSperSpaceArrows(svg, xmoved,ymoved, depth, width);
-        return svg;*/
-        throw new NotImplementedException();
+        return svg;
     }
 
     private static SVG createSVGObject(int carportDepth, int carportWidth) {

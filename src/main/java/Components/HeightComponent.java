@@ -50,9 +50,9 @@ public class HeightComponent implements Component{
      */
     @Override
     public boolean validate() throws ValidationFailedException {
-        //If height is 0 or lower, a ValidationFailedException is thrown
-        if(height < 1) {
-            throw new ValidationFailedException("Højde må ikke være under 0m");
+        //If height is below 200, a ValidationFailedException is thrown
+        if(height < 200) {
+            throw new ValidationFailedException("Højde må ikke være under 2m");
         //If height is above the height limit, a ValidationFailedException is thrown
         } else if (height > heightLimit) {
             throw new ValidationFailedException("Højde må ikke være over " + (heightLimit / 100) + "m." );

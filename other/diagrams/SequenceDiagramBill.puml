@@ -1,7 +1,7 @@
 @startuml
 
 Actor User as user
-boundary "request.jsp" as request
+boundary "index.jsp" as request
 boundary "orders.jsp" as orders
 boundary "vieworder.jsp" as vieworder
 participant "Orders" as Orders

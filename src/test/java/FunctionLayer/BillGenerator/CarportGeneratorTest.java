@@ -17,7 +17,7 @@ public class CarportGeneratorTest extends TestDataSetup {
         // the order to fit your testdata and the categories needed
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{3});
-        Order order = new Order(new DepthComponent(10), new HeightComponent(10), new WidthComponent(1000),
+        Order order = new Order(new DepthComponent(210), new HeightComponent(210), new WidthComponent(1000),
                 new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = CarportGenerator.overSternBredderFront(categoriesUsedInGenerator, order);
 
@@ -31,7 +31,7 @@ public class CarportGeneratorTest extends TestDataSetup {
     @Test
     public void testUniversalBeslagRight() throws Exception {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
-        Order order = new Order(new DepthComponent(780), new HeightComponent(10), new WidthComponent(540),
+        Order order = new Order(new DepthComponent(780), new HeightComponent(200), new WidthComponent(540),
                 new InclineComponent(0),false,customer);
 
         ArrayList<Category> categoriesUsedInGeneratorRemme = getCategoriesAvailable(new int[]{8});
@@ -58,7 +58,7 @@ public class CarportGeneratorTest extends TestDataSetup {
     public void testRemInSidesCarportUnder600() throws Exception {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
-        Order order = new Order(new DepthComponent(500), new HeightComponent(10), new WidthComponent(550),
+        Order order = new Order(new DepthComponent(500), new HeightComponent(200), new WidthComponent(550),
                 new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepthComponent(),order.getWidthComponent());
 
@@ -70,7 +70,7 @@ public class CarportGeneratorTest extends TestDataSetup {
     public void testRemInSidesCarportAbove600() throws Exception {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
-        Order order = new Order(new DepthComponent(500), new HeightComponent(10), new WidthComponent(780),
+        Order order = new Order(new DepthComponent(500), new HeightComponent(200), new WidthComponent(780),
                 new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepthComponent(),order.getWidthComponent());
 
@@ -82,7 +82,7 @@ public class CarportGeneratorTest extends TestDataSetup {
     public void testRemInSidesCarportAbove600AndAbove600() throws Exception {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{8});
-        Order order = new Order(new DepthComponent(650), new HeightComponent(10), new WidthComponent(780),
+        Order order = new Order(new DepthComponent(650), new HeightComponent(200), new WidthComponent(780),
                 new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = CarportGenerator.RemInSidesCarport(categoriesUsedInGenerator, order.getDepthComponent(),order.getWidthComponent());
 
@@ -95,7 +95,7 @@ public class CarportGeneratorTest extends TestDataSetup {
     public void testunderSternsBredderSides() throws Exception {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{2});
-        Order order = new Order(new DepthComponent(1500), new HeightComponent(10), new WidthComponent(10),
+        Order order = new Order(new DepthComponent(1500), new HeightComponent(200), new WidthComponent(200),
                 new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepthComponent());
 
@@ -114,7 +114,7 @@ public class CarportGeneratorTest extends TestDataSetup {
     public void testoverSternsBredderSides() throws Exception {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{4});
-        Order order = new Order(new DepthComponent(780), new HeightComponent(10), new WidthComponent(10),
+        Order order = new Order(new DepthComponent(780), new HeightComponent(200), new WidthComponent(200),
                 new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = CarportGenerator.sternsBredderSides(categoriesUsedInGenerator, order.getDepthComponent());
 
@@ -133,7 +133,7 @@ public class CarportGeneratorTest extends TestDataSetup {
         // the order to fit your testdata and the categories needed
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{10});
-        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(270),
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(200), new WidthComponent(270),
                 new InclineComponent(0) ,false,customer);
         BillLine billLine = CarportGenerator.sperOnRem(categoriesUsedInGenerator, order).get(0);
 
@@ -166,7 +166,7 @@ public class CarportGeneratorTest extends TestDataSetup {
     public void testPerforatedBand() throws Exception {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{17});
-        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(500),
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(200), new WidthComponent(500),
                 new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = CarportGenerator.perforatedBand(categoriesUsedInGenerator, order);
 
@@ -182,7 +182,7 @@ public class CarportGeneratorTest extends TestDataSetup {
     public void testScrewsForSternAndWaterboard() throws Exception {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{20,13,14});
-        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(1000),
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(200), new WidthComponent(1000),
                 new InclineComponent(0) ,false,customer);
         ArrayList<BillLine> billLine = CarportGenerator.screwsForSternAndWaterBoard(categoriesUsedInGenerator, order, new ArrayList<BillLine>());
 
@@ -194,12 +194,13 @@ public class CarportGeneratorTest extends TestDataSetup {
         assertEquals(expectedAmount, billLine.get(0).getAmount());
     }
 
+    @Test
     public void testboltsForRemOnPost() throws Exception {
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{22});
         int amountOfPosts = 6;
         int expectedNoShed = 12;
         int expectedWithShed = 16;
-        String expectedName = "bræddebolt 10 x 120 mm.";
+        String expectedName = "bræddebolt.";
 
         ArrayList<BillLine> billLineNoShed = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator, amountOfPosts,false);
         ArrayList<BillLine> billLineWithShed = CarportGenerator.boltsForRemOnPost(categoriesUsedInGenerator, amountOfPosts,true);
@@ -227,7 +228,7 @@ public class CarportGeneratorTest extends TestDataSetup {
     public void testScrewsForUniversalBeslagAndPerforatedBand() throws Exception {
         Customer customer = new Customer(new NameComponent("John"),new AddressComponent("Vej vej"), new EmailComponent("john@mail.com"), new PhoneComponent("12345678"), new ZipCodeComponent("1234"));
         ArrayList<Category> categoriesUsedInGenerator = getCategoriesAvailable(new int[]{10,21});
-        Order order = new Order(new DepthComponent(1000), new HeightComponent(10), new WidthComponent(580),
+        Order order = new Order(new DepthComponent(1000), new HeightComponent(200), new WidthComponent(580),
                 new InclineComponent(0) ,false,customer);
 
         //If sper is calculated correctly, there should be 38 beslag

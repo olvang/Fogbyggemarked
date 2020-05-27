@@ -183,17 +183,17 @@ public class Request extends Command {
                 //Set all input fields to their input if not empty
                 errorHandling(request,carportWidthString,carportDepthString,carportHeightString,shedornotString,shedWidthString,shedDepthString,roofTypeString,nameString,addressString,emailString,phoneString,zipString);
                 request.setAttribute("error","Kunne ikke sende din bestilling afsted. " + e.getMessage());
-                return "request";
+                return "index";
             }
 
             //No errors found - and order inserted in db
-            request.setAttribute("success","Tak for din bestilling"+ order.getCustomerName() + "<br>Du vil blive kontaktet af en af vores dygtige sælgere hurtigst muligt.");
+            request.setAttribute("success","Tak for din bestilling, "+ order.getCustomerName() + "<br>Du vil blive kontaktet af en af vores dygtige sælgere hurtigst muligt.");
         }else{
             //Errors found
             errorHandling(request,carportWidthString,carportDepthString,carportHeightString,shedornotString,shedWidthString,shedDepthString,roofTypeString, nameString, addressString, emailString, phoneString, zipString);
 
         }
-        return "request";
+        return "index";
     }
 
     private void errorHandling(HttpServletRequest request, String carportWidthString, String carportDepthString, String carportHeightString, String shedornotString, String shedWidthString, String shedDepthString, String roofTypeString, String nameString, String addressString, String emailString, String phoneString, String zipString){

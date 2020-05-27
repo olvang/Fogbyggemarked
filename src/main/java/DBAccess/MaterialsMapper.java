@@ -6,6 +6,7 @@ import Components.MaterialWidthComponent;
 import FunctionLayer.Category;
 import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
+import FunctionLayer.Log;
 import FunctionLayer.Material;
 
 import java.sql.Connection;
@@ -33,10 +34,13 @@ public class MaterialsMapper {
             fillList(listOfCategories, rs);
 
         } catch (SQLException e) {
+            Log.severe("Materials mapper: Der kunne ikke oprettes forbindelse til materiale databasen: " + e.getMessage());
             throw new DatabaseException("Der kunne ikke oprettes forbindelse til materiale databasen: " + e.getMessage());
         } catch (ClassNotFoundException e) {
+            Log.severe("Materials mapper: Der skete en serverfejl. ClassNotFound in MaterialMapper: " + e.getMessage());
             throw new DatabaseException("Der skete en serverfejl. ClassNotFound in MaterialMapper: " + e.getMessage());
         } catch (ValidationFailedException e) {
+            Log.warning("Materials mapper: Et element i materiale databasen fejlede validering:  " + e.getMessage());
             throw new DatabaseException("Et element i materiale databasen fejlede validering: " + e.getMessage());
         }
         return listOfCategories;
@@ -73,10 +77,13 @@ public class MaterialsMapper {
             ResultSet rs = ps.executeQuery();
             fillList(listOfMaterials, rs);
         }  catch (SQLException e) {
+            Log.severe("Materials mapper: Der kunne ikke oprettes forbindelse til materiale databasen: " + e.getMessage());
             throw new DatabaseException("Der kunne ikke oprettes forbindelse til materiale databasen: " + e.getMessage());
         } catch (ClassNotFoundException e) {
+            Log.severe("Materials mapper: Der skete en serverfejl. ClassNotFound in MaterialMapper: " + e.getMessage());
             throw new DatabaseException("Der skete en serverfejl. ClassNotFound in MaterialMapper: " + e.getMessage());
         } catch (ValidationFailedException e) {
+            Log.warning("Materials mapper: Et element i materiale databasen fejlede validering:  " + e.getMessage());
             throw new DatabaseException("Et element i materiale databasen fejlede validering: " + e.getMessage());
         }
         return listOfMaterials;

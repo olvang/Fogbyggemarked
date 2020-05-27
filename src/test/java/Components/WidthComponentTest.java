@@ -11,16 +11,16 @@ public class WidthComponentTest{
 
     @Test
     public void testSuccess() throws ValidationFailedException {
-        int expected = 51;
-        WidthComponent component = new WidthComponent(51);
+        int expected = 510;
+        WidthComponent component = new WidthComponent(510);
 
         assertEquals(component.getWidth(), expected);
     }
 
     @Test
     public void testSetValue() throws ValidationFailedException {
-        int expected = 10;
-        WidthComponent component = new WidthComponent(51);
+        int expected = 210;
+        WidthComponent component = new WidthComponent(510);
 
         component.setWidth(expected);
 
@@ -29,8 +29,8 @@ public class WidthComponentTest{
 
     @Test
     public void testSuccessString() throws ValidationFailedException {
-        int expected = 51;
-        WidthComponent component = new WidthComponent("51");
+        int expected = 510;
+        WidthComponent component = new WidthComponent("510");
 
         assertEquals(component.getWidth(), expected);
     }
@@ -52,8 +52,8 @@ public class WidthComponentTest{
 
     @Test
     public void testBoundaryValueOne() throws ValidationFailedException {
-        int expected = 1;
-        WidthComponent component = new WidthComponent(1);
+        int expected = 200;
+        WidthComponent component = new WidthComponent(200);
 
         assertEquals(component.getWidth(), expected);
     }
@@ -78,37 +78,37 @@ public class WidthComponentTest{
     //Equals tests
     @Test
     public void testEqualsInt() throws ValidationFailedException {
-        WidthComponent component1 = new WidthComponent(10);
+        WidthComponent component1 = new WidthComponent(210);
 
-        assertTrue(component1.equals(10));
+        assertTrue(component1.equals(210));
     }
 
     @Test
     public void testEqualsObject() throws ValidationFailedException {
-        WidthComponent component1 = new WidthComponent(10);
-        WidthComponent component2= new WidthComponent(10);
+        WidthComponent component1 = new WidthComponent(210);
+        WidthComponent component2= new WidthComponent(210);
 
         assertTrue(component1.equals(component2));
     }
 
     @Test
     public void testEqualsObjectFail() throws ValidationFailedException {
-        WidthComponent component1 = new WidthComponent(10);
-        WidthComponent component2= new WidthComponent(11);
+        WidthComponent component1 = new WidthComponent(210);
+        WidthComponent component2= new WidthComponent(211);
 
         assertFalse(component1.equals(component2));
     }
 
     @Test
     public void testEqualsIntFail() throws ValidationFailedException {
-        WidthComponent component1 = new WidthComponent(10);
+        WidthComponent component1 = new WidthComponent(210);
 
-        assertFalse(component1.equals(11));
+        assertFalse(component1.equals(211));
     }
 
     @Test
     public void testEqualsWrongObjectType() throws ValidationFailedException {
-        WidthComponent component1 = new WidthComponent(10);
+        WidthComponent component1 = new WidthComponent(210);
 
         assertFalse(component1.equals(new String()));
     }

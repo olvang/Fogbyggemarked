@@ -49,9 +49,9 @@ public class WidthComponent implements Component {
      */
     @Override
     public boolean validate() throws ValidationFailedException {
-        //If width is 0 or lower, a ValidationFailedException is thrown
-        if (width < 1) {
-            throw new ValidationFailedException("Bredde må ikke være under 0m.");
+        //If width is below 200, a ValidationFailedException is thrown
+        if (width < 200) {
+            throw new ValidationFailedException("Bredde må ikke være under 2m.");
         //If width is above the width limit, a ValidationFailedException is thrown
         } else if (width > widthLimit) {
             throw new ValidationFailedException("Bredde må ikke være over " + (widthLimit / 100) + "m.");

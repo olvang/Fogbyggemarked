@@ -23,9 +23,9 @@ public class Drawing extends Command{
             svg = DrawingGenerator.createCarportDrawing(order);
 
         } catch (DatabaseException e) {
-            return "request";
+            return "index";
         } catch (DrawingFailedException e) {
-            return "request";
+            return "index";
         }
         request.setAttribute("svgdrawing", svg.toString());
         request.setAttribute("order_id", orderID);

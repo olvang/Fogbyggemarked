@@ -75,9 +75,9 @@ public class ShedDepthComponent implements Component {
      */
     @Override
     public boolean validate() throws ValidationFailedException {
-        //If depth is 0 or lower, a ValidationFailedException is thrown
-        if(depth < 1) {
-            throw new ValidationFailedException("Skur dybde må ikke være under 0");
+        //If depth is below 100, a ValidationFailedException is thrown
+        if(depth < 100) {
+            throw new ValidationFailedException("Skur dybde må ikke være under 1m");
             //If depth is larger than the carport it is connected to, a ValidationFailedException is thrown
         } else if (carportDepth != null && depth > carportDepth){
             throw new ValidationFailedException("Skur dybde må ikke være større end carporten");
