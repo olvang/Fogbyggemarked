@@ -138,4 +138,36 @@ public class ShedDepthComponentTest {
         assertFalse(component1.equals(new WidthComponent(200)));
     }
 
+    @Test
+    public void testSetSuccess() throws ValidationFailedException {
+        int var1 = 200;
+        int var2 = 150;
+        DepthComponent carport = new DepthComponent(300);
+        ShedDepthComponent component = new ShedDepthComponent(var1, carport);
+        try {
+            component.setDepth(var2);
+            assertEquals(var2, component.getDepth());
+        } catch (ValidationFailedException e) {
+            fail("Setting failed");
+        }
+    }
+
+    @Test
+    public void testSetFail() throws ValidationFailedException {
+        int var1 = 200;
+        int var2 = 10;
+        DepthComponent carport = new DepthComponent(300);
+        ShedDepthComponent component = null;
+        try {
+            component = new ShedDepthComponent(var1, carport);
+        } catch (ValidationFailedException e) {
+            fail("First validation failed");
+        }
+        try {
+            component.setDepth(var2);
+        }catch (ValidationFailedException e) {
+            assertEquals(var1, component.getDepth());
+        }
+    }
+
 }

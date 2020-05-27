@@ -19,6 +19,8 @@ public class BillCalculator {
      * <p>When a category has been calculated, it adds the returned BillLine to the array, which is returned at the end</p>
      * @param order The order object to calculate from
      * @return An ArrayList of all BillLines calculated from the order
+     * @throws GeneratorException An exception for when a generator fails
+     * @throws DatabaseException An exception for database erros
      */
     public ArrayList<BillLine> calculateBillFromOrder(Order order) throws GeneratorException, DatabaseException {
         int[] categoriesNeeded = null;

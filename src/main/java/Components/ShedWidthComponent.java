@@ -18,6 +18,7 @@ public class ShedWidthComponent implements Component {
      * <p>Calls the validate function</p>
      * @param width Width int to validate
      * @param carportWidth Carport width to validate with
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public ShedWidthComponent(int width, WidthComponent carportWidth) throws ValidationFailedException {
         this.width = width;
@@ -31,6 +32,7 @@ public class ShedWidthComponent implements Component {
      * <p>Convert width string to a int</p>
      * @param width Width string to validate
      * @param carportWidth Carport Width to validate with
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public ShedWidthComponent(String width, WidthComponent carportWidth) throws ValidationFailedException {
         if(width.equals("")) {
@@ -52,6 +54,7 @@ public class ShedWidthComponent implements Component {
      * <p>Calls the validate function</p>
      * @param width Width string to validate
      * @param carportWidth Carport width string to validate with
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public ShedWidthComponent(String width, String carportWidth) throws ValidationFailedException {
         if(width.equals("")) {
@@ -94,8 +97,14 @@ public class ShedWidthComponent implements Component {
     }
 
     public void setWidth(int width) throws ValidationFailedException {
+        int old = this.width;
         this.width = width;
-        validate();
+        try {
+            validate();
+        } catch (ValidationFailedException e) {
+            this.width = old;
+            throw new ValidationFailedException(e.getMessage());
+        }
     }
 
     /**

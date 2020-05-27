@@ -17,6 +17,7 @@ public class WidthComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param width width int to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public WidthComponent(int width) throws ValidationFailedException {
         this.width = width;
@@ -28,6 +29,7 @@ public class WidthComponent implements Component {
      * <p>Calls the validate function</p>
      * <p>Convert Depth string to a int</p>
      * @param width Width string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public WidthComponent(String width) throws ValidationFailedException {
         if(width.equals("")) {
@@ -67,8 +69,14 @@ public class WidthComponent implements Component {
     }
 
     public void setWidth(int width) throws ValidationFailedException {
+        int old = this.width;
         this.width = width;
-        validate();
+        try {
+            validate();
+        } catch (ValidationFailedException e) {
+            this.width = old;
+            throw new ValidationFailedException(e.getMessage());
+        }
     }
 
     /**

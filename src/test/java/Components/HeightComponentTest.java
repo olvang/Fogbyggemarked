@@ -113,4 +113,34 @@ public class HeightComponentTest{
         assertFalse(component1.equals(new String()));
     }
 
+    @Test
+    public void testSetSuccess() throws ValidationFailedException {
+        int var1 = 200;
+        int var2 = 200;
+        HeightComponent component = new HeightComponent(var1);
+        try {
+            component.setHeight(var2);
+            assertEquals(var2, component.getHeight());
+        } catch (ValidationFailedException e) {
+            fail("Setting failed");
+        }
+    }
+
+    @Test
+    public void testSetFail() throws ValidationFailedException {
+        int var1 = 200;
+        int var2 = 10;
+        HeightComponent component = null;
+        try {
+            component = new HeightComponent(var1);
+        } catch (ValidationFailedException e) {
+            fail("First validation failed");
+        }
+        try {
+            component.setHeight(var2);
+        }catch (ValidationFailedException e) {
+            assertEquals(var1, component.getHeight());
+        }
+    }
+
 }

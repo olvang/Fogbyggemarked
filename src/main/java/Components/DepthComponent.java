@@ -17,6 +17,7 @@ public class DepthComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param depth The depth to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public DepthComponent(int depth) throws ValidationFailedException {
         this.depth = depth;
@@ -27,6 +28,7 @@ public class DepthComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param depth The depth to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public DepthComponent(String depth) throws ValidationFailedException {
         if(depth.equals("")) {
@@ -66,8 +68,14 @@ public class DepthComponent implements Component {
     }
 
     public void setDepth(int depth) throws ValidationFailedException {
+        int old = this.depth;
         this.depth = depth;
-        validate();
+        try {
+            validate();
+        } catch (ValidationFailedException e) {
+            this.depth = old;
+            throw new ValidationFailedException(e.getMessage());
+        }
     }
 
     //-----------//

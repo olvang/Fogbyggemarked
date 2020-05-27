@@ -1,5 +1,7 @@
 package DBAccess;
 
+import FunctionLayer.Exceptions.ValidationFailedException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -22,6 +24,8 @@ public class Connector {
     /**
      * <p>Creates a database connection if it does not exists or the connection is closed</p>
      * @return Connection object
+     * @throws ClassNotFoundException When class is not found
+     * @throws SQLException An exception when an SQL error happens
      */
     public static Connection connection() throws ClassNotFoundException, SQLException {
         if ( singleton == null || singleton.isClosed() ) {
@@ -34,7 +38,7 @@ public class Connector {
 
     /**
      * <p>Used to setup the DB Credentials.</p>
-     * <p>If it's deployed it uses the environment variables></p>
+     * <p>If it's deployed it uses the environment variables</p>
      * <p>If not, it uses the hardcoded test database</p>
      */
     public static void setDBCredentials() {

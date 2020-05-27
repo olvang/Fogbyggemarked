@@ -15,6 +15,7 @@ public class PhoneComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param phone Phone string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public PhoneComponent(String phone) throws ValidationFailedException {
         this.phone = phone;
@@ -26,7 +27,7 @@ public class PhoneComponent implements Component {
     }
 
     public void setPhone(String phone) throws ValidationFailedException {
-        String old = phone;
+        String old = this.phone;
         this.phone = phone;
         try {
             validate();

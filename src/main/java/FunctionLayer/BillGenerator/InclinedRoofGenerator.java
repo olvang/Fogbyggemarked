@@ -3,6 +3,7 @@ package FunctionLayer.BillGenerator;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
 import FunctionLayer.Exceptions.GeneratorException;
+import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
 
@@ -244,6 +245,7 @@ public class InclinedRoofGenerator {
      * @param order the order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
+     * @throws GeneratorException An exception for when a generator fails
      */
 
     public static ArrayList<BillLine> topRoofLath(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
@@ -262,7 +264,6 @@ public class InclinedRoofGenerator {
                 materialToUse = mat;
             }
         }
-
         if(materialToUse == null) {
             throw new GeneratorException("No material was selected in topRooFlath");
         }

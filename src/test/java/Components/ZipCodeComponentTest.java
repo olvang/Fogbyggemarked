@@ -55,4 +55,34 @@ public class ZipCodeComponentTest {
         String zip = null;
         ZipCodeComponent zipCodeComponent = new ZipCodeComponent(zip);
     }
+
+    @Test
+    public void testSetSuccess() throws ValidationFailedException {
+        String var1 = "3214";
+        String var2 = "5544";
+        ZipCodeComponent component = new ZipCodeComponent(var1);
+        try {
+            component.setZip(var2);
+            assertEquals(var2, component.getZip());
+        } catch (ValidationFailedException e) {
+            fail("Setting failed");
+        }
+    }
+
+    @Test
+    public void testSetFail() throws ValidationFailedException {
+        String var1 = "1234";
+        String var2 = "";
+        ZipCodeComponent component = null;
+        try {
+            component = new ZipCodeComponent(var1);
+        } catch (ValidationFailedException e) {
+            fail("First validation failed");
+        }
+        try {
+            component.setZip(var2);
+        }catch (ValidationFailedException e) {
+            assertEquals(var1, component.getZip());
+        }
+    }
 }

@@ -20,6 +20,7 @@ public class OrderMapper {
      * <p>by looking at shedDepth which would null if there is not.</p>
      * <p>Then it execute two different sets of SQL statements depending on the information.</p>
      * @param order The order object with the information to be created in the db
+     * @throws DatabaseException An exception for database erros
      */
     public static void createOrder(Order order) throws DatabaseException {
         try{
@@ -71,6 +72,7 @@ public class OrderMapper {
      * <p>Updates an existing order</p>
      * @param orderID The Order ID to be updated
      * @param order The Order object with the updated information
+     * @throws DatabaseException An exception for database erros
      */
     public static void updateOrder(int orderID, Order order) throws DatabaseException {
         try {
@@ -113,6 +115,7 @@ public class OrderMapper {
      * <p>Gets a single order from database based on the ID</p>
      * @param ID The Order ID to be updated
      * @return Order The Order object pulled from the database,
+     * @throws DatabaseException An exception for database erros
      */
     public static Order getOrder(int ID) throws DatabaseException {
         Order ord;
@@ -178,6 +181,7 @@ public class OrderMapper {
      * <p>Gets all orders from the database</p>
      * <p>Also checks if each order has a shed connected with it</p>
      * @return Arraylist of orders with all orders in the database
+     * @throws DatabaseException An exception for database erros
      */
     public static ArrayList<Order> getAllOrders() throws DatabaseException {
 

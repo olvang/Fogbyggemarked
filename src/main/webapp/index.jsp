@@ -202,7 +202,7 @@
                                                 </span>
                                                 </div>
                                                 <input type="text" id="name" name="name"
-                                                       placeholder="navn"
+                                                       placeholder="Navn"
                                                        class="form-control"
                                                        required="required"
                                                        value="<c:if test="${requestScope.name != null}">${requestScope.name}</c:if>">
@@ -221,7 +221,7 @@
                                                 </span>
                                                 </div>
                                                 <input type="text" id="address" name="address"
-                                                       placeholder="adresse"
+                                                       placeholder="Adresse"
                                                        class="form-control"
                                                        required="required"
                                                        value="<c:if test="${requestScope.address != null}">${requestScope.address}</c:if>">
@@ -240,7 +240,7 @@
                                                 </span>
                                                 </div>
                                                 <input type="text" id="email" name="email"
-                                                       placeholder="email"
+                                                       placeholder="Email"
                                                        class="form-control"
                                                        required="required"
                                                        value="<c:if test="${requestScope.email != null}">${requestScope.email}</c:if>">
@@ -260,7 +260,7 @@
                                                 </span>
                                                 </div>
                                                 <input type="text" id="phone" name="phone"
-                                                       placeholder="telefon nummer"
+                                                       placeholder="Telefon nummer"
                                                        class="form-control"
                                                        required="required"
                                                        value="<c:if test="${requestScope.phone != null}">${requestScope.phone}</c:if>">
@@ -280,7 +280,7 @@
                                                 </span>
                                                 </div>
                                                 <input type="text" id="zipcode" name="zipcode"
-                                                       placeholder="postnummer og by"
+                                                       placeholder="Postnummer"
                                                        class="form-control"
                                                        required="required"
                                                        value="<c:if test="${requestScope.zipcode != null}">${requestScope.zipcode}</c:if>">

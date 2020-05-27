@@ -1,5 +1,6 @@
 package Components;
 
+import FunctionLayer.Exceptions.DatabaseException;
 import FunctionLayer.Exceptions.ValidationFailedException;
 import FunctionLayer.Log;
 
@@ -14,6 +15,7 @@ public class AddressComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param address The address string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public AddressComponent(String address) throws ValidationFailedException {
         this.address = address;
@@ -26,7 +28,7 @@ public class AddressComponent implements Component {
 
 
     public void setAddress(String address) throws ValidationFailedException {
-        String old = address;
+        String old = this.address;
         this.address = address;
         try {
             validate();

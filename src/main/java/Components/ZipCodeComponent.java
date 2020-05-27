@@ -14,6 +14,7 @@ public class ZipCodeComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param zip Zip code string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public ZipCodeComponent(String zip) throws ValidationFailedException {
         this.zip = zip;
@@ -25,7 +26,7 @@ public class ZipCodeComponent implements Component {
     }
 
     public void setZip(String zip) throws ValidationFailedException {
-        String old = zip;
+        String old = this.zip;
         this.zip = zip;
         try {
             validate();

@@ -24,6 +24,7 @@ public class CarportGenerator {
      * @param carportWidth The width of the carport
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
+     * @throws GeneratorException An exception for when a generator fails
      */
 
     public static ArrayList<BillLine> underSternsBredderFrontAndBack(ArrayList<Category> categoriesUsedInGenerator, WidthComponent carportWidth) throws GeneratorException {
@@ -267,6 +268,7 @@ public class CarportGenerator {
      * @param order The order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
+     * @throws GeneratorException An exception for when a generator fails
      */
 
     public static ArrayList<BillLine> sperOnRem(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
@@ -320,6 +322,7 @@ public class CarportGenerator {
      * @param order The order object to calculate on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
+     * @throws GeneratorException An exception for when a generator fails
      */
 
     public static ArrayList<BillLine> posts(ArrayList<Category> categoriesUsedInGenerator, Order order) throws GeneratorException {
@@ -548,6 +551,7 @@ public class CarportGenerator {
      * @param order The order object to be calculated on
      * @param categoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
+     * @throws GeneratorException An exception for when a generator fails
      */
 
     public static ArrayList<BillLine> screwsForUniversalBeslagAndPerforatedBand(ArrayList<Category> categoriesUsedInGenerator, Order order, int amountOfbeslag) throws GeneratorException {
@@ -657,6 +661,7 @@ public class CarportGenerator {
      * <p>Calculate the amount of skiver used for rems</p>
      * <p>DESC: amount of skirver = amount of bolts</p>
      * @param amountOfBolts The amount of posts in the carport
+     * @param CategoriesUsedInGenerator the categories used in this generator
      * @return An Arraylist of BillLines with the materials needed
      */
 

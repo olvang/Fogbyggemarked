@@ -15,6 +15,7 @@ public class EmailComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param email The Email string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public EmailComponent(String email) throws ValidationFailedException {
         this.email = email;
@@ -26,7 +27,7 @@ public class EmailComponent implements Component {
     }
 
     public void setEmail(String email) throws ValidationFailedException {
-        String old = email;
+        String old = this.email;
         this.email = email;
         try {
             validate();
