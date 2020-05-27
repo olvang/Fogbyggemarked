@@ -4,10 +4,18 @@ import FunctionLayer.Exceptions.ValidationFailedException;
 
 import java.util.regex.Pattern;
 
+/**
+ * <p>Component used to validate a Phone String</p>
+ */
 public class PhoneComponent implements Component {
 
     String phone;
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param phone Phone string to validate
+     */
     public PhoneComponent(String phone) throws ValidationFailedException {
         this.phone = phone;
         validate();
@@ -28,6 +36,11 @@ public class PhoneComponent implements Component {
         }
     }
 
+    /**
+     * <p>Validates the Phone</p>
+     * @return True if the Phone string validates according to the rules
+     * @exception ValidationFailedException Thrown if the Phone string trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         if(phone == null || phone == "") {

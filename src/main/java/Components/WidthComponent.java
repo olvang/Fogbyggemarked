@@ -5,19 +5,30 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Objects;
 
+/**
+ * <p>Component used to validate a Carport Width int</p>
+ */
 public class WidthComponent implements Component {
     private int width;
 
     private int widthLimit = 2000;
 
-    //-------------//
-    // Constructor //
-    //-------------//
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param width width int to validate
+     */
     public WidthComponent(int width) throws ValidationFailedException {
         this.width = width;
         validate();
     }
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Convert Depth string to a int</p>
+     * @param width Width string to validate
+     */
     public WidthComponent(String width) throws ValidationFailedException {
         if(width.equals("")) {
             //Don't forget to update test if this error message is changed.
@@ -31,9 +42,11 @@ public class WidthComponent implements Component {
         validate();
     }
 
-    //-------------//
-    // Validation //
-    //------------//
+    /**
+     * <p>Validates the Material Height</p>
+     * @return True if the Carport width validates according to the rules
+     * @exception ValidationFailedException Thrown if the Carport Width trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         //If width is below 200, a ValidationFailedException is thrown
@@ -58,10 +71,10 @@ public class WidthComponent implements Component {
         validate();
     }
 
-    //-----------//
-    // Comparing //
-    //-----------//
-
+    /**
+     * <p>Used to compare the component with a Integer</p>
+     * @return True if the Width is equal to the Integer its comparing to, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,10 +87,5 @@ public class WidthComponent implements Component {
         if( getClass() != o.getClass() ) return false;
         WidthComponent component = (WidthComponent) o;
         return width == component.width;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(width);
     }
 }

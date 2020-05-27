@@ -2,11 +2,20 @@ package FunctionLayer;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a Category
+ */
 public class Category {
     private int categoryId;
     private ArrayList<Material> materials;
     private String description;
 
+    /**
+     * <p>Constructor for a Category </p>
+     * @param categoryId The category ID
+     * @param material The material as a material object (added to the arraylist of materials on the Category object)
+     * @param description The description of the material
+     */
     public Category(int categoryId, Material material, String description) {
         materials = new ArrayList<>();
 
@@ -27,6 +36,12 @@ public class Category {
     public ArrayList<Material> getMaterials() {
         return materials;
     }
+
+    /**
+     * <p>Gets a material from a material ID within the Arraylist of materials</p>
+     * @param materialId The material id to find
+     * @return Returns a material if found, else returns Null
+     */
     public Material getMaterialByMaterialId(int materialId) {
         for(Material mat : materials) {
             if (mat.getMaterialID() == materialId) {
@@ -37,33 +52,6 @@ public class Category {
     }
     public Material getMaterialAtIndex(int index) {
         return materials.get(index);
-    }
-    public Material getLongestMaterial() {
-        Material longest = materials.get(0);
-        for(int i = 1; i < materials.size(); i++) {
-            if (materials.get(i).getLength() > longest.getLength()) {
-                longest = materials.get(i);
-            }
-        }
-        return longest;
-    }
-    public Material getWidestMaterial() {
-        Material widest = materials.get(0);
-        for(int i = 1; i < materials.size(); i++) {
-            if (materials.get(i).getWidth() > widest.getWidth() ) {
-                widest = materials.get(i);
-            }
-        }
-        return widest;
-    }
-    public Material getHighestMaterial() {
-        Material highest = materials.get(0);
-        for(int i = 1; i < materials.size(); i++) {
-            if (materials.get(i).getHeight() > highest.getHeight()) {
-                highest = materials.get(i);
-            }
-        }
-        return highest;
     }
 
     //---------//

@@ -5,19 +5,29 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Objects;
 
+/**
+ * <p>Component used to validate a city string</p>
+ */
 public class DepthComponent implements Component {
     private int depth;
 
     private int depthLimit = 2000;
 
-    //-------------//
-    // Constructor //
-    //-------------//
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param depth The depth to validate
+     */
     public DepthComponent(int depth) throws ValidationFailedException {
         this.depth = depth;
         validate();
     }
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param depth The depth to validate
+     */
     public DepthComponent(String depth) throws ValidationFailedException {
         if(depth.equals("")) {
             //Don't forget to update test if this error message is changed.
@@ -31,9 +41,11 @@ public class DepthComponent implements Component {
         validate();
     }
 
-    //-------------//
-    // Validation //
-    //------------//
+    /**
+     * <p>Validates the Depth</p>
+     * @return True if the Depth validates according to the rules
+     * @exception ValidationFailedException Thrown if the Depth trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         //If depth is below 200, a ValidationFailedException is thrown
@@ -62,6 +74,10 @@ public class DepthComponent implements Component {
     // Comparing //
     //-----------//
 
+    /**
+     * <p>Used to compare the component with a Integer</p>
+     * @return True if the component depth is equal to the Integer its comparing to, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,10 +90,5 @@ public class DepthComponent implements Component {
         if( getClass() != o.getClass() ) return false;
         DepthComponent component = (DepthComponent) o;
         return depth == component.depth;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(depth);
     }
 }

@@ -5,15 +5,34 @@ import FunctionLayer.BillLine;
 import FunctionLayer.Category;
 import FunctionLayer.Material;
 import FunctionLayer.Order;
-import PresentationLayer.Bill;
 
 import java.util.ArrayList;
 
+/**
+ * Used to Generate / Calculate the BillLines associated with a flatroof
+ */
 public class FlatRoofGenerator {
+
+    /**
+     *<p>Calculates amount of waterboards on sides</p>
+     * <p>Uses sternbredderSidees from carport generator</p>
+     * @param depth The depth of the carport
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
+
     public static ArrayList<BillLine> waterBoardOnSternSides(ArrayList<Category> categoriesUsedInGenerator, DepthComponent depth) {
         //Calculated same way as Stern for the sides
         return CarportGenerator.sternsBredderSides(categoriesUsedInGenerator,depth);
     }
+
+    /**
+     *<p>Calculates amount of waterboards on stern in front</p>
+     * <p>Uses oversternbredderFront from carport generator</p>
+     * @param order the order object to calculate on
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
 
     public static ArrayList<BillLine> waterBoardOnSternFront(ArrayList<Category> categoriesUsedInGenerator, Order order) {
         //Calculated same way as Stern for the front
@@ -21,12 +40,13 @@ public class FlatRoofGenerator {
     }
 
     /**
-     * Takes the width and the depth of the carport in the order and calculates the amount of roof panels needed
-     * to fill the roof area of the carport, using as few panels as possible
-     * @param categoriesUsedInGenerator
-     * @param order
-     * @return ArrayList<BillLine>
+     *<p>Calculates amount of roofpanels used</p>
+     *
+     * @param order the order object to calculate on
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
      */
+
     public static ArrayList<BillLine> roofPanels(ArrayList<Category> categoriesUsedInGenerator, Order order) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();
         int depth = order.getDepth();
@@ -73,6 +93,14 @@ public class FlatRoofGenerator {
         }
         return listToBeReturned;
     }
+
+    /**
+     *<p>Calculates amnount of screw for roof panels</p>
+     * <p>DESC: 12 screws pr. square meter</p>
+     * @param order the order object to calculate on
+     * @param categoriesUsedInGenerator the categories used in this generator
+     * @return An Arraylist of BillLines with the materials needed
+     */
 
     public static ArrayList<BillLine> screwsForRoofPanels(ArrayList<Category> categoriesUsedInGenerator,Order order) {
         String categoryDescription = categoriesUsedInGenerator.get(0).getDescription();

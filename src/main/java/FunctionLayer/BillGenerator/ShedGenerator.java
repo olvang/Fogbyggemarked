@@ -3,18 +3,17 @@ package FunctionLayer.BillGenerator;
 import Components.ShedDepthComponent;
 import FunctionLayer.BillLine;
 import FunctionLayer.Category;
-
 import FunctionLayer.Exceptions.GeneratorException;
-
 import FunctionLayer.Material;
-import javafx.scene.layout.BorderWidths;
 import FunctionLayer.Order;
-import PresentationLayer.Bill;
 
 import java.util.ArrayList;
 
 import static FunctionLayer.BillGenerator.CarportGenerator.getDistanceBetweenPosts;
 
+/**
+ * Used to Generate / Calculate the BillLines associated with a shed
+ */
 public class ShedGenerator {
     public static ArrayList<BillLine> zOnBackOfDoor(ArrayList<Category> categoriesUsedInGenerator) {
         //We only need one a material in the category
