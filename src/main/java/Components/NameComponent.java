@@ -15,6 +15,7 @@ public class NameComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param name Name in string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public NameComponent(String name) throws ValidationFailedException {
         this.name = name;

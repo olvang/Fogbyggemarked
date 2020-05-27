@@ -16,6 +16,7 @@ public class MaterialWidthComponent implements Component {
      * <p>Calls the validate function</p>
      * <p>Converts the string to a int</p>
      * @param width Material Width string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public MaterialWidthComponent(String width) throws ValidationFailedException {
         if(width.equals("")) {
@@ -33,6 +34,7 @@ public class MaterialWidthComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param width Material Width int to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public MaterialWidthComponent(int width) throws ValidationFailedException {
         this.width = width;

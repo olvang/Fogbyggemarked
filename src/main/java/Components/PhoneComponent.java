@@ -15,6 +15,7 @@ public class PhoneComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param phone Phone string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public PhoneComponent(String phone) throws ValidationFailedException {
         this.phone = phone;

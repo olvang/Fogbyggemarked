@@ -15,6 +15,7 @@ public class MaterialLengthComponent implements Component {
      * <p>Calls the validate function</p>
      * <p>Convert the string to a int</p>
      * @param length Material length string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public MaterialLengthComponent(String length) throws ValidationFailedException {
         if(length.equals("")) {
@@ -32,6 +33,7 @@ public class MaterialLengthComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param length Material length int to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public MaterialLengthComponent(int length) throws ValidationFailedException {
         this.length = length;

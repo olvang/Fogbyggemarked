@@ -14,6 +14,7 @@ public class MaterialHeightComponent implements Component {
      * <p>Calls the validate function</p>
      * <p>Convert the string to a int</p>
      * @param height Material Height string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public MaterialHeightComponent(String height) throws ValidationFailedException {
         if(height.equals("")) {
@@ -31,6 +32,7 @@ public class MaterialHeightComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param height Material Height int to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public MaterialHeightComponent(int height) throws ValidationFailedException {
         this.height = height;

@@ -14,6 +14,7 @@ public class CityComponent implements Component {
      * <p>Constructor for the component </p>
      * <p>Calls the validate function</p>
      * @param city The city string to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public CityComponent(String city) throws ValidationFailedException {
         this.city = city;

@@ -12,6 +12,7 @@ public class InclineComponent implements Component {
      * <p>Constructor for the component</p>
      * <p>Calls the validate function</p>
      * @param incline The incline int to validate
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public InclineComponent(int incline) throws ValidationFailedException {
         this.incline = incline;

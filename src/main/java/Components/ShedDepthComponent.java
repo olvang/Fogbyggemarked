@@ -19,6 +19,7 @@ public class ShedDepthComponent implements Component {
      * <p>Calls the validate function</p>
      * @param depth Depth int to validate
      * @param carportDepth Carport depth to validate with
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public ShedDepthComponent(int depth, DepthComponent carportDepth) throws ValidationFailedException {
         this.depth = depth;
@@ -32,6 +33,7 @@ public class ShedDepthComponent implements Component {
      * <p>Convert Depth string to a int</p>
      * @param depth Depth string to validate
      * @param carportDepth Carport depth to validate with
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public ShedDepthComponent(String depth, DepthComponent carportDepth) throws ValidationFailedException {
         if(depth.equals("")) {
@@ -53,6 +55,7 @@ public class ShedDepthComponent implements Component {
      * <p>Calls the validate function</p>
      * @param depth Depth string to validate
      * @param carportDepth Carport depth string to validate with
+     * @throws ValidationFailedException An exception for when Validation fails
      */
     public ShedDepthComponent(String depth, String carportDepth) throws ValidationFailedException {
         if(depth.equals("")) {
