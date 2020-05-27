@@ -2,14 +2,27 @@ package Components;
 
 import FunctionLayer.Exceptions.ValidationFailedException;
 
+/**
+ * <p>Component used to validate a city string</p>
+ */
 public class InclineComponent implements Component {
     int incline;
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param incline The incline int to validate
+     */
     public InclineComponent(int incline) throws ValidationFailedException {
         this.incline = incline;
         validate();
     }
 
+    /**
+     * <p>Validates the incline int</p>
+     * @return True if the incline int validates according to the rules
+     * @exception ValidationFailedException Thrown if the incline int trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         //incline is 0 if the roof is flat

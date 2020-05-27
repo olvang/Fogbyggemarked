@@ -10,13 +10,16 @@ import FunctionLayer.Order;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Used to get information from the database associated with an order
+ */
 public class OrderMapper {
-    /*
-    Create orders takes an order object and check wether there is a shed in that order
-    by looking at shedDepth which would null if there is not.
-
-    Then it execute two diffrent sets of SQL statemenets depending on the
-    information.,
+    /**
+     * <p>Creates a new order</p>
+     * <p>Create orders takes an order object and check whether there is a shed in that order</p>
+     * <p>by looking at shedDepth which would null if there is not.</p>
+     * <p>Then it execute two different sets of SQL statements depending on the information.</p>
+     * @param order The order object with the information to be created in the db
      */
     public static void createOrder(Order order) throws DatabaseException {
         try{
@@ -64,11 +67,11 @@ public class OrderMapper {
         }
 
     }
-    /*
-    Gets an order ID and a order an updates the order ID
-    with the given order
+    /**
+     * <p>Updates an existing order</p>
+     * @param orderID The Order ID to be updated
+     * @param order The Order object with the updated information
      */
-
     public static void updateOrder(int orderID, Order order) throws DatabaseException {
         try {
             Connection con = Connector.connection();
@@ -106,8 +109,10 @@ public class OrderMapper {
             throw new DatabaseException("Der skete en serverfejl. ClassNotFound in OrderMapper: " + e.getMessage());
         }
     }
-    /*
-    Gets an ID an return the order assoiated for that ID
+    /**
+     * <p>Gets a single order from database based on the ID</p>
+     * @param ID The Order ID to be updated
+     * @return Order The Order object pulled from the database,
      */
     public static Order getOrder(int ID) throws DatabaseException {
         Order ord;
@@ -169,12 +174,11 @@ public class OrderMapper {
         return ord;
 
     }
-
-    /*
-        Gets all orders. Check whether the order has
-        a shed on it or not.
+    /**
+     * <p>Gets all orders from the database</p>
+     * <p>Also checks if each order has a shed connected with it</p>
+     * @return Arraylist of orders with all orders in the database
      */
-
     public static ArrayList<Order> getAllOrders() throws DatabaseException {
 
         ArrayList<Order> orders = new ArrayList<>();
@@ -239,9 +243,10 @@ public class OrderMapper {
     }
 
 
-    /*
-        Check whether or not a shed exists to the given ID.
-        Primary job, being a helper class to the method - getOrder
+    /**
+     * <p>Check if a shed exists for an order</p>
+     * @param ID The Order ID to be checked for a shed
+     * @return True if exist, else false
      */
     private static boolean doesShedExists(int ID) throws SQLException, ClassNotFoundException{
             Connection con = Connector.connection();

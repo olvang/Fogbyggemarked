@@ -22,7 +22,7 @@ public class CityComponentTest {
 
     @Test
     public void testCorrectCityAccens() {
-        String city =  "Áârhüs";
+        String city =  "Helsingør";
         try {
             CityComponent cityComponent = new CityComponent(city);
             assertTrue(cityComponent.validate());

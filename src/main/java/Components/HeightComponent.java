@@ -5,19 +5,30 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Objects;
 
+/**
+ * <p>Component used to validate a Carport Height</p>
+ */
 public class HeightComponent implements Component{
     private int height;
 
     private int heightLimit = 1000;
 
-    //-------------//
-    // Constructor //
-    //-------------//
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param height The height int to validate
+     */
     public HeightComponent(int height) throws ValidationFailedException {
         this.height = height;
         validate();
     }
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Converts to int</p>
+     * @param height The height string to validate
+     */
     public HeightComponent(String height) throws ValidationFailedException {
         if(height.equals("")) {
             //Don't forget to update test if this error message is changed.
@@ -31,9 +42,12 @@ public class HeightComponent implements Component{
         validate();
     }
 
-    //-------------//
-    // Validation //
-    //------------//
+
+    /**
+     * <p>Validates the Height</p>
+     * @return True if the height validates according to the rules
+     * @exception ValidationFailedException Thrown if the height trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         //If height is below 200, a ValidationFailedException is thrown
@@ -68,6 +82,10 @@ public class HeightComponent implements Component{
     // Comparing //
     //-----------//
 
+    /**
+     * <p>Used to compare the component with a Integer</p>
+     * @return True if the height is equal to the Integer its comparing to, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,10 +98,5 @@ public class HeightComponent implements Component{
         if( getClass() != o.getClass() ) return false;
         HeightComponent component = (HeightComponent) o;
         return height == component.height;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(height);
     }
 }

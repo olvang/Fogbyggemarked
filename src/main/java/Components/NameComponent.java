@@ -4,10 +4,18 @@ import FunctionLayer.Exceptions.ValidationFailedException;
 
 import java.util.regex.Pattern;
 
+/**
+ * <p>Component used to validate a Name String</p>
+ */
 public class NameComponent implements Component {
 
     String name;
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param name Name in string to validate
+     */
     public NameComponent(String name) throws ValidationFailedException {
         this.name = name;
         validate();
@@ -28,6 +36,11 @@ public class NameComponent implements Component {
         }
     }
 
+    /**
+     * <p>Validates a Name string</p>
+     * @return True if the Name validates according to the rules
+     * @exception ValidationFailedException Thrown if the Name trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         if(name == null || name == "") {

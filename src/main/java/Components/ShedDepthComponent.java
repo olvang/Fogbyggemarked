@@ -5,21 +5,34 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Objects;
 
+/**
+ * <p>Component used to validate a Shed Depth int</p>
+ */
 public class ShedDepthComponent implements Component {
     private int depth;
 
     private DepthComponent carportConnection;
     private Integer carportDepth;
 
-    //-------------//
-    // Constructor //
-    //-------------//
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param depth Depth int to validate
+     * @param carportDepth Carport depth to validate with
+     */
     public ShedDepthComponent(int depth, DepthComponent carportDepth) throws ValidationFailedException {
         this.depth = depth;
         this.carportConnection = carportDepth;
         validate();
     }
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Convert Depth string to a int</p>
+     * @param depth Depth string to validate
+     * @param carportDepth Carport depth to validate with
+     */
     public ShedDepthComponent(String depth, DepthComponent carportDepth) throws ValidationFailedException {
         if(depth.equals("")) {
             //Don't forget to update test if this error message is changed.
@@ -34,23 +47,32 @@ public class ShedDepthComponent implements Component {
         validate();
     }
 
-    public ShedDepthComponent(String depth, String cartportDepth) throws ValidationFailedException {
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Convert Depth string and cartport Depth string to a int</p>
+     * <p>Calls the validate function</p>
+     * @param depth Depth string to validate
+     * @param carportDepth Carport depth string to validate with
+     */
+    public ShedDepthComponent(String depth, String carportDepth) throws ValidationFailedException {
         if(depth.equals("")) {
             //Don't forget to update test if this error message is changed.
             throw new ValidationFailedException("Dette felt skal udfyldes.");
         }
         try {
             this.depth = Integer.parseInt(depth);
-            this.carportDepth = Integer.parseInt(cartportDepth);
+            this.carportDepth = Integer.parseInt(carportDepth);
         }catch (NumberFormatException ex) {
             throw new ValidationFailedException("Skur dybden skal være et tal.");
         }
         validate();
     }
 
-    //-------------//
-    // Validation //
-    //------------//
+    /**
+     * <p>Validates the Shed Depth</p>
+     * @return True if the Shed Depth validates according to the rules
+     * @exception ValidationFailedException Thrown if the Shed Depth trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         //If depth is below 100, a ValidationFailedException is thrown
@@ -86,7 +108,10 @@ public class ShedDepthComponent implements Component {
     //-----------//
     // Comparing //
     //-----------//
-
+    /**
+     * <p>Used to compare the component with a Integer</p>
+     * @return True if the Shed Depth is equal to the Integer its comparing to, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,10 +124,5 @@ public class ShedDepthComponent implements Component {
         if( getClass() != o.getClass() ) return false;
         ShedDepthComponent component = (ShedDepthComponent) o;
         return depth == component.depth;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(depth);
     }
 }

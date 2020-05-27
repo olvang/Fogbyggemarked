@@ -1,10 +1,19 @@
 package FunctionLayer;
 
+/**
+ * Represents a BillLine
+ */
 public class BillLine {
     private Material material;
     private int amount;
     private String description;
 
+    /**
+     * <p>Constructor for an order with shed </p>
+     * @param material The material associated with the Billline
+     * @param amount The amount of the material
+     * @param description The Description of the BillLine
+     */
     public BillLine(Material material, int amount, String description) {
         this.material = material;
         this.amount = amount;

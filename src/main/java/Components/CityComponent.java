@@ -4,9 +4,17 @@ import FunctionLayer.Exceptions.ValidationFailedException;
 
 import java.util.regex.Pattern;
 
+/**
+ * <p>Component used to validate a city string</p>
+ */
 public class CityComponent implements Component {
     String city;
 
+    /**
+     * <p>Constructor for the component </p>
+     * <p>Calls the validate function</p>
+     * @param city The city string to validate
+     */
     public CityComponent(String city) throws ValidationFailedException {
         this.city = city;
         validate();
@@ -27,6 +35,11 @@ public class CityComponent implements Component {
         }
     }
 
+    /**
+     * <p>Validates the city string</p>
+     * @return True if the city string validates according to the rules
+     * @exception ValidationFailedException Thrown if the city string trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         if(city == null || city == "") {

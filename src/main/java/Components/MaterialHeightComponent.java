@@ -4,17 +4,17 @@ import FunctionLayer.Exceptions.ValidationFailedException;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.Objects;
 /**
- * @author fdinsen
- * @version 1.0
- * @since 1.0
+ * <p>Component used to validate a Material Height int</p>
  */
-
 public class MaterialHeightComponent implements Component {
     private int height;
 
-    //-------------//
-    // Constructor //
-    //-------------//
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Convert the string to a int</p>
+     * @param height Material Height string to validate
+     */
     public MaterialHeightComponent(String height) throws ValidationFailedException {
         if(height.equals("")) {
             throw new ValidationFailedException("Dette felt skal udfyldes.");
@@ -27,14 +27,21 @@ public class MaterialHeightComponent implements Component {
         validate();
     }
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param height Material Height int to validate
+     */
     public MaterialHeightComponent(int height) throws ValidationFailedException {
         this.height = height;
         validate();
     }
 
-    //-------------//
-    // Validation //
-    //------------//
+    /**
+     * <p>Validates the Material Height</p>
+     * @return True if the Material Height validates according to the rules
+     * @exception ValidationFailedException Thrown if the Material Height trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         if(height < 0) {
@@ -62,6 +69,10 @@ public class MaterialHeightComponent implements Component {
     //-----------//
     // Comparing //
     //-----------//
+    /**
+     * <p>Used to compare the component with a Integer</p>
+     * @return True if the Material Height is equal to the Integer its comparing to, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,10 +85,5 @@ public class MaterialHeightComponent implements Component {
         if( getClass() != o.getClass() ) return false;
         MaterialHeightComponent component = (MaterialHeightComponent) o;
         return height == component.height;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(height);
     }
 }

@@ -4,22 +4,34 @@ import FunctionLayer.Exceptions.ValidationFailedException;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Objects;
-
+/**
+ * <p>Component used to validate a Shed Width int</p>
+ */
 public class ShedWidthComponent implements Component {
     private int width;
 
     private WidthComponent carportConnection;
     private Integer carportWidth;
 
-    //-------------//
-    // Constructor //
-    //-------------//
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * @param width Width int to validate
+     * @param carportWidth Carport width to validate with
+     */
     public ShedWidthComponent(int width, WidthComponent carportWidth) throws ValidationFailedException {
         this.width = width;
         this.carportConnection = carportWidth;
         validate();
     }
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Calls the validate function</p>
+     * <p>Convert width string to a int</p>
+     * @param width Width string to validate
+     * @param carportWidth Carport Width to validate with
+     */
     public ShedWidthComponent(String width, WidthComponent carportWidth) throws ValidationFailedException {
         if(width.equals("")) {
             //Don't forget to update test if this error message is changed.
@@ -34,6 +46,13 @@ public class ShedWidthComponent implements Component {
         validate();
     }
 
+    /**
+     * <p>Constructor for the component</p>
+     * <p>Convert Width string and cartport Width string to a int</p>
+     * <p>Calls the validate function</p>
+     * @param width Width string to validate
+     * @param carportWidth Carport width string to validate with
+     */
     public ShedWidthComponent(String width, String carportWidth) throws ValidationFailedException {
         if(width.equals("")) {
             //Don't forget to update test if this error message is changed.
@@ -48,9 +67,11 @@ public class ShedWidthComponent implements Component {
         validate();
     }
 
-    //-------------//
-    // Validation //
-    //------------//
+    /**
+     * <p>Validates the Shed Width</p>
+     * @return True if the Shed Width validates according to the rules
+     * @exception ValidationFailedException Thrown if the Shed Width trying to be validated does not comply with the rules
+     */
     @Override
     public boolean validate() throws ValidationFailedException {
         //If width is below 100, a ValidationFailedException is thrown
@@ -83,10 +104,10 @@ public class ShedWidthComponent implements Component {
         }
     }
 
-    //-----------//
-    // Comparing //
-    //-----------//
-
+    /**
+     * <p>Used to compare the component with a Integer</p>
+     * @return True if the Shed Width is equal to the Integer its comparing to, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,10 +120,5 @@ public class ShedWidthComponent implements Component {
         if( getClass() != o.getClass() ) return false;
         ShedWidthComponent component = (ShedWidthComponent) o;
         return width == component.width;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(width);
     }
 }
