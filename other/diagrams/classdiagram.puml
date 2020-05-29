@@ -1,5 +1,33 @@
 @startuml
 
+package "PresentationLayer" #EEEEEE {
+    interface Command {
+        public String execute(request, response)
+    }
+    class FrontController {
+        protected void processRequest(request, response)
+    }
+    class Bill
+    class Drawing
+    class Orders
+    class Request
+    class ViewOrder
+    class UnknownCommand
+    class BeginEditOrder
+    class SaveEditOrder
+
+    Command <|- Bill
+    Command <|-- Drawing
+    Command <|-- Orders
+    Command <|-- Request
+    Command <|-- ViewOrder
+    Command <|-- UnknownCommand
+    Command <|-- BeginEditOrder
+    Command <|-- SaveEditOrder
+
+    FrontController -> Command
+}
+
 package "webapp" #EEEEEE {
     class "drawing.jsp" as drawing
     class "index.jsp" as index
@@ -30,31 +58,12 @@ package "webapp" #EEEEEE {
     orders --> vieworder
     vieworder --> materialbill
     vieworder --> drawing
+    vieworder -> BeginEditOrder
+    vieworder -> SaveEditOrder
 }
 
 
-package "PresentationLayer" #EEEEEE {
-    interface Command {
-        public String execute(request, response)
-    }
-    class FrontController {
-        protected void processRequest(request, response)
-    }
-    class Bill
-    class Drawing
-    class Orders
-    class Request
-    class ViewOrder
-    class UnknownCommand
 
-    Command <|- Bill
-    Command <|-- Drawing
-    Command <|-- Orders
-    Command <|-- Request
-    Command <|-- ViewOrder
-    Command <|-- UnknownCommand
-    FrontController -> Command
-}
 
 package "FunctionLayer" #EEEEEE {
     class BillCalculator {
@@ -336,6 +345,8 @@ Request --> LogicFacade
 /'ViewOrder Command'/
 ViewOrder --> LogicFacade
 
+/'SaveEditOrder Command'/
+SaveEditOrder --> LogicFacade
 
 /'FrontController Option 1'/
 /'request --> FrontController
