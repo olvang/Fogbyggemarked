@@ -1,39 +1,50 @@
 @startuml
 
 Actor User as user
-boundary "index.jsp" as request
-boundary "orders.jsp" as orders
 boundary "vieworder.jsp" as vieworder
-participant "Orders" as Orders
-participant "ViewOrder" as ViewOrder
+boundary "materials-bill.jsp" as matbill
+participant "Bill" as bill
+participant "BillCalculator" as billcalc
+participant "CarportGenerator" as carportgen
+participant "ShedGenerator" as shedgen
 participant LogicFacade
 participant OrderMapper
+participant MaterialsMapper
 database "Database" as database
 
-user -> request : user clicks "Orders"
-request -> orders : link
-orders -> Orders : execute()
-Orders -> LogicFacade : getAllOrders()
-LogicFacade -> OrderMapper : getAllOrders()
-OrderMapper -> database : PreparedStatement
-database -> OrderMapper : ResultSet
-OrderMapper -> OrderMapper : Convert ResultSet to Orders
-OrderMapper -> LogicFacade : return
-LogicFacade -> Orders : return
-Orders -> orders : display orders
-orders -> user
-
-user -> orders : user clicks view order
-orders -> vieworder : link
-vieworder -> ViewOrder : execute()
-ViewOrder -> LogicFacade : getOrder()
+user -> vieworder : user clicks "stykliste"
+vieworder -> bill : execute()
+bill -> LogicFacade : getBillLines()
 LogicFacade -> OrderMapper : getOrder()
-OrderMapper -> database : PreparedStatement
-database -> OrderMapper : ResultSet
-OrderMapper -> OrderMapper : Convert ResultSet to Order
+OrderMapper -> database : preparedStatement
+database -> OrderMapper : resultSet
 OrderMapper -> LogicFacade : return
-LogicFacade -> ViewOrder : return
-ViewOrder -> vieworder : display order information
+LogicFacade -> billcalc : calculateBillFromOrder()
+billcalc -> billcalc : figure out carport type
+billcalc -> LogicFacade : getTheseCategories()
+LogicFacade -> MaterialsMapper : getTheseCategories()
+MaterialsMapper -> database : preparedStatement
+database -> MaterialsMapper : resultSet
+MaterialsMapper -> LogicFacade : return
+LogicFacade -> billcalc : return
 
+note right of billcalc
+repeat following
+end note
+
+billcalc -> carportgen : underSternsBredderFrontAndBack()
+carportgen -> billcalc : return Category
+billcalc -> shedgen : boardsForShed()
+shedgen -> billcalc : return Category
+
+note right of billcalc
+repeat above for each
+category needed
+end note
+
+billcalc -> LogicFacade : return ArrayList<Category>
+LogicFacade -> bill : return ArrayList<Category>
+bill -> matbill
+matbill -> user : display bill of materials
 
 @enduml

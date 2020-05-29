@@ -10,6 +10,10 @@ database "Database" as database
 user -> request : user clicks "send"
 request -> req : [for each input] validate()
 req -> request : if fail: show error message
+request -> user
+user -> request : user clicks send with valid input
+request -> req : [for each input] validate()
+
 req -> LogicFacade : createOrder()
 LogicFacade -> OrderMapper : createOrder()
 OrderMapper -> database : creates order
